@@ -8,6 +8,7 @@ import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
 import static java.lang.Thread.sleep;
+import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 
@@ -109,8 +110,11 @@ public abstract class Game implements EventHandler
 
 	final protected void close()
 	{
+		glfwFreeCallbacks(window.getId());
 		glfwDestroyWindow(window.getId());
+
 		glfwTerminate();
+		glfwSetErrorCallback(null).free();
 	}
 
 	final protected void run() throws SysException, InterruptedException
