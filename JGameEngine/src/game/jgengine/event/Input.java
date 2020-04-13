@@ -30,4 +30,9 @@ public class Input
 	{
 		return glfwGetMouseButton(window.getId(), GLFW_MOUSE_BUTTON_3) == 1;
 	}
+
+	public static String getKeyName(int keycode)
+	{
+		return glfwGetKeyName(keycode, 0);
+	}
 }

@@ -7,6 +7,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="macos" level="project" />
+    <orderEntry type="library" name="windows" level="project" />
   </component>
 </module>

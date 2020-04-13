@@ -1,21 +1,20 @@
-import game.jgengine.event.Cursor;
+import game.jgengine.event.Input;
 import game.jgengine.exceptions.SysException;
+import game.jgengine.sys.Cursor;
 import game.jgengine.sys.Game;
-import game.jgengine.sys.Window;
 import game.jgengine.utils.Color;
-import game.jgengine.utils.Colors;
-
-import static org.lwjgl.glfw.GLFW.*;
 
 public class MyTestGame extends Game
 {
-    int x = 0, y = 0;
     @Override
     protected void load()
     {
-        getWindow().setSize(1000, 800);
+        getWindow().setSize(800, 800);
         //setResizeable(false);
         setClearColor(new Color(0, 200, 200));
+        setFramerateLimit(60);
+
+        getWindow().setCursor(new Cursor("C:\\Users\\mb624\\Desktop\\progSpecimen_.png"));
     }
 
     @Override
@@ -33,10 +32,19 @@ public class MyTestGame extends Game
     @Override
     public void keyPressedEventHandler(int key)
     {
-        if(key == GLFW_KEY_SPACE)
-            setClearColor(Colors.CYAN.getNegative());
-        else if(key == GLFW_KEY_UP)
-            setClearColor(Colors.CYAN);
+        String keyName = Input.getKeyName(key);
+        if(keyName.equals("a"))
+        {
+            getWindow().disableCursor();
+        }
+        else if(keyName.equals("z"))
+        {
+            getWindow().hideCursor();
+        }
+        else
+        {
+            getWindow().resetCursor();
+        }
     }
 
     @Override
@@ -102,15 +110,55 @@ public class MyTestGame extends Game
     @Override
     public void windowFocusedEventHandler()
     {
-        System.out.println("Focus");
-        setClearColor(Colors.LIME);
+
     }
 
     @Override
     public void windowLoosedFocusEventHandler()
     {
-        System.out.println("Lost focus");
-        setClearColor(Colors.RED);
+
+    }
+
+    @Override
+    public void windowCloseEventHandler()
+    {
+        System.out.println("Window closed");
+    }
+
+    @Override
+    public void windowPosEventHandler(int xpos, int ypos)
+    {
+
+    }
+
+    @Override
+    public void windowIconifyEventHandler()
+    {
+
+    }
+
+    @Override
+    public void windowUniconifyEventHandler()
+    {
+
+    }
+
+    @Override
+    public void windowMaximizeEventHandler()
+    {
+
+    }
+
+    @Override
+    public void windowUnmaximizeEventHandler()
+    {
+
+    }
+
+    @Override
+    public void textInputEventHandler(int codepoint)
+    {
+
     }
 
     public static void main(String[] args)

@@ -15,4 +15,11 @@ public interface EventHandler
 	void windowResizedEventHandler(int width, int height);
 	void windowFocusedEventHandler();
 	void windowLoosedFocusEventHandler();
+	void windowCloseEventHandler();
+	void windowPosEventHandler(int xpos, int ypos);
+	void windowIconifyEventHandler();
+	void windowUniconifyEventHandler();
+	void windowMaximizeEventHandler();
+	void windowUnmaximizeEventHandler();
+	void textInputEventHandler(int codepoint);
 }

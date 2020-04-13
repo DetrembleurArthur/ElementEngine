@@ -4,6 +4,7 @@ import game.jgengine.event.*;
 import game.jgengine.exceptions.SysException;
 import game.jgengine.utils.Color;
 import game.jgengine.utils.Size2D;
+import game.jgengine.utils.Time;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
@@ -15,6 +16,7 @@ import static org.lwjgl.opengl.GL11.*;
 public abstract class Game implements EventHandler
 {
 	private Window window;
+	private double framerateLimit = 30;
 
 	static
 	{
@@ -30,6 +32,7 @@ public abstract class Game implements EventHandler
 				System.exit(1);
 			}
 		}
+
 	}
 
 	abstract protected void load();
@@ -49,6 +52,11 @@ public abstract class Game implements EventHandler
 			window.setCursorEnteredCallback(new CursorEnterCallback(this));
 			window.setWindowResizedCallback(new WindowResizeCallback(this));
 			window.setWindowFocusCallback(new WindowFocusCallback(this));
+			window.setWindowCloseCallback(new WindowCloseCallback(this));
+			window.setWindowPosCallback(new WindowPosCallback(this));
+			window.setWindowIconifyCallback(new WindowIconifyCallback(this));
+			window.setWindowMaximizeCallback(new WindowMaximizeCallback(this));
+			window.setTextInputCallback(new TextInputCallback(this));
 			glfwDestroyWindow(glfwGetCurrentContext());
 			window.active();
 			window.show();
@@ -75,6 +83,11 @@ public abstract class Game implements EventHandler
 		window.setCursorEnteredCallback(new CursorEnterCallback(this));
 		window.setWindowResizedCallback(new WindowResizeCallback(this));
 		window.setWindowFocusCallback(new WindowFocusCallback(this));
+		window.setWindowCloseCallback(new WindowCloseCallback(this));
+		window.setWindowPosCallback(new WindowPosCallback(this));
+		window.setWindowIconifyCallback(new WindowIconifyCallback(this));
+		window.setWindowMaximizeCallback(new WindowMaximizeCallback(this));
+		window.setTextInputCallback(new TextInputCallback(this));
 		Size2D winSize = window.getSize();
 		Size2D screenSize = Window.getScreenSize();
 		glfwSetWindowPos(window.getId(), (screenSize.getWidth() - winSize.getWidth()) / 2,
@@ -92,26 +105,27 @@ public abstract class Game implements EventHandler
 	final protected void loop() throws InterruptedException
 	{
 		window.show();
-		double lastTime = glfwGetTime();
-		double deltaTime = 0;
+
+		double beginTime = Time.getElapsedTime();
+		double endTime = beginTime;
+		double deltaTime = 0.f;
+
 		while(window.isOpen())
 		{
-			deltaTime = glfwGetTime() - lastTime;
-			lastTime = glfwGetTime();
+			deltaTime = Time.getElapsedTime() - beginTime;
+			beginTime = Time.getElapsedTime();
 
 			loopEvents();
 			update(deltaTime);
 			render(deltaTime);
 
-			while(glfwGetTime() < lastTime + 1.0 / 60.0);
-
+			if(framerateLimit != 0) while(Time.getElapsedTime() < beginTime + 1.0 / framerateLimit);
 		}
 	}
 
 	final protected void close()
 	{
-		glfwFreeCallbacks(window.getId());
-		glfwDestroyWindow(window.getId());
+		window.destroy();
 
 		glfwTerminate();
 		glfwSetErrorCallback(null).free();
@@ -136,5 +150,10 @@ public abstract class Game implements EventHandler
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glfwSwapBuffers(window.getId());
+	}
+
+	public void setFramerateLimit(double limit)
+	{
+		framerateLimit = limit;
 	}
 }
