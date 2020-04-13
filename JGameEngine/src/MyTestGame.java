@@ -14,7 +14,7 @@ public class MyTestGame extends Game
         setClearColor(new Color(0, 200, 200));
         setFramerateLimit(60);
 
-        getWindow().setCursor(new Cursor("C:\\Users\\mb624\\Desktop\\progSpecimen_.png"));
+        getWindow().setCursor(new Cursor("/Users/ArthurDetrembleur/desktop/cursor.png"));
     }
 
     @Override
@@ -33,18 +33,8 @@ public class MyTestGame extends Game
     public void keyPressedEventHandler(int key)
     {
         String keyName = Input.getKeyName(key);
-        if(keyName.equals("a"))
-        {
-            getWindow().disableCursor();
-        }
-        else if(keyName.equals("z"))
-        {
-            getWindow().hideCursor();
-        }
-        else
-        {
-            getWindow().resetCursor();
-        }
+        System.out.println(keyName);
+
     }
 
     @Override
