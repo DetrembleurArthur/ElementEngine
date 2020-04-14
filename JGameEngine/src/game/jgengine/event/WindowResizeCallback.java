@@ -5,9 +5,9 @@ import org.lwjgl.glfw.GLFWFramebufferSizeCallback;
 
 public class WindowResizeCallback extends GLFWFramebufferSizeCallback
 {
-	private EventHandler handler;
+	private WindowResizeEventHandler handler;
 
-	public WindowResizeCallback(EventHandler handler)
+	public WindowResizeCallback(WindowResizeEventHandler handler)
 	{
 		this.handler = handler;
 	}

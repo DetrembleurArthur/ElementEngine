@@ -4,9 +4,9 @@ import org.lwjgl.glfw.GLFWCursorEnterCallback;
 
 public class CursorEnterCallback extends GLFWCursorEnterCallback
 {
-	private EventHandler handler;
+	private CursorEnterEventHandler handler;
 
-	public CursorEnterCallback(EventHandler handler)
+	public CursorEnterCallback(CursorEnterEventHandler handler)
 	{
 		this.handler = handler;
 	}

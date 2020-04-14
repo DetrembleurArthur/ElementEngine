@@ -6,9 +6,9 @@ import static org.lwjgl.glfw.GLFW.*;
 
 public class ButtonCallback extends GLFWMouseButtonCallback
 {
-	private EventHandler handler;
+	private ButtonEventHandler handler;
 
-	public ButtonCallback(EventHandler handler)
+	public ButtonCallback(ButtonEventHandler handler)
 	{
 		this.handler = handler;
 	}

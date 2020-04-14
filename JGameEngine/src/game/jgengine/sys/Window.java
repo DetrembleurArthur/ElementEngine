@@ -2,12 +2,15 @@ package game.jgengine.sys;
 
 import game.jgengine.event.*;
 import game.jgengine.exceptions.SysException;
+import game.jgengine.graphics.Drawable;
+import game.jgengine.utils.Color;
 import game.jgengine.utils.IPoint2D;
 import game.jgengine.utils.Size2D;
 import org.lwjgl.glfw.GLFWVidMode;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class Window
@@ -15,6 +18,8 @@ public class Window
 	private long windowId = -1;
 	private String title;
 	private Cursor cursor = null;
+
+	public static Window currentWindow = null;
 
 	public String getTitle()
 	{
@@ -50,11 +55,31 @@ public class Window
 		windowId = 0;
 	}
 
+	public void setResizeable(boolean state)
+	{
+		glfwSetWindowAttrib(windowId, GLFW_RESIZABLE, state ? GLFW_TRUE : GLFW_FALSE);
+	}
+
+	public boolean isResizeable()
+	{
+		return glfwGetWindowAttrib(windowId, GLFW_RESIZABLE) == 1;
+	}
+
+	public void setDecorated(boolean state)
+	{
+		glfwSetWindowAttrib(windowId, GLFW_DECORATED, state ? GLFW_TRUE : GLFW_FALSE);
+	}
+
 	public void setCursor(Cursor cursor)
 	{
 		glfwSetCursor(windowId, cursor.getId());
 		if(this.cursor != null) this.cursor.destroy();
 		this.cursor = cursor;
+	}
+
+	public boolean isHovering()
+	{
+		return glfwGetWindowAttrib(windowId, GLFW_HOVERED) == 1;
 	}
 
 	public static Size2D getScreenSize()
@@ -70,8 +95,31 @@ public class Window
 
 	void active()
 	{
-		glfwMakeContextCurrent(windowId);
+		setContext();
 		glfwSwapInterval(1);
+	}
+
+	public void setClearColor(Color color)
+	{
+		glfwMakeContextCurrent(windowId);
+		glClearColor(color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio());
+	}
+
+	public void setContext()
+	{
+		glfwMakeContextCurrent(windowId);
+		currentWindow = this;
+	}
+
+	public void flip()
+	{
+		glfwSwapBuffers(windowId);
+	}
+
+	public void clear()
+	{
+		setContext();
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
 	public void show()
@@ -147,6 +195,14 @@ public class Window
 	public void setPosition(IPoint2D position)
 	{
 		glfwSetWindowPos(windowId, position.getX(), position.getY());
+	}
+
+	public void center()
+	{
+		Size2D screenSize = Window.getScreenSize();
+		Size2D windowSize = getSize();
+		setPosition((screenSize.getWidth() - windowSize.getWidth()) / 2,
+				    (screenSize.getHeight() - windowSize.getHeight()) / 2);
 	}
 
 	public IPoint2D getPosition()
@@ -283,6 +339,36 @@ public class Window
 	public void setTextInputCallback(TextInputCallback textInputCallback)
 	{
 		glfwSetCharCallback(windowId, textInputCallback);
+	}
+
+	public void setDropCallback(DropCallback dropCallback)
+	{
+		glfwSetDropCallback(windowId, dropCallback);
+	}
+
+	public void setEventHandler(EventHandler handler)
+	{
+		setKeyCallback(new KeyCallback(handler));
+		setButtonCallback(new ButtonCallback(handler));
+		setCursorPosCallback(new CursorPosCallback(handler));
+		setScrollCallback(new ScrollCallback(handler));
+		setCursorEnteredCallback(new CursorEnterCallback(handler));
+		setWindowResizedCallback(new WindowResizeCallback(handler));
+		setWindowFocusCallback(new WindowFocusCallback(handler));
+		setWindowCloseCallback(new WindowCloseCallback(handler));
+		setWindowPosCallback(new WindowPosCallback(handler));
+		setWindowIconifyCallback(new WindowIconifyCallback(handler));
+		setWindowMaximizeCallback(new WindowMaximizeCallback(handler));
+		setTextInputCallback(new TextInputCallback(handler));
+		setDropCallback(new DropCallback(handler));
+	}
+
+
+	public void draw(Drawable drawable)
+	{
+		clear();
+		drawable.draw();
+		flip();
 	}
 }
 

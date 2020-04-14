@@ -4,9 +4,9 @@ import org.lwjgl.glfw.GLFWWindowPosCallback;
 
 public class WindowPosCallback extends GLFWWindowPosCallback
 {
-	private EventHandler handler;
+	private WindowPosEventHandler handler;
 
-	public WindowPosCallback(EventHandler handler)
+	public WindowPosCallback(WindowPosEventHandler handler)
 	{
 		this.handler = handler;
 	}

@@ -4,9 +4,9 @@ import org.lwjgl.glfw.GLFWWindowMaximizeCallback;
 
 public class WindowMaximizeCallback extends GLFWWindowMaximizeCallback
 {
-	private EventHandler handler;
+	private WindowMaximizeEventHandler handler;
 
-	public WindowMaximizeCallback(EventHandler handler)
+	public WindowMaximizeCallback(WindowMaximizeEventHandler handler)
 	{
 		this.handler = handler;
 	}

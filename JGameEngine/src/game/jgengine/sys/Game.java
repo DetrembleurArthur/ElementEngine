@@ -8,14 +8,16 @@ import game.jgengine.utils.Time;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
+import java.util.ArrayList;
+
 import static java.lang.Thread.sleep;
-import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 
 public abstract class Game implements EventHandler
 {
-	private Window window;
+	private Window primaryWindow;
+	private ArrayList<Window> windows = new ArrayList<>();
 	private double framerateLimit = 30;
 
 	static
@@ -39,83 +41,63 @@ public abstract class Game implements EventHandler
 	abstract protected void render(double dt);
 	abstract protected void update(double dt);
 
-	public void setResizeable(boolean b)
-	{
-		glfwWindowHint(GLFW_RESIZABLE, b ? GLFW_TRUE : GLFW_FALSE);
-		try
-		{
-			window = (Window) window.clone();
-			window.setKeyCallback(new KeyCallback(this));
-			window.setButtonCallback(new ButtonCallback(this));
-			window.setCursorPosCallback(new CursorPosCallback(this));
-			window.setScrollCallback(new ScrollCallback(this));
-			window.setCursorEnteredCallback(new CursorEnterCallback(this));
-			window.setWindowResizedCallback(new WindowResizeCallback(this));
-			window.setWindowFocusCallback(new WindowFocusCallback(this));
-			window.setWindowCloseCallback(new WindowCloseCallback(this));
-			window.setWindowPosCallback(new WindowPosCallback(this));
-			window.setWindowIconifyCallback(new WindowIconifyCallback(this));
-			window.setWindowMaximizeCallback(new WindowMaximizeCallback(this));
-			window.setTextInputCallback(new TextInputCallback(this));
-			glfwDestroyWindow(glfwGetCurrentContext());
-			window.active();
-			window.show();
-		} catch (CloneNotSupportedException e)
-		{
-			e.printStackTrace();
-		}
-	}
-
-	final public void setClearColor(Color color)
-	{
-		glClearColor(color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio());
-	}
 
 	final protected void init() throws SysException
 	{
 		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 
-		window = new Window(500, 500, "Game");
-		window.setKeyCallback(new KeyCallback(this));
-		window.setButtonCallback(new ButtonCallback(this));
-		window.setCursorPosCallback(new CursorPosCallback(this));
-		window.setScrollCallback(new ScrollCallback(this));
-		window.setCursorEnteredCallback(new CursorEnterCallback(this));
-		window.setWindowResizedCallback(new WindowResizeCallback(this));
-		window.setWindowFocusCallback(new WindowFocusCallback(this));
-		window.setWindowCloseCallback(new WindowCloseCallback(this));
-		window.setWindowPosCallback(new WindowPosCallback(this));
-		window.setWindowIconifyCallback(new WindowIconifyCallback(this));
-		window.setWindowMaximizeCallback(new WindowMaximizeCallback(this));
-		window.setTextInputCallback(new TextInputCallback(this));
-		Size2D winSize = window.getSize();
-		Size2D screenSize = Window.getScreenSize();
-		glfwSetWindowPos(window.getId(), (screenSize.getWidth() - winSize.getWidth()) / 2,
-				(screenSize.getHeight() - winSize.getHeight()) / 2);
-		window.active();
+		primaryWindow = new Window(500, 500, "Game");
+		primaryWindow.setEventHandler(this);
+		primaryWindow.center();
+		primaryWindow.active();
 
 		GL.createCapabilities();
+		//glOrtho(0, 500, 0, 500, -1, 1);
+
+
+		System.out.println("OpenGL version: " + glGetString(GL_VERSION));
 	}
 
-	final protected void loopEvents()
+	public Window createSubWindow(boolean closeable) throws SysException
 	{
-		window.pollEvents();
+		Window window = new Window(500, 500, "Game");
+		windows.add(window);
+		if(closeable)
+		{
+			window.setWindowCloseCallback(new WindowCloseCallback(() -> closeSubWindow(window)));
+		}
+		window.center();
+		window.active();
+		window.show();
+		return window;
+	}
+
+	public void addSubWindow(Window window, boolean closeable)
+	{
+		windows.add(window);
+		if(closeable)
+		{
+			window.setWindowCloseCallback(new WindowCloseCallback(() -> closeSubWindow(window)));
+		}
+		window.active();
+		window.show();
 	}
 
 	final protected void loop() throws InterruptedException
 	{
-		window.show();
+		primaryWindow.show();
 
 		double beginTime = Time.getElapsedTime();
 		double endTime = beginTime;
 		double deltaTime = 0.f;
 
-		while(window.isOpen())
+		while(primaryWindow.isOpen())
 		{
 			deltaTime = Time.getElapsedTime() - beginTime;
 			beginTime = Time.getElapsedTime();
 
-			loopEvents();
+			primaryWindow.pollEvents();
+
 			update(deltaTime);
 			render(deltaTime);
 
@@ -125,8 +107,8 @@ public abstract class Game implements EventHandler
 
 	final protected void close()
 	{
-		window.destroy();
-
+		primaryWindow.destroy();
+		for(Window window : windows) window.destroy();
 		glfwTerminate();
 		glfwSetErrorCallback(null).free();
 	}
@@ -141,19 +123,27 @@ public abstract class Game implements EventHandler
 		close();
 	}
 
-	public Window getWindow()
+	public Window getPrimaryWindow()
 	{
-		return window;
+		return primaryWindow;
 	}
 
-	public void clear()
-	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glfwSwapBuffers(window.getId());
-	}
 
 	public void setFramerateLimit(double limit)
 	{
 		framerateLimit = limit;
+	}
+
+
+	public void closeSubWindow(Window window)
+	{
+		windows.remove(window);
+		window.close();
+		window.destroy();
+	}
+
+	public Window getSubWindow(int i)
+	{
+		return windows.get(i);
 	}
 }

@@ -19,161 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87f81c72-0eb5-4af9-a808-3199e251c34d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/windows.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JGameEngine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JGameEngine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-assimp-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-assimp-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-assimp-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-assimp.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-bgfx-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-bgfx-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-bgfx-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-bgfx.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-cuda-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-cuda-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-cuda.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-egl-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-egl-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-egl.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-glfw-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-glfw-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-glfw-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-glfw.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-jawt-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-jawt-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-jawt.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-jemalloc-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-jemalloc-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-jemalloc-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-jemalloc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-libdivide-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-libdivide-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-libdivide-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-libdivide.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-llvm-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-llvm-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-llvm-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-llvm.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-lmdb-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-lmdb-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-lmdb-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-lmdb.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-lz4-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-lz4-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-lz4-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-lz4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-meow-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-meow-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-meow-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-meow.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-nanovg-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-nanovg-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-nanovg-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-nanovg.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-nfd-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-nfd-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-nfd-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-nfd.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-nuklear-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-nuklear-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-nuklear-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-nuklear.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-odbc-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-odbc-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-odbc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-openal-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-openal-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-openal-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-openal.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-opencl-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-opencl-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-opencl.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-opengl-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-opengl-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-opengl-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-opengl.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-opengles-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-opengles-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-opengles-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-opengles.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-openvr-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-openvr-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-openvr-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-openvr.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-opus-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-opus-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-opus-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-opus.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-ovr-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-ovr-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-ovr-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-ovr.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-par-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-par-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-par-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-par.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-remotery-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-remotery-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-remotery-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-remotery.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-rpmalloc-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-rpmalloc-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-rpmalloc-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-rpmalloc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-shaderc-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-shaderc-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-shaderc-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-shaderc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-sse-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-sse-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-sse-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-sse.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-stb-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-stb-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-stb-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-stb.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-tinyexr-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-tinyexr-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-tinyexr-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-tinyexr.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-tinyfd-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-tinyfd-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-tinyfd-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-tinyfd.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-tootle-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-tootle-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-tootle-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-tootle.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-vma-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-vma-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-vma-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-vma.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-vulkan-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-vulkan-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-vulkan.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-xxhash-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-xxhash-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-xxhash-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-xxhash.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-yoga-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-yoga-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-yoga-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-yoga.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-zstd-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-zstd-natives-windows.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-zstd-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl-zstd.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/lwjgl.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/META-INF/JGameEngine.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/sys/Cursor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/sys/Cursor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MyTestGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyTestGame.java" afterDir="false" />
-    </list>
+    <list default="true" id="87f81c72-0eb5-4af9-a808-3199e251c34d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -183,12 +29,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1aQp1OMAVBBp3UFm8Nv54o7xkAY" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -198,7 +42,6 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/windows" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -207,17 +50,21 @@
   </component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="game.jgengine.graphics" />
       <recent name="game.jgengine.event" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="game.jgengine.graphics" />
       <recent name="game.jgengine.utils" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="game.jgengine.event" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="MyTestGame" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MyTestGame" />
       <module name="JGameEngine" />
-      <option name="VM_PARAMETERS" value="-XstartOnFirstThread" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -236,39 +83,28 @@
     </task>
     <servers />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="WindowStateProjectService">
     <state x="2472" y="178" key="#Project_Structure" timestamp="1586677469174">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2472" y="178" key="#Project_Structure/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586677469174" />
-    <state x="311" y="151" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586803214934">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="311" y="151" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1586803214934" />
-    <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586778865743" />
-    <state x="2641" y="160" key="#com.intellij.ide.util.MemberChooser" timestamp="1586791137762">
+    <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586778865743">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2641" y="160" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586791137762" />
+    <state x="311" y="151" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1586715455044" />
+    <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586778865743" />
+    <state x="2641" y="160" key="#com.intellij.ide.util.MemberChooser" timestamp="1586883371190">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2641" y="160" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586883371190" />
     <state x="2621" y="382" width="517" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1586699287223">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2621" y="382" width="517" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586699287223" />
-    <state x="2423" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1586697958453">
+    <state x="2423" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1586879658656">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2423" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586697958453" />
+    <state x="2423" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586879658656" />
     <state x="2547" y="205" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586783666846">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -277,54 +113,58 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2464" y="146" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586778780161" />
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1586803615820">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1586803615820" />
-    <state width="1865" height="295" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586793285028" />
-    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1586803615818">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1586803615818" />
-    <state width="1865" height="295" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586793285028" />
-    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1586803615818">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1586803615818" />
-    <state width="1865" height="295" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586793285027" />
-    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1586803615819">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1586803615819" />
-    <state width="1865" height="295" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586793285028" />
-    <state width="1865" height="331" key="GridCell.Tab.1.bottom" timestamp="1586781355697">
+    <state width="1865" height="248" key="GridCell.Tab.0.bottom" timestamp="1586884748881">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1865" height="331" key="GridCell.Tab.1.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586781355697" />
-    <state width="1865" height="331" key="GridCell.Tab.1.center" timestamp="1586781355697">
+    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1586716422152" />
+    <state width="1865" height="248" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586884748881" />
+    <state width="1865" height="248" key="GridCell.Tab.0.center" timestamp="1586884748881">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1865" height="331" key="GridCell.Tab.1.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586781355697" />
-    <state width="1865" height="331" key="GridCell.Tab.1.left" timestamp="1586781355697">
+    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1586716422150" />
+    <state width="1865" height="248" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586884748881" />
+    <state width="1865" height="248" key="GridCell.Tab.0.left" timestamp="1586884748880">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1865" height="331" key="GridCell.Tab.1.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586781355697" />
-    <state width="1865" height="331" key="GridCell.Tab.1.right" timestamp="1586781355697">
+    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1586716422149" />
+    <state width="1865" height="248" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586884748880" />
+    <state width="1865" height="248" key="GridCell.Tab.0.right" timestamp="1586884748881">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1865" height="331" key="GridCell.Tab.1.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586781355697" />
-    <state x="210" y="11" width="1458" height="912" key="SettingsEditor" timestamp="1586803265199">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1586716422151" />
+    <state width="1865" height="248" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586884748881" />
+    <state width="1865" height="331" key="GridCell.Tab.1.bottom" timestamp="1586793434315">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="210" y="11" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1586803265199" />
+    <state width="1865" height="331" key="GridCell.Tab.1.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586793434315" />
+    <state width="1865" height="331" key="GridCell.Tab.1.center" timestamp="1586793434315">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1865" height="331" key="GridCell.Tab.1.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586793434315" />
+    <state width="1865" height="331" key="GridCell.Tab.1.left" timestamp="1586793434315">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1865" height="331" key="GridCell.Tab.1.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586793434315" />
+    <state width="1865" height="331" key="GridCell.Tab.1.right" timestamp="1586793434315">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1865" height="331" key="GridCell.Tab.1.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586793434315" />
+    <state x="2200" y="13" width="1458" height="912" key="SettingsEditor" timestamp="1586778786244">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="210" y="11" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1586715366928" />
     <state x="2200" y="13" width="1458" height="912" key="SettingsEditor/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586778786244" />
     <state x="2491" y="301" key="com.intellij.ide.util.TipDialog" timestamp="1586694773045">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2491" y="301" key="com.intellij.ide.util.TipDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586694773045" />
-    <state x="2459" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1586687005830">
+    <state x="2562" y="74" key="refactoring.ChangeSignatureDialog" timestamp="1586870264496">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2459" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586687005830" />
+    <state x="2562" y="74" key="refactoring.ChangeSignatureDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586870264496" />
+    <state x="2459" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1586877549665">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2459" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1586877549665" />
   </component>
 </project>

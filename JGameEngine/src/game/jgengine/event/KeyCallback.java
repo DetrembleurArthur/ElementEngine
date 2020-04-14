@@ -6,9 +6,9 @@ import static org.lwjgl.glfw.GLFW.*;
 
 public class KeyCallback extends GLFWKeyCallback
 {
-	private EventHandler handler;
+	private KeyEventHandler handler;
 
-	public KeyCallback(EventHandler handler)
+	public KeyCallback(KeyEventHandler handler)
 	{
 		this.handler = handler;
 	}

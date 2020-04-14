@@ -4,9 +4,9 @@ import org.lwjgl.glfw.GLFWWindowIconifyCallback;
 
 public class WindowIconifyCallback extends GLFWWindowIconifyCallback
 {
-	private EventHandler handler;
+	private WindowIconifyEventHandler handler;
 
-	public WindowIconifyCallback(EventHandler handler)
+	public WindowIconifyCallback(WindowIconifyEventHandler handler)
 	{
 		this.handler = handler;
 	}

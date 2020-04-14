@@ -14,11 +14,18 @@ import static org.lwjgl.glfw.GLFW.*;
 
 public class Cursor
 {
+	public static final int ARROW = GLFW_ARROW_CURSOR;
+	public static final int IBEAM = GLFW_IBEAM_CURSOR;
+	public static final int CROSSHAIR = GLFW_CROSSHAIR_CURSOR;
+	public static final int HAND = GLFW_HAND_CURSOR;
+	public static final int HRESIZE = GLFW_HRESIZE_CURSOR;
+	public static final int VRESIZE = GLFW_VRESIZE_CURSOR;
+
 	private long cursorId;
 
-	public Cursor()
+	public Cursor(int cursorType)
 	{
-		cursorId = glfwCreateStandardCursor(GLFW_HRESIZE_CURSOR);
+		cursorId = glfwCreateStandardCursor(cursorType);
 	}
 
 	public Cursor(int width, int height, byte[] buffer)

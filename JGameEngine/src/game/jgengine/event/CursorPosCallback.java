@@ -4,9 +4,9 @@ import org.lwjgl.glfw.GLFWCursorPosCallback;
 
 public class CursorPosCallback extends GLFWCursorPosCallback
 {
-	private EventHandler handler;
+	private CursorPosEventHandler handler;
 
-	public CursorPosCallback(EventHandler handler)
+	public CursorPosCallback(CursorPosEventHandler handler)
 	{
 		this.handler = handler;
 	}

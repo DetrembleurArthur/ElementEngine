@@ -4,9 +4,9 @@ import org.lwjgl.glfw.GLFWCharCallback;
 
 public class TextInputCallback extends GLFWCharCallback
 {
-	private EventHandler handler;
+	private TextInputEventHandler handler;
 
-	public TextInputCallback(EventHandler handler)
+	public TextInputCallback(TextInputEventHandler handler)
 	{
 		this.handler = handler;
 	}

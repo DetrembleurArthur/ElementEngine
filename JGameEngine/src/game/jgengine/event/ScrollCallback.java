@@ -4,9 +4,9 @@ import org.lwjgl.glfw.GLFWScrollCallback;
 
 public class ScrollCallback extends GLFWScrollCallback
 {
-	private EventHandler handler;
+	private ScrollEventHandler handler;
 
-	public ScrollCallback(EventHandler handler)
+	public ScrollCallback(ScrollEventHandler handler)
 	{
 		this.handler = handler;
 	}

@@ -1,40 +1,54 @@
-import game.jgengine.event.Input;
 import game.jgengine.exceptions.SysException;
-import game.jgengine.sys.Cursor;
+import game.jgengine.graphics.Graphics;
+import game.jgengine.graphics.shapes.Point;
 import game.jgengine.sys.Game;
 import game.jgengine.utils.Color;
+import game.jgengine.utils.Colors;
+import game.jgengine.utils.DPoint2D;
+
+import static org.lwjgl.system.MemoryUtil.memUTF8;
 
 public class MyTestGame extends Game
 {
     @Override
     protected void load()
     {
-        getWindow().setSize(800, 800);
-        //setResizeable(false);
-        setClearColor(new Color(0, 200, 200));
+        getPrimaryWindow().setClearColor(new Color(0, 200, 200));
         setFramerateLimit(60);
-
-        getWindow().setCursor(new Cursor("/Users/ArthurDetrembleur/desktop/cursor.png"));
+        getPrimaryWindow().setResizeable(false);
+        getPrimaryWindow().setSize(500, 500);
+        try
+        {
+           createSubWindow(false);
+        } catch (SysException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void render(double dt)
     {
-        clear();
+        getPrimaryWindow().clear();
+
+        new Point(250, 250).draw();
+        new Point(250, 250).draw();
+        new Point(250, 250).draw();
+        new Point(250, 250).draw();
+
+        getPrimaryWindow().flip();
     }
 
     @Override
     protected void update(double dt)
     {
-
+        System.out.println(1.f /dt);
     }
 
     @Override
     public void keyPressedEventHandler(int key)
     {
-        String keyName = Input.getKeyName(key);
-        System.out.println(keyName);
-
+        getPrimaryWindow().setSize(800, 700);
     }
 
     @Override
@@ -98,13 +112,13 @@ public class MyTestGame extends Game
     }
 
     @Override
-    public void windowFocusedEventHandler()
+    public void windowFocusEventHandler()
     {
 
     }
 
     @Override
-    public void windowLoosedFocusEventHandler()
+    public void windowLooseFocusEventHandler()
     {
 
     }
@@ -147,6 +161,12 @@ public class MyTestGame extends Game
 
     @Override
     public void textInputEventHandler(int codepoint)
+    {
+
+    }
+
+    @Override
+    public void dropEventHandler(String[] items)
     {
 
     }

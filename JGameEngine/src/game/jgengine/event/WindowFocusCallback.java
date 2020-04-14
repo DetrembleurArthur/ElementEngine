@@ -4,9 +4,9 @@ import org.lwjgl.glfw.GLFWWindowFocusCallback;
 
 public class WindowFocusCallback extends GLFWWindowFocusCallback
 {
-	private EventHandler handler;
+	private WindowFocusEventHandler handler;
 
-	public WindowFocusCallback(EventHandler handler)
+	public WindowFocusCallback(WindowFocusEventHandler handler)
 	{
 		this.handler = handler;
 	}
@@ -16,11 +16,11 @@ public class WindowFocusCallback extends GLFWWindowFocusCallback
 	{
 		if(focused)
 		{
-			handler.windowFocusedEventHandler();
+			handler.windowFocusEventHandler();
 		}
 		else
 		{
-			handler.windowLoosedFocusEventHandler();
+			handler.windowLooseFocusEventHandler();
 		}
 	}
 }

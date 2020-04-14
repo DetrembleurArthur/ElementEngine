@@ -5,9 +5,9 @@ import org.lwjgl.glfw.GLFWWindowCloseCallback;
 
 public class WindowCloseCallback extends GLFWWindowCloseCallback
 {
-	private EventHandler handler;
+	private WindowCloseEventHandler handler;
 
-	public WindowCloseCallback(EventHandler handler)
+	public WindowCloseCallback(WindowCloseEventHandler handler)
 	{
 		this.handler = handler;
 	}
