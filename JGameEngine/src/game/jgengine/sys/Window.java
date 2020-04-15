@@ -4,8 +4,8 @@ import game.jgengine.event.*;
 import game.jgengine.exceptions.SysException;
 import game.jgengine.graphics.Drawable;
 import game.jgengine.utils.Color;
-import game.jgengine.utils.IPoint2D;
-import game.jgengine.utils.Size2D;
+import game.jgengine.utils.Vec2f;
+import game.jgengine.utils.Vec2i;
 import org.lwjgl.glfw.GLFWVidMode;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
@@ -82,10 +82,10 @@ public class Window
 		return glfwGetWindowAttrib(windowId, GLFW_HOVERED) == 1;
 	}
 
-	public static Size2D getScreenSize()
+	public static Vec2i getScreenSize()
 	{
 		GLFWVidMode screen = glfwGetVideoMode(glfwGetPrimaryMonitor());
-		return new Size2D(screen.width(), screen.height());
+		return new Vec2i(screen.width(), screen.height());
 	}
 
 	public long getId()
@@ -118,7 +118,6 @@ public class Window
 
 	public void clear()
 	{
-		setContext();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
@@ -192,24 +191,30 @@ public class Window
 		glfwSetWindowPos(windowId, x, y);
 	}
 
-	public void setPosition(IPoint2D position)
+	public void setPosition(Vec2i position)
 	{
-		glfwSetWindowPos(windowId, position.getX(), position.getY());
+		glfwSetWindowPos(windowId, position.x, position.y);
+	}
+
+	public void move(int x, int y)
+	{
+		var p = getPosition();
+		setPosition(p.x + x, p.y + y);
 	}
 
 	public void center()
 	{
-		Size2D screenSize = Window.getScreenSize();
-		Size2D windowSize = getSize();
-		setPosition((screenSize.getWidth() - windowSize.getWidth()) / 2,
-				    (screenSize.getHeight() - windowSize.getHeight()) / 2);
+		Vec2i screenSize = Window.getScreenSize();
+		Vec2i windowSize = getSize();
+		setPosition((screenSize.x - windowSize.x) / 2,
+				    (screenSize.y - windowSize.y) / 2);
 	}
 
-	public IPoint2D getPosition()
+	public Vec2i getPosition()
 	{
 		int[] x = new int[1], y = new int[1];
 		glfwGetWindowPos(windowId, x, y);
-		return new IPoint2D(x[0], y[0]);
+		return new Vec2i(x[0], y[0]);
 	}
 
 	public void setSize(int width, int height)
@@ -217,9 +222,9 @@ public class Window
 		glfwSetWindowSize(windowId, width, height);
 	}
 
-	public void setSize(Size2D size)
+	public void setSize(Vec2i size)
 	{
-		glfwSetWindowSize(windowId, size.getWidth(), size.getHeight());
+		glfwSetWindowSize(windowId, size.x, size.y);
 	}
 
 	public void setSizeLimit(int minWidth, int minHeight, int maxWidth, int maxHeight)
@@ -227,9 +232,9 @@ public class Window
 		glfwSetWindowSizeLimits(windowId, minWidth, minHeight, maxWidth, maxHeight);
 	}
 
-	public void setSizeLimit(Size2D mins, Size2D maxs)
+	public void setSizeLimit(Vec2i mins, Vec2i maxs)
 	{
-		glfwSetWindowSizeLimits(windowId, mins.getWidth(), mins.getHeight(), maxs.getWidth(), maxs.getHeight());
+		glfwSetWindowSizeLimits(windowId, mins.x, mins.y, maxs.x, maxs.y);
 	}
 
 	public void setAspectRatio(int number, int den)
@@ -237,22 +242,22 @@ public class Window
 		glfwSetWindowAspectRatio(windowId, number, den);
 	}
 
-	public Size2D getSize()
+	public Vec2i getSize()
 	{
 		int[] width = new int[1], height = new int[1];
 		glfwGetWindowSize(windowId, width, height);
-		return new Size2D(width[0], height[0]);
+		return new Vec2i(width[0], height[0]);
 	}
 
 	@Override
 	protected Object clone() throws CloneNotSupportedException
 	{
-		Size2D size = getSize();
+		Vec2i size = getSize();
 		try
 		{
-			Window window = new Window(size.getWidth(), size.getHeight(), title);
+			Window window = new Window(size.x, size.y, title);
 			window.setSize(getSize());
-			window.setPosition((getPosition()));
+			window.setPosition(getPosition());
 			return window;
 		} catch (SysException e)
 		{
@@ -361,14 +366,6 @@ public class Window
 		setWindowMaximizeCallback(new WindowMaximizeCallback(handler));
 		setTextInputCallback(new TextInputCallback(handler));
 		setDropCallback(new DropCallback(handler));
-	}
-
-
-	public void draw(Drawable drawable)
-	{
-		clear();
-		drawable.draw();
-		flip();
 	}
 }
 

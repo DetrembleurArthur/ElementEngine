@@ -1,12 +1,12 @@
 package game.jgengine.graphics;
 
-import game.jgengine.utils.DPoint2D;
+import game.jgengine.utils.Vec2f;
 
 public abstract class Transformable
 {
-	protected DPoint2D position;
+	protected Vec2f position;
 
-	public DPoint2D getPosition()
+	public Vec2f getPosition()
 	{
 		return position;
 	}

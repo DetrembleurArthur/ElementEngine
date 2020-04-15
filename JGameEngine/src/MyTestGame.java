@@ -1,29 +1,22 @@
 import game.jgengine.exceptions.SysException;
-import game.jgengine.graphics.Graphics;
-import game.jgengine.graphics.shapes.Point;
 import game.jgengine.sys.Game;
 import game.jgengine.utils.Color;
-import game.jgengine.utils.Colors;
-import game.jgengine.utils.DPoint2D;
 
 import static org.lwjgl.system.MemoryUtil.memUTF8;
 
 public class MyTestGame extends Game
 {
+    double spd = 0.0;
+    double g = 0.0981;
+
     @Override
     protected void load()
     {
         getPrimaryWindow().setClearColor(new Color(0, 200, 200));
         setFramerateLimit(60);
         getPrimaryWindow().setResizeable(false);
-        getPrimaryWindow().setSize(500, 500);
-        try
-        {
-           createSubWindow(false);
-        } catch (SysException e)
-        {
-            e.printStackTrace();
-        }
+        getPrimaryWindow().setSize(1400, 800);
+        getPrimaryWindow().center();
     }
 
     @Override
@@ -31,10 +24,6 @@ public class MyTestGame extends Game
     {
         getPrimaryWindow().clear();
 
-        new Point(250, 250).draw();
-        new Point(250, 250).draw();
-        new Point(250, 250).draw();
-        new Point(250, 250).draw();
 
         getPrimaryWindow().flip();
     }
@@ -42,13 +31,20 @@ public class MyTestGame extends Game
     @Override
     protected void update(double dt)
     {
-        System.out.println(1.f /dt);
+        getPrimaryWindow().setTitle("fps " + Double.toString(1.f /dt));
+        getPrimaryWindow().move(0, (int)spd);
+        spd += g;
+        if(getPrimaryWindow().getPosition().y -800>= 1000)
+        {
+            spd = 0;
+            g = -g;
+        }
     }
 
     @Override
     public void keyPressedEventHandler(int key)
     {
-        getPrimaryWindow().setSize(800, 700);
+
     }
 
     @Override
