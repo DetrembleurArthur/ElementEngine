@@ -2,7 +2,6 @@ package game.jgengine.sys;
 
 import game.jgengine.event.*;
 import game.jgengine.exceptions.SysException;
-import game.jgengine.graphics.Drawable;
 import game.jgengine.utils.Color;
 import game.jgengine.utils.Vec2f;
 import game.jgengine.utils.Vec2i;
@@ -196,6 +195,14 @@ public class Window
 		glfwSetWindowPos(windowId, position.x, position.y);
 	}
 
+	public Vec2f normal(Vec2f pos)
+	{
+		var size = getSize();
+		pos.x = pos.x / size.x * 2 - 1;
+		pos.y = -(pos.y / size.y * 2 - 1);
+		return pos;
+	}
+
 	public void move(int x, int y)
 	{
 		var p = getPosition();
@@ -217,14 +224,23 @@ public class Window
 		return new Vec2i(x[0], y[0]);
 	}
 
+	public void updateViewport()
+	{
+		var size = getSize();
+		glViewport(0, 0, size.x, size.y);
+
+	}
+
 	public void setSize(int width, int height)
 	{
 		glfwSetWindowSize(windowId, width, height);
+		updateViewport();
 	}
 
 	public void setSize(Vec2i size)
 	{
 		glfwSetWindowSize(windowId, size.x, size.y);
+		updateViewport();
 	}
 
 	public void setSizeLimit(int minWidth, int minHeight, int maxWidth, int maxHeight)

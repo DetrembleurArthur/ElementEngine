@@ -1,22 +1,49 @@
+import game.jgengine.event.Input;
+import game.jgengine.event.Mouse;
 import game.jgengine.exceptions.SysException;
+import game.jgengine.graphics.shaders.Shader;
+import game.jgengine.graphics.shapes.*;
+import game.jgengine.sys.Cursor;
 import game.jgengine.sys.Game;
 import game.jgengine.utils.Color;
+import game.jgengine.utils.Colors;
+import game.jgengine.utils.Vec2f;
 
+import static org.lwjgl.glfw.GLFW.GLFW_MOUSE_BUTTON_1;
+import static org.lwjgl.glfw.GLFW.GLFW_MOUSE_BUTTON_2;
 import static org.lwjgl.system.MemoryUtil.memUTF8;
 
 public class MyTestGame extends Game
 {
-    double spd = 0.0;
-    double g = 0.0981;
 
+    Shader shader;
+    LineLoop line;
+
+    Pixel pixel;
     @Override
     protected void load()
     {
         getPrimaryWindow().setClearColor(new Color(0, 200, 200));
         setFramerateLimit(60);
-        getPrimaryWindow().setResizeable(false);
+        getPrimaryWindow().setResizeable(true);
         getPrimaryWindow().setSize(1400, 800);
         getPrimaryWindow().center();
+
+        getPrimaryWindow().setCursor(new Cursor("src/game/jgengine/sys/default-cursor.png"));
+
+        shader = new Shader(
+                "src/game/jgengine/graphics/shaders/vertex.glsl",
+                "src/game/jgengine/graphics/shaders/fragment.glsl", true);
+        addShader(shader);
+
+        line = new LineLoop(new Vec2f[]
+                {
+                        new Vec2f(-0.2f, 0f),
+                        new Vec2f(-0.2f, 0.2f),
+                }, Colors.MAGENTA);
+        line.setWidth(3);
+        line.setGradient(Colors.RED, Colors.TRANSPARENT);
+        addShape(line);
     }
 
     @Override
@@ -25,26 +52,36 @@ public class MyTestGame extends Game
         getPrimaryWindow().clear();
 
 
+        //Graphics.setColor(Colors.LIME);
+        line.draw(shader);
+/*
+        glBegin(GL_LINE_STRIP_ADJACENCY);
+
+        glVertex3f(-0.1f, 0f, 0f); glVertex3f(-0.2f, 0f, 0f);
+        glVertex3f(-0.1f, 0.2f, 0f); glVertex3f(-0.2f, 0.2f, 0f);
+
+        glEnd();
+*/
+
         getPrimaryWindow().flip();
     }
+
+    int i = 0;
 
     @Override
     protected void update(double dt)
     {
         getPrimaryWindow().setTitle("fps " + Double.toString(1.f /dt));
-        getPrimaryWindow().move(0, (int)spd);
-        spd += g;
-        if(getPrimaryWindow().getPosition().y -800>= 1000)
-        {
-            spd = 0;
-            g = -g;
-        }
+       // var pos = getPrimaryWindow().normal(Mouse.getPosition(getPrimaryWindow()));
+
+
     }
 
     @Override
     public void keyPressedEventHandler(int key)
     {
-
+        //i = (i + 1) % line.getNbPoints();
+        line.setGradient(Colors.RED, Colors.TRANSPARENT);
     }
 
     @Override
@@ -80,7 +117,19 @@ public class MyTestGame extends Game
     @Override
     public void cursorMovedEventHandler(double x, double y)
     {
+        if(Input.isButtonPressed(getPrimaryWindow(), GLFW_MOUSE_BUTTON_1))
+        {
+            var pos = getPrimaryWindow().normal(Mouse.getPosition(getPrimaryWindow()));
+            line.addPoint(pos, Colors.ORANGE);
 
+        }
+        else
+        {
+            if(Input.isButtonPressed(getPrimaryWindow(), GLFW_MOUSE_BUTTON_2))
+            {
+                line.subPoint();
+            }
+        }
     }
 
     @Override
@@ -104,7 +153,7 @@ public class MyTestGame extends Game
     @Override
     public void windowResizedEventHandler(int width, int height)
     {
-
+        getPrimaryWindow().updateViewport();
     }
 
     @Override

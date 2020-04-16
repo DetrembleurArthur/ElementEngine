@@ -1,30 +1,55 @@
 package game.jgengine.graphics;
 
-public class VertexArray implements Drawable
+import static org.lwjgl.opengl.GL11.GL_FLOAT;
+import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
+import static org.lwjgl.opengl.GL30.glBindVertexArray;
+import static org.lwjgl.opengl.GL30.glGenVertexArrays;
+
+public class VertexArray
 {
-	private Vertex[] verteces;
+	private int vao = 0;
 
-	public VertexArray(Vertex[] verteces)
+	public VertexArray()
 	{
-		this.verteces = verteces;
+		vao = glGenVertexArrays();
+		bind();
 	}
 
-	public VertexArray(int size)
+	public void initAttribs()
 	{
-		verteces = new Vertex[size];
+		int positionSize = 3;
+		int colorSize = 4;
+		int floatSize = 4;
+		int vertexSize = (positionSize + colorSize) * floatSize;
+		glVertexAttribPointer(0, positionSize, GL_FLOAT, true, vertexSize, 0);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(1, colorSize, GL_FLOAT, true, vertexSize, positionSize * floatSize);
+		glEnableVertexAttribArray(1);
 	}
 
-	public void set(int i, Vertex vertex)
+	public void bind()
 	{
-		verteces[i] = vertex;
+		glBindVertexArray(vao);
 	}
 
-	@Override
-	public void draw()
+	public void unbind()
 	{
-		for(Vertex vertex : verteces)
-		{
-			vertex.draw();
-		}
+		glBindVertexArray(0);
+	}
+
+	public void enableAttrib(int index)
+	{
+		glEnableVertexAttribArray(index);
+	}
+
+	public void disableAttrib(int index)
+	{
+		glDisableVertexAttribArray(index);
+	}
+
+	public void destroy()
+	{
+		glDeleteBuffers(vao);
 	}
 }

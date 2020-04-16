@@ -1,5 +1,7 @@
 package game.jgengine.utils;
 
+import game.jgengine.sys.Window;
+
 class Vec2<T extends Number>
 {
 	public T x;

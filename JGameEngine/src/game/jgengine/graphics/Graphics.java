@@ -11,10 +11,8 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 public class Graphics
 {
-	public static void drawLine(Vec2f p1, Vec2f p2, Color color)
+	public static void setColor(Color color)
 	{
-		glBegin(GL_LINES);
-
-		glEnd();
+		glColor4f(color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio());
 	}
 }
