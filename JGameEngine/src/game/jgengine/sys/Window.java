@@ -1,8 +1,9 @@
 package game.jgengine.sys;
 
-import game.jgengine.event.*;
+import game.jgengine.event.handler.*;
 import game.jgengine.exceptions.SysException;
 import game.jgengine.utils.Color;
+import game.jgengine.utils.Cursor;
 import game.jgengine.utils.Vec2f;
 import game.jgengine.utils.Vec2i;
 import org.lwjgl.glfw.GLFWVidMode;

@@ -66,4 +66,52 @@ public class Line extends Shape
 	{
 		return width;
 	}
+
+	public static void draw(Vec2f pos1, Vec2f pos2)
+	{
+		glBegin(GL_LINES);
+		glVertex2f(pos1.x, pos1.y);
+		glVertex2f(pos2.x, pos2.y);
+		glEnd();
+	}
+
+	public static void draw(Vec2f pos1, Vec2f pos2, Color color)
+	{
+		glBegin(GL_LINES);
+		glColor4f(color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio());
+		glVertex2f(pos1.x, pos1.y);
+		glVertex2f(pos2.x, pos2.y);
+		glEnd();
+	}
+
+	public static void draw(Vec2f pos1, Vec2f pos2, Color color1, Color color2)
+	{
+		glBegin(GL_LINES);
+		glColor4f(color1.getRedRatio(), color1.getGreenRatio(), color1.getBlueRatio(), color1.getAlphaRatio());
+		glVertex2f(pos1.x, pos1.y);
+		glColor4f(color2.getRedRatio(), color2.getGreenRatio(), color2.getBlueRatio(), color2.getAlphaRatio());
+		glVertex2f(pos2.x, pos2.y);
+		glEnd();
+	}
+
+	public static void draw(Vec2f pos1, Vec2f pos2, int weight)
+	{
+		glLineWidth(weight);
+		draw(pos1, pos2);
+		glLineWidth(1);
+	}
+
+	public static void draw(Vec2f pos1, Vec2f pos2, Color color, int weight)
+	{
+		glLineWidth(weight);
+		draw(pos1, pos2, color);
+		glLineWidth(1);
+	}
+
+	public static void draw(Vec2f pos1, Vec2f pos2, Color color1, Color color2, int weight)
+	{
+		glLineWidth(weight);
+		draw(pos1, pos2, color1, color2);
+		glLineWidth(1);
+	}
 }

@@ -1,6 +1,6 @@
 package game.jgengine.sys;
 
-import game.jgengine.event.*;
+import game.jgengine.event.handler.EventHandler;
 import game.jgengine.exceptions.SysException;
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.graphics.shapes.Shape;
@@ -57,9 +57,9 @@ public abstract class Game implements EventHandler
 	final private void initGraphics()
 	{
 
-
+		addShader(Shader.DEFAULT);
 		glEnable(GL_BLEND);
-		//glEnable(GL_DEPTH);
+		glEnable(GL_DEPTH_TEST);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 

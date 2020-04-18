@@ -19,6 +19,11 @@ public class Color
 		this.alpha = alpha;
 	}
 
+	public Color(float red, float green, float blue, float alpha)
+	{
+		this((int)(red * 255f), (int)(green * 255f), (int)(blue * 255f), (int)(alpha * 255f));
+	}
+
 	public Color(int red, int green, int blue)
 	{
 		this(red, green, blue, 255);

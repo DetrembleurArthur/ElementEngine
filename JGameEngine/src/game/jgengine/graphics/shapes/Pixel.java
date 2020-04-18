@@ -1,40 +1,31 @@
 package game.jgengine.graphics.shapes;
 
-import game.jgengine.graphics.Vertex;
 import game.jgengine.utils.Color;
 import game.jgengine.utils.Vec2f;
-import org.lwjgl.opengl.GL11;
 
 import static org.lwjgl.opengl.GL11.*;
 
-public class Pixel
+public class Pixel extends Shape
 {
-	private Vec2f pos;
-	private Color color;
-
-	public Pixel(Vec2f pos, Color color)
+	public Pixel(Vec2f position, Color color)
 	{
-		this.pos = pos;
-		this.color = color;
+		super(new float[]{
+				position.x, position.y, 0f, color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio()
+		}, new int[]{0}, GL_POINTS);
 	}
 
-	public void draw()
+	public static void draw(Vec2f position)
 	{
 		glBegin(GL_POINTS);
-		glColor4f(color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio());
-		glVertex3f(pos.x, pos.y, 0f);
+		glVertex2f(position.x, position.y);
 		glEnd();
 	}
 
-	public void setPosition(Vec2f pos)
+	public static void draw(Vec2f position, Color color)
 	{
-		this.pos = pos;
-
-
-	}
-
-	public void setColor(Color color)
-	{
-		this.color = color;
+		glBegin(GL_POINTS);
+		glColor4f(color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio());
+		glVertex2f(position.x, position.y);
+		glEnd();
 	}
 }
