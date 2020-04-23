@@ -1,8 +1,9 @@
 package game.jgengine.graphics.vertex;
 
+import game.jgengine.graphics.Camera2D;
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.utils.Color;
-import game.jgengine.utils.Vec2f;
+import org.joml.Vector2f;
 
 public class GraphicElement
 {
@@ -47,7 +48,7 @@ public class GraphicElement
 
 	public void setVertices(float[] vertices)
 	{
-		vertexBuffer.update(vertices);
+		vertexBuffer.update(0,vertices);
 	}
 
 	public void setIndexes(int[] indexes)
@@ -69,7 +70,7 @@ public class GraphicElement
 		return indexBuffer;
 	}
 
-	public void addVertex(Vec2f position, Color color)
+	public void addVertex(Vector2f position, Color color)
 	{
 		vertexBuffer.addVertex(position, color);
 		indexBuffer.addIndex(indexBuffer.getLen());
@@ -109,6 +110,20 @@ public class GraphicElement
 		shader.start();
 		draw();
 		shader.stop();
+	}
+
+	public void draw(Shader shader, Camera2D camera)
+	{
+		shader.start(camera);
+		draw();
+		shader.stop();
+	}
+
+	public void draw(Camera2D camera)
+	{
+		Shader.DEFAULT.start(camera);
+		draw();
+		Shader.DEFAULT.stop();
 	}
 
 	public void destroy()

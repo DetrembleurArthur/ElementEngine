@@ -1,14 +1,14 @@
 package game.jgengine.graphics.shapes;
 
 import game.jgengine.utils.Color;
-import game.jgengine.utils.Vec2f;
+import org.joml.Vector2f;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.glLineWidth;
 
 public class LineStrip extends Line
 {
-	public LineStrip(Vec2f[] points, Color color)
+	public LineStrip(Vector2f[] points, Color color)
 	{
 		super(GL_LINE_STRIP);
 		float[] vertices = new float[points.length * 7];
@@ -25,6 +25,7 @@ public class LineStrip extends Line
 			indexes[i] = i;
 		}
 		initVertices(vertices, indexes);
+		updateNbPoints();
 	}
 
 	@Override
@@ -43,7 +44,7 @@ public class LineStrip extends Line
 		return indexBuffer.getLen();
 	}
 
-	public void addPoint(Vec2f pos, Color c)
+	public void addPoint(Vector2f pos, Color c)
 	{
 		addVertex(pos, c);
 	}
@@ -55,32 +56,32 @@ public class LineStrip extends Line
 
 
 
-	public static void draw(Vec2f[] points)
+	public static void draw(Vector2f[] points)
 	{
 		glBegin(GL_LINE_STRIP);
-		for(Vec2f point : points)
+		for(Vector2f point : points)
 		{
 			glVertex2f(point.x, point.y);
 		}
 		glEnd();
 	}
 
-	public static void draw(Vec2f[] points, Color color)
+	public static void draw(Vector2f[] points, Color color)
 	{
 		glBegin(GL_LINE_STRIP);
 		glColor4f(color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio());
-		for(Vec2f point : points)
+		for(Vector2f point : points)
 		{
 			glVertex2f(point.x, point.y);
 		}
 		glEnd();
 	}
 
-	public static void draw(Vec2f[] points, Color color1, Color color2)
+	public static void draw(Vector2f[] points, Color color1, Color color2)
 	{
 		boolean altern = false;
 		glBegin(GL_LINE_STRIP);
-		for(Vec2f point : points)
+		for(Vector2f point : points)
 		{
 			if (altern)
 			{
@@ -96,21 +97,21 @@ public class LineStrip extends Line
 		glEnd();
 	}
 
-	public static void draw(Vec2f[] points, int weight)
+	public static void draw(Vector2f[] points, int weight)
 	{
 		glLineWidth(weight);
 		draw(points);
 		glLineWidth(1);
 	}
 
-	public static void draw(Vec2f[] points, Color color, int weight)
+	public static void draw(Vector2f[] points, Color color, int weight)
 	{
 		glLineWidth(weight);
 		draw(points, color);
 		glLineWidth(1);
 	}
 
-	public static void draw(Vec2f[] points, Color color1, Color color2, int weight)
+	public static void draw(Vector2f[] points, Color color1, Color color2, int weight)
 	{
 		glLineWidth(weight);
 		draw(points, color1, color2);

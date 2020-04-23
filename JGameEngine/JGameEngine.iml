@@ -17,5 +17,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="joml-graal-1.9.24" level="project" />
   </component>
 </module>

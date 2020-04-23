@@ -1,7 +1,7 @@
 package game.jgengine.graphics.shapes;
 
 import game.jgengine.utils.Color;
-import game.jgengine.utils.Vec2f;
+import org.joml.Vector2f;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -14,7 +14,7 @@ public class Line extends Shape
 		super(drawType);
 	}
 
-	public Line(Vec2f pos1, Vec2f pos2, Color color)
+	public Line(Vector2f pos1, Vector2f pos2, Color color)
 	{
 		super(new float[]
 		{
@@ -44,7 +44,7 @@ public class Line extends Shape
 		vertexBuffer.setVertexColor(index, color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio());
 	}
 
-	public void setPosition(int index, Vec2f pos)
+	public void setPosition(int index, Vector2f pos)
 	{
 		vertexBuffer.setVertexPosition(index, pos.x, pos.y, 0f);
 	}
@@ -67,7 +67,7 @@ public class Line extends Shape
 		return width;
 	}
 
-	public static void draw(Vec2f pos1, Vec2f pos2)
+	public static void draw(Vector2f pos1, Vector2f pos2)
 	{
 		glBegin(GL_LINES);
 		glVertex2f(pos1.x, pos1.y);
@@ -75,7 +75,7 @@ public class Line extends Shape
 		glEnd();
 	}
 
-	public static void draw(Vec2f pos1, Vec2f pos2, Color color)
+	public static void draw(Vector2f pos1, Vector2f pos2, Color color)
 	{
 		glBegin(GL_LINES);
 		glColor4f(color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio());
@@ -84,7 +84,7 @@ public class Line extends Shape
 		glEnd();
 	}
 
-	public static void draw(Vec2f pos1, Vec2f pos2, Color color1, Color color2)
+	public static void draw(Vector2f pos1, Vector2f pos2, Color color1, Color color2)
 	{
 		glBegin(GL_LINES);
 		glColor4f(color1.getRedRatio(), color1.getGreenRatio(), color1.getBlueRatio(), color1.getAlphaRatio());
@@ -94,21 +94,21 @@ public class Line extends Shape
 		glEnd();
 	}
 
-	public static void draw(Vec2f pos1, Vec2f pos2, int weight)
+	public static void draw(Vector2f pos1, Vector2f pos2, int weight)
 	{
 		glLineWidth(weight);
 		draw(pos1, pos2);
 		glLineWidth(1);
 	}
 
-	public static void draw(Vec2f pos1, Vec2f pos2, Color color, int weight)
+	public static void draw(Vector2f pos1, Vector2f pos2, Color color, int weight)
 	{
 		glLineWidth(weight);
 		draw(pos1, pos2, color);
 		glLineWidth(1);
 	}
 
-	public static void draw(Vec2f pos1, Vec2f pos2, Color color1, Color color2, int weight)
+	public static void draw(Vector2f pos1, Vector2f pos2, Color color1, Color color2, int weight)
 	{
 		glLineWidth(weight);
 		draw(pos1, pos2, color1, color2);

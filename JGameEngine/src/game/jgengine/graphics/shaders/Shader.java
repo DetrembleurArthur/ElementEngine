@@ -1,11 +1,12 @@
 package game.jgengine.graphics.shaders;
 
-import game.jgengine.graphics.shapes.Shape;
+import game.jgengine.graphics.Camera2D;
+import org.joml.Matrix4f;
+import org.lwjgl.BufferUtils;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.nio.FloatBuffer;
 import java.util.HashMap;
-import java.util.Random;
 
 import static org.lwjgl.opengl.GL11.GL_FALSE;
 import static org.lwjgl.opengl.GL20.*;
@@ -14,7 +15,7 @@ import static org.lwjgl.opengl.GL20.glGetProgramInfoLog;
 public class Shader
 {
 	public static final Shader DEFAULT = new Shader(
-			"#version 330 core\n" + "layout (location=0) in vec3 aPos;\n" + "layout (location=1) in vec4 aColor;\n" + "out vec4 fColor;\n" + "void main()\n" + "{\n" + "fColor = aColor;\n" + "gl_Position = vec4(aPos, 1);\n" + "}",
+			"#version 330 core\n" + "layout (location=0) in vec3 aPos;\n" + "layout (location=1) in vec4 aColor;\n" + "uniform mat4 uProjection;\nuniform mat4 uView;\n" + "out vec4 fColor;\n" + "void main()\n" + "{\n" + "fColor = aColor;\n" + "gl_Position = uProjection * uView * vec4(aPos, 1);\n" + "}",
 			"#version 330 core\n" + "in vec4 fColor;\n" + "out vec4 color;\n" + "void main()\n" + "{\n" + "color = fColor;\n" + "}\n",
 			false
 	);
@@ -110,6 +111,12 @@ public class Shader
 	{
 		glUseProgram(program);
 	}
+	public void start(Camera2D camera)
+	{
+		glUseProgram(program);
+		uploadMat4f("uProjection", camera.getProjectionMatrix());
+		uploadMat4f("uView", camera.getViewMatrix());
+	}
 
 	public void stop()
 	{
@@ -137,5 +144,13 @@ public class Shader
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);
 		glDeleteProgram(program);
+	}
+
+	public void uploadMat4f(String name, Matrix4f matrix)
+	{
+		int location = glGetUniformLocation(program, name);
+		FloatBuffer buffer = BufferUtils.createFloatBuffer(16); //4 x 4
+		matrix.get(buffer);
+		glUniformMatrix4fv(location, false, buffer);
 	}
 }

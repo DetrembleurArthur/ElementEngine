@@ -1,22 +1,22 @@
 import game.jgengine.event.Input;
 import game.jgengine.event.Mouse;
 import game.jgengine.exceptions.SysException;
-import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.graphics.shapes.*;
-import game.jgengine.net.Frame;
 import game.jgengine.utils.Cursor;
 import game.jgengine.sys.Game;
 import game.jgengine.utils.Color;
 import game.jgengine.utils.Colors;
-import game.jgengine.utils.Vec2f;
+import org.joml.Random;
+import org.joml.Vector2f;
+
+import static org.lwjgl.glfw.GLFW.*;
 
 
 public class MyTestGame extends Game
 {
 
-    Shader shader;
-    Line line;
-    Pixel pixel;
+    Triangle triangle;
+    Rectangle rectangle;
 
     @Override
     protected void load()
@@ -24,30 +24,23 @@ public class MyTestGame extends Game
         getPrimaryWindow().setClearColor(new Color(0, 200, 200));
         setFramerateLimit(60);
         getPrimaryWindow().setResizeable(true);
-        getPrimaryWindow().setSize(1400, 800);
+        //getPrimaryWindow().setSize(1400, 800);
         getPrimaryWindow().center();
 
         getPrimaryWindow().setCursor(new Cursor("src/game/jgengine/sys/default-cursor.png"));
 
-        line = new Line(new Vec2f(0f,0f), new Vec2f(0.5f, 0.5f), Colors.ORANGE);
-        addShape(line);
+        rectangle = new Rectangle(new Vector2f(450, 150), new Vector2f(500, 500), Colors.LIME);
+        addShape(rectangle);
     }
 
     @Override
     protected void render(double dt)
     {
-        var pos = getPrimaryWindow().normal(Mouse.getPosition(getPrimaryWindow()));
+        var pos = Mouse.getPosition(getPrimaryWindow());
 
         getPrimaryWindow().clear();
 
-
-        //line.draw(Shader.DEFAULT);
-
-        LineLoop.draw(new Vec2f[]
-                {
-                        new Vec2f(-0.5f, -0.5f), new Vec2f(0f, 0.5f), new Vec2f(0.2f, -0.2f)
-                }, Colors.RED, Colors.GREEN, 3);
-
+        rectangle.draw(camera);
 
         getPrimaryWindow().flip();
     }
@@ -56,9 +49,26 @@ public class MyTestGame extends Game
     protected void update(double dt)
     {
         getPrimaryWindow().setTitle("fps " + Double.toString(1.f /dt));
-       // var pos = getPrimaryWindow().normal(Mouse.getPosition(getPrimaryWindow()));
+        var pos = Mouse.getPosition(getPrimaryWindow());
+        if(Input.isKeyPressed(getPrimaryWindow(), GLFW_KEY_LEFT))
+        {
+            camera.getPosition().x -= 150 * dt;
+        }
 
+        if(Input.isKeyPressed(getPrimaryWindow(), GLFW_KEY_RIGHT))
+        {
+            camera.getPosition().x += 150 * dt;
+        }
 
+        if(Input.isKeyPressed(getPrimaryWindow(), GLFW_KEY_UP))
+        {
+            camera.getPosition().y -= 150 * dt;
+        }
+
+        if(Input.isKeyPressed(getPrimaryWindow(), GLFW_KEY_DOWN))
+        {
+            camera.getPosition().y += 150 * dt;
+        }
     }
 
     @Override
@@ -67,20 +77,20 @@ public class MyTestGame extends Game
 
     }
 
+
+
     @Override
     public void buttonPressedEventHandler(int button)
     {
-        var pos = getPrimaryWindow().normal(Mouse.getPosition(getPrimaryWindow()));
-        if(Input.isLeftButtonPressed(getPrimaryWindow()))
-        {
-            getPrimaryWindow().setClearColor(Colors.random());
-        }
+        //rectangle.setColor(Colors.random());
+        rectangle.setGradient(Colors.LIME, Colors.MAGENTA, Colors.BLUE, Colors.YELLOW);
     }
 
     @Override
     public void windowResizedEventHandler(int width, int height)
     {
-        getPrimaryWindow().updateViewport();
+
+        getCamera().adjustProjection(new Vector2f(width, height));
     }
 
     @Override

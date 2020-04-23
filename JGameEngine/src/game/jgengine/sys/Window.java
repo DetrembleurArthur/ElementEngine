@@ -4,8 +4,8 @@ import game.jgengine.event.handler.*;
 import game.jgengine.exceptions.SysException;
 import game.jgengine.utils.Color;
 import game.jgengine.utils.Cursor;
-import game.jgengine.utils.Vec2f;
-import game.jgengine.utils.Vec2i;
+import org.joml.Vector2f;
+import org.joml.Vector2i;
 import org.lwjgl.glfw.GLFWVidMode;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
@@ -82,10 +82,10 @@ public class Window
 		return glfwGetWindowAttrib(windowId, GLFW_HOVERED) == 1;
 	}
 
-	public static Vec2i getScreenSize()
+	public static Vector2f getScreenSize()
 	{
 		GLFWVidMode screen = glfwGetVideoMode(glfwGetPrimaryMonitor());
-		return new Vec2i(screen.width(), screen.height());
+		return new Vector2f(screen.width(), screen.height());
 	}
 
 	public long getId()
@@ -191,57 +191,40 @@ public class Window
 		glfwSetWindowPos(windowId, x, y);
 	}
 
-	public void setPosition(Vec2i position)
+	public void setPosition(Vector2i position)
 	{
 		glfwSetWindowPos(windowId, position.x, position.y);
-	}
-
-	public Vec2f normal(Vec2f pos)
-	{
-		var size = getSize();
-		pos.x = pos.x / size.x * 2 - 1;
-		pos.y = -(pos.y / size.y * 2 - 1);
-		return pos;
 	}
 
 	public void move(int x, int y)
 	{
 		var p = getPosition();
-		setPosition(p.x + x, p.y + y);
+		setPosition((int)p.x + x, (int)p.y + y);
 	}
 
 	public void center()
 	{
-		Vec2i screenSize = Window.getScreenSize();
-		Vec2i windowSize = getSize();
-		setPosition((screenSize.x - windowSize.x) / 2,
-				    (screenSize.y - windowSize.y) / 2);
+		Vector2f screenSize = Window.getScreenSize();
+		Vector2f windowSize = getSize();
+		setPosition((int)(screenSize.x - windowSize.x) / 2,
+				(int)(screenSize.y - windowSize.y) / 2);
 	}
 
-	public Vec2i getPosition()
+	public Vector2i getPosition()
 	{
 		int[] x = new int[1], y = new int[1];
 		glfwGetWindowPos(windowId, x, y);
-		return new Vec2i(x[0], y[0]);
-	}
-
-	public void updateViewport()
-	{
-		var size = getSize();
-		glViewport(0, 0, size.x, size.y);
-
+		return new Vector2i(x[0], y[0]);
 	}
 
 	public void setSize(int width, int height)
 	{
 		glfwSetWindowSize(windowId, width, height);
-		updateViewport();
 	}
 
-	public void setSize(Vec2i size)
+	public void setSize(Vector2f size)
 	{
-		glfwSetWindowSize(windowId, size.x, size.y);
-		updateViewport();
+		glfwSetWindowSize(windowId, (int)size.x, (int)size.y);
 	}
 
 	public void setSizeLimit(int minWidth, int minHeight, int maxWidth, int maxHeight)
@@ -249,7 +232,7 @@ public class Window
 		glfwSetWindowSizeLimits(windowId, minWidth, minHeight, maxWidth, maxHeight);
 	}
 
-	public void setSizeLimit(Vec2i mins, Vec2i maxs)
+	public void setSizeLimit(Vector2i mins, Vector2i maxs)
 	{
 		glfwSetWindowSizeLimits(windowId, mins.x, mins.y, maxs.x, maxs.y);
 	}
@@ -259,20 +242,20 @@ public class Window
 		glfwSetWindowAspectRatio(windowId, number, den);
 	}
 
-	public Vec2i getSize()
+	public Vector2f getSize()
 	{
 		int[] width = new int[1], height = new int[1];
 		glfwGetWindowSize(windowId, width, height);
-		return new Vec2i(width[0], height[0]);
+		return new Vector2f(width[0], height[0]);
 	}
 
 	@Override
 	protected Object clone() throws CloneNotSupportedException
 	{
-		Vec2i size = getSize();
+		Vector2f size = getSize();
 		try
 		{
-			Window window = new Window(size.x, size.y, title);
+			Window window = new Window((int)size.x, (int)size.y, title);
 			window.setSize(getSize());
 			window.setPosition(getPosition());
 			return window;

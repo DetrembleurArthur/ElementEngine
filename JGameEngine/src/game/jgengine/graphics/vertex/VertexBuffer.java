@@ -1,7 +1,7 @@
 package game.jgengine.graphics.vertex;
 
 import game.jgengine.utils.Color;
-import game.jgengine.utils.Vec2f;
+import org.joml.Vector2f;
 
 import static org.lwjgl.opengl.GL15.*;
 
@@ -75,13 +75,13 @@ public class VertexBuffer
 		update(index * 7 * 4, new float[]{x, y, z});
 	}
 
-	public Vec2f getVertexPosition(int index)
+	public Vector2f getVertexPosition(int index)
 	{
 		float[] buffer = new float[2];
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 		glGetBufferSubData(GL_ARRAY_BUFFER, index * 7 * 4, buffer);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		return new Vec2f(buffer[0], buffer[1]);
+		return new Vector2f(buffer[0], buffer[1]);
 	}
 
 	public void setVertexColor(int index, float r, float g, float b, float a)
@@ -103,7 +103,7 @@ public class VertexBuffer
 		return new Color(buffer[0], buffer[1], buffer[2], buffer[3]);
 	}
 
-	public void addVertex(Vec2f position, Color color)
+	public void addVertex(Vector2f position, Color color)
 	{
 		float[] newBuffer = new float[buffer.length + 7];
 		for(int i = 0; i < buffer.length; i++)
