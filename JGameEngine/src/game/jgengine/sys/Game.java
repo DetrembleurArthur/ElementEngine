@@ -2,11 +2,13 @@ package game.jgengine.sys;
 
 import game.jgengine.event.handler.EventHandler;
 import game.jgengine.exceptions.SysException;
-import game.jgengine.graphics.Camera2D;
+import game.jgengine.graphics.Camera;
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.graphics.shapes.Shape;
+import game.jgengine.graphics.vertex.GraphicElement;
 import game.jgengine.utils.Time;
 import org.joml.Vector2f;
+import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
@@ -20,11 +22,11 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 public abstract class Game implements EventHandler
 {
 	protected Window primaryWindow;
-	protected Camera2D camera;
+	protected Camera camera;
 
 	private double framerateLimit = 30;
 	private ArrayList<Shader> shaders = new ArrayList<>();
-	private ArrayList<Shape> shapes = new ArrayList<>();
+	private ArrayList<GraphicElement> shapes = new ArrayList<>();
 
 	static
 	{
@@ -52,7 +54,7 @@ public abstract class Game implements EventHandler
 		shaders.add(shader);
 	}
 
-	public void addShape(Shape shape)
+	public void addShape(GraphicElement shape)
 	{
 		shapes.add(shape);
 	}
@@ -78,7 +80,7 @@ public abstract class Game implements EventHandler
 		GL.createCapabilities();
 		initGraphics();
 
-		camera = new Camera2D(new Vector2f(), primaryWindow.getSize());
+		camera = new Camera(new Vector3f(0, 0, 1), primaryWindow.getSize());
 
 		System.out.println("OpenGL version: " + glGetString(GL_VERSION));
 	}
@@ -115,7 +117,7 @@ public abstract class Game implements EventHandler
 		{
 			shader.destroy();
 		}
-		for(Shape shape : shapes)
+		for(GraphicElement shape : shapes)
 		{
 			shape.destroy();
 		}
@@ -144,7 +146,7 @@ public abstract class Game implements EventHandler
 		framerateLimit = limit;
 	}
 
-	public Camera2D getCamera()
+	public Camera getCamera()
 	{
 		return camera;
 	}

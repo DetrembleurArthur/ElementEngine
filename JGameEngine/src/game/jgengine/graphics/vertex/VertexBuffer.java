@@ -2,6 +2,7 @@ package game.jgengine.graphics.vertex;
 
 import game.jgengine.utils.Color;
 import org.joml.Vector2f;
+import org.joml.Vector3f;
 
 import static org.lwjgl.opengl.GL15.*;
 
@@ -49,7 +50,7 @@ public class VertexBuffer
 	public void majorUpdate()
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glBufferData(GL_ARRAY_BUFFER, buffer, GL_DYNAMIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, buffer, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
@@ -66,6 +67,30 @@ public class VertexBuffer
 		glBufferSubData(GL_ARRAY_BUFFER, offset, buffer);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
+
+	public void translate(Vector3f transform)
+	{
+		int len = buffer.length / 7;
+		for(int i = 0; i < len; i++)
+		{
+			buffer[i * 7] += transform.x;
+			buffer[i * 7 + 1] += transform.y;
+			buffer[i * 7 + 2] += transform.z;
+		}
+		update(0, buffer);
+	}
+
+	public void translate(Vector2f transform)
+	{
+		int len = buffer.length / 7;
+		for(int i = 0; i < len; i++)
+		{
+			buffer[i * 7] += transform.x;
+			buffer[i * 7 + 1] += transform.y;
+		}
+		update(0, buffer);
+	}
+
 
 	public void setVertexPosition(int index, float x, float y, float z)
 	{

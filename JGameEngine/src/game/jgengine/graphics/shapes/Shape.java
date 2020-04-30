@@ -1,22 +1,22 @@
 package game.jgengine.graphics.shapes;
 
+import game.jgengine.graphics.Mesh;
 import game.jgengine.graphics.vertex.GraphicElement;
 import game.jgengine.utils.Color;
+import org.joml.Matrix4f;
+import org.joml.Vector2f;
+import org.joml.Vector3f;
 import org.joml.Vector4f;
 
 public class Shape extends GraphicElement
 {
 	protected int nbPoints = 0;
 
-	protected Shape(int drawType)
-	{
-		super(drawType);
-	}
 
-	public Shape(float[] vertices, int[] indexes, int drawType)
+	public Shape(Mesh mesh, int drawType)
 	{
-		super(vertices, indexes, drawType);
-		nbPoints = vertices.length / 7;
+		super(new Vector3f(), new Vector3f(), new Vector3f(), mesh, drawType);
+		nbPoints = mesh.getVertexBuffer().getArray().length / 7;
 	}
 
 	public void setColor(Color color)
@@ -24,14 +24,14 @@ public class Shape extends GraphicElement
 		Vector4f cv = new Vector4f(color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio());
 		for(int i = 0; i < nbPoints; i++)
 		{
-			vertexBuffer.setVertexColor(i, cv.x, cv.y, cv.z, cv.w);
+			getMesh().getVertexBuffer().setVertexColor(i, cv.x, cv.y, cv.z, cv.w);
 		}
 	}
 
 	public void setColor(int pointIndex, Color color)
 	{
 		Vector4f cv = new Vector4f(color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio());
-		vertexBuffer.setVertexColor(pointIndex, cv.x, cv.y, cv.z, cv.w);
+		getMesh().getVertexBuffer().setVertexColor(pointIndex, cv.x, cv.y, cv.z, cv.w);
 	}
 
 	public int getNbPoints()
@@ -41,6 +41,6 @@ public class Shape extends GraphicElement
 
 	protected void updateNbPoints()
 	{
-		nbPoints = vertexBuffer.getArray().length / 7;
+		nbPoints = getMesh().getVertexBuffer().getArray().length / 7;
 	}
 }

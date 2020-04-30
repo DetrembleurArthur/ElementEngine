@@ -1,11 +1,12 @@
 package game.jgengine.graphics.shaders;
 
-import game.jgengine.graphics.Camera2D;
+import game.jgengine.graphics.Camera;
 import org.joml.Matrix4f;
 import org.lwjgl.BufferUtils;
 
 import java.io.*;
 import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import java.util.HashMap;
 
 import static org.lwjgl.opengl.GL11.GL_FALSE;
@@ -15,9 +16,9 @@ import static org.lwjgl.opengl.GL20.glGetProgramInfoLog;
 public class Shader
 {
 	public static final Shader DEFAULT = new Shader(
-			"#version 330 core\n" + "layout (location=0) in vec3 aPos;\n" + "layout (location=1) in vec4 aColor;\n" + "uniform mat4 uProjection;\nuniform mat4 uView;\n" + "out vec4 fColor;\n" + "void main()\n" + "{\n" + "fColor = aColor;\n" + "gl_Position = uProjection * uView * vec4(aPos, 1);\n" + "}",
-			"#version 330 core\n" + "in vec4 fColor;\n" + "out vec4 color;\n" + "void main()\n" + "{\n" + "color = fColor;\n" + "}\n",
-			false
+			"src/game/jgengine/graphics/shaders/vertex.glsl",
+			"src/game/jgengine/graphics/shaders/fragment.glsl",
+			true
 	);
 
 	private int vertexShader = -1;
@@ -111,7 +112,7 @@ public class Shader
 	{
 		glUseProgram(program);
 	}
-	public void start(Camera2D camera)
+	public void start(Camera camera)
 	{
 		glUseProgram(program);
 		uploadMat4f("uProjection", camera.getProjectionMatrix());
@@ -152,5 +153,11 @@ public class Shader
 		FloatBuffer buffer = BufferUtils.createFloatBuffer(16); //4 x 4
 		matrix.get(buffer);
 		glUniformMatrix4fv(location, false, buffer);
+	}
+
+	public void updaloadTexture(String name, int slot)
+	{
+		int location = glGetUniformLocation(program, name);
+		glUniform1i(location, slot);
 	}
 }

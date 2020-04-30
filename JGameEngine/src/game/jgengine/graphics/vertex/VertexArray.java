@@ -21,18 +21,16 @@ public class VertexArray
 	{
 		int positionSize = dimension;
 		int colorSize = colorMode;
-		int floatSize = 4;
-		int vertexSize = (positionSize + colorSize) * floatSize;
-		glVertexAttribPointer(0, positionSize, GL_FLOAT, true, vertexSize, 0);
+		int uvSize = 2;
+		int floatSize = Float.BYTES;
+		int vertexSize = (positionSize + colorSize + uvSize) * floatSize;
+		glVertexAttribPointer(0, positionSize, GL_FLOAT, false, vertexSize, 0);
 		glEnableVertexAttribArray(0);
-		if(colorSize != 0)
-		{
-			glVertexAttribPointer(1, colorSize, GL_FLOAT, true, vertexSize, positionSize * floatSize);
-			glEnableVertexAttribArray(1);
-			attribs = 2;
-		}
-		else
-			attribs = 1;
+		glVertexAttribPointer(1, colorSize, GL_FLOAT, false, vertexSize, positionSize * floatSize);
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(2, uvSize, GL_FLOAT, false, vertexSize, (positionSize + colorSize) * floatSize);
+		glEnableVertexAttribArray(2);
+
 	}
 
 	public void bind()
@@ -53,10 +51,8 @@ public class VertexArray
 	public void enableAttribs()
 	{
 		glEnableVertexAttribArray(0);
-		if(attribs == 2)
-		{
-			glEnableVertexAttribArray(1);
-		}
+		glEnableVertexAttribArray(1);
+		glEnableVertexAttribArray(2);
 	}
 
 	public void disableAttrib(int index)
@@ -67,10 +63,8 @@ public class VertexArray
 	public void disableAttribs()
 	{
 		glDisableVertexAttribArray(0);
-		if(attribs == 2)
-		{
-			glDisableVertexAttribArray(1);
-		}
+		glDisableVertexAttribArray(1);
+		glDisableVertexAttribArray(2);
 	}
 
 	public void destroy()
