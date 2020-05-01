@@ -21,6 +21,12 @@ public class Shader
 			true
 	);
 
+	public static final Shader DEFAULT_SHAPE = new Shader(
+			"src/game/jgengine/graphics/shaders/vertex.glsl",
+			"src/game/jgengine/graphics/shaders/fragment_shape.glsl",
+			true
+	);
+
 	private int vertexShader = -1;
 	private int fragmentShader = -1;
 	private int program = -1;

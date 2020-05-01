@@ -3,6 +3,7 @@ package game.jgengine.sys;
 import game.jgengine.event.handler.EventHandler;
 import game.jgengine.exceptions.SysException;
 import game.jgengine.graphics.Camera;
+import game.jgengine.graphics.Renderer;
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.graphics.shapes.Shape;
 import game.jgengine.graphics.vertex.GraphicElement;
@@ -27,6 +28,8 @@ public abstract class Game implements EventHandler
 	private double framerateLimit = 30;
 	private ArrayList<Shader> shaders = new ArrayList<>();
 	private ArrayList<GraphicElement> shapes = new ArrayList<>();
+	private Renderer shapeRenderer;
+	private Renderer textureRenderer;
 
 	static
 	{
@@ -62,6 +65,7 @@ public abstract class Game implements EventHandler
 	final private void initGraphics()
 	{
 		addShader(Shader.DEFAULT);
+		addShader(Shader.DEFAULT_SHAPE);
 		glEnable(GL_BLEND);
 		glEnable(GL_DEPTH_TEST);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -81,6 +85,8 @@ public abstract class Game implements EventHandler
 		initGraphics();
 
 		camera = new Camera(new Vector3f(0, 0, 1), primaryWindow.getSize());
+		shapeRenderer = new Renderer(Shader.DEFAULT_SHAPE, primaryWindow);
+		textureRenderer = new Renderer(Shader.DEFAULT, primaryWindow);
 
 		System.out.println("OpenGL version: " + glGetString(GL_VERSION));
 	}
@@ -149,5 +155,15 @@ public abstract class Game implements EventHandler
 	public Camera getCamera()
 	{
 		return camera;
+	}
+
+	public Renderer getShapeRenderer()
+	{
+		return shapeRenderer;
+	}
+
+	public Renderer getTextureRenderer()
+	{
+		return textureRenderer;
 	}
 }

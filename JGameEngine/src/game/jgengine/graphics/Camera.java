@@ -3,9 +3,9 @@ package game.jgengine.graphics;
 
 import game.jgengine.event.Input;
 import game.jgengine.graphics.vertex.GraphicElement;
-import org.joml.Matrix4f;
-import org.joml.Vector2f;
-import org.joml.Vector3f;
+import org.joml.*;
+
+import java.lang.Math;
 
 public class Camera
 {
@@ -14,10 +14,9 @@ public class Camera
 	private Vector3f position;
 	private Vector3f rotation;
 
-	public Vector2f center = new Vector2f();
 	private Vector2f oldMouse = new Vector2f();
-	private float moveSpeed = 0.005f;
-	private float mouseSensitivity = 0.0015f;
+	private float moveSpeed = 0.05f;
+	private float mouseSensitivity = 0.15f;
 
 	private float verticalAngle, horizontalAngle;
 
@@ -27,57 +26,30 @@ public class Camera
 		this.projectionMatrix = new Matrix4f();
 		this.viewMatrix = new Matrix4f();
 		this.rotation = new Vector3f();
-		this.center = new Vector2f(wsize.x / 2, wsize.y / 2);
-		adjustProjection(70f, wsize.x / wsize.y, 0.1f, 1000.f);
-	}
-
-	public void adjustProjection2D(Vector2f wsize)
-	{
-		projectionMatrix.identity();
-		projectionMatrix.ortho(0.0f, wsize.x, wsize.y, 0f, 0f, 100.0f);
+		adjustProjection(70, wsize.x / wsize.y, 0.001f, 1000.f);
 	}
 
 	public void adjustProjection(float fov, float aspect, float near, float far)
 	{
-		projectionMatrix.identity();
-
-		float tanFOV = (float) Math.tan(Math.toRadians(fov / 2));
-		float range = far - near;
-
-		projectionMatrix.set(1, 1, 1.0f / (aspect * tanFOV));
-		projectionMatrix.set(1, 1, 1.0f / tanFOV);
-		projectionMatrix.set(2, 2, -((far + near) / range));
-		projectionMatrix.set(2, 3, -1.0f);
-		projectionMatrix.set(3, 2, -((2 * far * near) / range));
-		projectionMatrix.set(3, 3, 0.0f);
+		projectionMatrix.perspective(fov, aspect, near, far);
 	}
 
 	public Matrix4f getViewMatrix2D()
 	{
-		Vector3f cameraFront = new Vector3f(0f, 0f, -1f);
-		Vector3f cameraUp = new Vector3f(0f, 1f, 0f);
-		viewMatrix.identity();
-		viewMatrix.lookAt(new Vector3f(position.x, position.y, 20.f),
-				cameraFront.add(position.x, position.y, 0f),
-				cameraUp);
+
 		return viewMatrix;
 	}
 
 	public Matrix4f getViewMatrix()
 	{
-		Matrix4f result = new Matrix4f().identity();
-
+		viewMatrix.identity();
+		viewMatrix.rotateX((float)Math.toRadians(rotation.x));
+		viewMatrix.rotateY((float)Math.toRadians(rotation.y));
+		viewMatrix.rotateZ((float)Math.toRadians(rotation.z));
 		Vector3f negative = new Vector3f(-position.x, -position.y, -position.z);
-		Matrix4f translationMatrix = new Matrix4f().translate(negative);
-		Matrix4f rotXMatrix = new Matrix4f().rotate(rotation.x, new Vector3f(1, 0, 0));
-		Matrix4f rotYMatrix = new Matrix4f().rotate(rotation.y, new Vector3f(0, 1, 0));
-		Matrix4f rotZMatrix = new Matrix4f().rotate(rotation.z, new Vector3f(0, 0, 1));
+		viewMatrix.translate(negative);
 
-		Matrix4f rotationMatrix = rotZMatrix.mul(rotYMatrix.mul(rotXMatrix));
-
-		result = translationMatrix.mul(rotationMatrix);
-
-		return result;
+		return viewMatrix;
 	}
 
 	public Matrix4f getProjectionMatrix()
@@ -95,21 +67,22 @@ public class Camera
 	{
 		float mouseX = mousePosition.x;
 		float mouseY = mousePosition.y;
-		float dx = mouseX - center.x;
-		float dy = mouseY - center.y;
+		float dx = mouseX - oldMouse.x;
+		float dy = mouseY - oldMouse.y;
 
-		rotation = rotation.add(-dy * mouseSensitivity,
-				-dx * mouseSensitivity, 0);
+		rotation = rotation.add(dy * mouseSensitivity,
+				dx * mouseSensitivity, 0);
+
 
 		oldMouse = new Vector2f(mouseX, mouseY);
 	}
 
-	public void update(Vector2f mousePosition, GraphicElement gelem)
+	public void update(Vector2f mousePosition, Transformable gelem)
 	{
 		float mouseX = mousePosition.x;
 		float mouseY = mousePosition.y;
-		float dx = mouseX - center.x;
-		float dy = mouseY - center.y;
+		float dx = mouseX - oldMouse.x;
+		float dy = mouseY - oldMouse.y;
 
 		verticalAngle -= dy * mouseSensitivity;
 		horizontalAngle += dx * mouseSensitivity;
@@ -127,43 +100,72 @@ public class Camera
 		oldMouse = new Vector2f(mouseX, mouseY);
 	}
 
+	public Vector3f getForward()
+	{
+		float cosY = (float) Math.cos(Math.toRadians(rotation.y + 90));
+		float sinY = (float) Math.sin(Math.toRadians(rotation.y + 90));
+		float cosP = (float) Math.cos(Math.toRadians(rotation.x));
+		float sinP = (float) Math.sin(Math.toRadians(rotation.x));
+
+		return new Vector3f(cosY * cosP, sinP, sinY * cosP);
+	}
+
+	public Vector3f getRight()
+	{
+		float cosY = (float) Math.cos(Math.toRadians(rotation.y));
+		float sinY = (float) Math.sin(Math.toRadians(rotation.y));
+
+		return new Vector3f(cosY, 0, sinY);
+	}
+
 	public void left()
 	{
-		float x = (float)Math.sin(Math.toRadians(rotation.y)) * moveSpeed;
-		float z = (float)Math.cos(Math.toRadians(rotation.y)) * moveSpeed;
-		position = position.add(-z, 0, x);
+		position.add(getRight().mul(-moveSpeed));
 	}
 
 	public void right()
 	{
-		float x = (float)Math.sin(Math.toRadians(rotation.y)) * moveSpeed;
-		float z = (float)Math.cos(Math.toRadians(rotation.y)) * moveSpeed;
-		position = position.add(z, 0, x);
+		position.add(getRight().mul(moveSpeed));
 	}
 
-	public void in()
+	public void toward()
 	{
-		float x = (float)Math.sin(Math.toRadians(rotation.y)) * moveSpeed;
-		float z = (float)Math.cos(Math.toRadians(rotation.y)) * moveSpeed;
-		position = position.add(-x, 0, -z);
+		position.add(getForward().mul(-moveSpeed));
 	}
 
-	public void out()
+	public void backward()
 	{
-		float x = (float)Math.sin(Math.toRadians(rotation.y)) * moveSpeed;
-		float z = (float)Math.cos(Math.toRadians(rotation.y)) * moveSpeed;
-		position = position.add(x, 0, z);
+		position.add(getForward().mul(moveSpeed));
 	}
 
-	public void up()
+	public void upaxis()
 	{
-		position = position.add(0, moveSpeed, 0);
+		position.add(new Vector3f(0, moveSpeed, 0));
 	}
 
-	public void down()
+	public void downaxis()
 	{
-		position = position.add(0, -moveSpeed, 0);
+		position.add(new Vector3f(0, -moveSpeed, 0));
 	}
 
+	public void towardaxis()
+	{
+		position.add(new Vector3f(0, 0, -moveSpeed));
+	}
+
+	public void backwardaxis()
+	{
+		position.add(new Vector3f(0, 0, moveSpeed));
+	}
+
+	public void rightaxis()
+	{
+		position.add(new Vector3f(moveSpeed, 0, 0));
+	}
+
+	public void leftaxis()
+	{
+		position.add(new Vector3f(-moveSpeed, 0, 0));
+	}
 
 }
