@@ -6,6 +6,10 @@ import game.jgengine.graphics.vertex.GraphicElement;
 import game.jgengine.sys.Window;
 import org.joml.Matrix4f;
 
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Properties;
+
 public class Renderer
 {
 	private Shader shader;
@@ -17,9 +21,10 @@ public class Renderer
 		this.window = window;
 	}
 
+
 	public void render(GraphicElement gelem, Camera camera)
 	{
-		shader.start(camera);
+		shader.start();
 		shader.uploadMat4f("uModel", gelem.getTransformMatrix());
 		shader.uploadMat4f("uView", camera.getViewMatrix());
 		shader.uploadMat4f("uProjection", camera.getProjectionMatrix());
@@ -27,9 +32,23 @@ public class Renderer
 		shader.stop();
 	}
 
+	public void render(GraphicElement gelem, Camera camera, HashMap<String, Object> uniforms)
+	{
+		shader.start();
+		shader.uploadMat4f("uModel", gelem.getTransformMatrix());
+		shader.uploadMat4f("uView", camera.getViewMatrix());
+		shader.uploadMat4f("uProjection", camera.getProjectionMatrix());
+		for(String key : uniforms.keySet())
+		{
+			shader.setUniformf1(key, (float)uniforms.get(key));
+		}
+		gelem.draw();
+		shader.stop();
+	}
+
 	public void render(Textured gelem, Camera camera)
 	{
-		shader.start(camera);
+		shader.start();
 		shader.uploadMat4f("uModel", gelem.getTransformMatrix());
 		shader.uploadMat4f("uView", camera.getViewMatrix());
 		shader.uploadMat4f("uProjection", camera.getProjectionMatrix());

@@ -14,6 +14,11 @@ public class Camera
 	private Vector3f position;
 	private Vector3f rotation;
 
+	private float fov = 70f;
+	private float aspect = 0f;
+	private float znear = 0.001f;
+	private float zfar = 1000f;
+
 	private Vector2f oldMouse = new Vector2f();
 	private float moveSpeed = 0.05f;
 	private float mouseSensitivity = 0.15f;
@@ -26,12 +31,54 @@ public class Camera
 		this.projectionMatrix = new Matrix4f();
 		this.viewMatrix = new Matrix4f();
 		this.rotation = new Vector3f();
-		adjustProjection(70, wsize.x / wsize.y, 0.001f, 1000.f);
+		setAspect(wsize.x / wsize.y);
+		adjustProjection();
 	}
 
-	public void adjustProjection(float fov, float aspect, float near, float far)
+	public void adjustProjection()
 	{
-		projectionMatrix.perspective(fov, aspect, near, far);
+		projectionMatrix.identity();
+		projectionMatrix.perspective((float)Math.toRadians(fov), aspect, znear, zfar);
+	}
+
+	public float getZnear()
+	{
+		return znear;
+	}
+
+	public void setZnear(float znear)
+	{
+		this.znear = znear;
+	}
+
+	public float getZfar()
+	{
+		return zfar;
+	}
+
+	public void setZfar(float zfar)
+	{
+		this.zfar = zfar;
+	}
+
+	public float getAspect()
+	{
+		return aspect;
+	}
+
+	public void setAspect(float aspect)
+	{
+		this.aspect = aspect;
+	}
+
+	public float getFov()
+	{
+		return fov;
+	}
+
+	public void setFov(float fovd)
+	{
+		fov = fovd;
 	}
 
 	public Matrix4f getViewMatrix2D()
@@ -60,6 +107,11 @@ public class Camera
 	public Vector3f getPosition()
 	{
 		return position;
+	}
+
+	public Vector3f getDirection()
+	{
+		return new Vector3f(rotation.x / 1f,  rotation.y / 1f, rotation.z / 1f);
 	}
 
 
@@ -166,6 +218,11 @@ public class Camera
 	public void leftaxis()
 	{
 		position.add(new Vector3f(-moveSpeed, 0, 0));
+	}
+
+	public void setOldMouse(Vector2f old)
+	{
+		oldMouse = old;
 	}
 
 }

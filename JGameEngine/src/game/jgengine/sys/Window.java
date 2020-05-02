@@ -220,6 +220,7 @@ public class Window
 	public void setSize(int width, int height)
 	{
 		glfwSetWindowSize(windowId, width, height);
+		updateViewport();
 	}
 
 	public void setSize(Vector2f size)
@@ -366,6 +367,12 @@ public class Window
 		setWindowMaximizeCallback(new WindowMaximizeCallback(handler));
 		setTextInputCallback(new TextInputCallback(handler));
 		setDropCallback(new DropCallback(handler));
+	}
+
+	public void updateViewport()
+	{
+		var size = getSize();
+		glViewport(0, 0, (int)size.x, (int)size.y);
 	}
 }
 

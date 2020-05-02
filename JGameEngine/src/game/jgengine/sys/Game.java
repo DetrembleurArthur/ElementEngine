@@ -5,10 +5,8 @@ import game.jgengine.exceptions.SysException;
 import game.jgengine.graphics.Camera;
 import game.jgengine.graphics.Renderer;
 import game.jgengine.graphics.shaders.Shader;
-import game.jgengine.graphics.shapes.Shape;
 import game.jgengine.graphics.vertex.GraphicElement;
 import game.jgengine.utils.Time;
-import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
@@ -77,12 +75,24 @@ public abstract class Game implements EventHandler
 	{
 		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 
+		String osName = System.getProperty("os.name");
+		System.out.println("OS: " + osName);
+		if (osName.contains("Mac"))
+		{
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+			glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+		}
+
 		primaryWindow = new Window(1400, 800, "Game");
 		primaryWindow.setEventHandler(this);
 		primaryWindow.center();
 		primaryWindow.active();
 		GL.createCapabilities();
 		initGraphics();
+
+		primaryWindow.updateViewport();
 
 		camera = new Camera(new Vector3f(0, 0, 1), primaryWindow.getSize());
 		shapeRenderer = new Renderer(Shader.DEFAULT_SHAPE, primaryWindow);

@@ -12,36 +12,62 @@ public class Mesh
 	protected VertexArray vertexArray;
 	protected VertexBuffer vertexBuffer;
 	protected IndexBuffer indexBuffer;
+	public static int DIMENSION_2 = 2;
+	public static int DIMENSION_3 = 3;
+	public static int RGBA = 4;
+	public static int RGB = 3;
 
 
-	public Mesh(float[] vertices, int[] indexes)
+	public Mesh(float[] vertices, int[] indexes, int dimension)
 	{
-		initVertices(vertices, indexes);
+		initVertices(vertices, indexes,dimension);
 	}
 
-	protected void initVertices(float[] vertices, int[] indexes)
+	public Mesh(float[] vertices, int[] indexes, int dimension, int colorDimension)
+	{
+		initVertices(vertices, indexes,dimension,colorDimension);
+	}
+
+	public Mesh(float[] vertices, int[] indexes, int dimension, int colorDimension, int uv)
+	{
+		initVertices(vertices, indexes,dimension,colorDimension,uv);
+	}
+
+	protected void initVertices(float[] vertices, int[] indexes, int dimension)
 	{
 		vertexArray = new VertexArray();
 		vertexBuffer = new VertexBuffer(vertices);
 		indexBuffer = new IndexBuffer(indexes);
 		vertexBuffer.bind();
 		indexBuffer.bind();
-		vertexArray.initAttribs(3, 4);
+		vertexArray.initAttribs(dimension);
 		vertexBuffer.unbind();
 		indexBuffer.unbind();
 	}
 
-
-	public void setVertices(float[] vertices)
+	protected void initVertices(float[] vertices, int[] indexes, int dimension, int colorDimension)
 	{
-		vertexBuffer.update(0,vertices);
+		vertexArray = new VertexArray();
+		vertexBuffer = new VertexBuffer(vertices);
+		indexBuffer = new IndexBuffer(indexes);
+		vertexBuffer.bind();
+		indexBuffer.bind();
+		vertexArray.initAttribs(dimension, colorDimension);
+		vertexBuffer.unbind();
+		indexBuffer.unbind();
 	}
 
-	public void setIndexes(int[] indexes)
+	protected void initVertices(float[] vertices, int[] indexes, int dimension, int colorDimension, int uv)
 	{
-		indexBuffer.update(indexes);
+		vertexArray = new VertexArray();
+		vertexBuffer = new VertexBuffer(vertices);
+		indexBuffer = new IndexBuffer(indexes);
+		vertexBuffer.bind();
+		indexBuffer.bind();
+		vertexArray.initAttribs(dimension, colorDimension,uv);
+		vertexBuffer.unbind();
+		indexBuffer.unbind();
 	}
-
 
 	public VertexArray getVertexArray()
 	{
@@ -56,27 +82,6 @@ public class Mesh
 		return indexBuffer;
 	}
 
-	public void addVertex(Vector2f position, Color color)
-	{
-		vertexBuffer.addVertex(position, color);
-		indexBuffer.addIndex(indexBuffer.getLen());
-		vertexBuffer.bind();
-		indexBuffer.bind();
-		vertexArray.initAttribs(3, 4);
-		vertexBuffer.unbind();
-		indexBuffer.unbind();
-	}
-
-	public void subVertex()
-	{
-		vertexBuffer.subVertex();
-		indexBuffer.subIndex();
-		vertexBuffer.bind();
-		indexBuffer.bind();
-		vertexArray.initAttribs(3, 4);
-		vertexBuffer.unbind();
-		indexBuffer.unbind();
-	}
 
 	public void destroy()
 	{

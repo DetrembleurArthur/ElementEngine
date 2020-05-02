@@ -3,6 +3,7 @@ package game.jgengine.graphics.shaders;
 import game.jgengine.graphics.Camera;
 import org.joml.Matrix4f;
 import org.lwjgl.BufferUtils;
+import org.lwjgl.system.MemoryUtil;
 
 import java.io.*;
 import java.nio.FloatBuffer;
@@ -12,6 +13,7 @@ import java.util.HashMap;
 import static org.lwjgl.opengl.GL11.GL_FALSE;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL20.glGetProgramInfoLog;
+import static org.lwjgl.system.MemoryUtil.memFree;
 
 public class Shader
 {
@@ -87,6 +89,7 @@ public class Shader
 			System.out.println(glGetProgramInfoLog(program, len));
 			System.exit(1);
 		}
+		loadUniforms();
 	}
 
 	public void initFromFile(String vertexSrc, String fragmentSrc)
@@ -98,11 +101,33 @@ public class Shader
 			String buf;
 			BufferedReader br = new BufferedReader(new FileReader(new File(vertexSrc)));
 			while((buf = br.readLine()) != null)
+			{
+				var tokens = buf.split(" ");
+				if(tokens.length >= 3)
+				{
+					if(tokens[0].equals("uniform"))
+					{
+						var variable = tokens[2].split(";");
+						addUniform(variable[0]);
+					}
+				}
 				vertex += buf + "\n";
+			}
 			br.close();
 			br = new BufferedReader(new FileReader(new File(fragmentSrc)));
 			while((buf = br.readLine()) != null)
+			{
+				var tokens = buf.split(" ");
+				if(tokens.length >= 3)
+				{
+					if(tokens[0].equals("uniform"))
+					{
+						var variable = tokens[2].split(";");
+						addUniform(variable[0]);
+					}
+				}
 				fragment += buf + "\n";
+			}
 			br.close();
 			init(vertex, fragment);
 		} catch (FileNotFoundException e)
@@ -134,9 +159,17 @@ public class Shader
 		return program;
 	}
 
-	public void loadUniform(String name)
+	private void addUniform(String name)
 	{
-		uniforms.put(name, glGetUniformLocation(program, name));
+		uniforms.put(name, -1);
+	}
+
+	private void loadUniforms()
+	{
+		for(String key : uniforms.keySet())
+		{
+			uniforms.put(key, glGetUniformLocation(program, key));
+		}
 	}
 
 	public void setUniformf1(String name, float value)
@@ -155,15 +188,18 @@ public class Shader
 
 	public void uploadMat4f(String name, Matrix4f matrix)
 	{
-		int location = glGetUniformLocation(program, name);
-		FloatBuffer buffer = BufferUtils.createFloatBuffer(16); //4 x 4
+		FloatBuffer buffer = MemoryUtil.memAllocFloat(16); //4 x 4
 		matrix.get(buffer);
-		glUniformMatrix4fv(location, false, buffer);
+		glUniformMatrix4fv(uniforms.get(name), false, buffer);
+		if(buffer != null)
+		{
+			memFree(buffer);
+
+		}
 	}
 
 	public void updaloadTexture(String name, int slot)
 	{
-		int location = glGetUniformLocation(program, name);
-		glUniform1i(location, slot);
+		glUniform1i(uniforms.get(name), slot);
 	}
 }

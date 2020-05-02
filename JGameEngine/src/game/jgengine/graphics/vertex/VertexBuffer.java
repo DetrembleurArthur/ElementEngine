@@ -3,38 +3,33 @@ package game.jgengine.graphics.vertex;
 import game.jgengine.utils.Color;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
+import org.lwjgl.system.MemoryUtil;
+
+import java.nio.FloatBuffer;
 
 import static org.lwjgl.opengl.GL15.*;
+import static org.lwjgl.system.MemoryUtil.memFree;
 
 public class VertexBuffer
 {
 	private int vbo = 0;
-	private float[] buffer;
-	//private float[] verticesArray;
 
 	public VertexBuffer(float[] vertices)
 	{
-
-		initBuffer(vertices);
 		initVbo();
-		//verticesArray = vertices;
+		initVertices(vertices);
 	}
 
-	public float[] getArray()
+	private static FloatBuffer initBuffer(float[] vertices)
 	{
+		FloatBuffer buffer = MemoryUtil.memAllocFloat(vertices.length);
+		buffer.put(vertices).flip();
 		return buffer;
-	}
-
-	private void initBuffer(float[] vertices)
-	{
-		buffer = vertices;
-		//buffer.put(vertices).flip();
 	}
 
 	private void initVbo()
 	{
 		vbo = glGenBuffers();
-		majorUpdate();
 	}
 
 	public void bind()
@@ -47,119 +42,87 @@ public class VertexBuffer
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
-	public void majorUpdate()
+	public void initVertices(float[] vertices)
 	{
+		FloatBuffer buffer = initBuffer(vertices);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 		glBufferData(GL_ARRAY_BUFFER, buffer, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		if(buffer != null)
+			memFree(buffer);
 	}
 
 	public void update(float[] vertices)
 	{
-		buffer = vertices;
-		update(0, buffer);
+		update(initBuffer(vertices));
+	}
+
+	public void update(FloatBuffer buffer)
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, buffer);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		if(buffer != null)
+			memFree(buffer);
 	}
 
 
-	public void update(int offset, float[] buffer)
+	public void update(int offset, float[] fbuffer)
+	{
+		update(offset, initBuffer(fbuffer));
+	}
+
+	public void update(int offset, FloatBuffer buffer)
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 		glBufferSubData(GL_ARRAY_BUFFER, offset, buffer);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		if(buffer != null)
+			memFree(buffer);
 	}
 
-	public void translate(Vector3f transform)
+	public void setVertexPosition(int index, int vertexSize, float x, float y, float z)
 	{
-		int len = buffer.length / 7;
-		for(int i = 0; i < len; i++)
-		{
-			buffer[i * 7] += transform.x;
-			buffer[i * 7 + 1] += transform.y;
-			buffer[i * 7 + 2] += transform.z;
-		}
-		update(0, buffer);
+		update(index * vertexSize * Float.BYTES, initBuffer(new float[]{x, y, z}));
 	}
 
-	public void translate(Vector2f transform)
-	{
-		int len = buffer.length / 7;
-		for(int i = 0; i < len; i++)
-		{
-			buffer[i * 7] += transform.x;
-			buffer[i * 7 + 1] += transform.y;
-		}
-		update(0, buffer);
-	}
-
-
-	public void setVertexPosition(int index, float x, float y, float z)
-	{
-		buffer[index * 7 ] = x;
-		buffer[index * 7 + 1] = y;
-		buffer[index * 7 + 2] = z;
-		update(index * 7 * 4, new float[]{x, y, z});
-	}
-
-	public Vector2f getVertexPosition(int index)
+	public Vector2f getVertexPosition2(int index, int vertexSize)
 	{
 		float[] buffer = new float[2];
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glGetBufferSubData(GL_ARRAY_BUFFER, index * 7 * 4, buffer);
+		glGetBufferSubData(GL_ARRAY_BUFFER, index * vertexSize * Float.BYTES, buffer);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		return new Vector2f(buffer[0], buffer[1]);
 	}
 
-	public void setVertexColor(int index, float r, float g, float b, float a)
+	public Vector3f getVertexPosition3(int index, int vertexSize)
 	{
-		buffer[index * 7 + 3] = r;
-		buffer[index * 7 + 4] = g;
-		buffer[index * 7 + 5] = b;
-		buffer[index * 7 + 6] = a;
-		update((index * 7 + 3) * 4, new float[]{r, g, b, a});
-	}
-
-
-	public Color getVertexColor(int index)
-	{
-		float[] buffer = new float[4];
+		float[] buffer = new float[3];
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glGetBufferSubData(GL_ARRAY_BUFFER, (index * 7 + 3) * 4, buffer);
+		glGetBufferSubData(GL_ARRAY_BUFFER, index * vertexSize * Float.BYTES, buffer);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		return new Color(buffer[0], buffer[1], buffer[2], buffer[3]);
+		return new Vector3f(buffer[0], buffer[1], buffer[2]);
 	}
 
-	public void addVertex(Vector2f position, Color color)
+	public void setVertexColor(int index, int vertexSize, int dimension , float r, float g, float b, float a)
 	{
-		float[] newBuffer = new float[buffer.length + 7];
-		for(int i = 0; i < buffer.length; i++)
-		{
-			newBuffer[i] = buffer[i];
-		}
-		newBuffer[buffer.length] = position.x;
-		newBuffer[buffer.length + 1] = position.y;
-		newBuffer[buffer.length + 2] = 0f;
-		newBuffer[buffer.length + 3] = color.getRedRatio();
-		newBuffer[buffer.length + 4] = color.getGreenRatio();
-		newBuffer[buffer.length + 5] = color.getBlueRatio();
-		newBuffer[buffer.length + 6] = color.getAlphaRatio();
-		buffer=newBuffer;
-		majorUpdate();
+		float[] color = null;
+		if(a >= 0)
+			color = new float[]{r, g, b, a};
+		else
+			color = new float[]{r, g, b};
+		update((index * vertexSize + dimension) * Float.BYTES, color);
 	}
 
-	public void subVertex()
+
+	public Color getVertexColor(int index, int vertexSize, int dimension, boolean rgba)
 	{
-		if(buffer.length > 0)
-		{
-			float[] newBuffer = new float[buffer.length - 7];
-			for(int i = 0; i < buffer.length - 7; i++)
-			{
-				newBuffer[i] = buffer[i];
-			}
-			buffer = newBuffer;
-			majorUpdate();
-		}
+		float[] buffer = new float[rgba ? 4 : 3];
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		glGetBufferSubData(GL_ARRAY_BUFFER, (index * vertexSize + dimension) * Float.BYTES, buffer);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		return new Color(buffer[0], buffer[1], buffer[2], rgba ? buffer[3] : 1);
 	}
-
 	public void destroy()
 	{
 		glDeleteBuffers(vbo);

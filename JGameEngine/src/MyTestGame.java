@@ -7,36 +7,73 @@ import game.jgengine.graphics.Renderer;
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.graphics.shaders.Texture;
 import game.jgengine.graphics.shaders.Textured;
-import game.jgengine.graphics.shapes.*;
 import game.jgengine.graphics.vertex.GraphicElement;
 import game.jgengine.utils.Cursor;
 import game.jgengine.sys.Game;
 import game.jgengine.utils.Color;
 import game.jgengine.utils.Colors;
+import game.jgengine.utils.Time;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Properties;
 import java.util.Random;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
 import static org.lwjgl.opengl.GL11.glViewport;
 
-
+/*
+*  t = new Textured(new Vector3f(), new Vector3f(), new Vector3f(1,1,1), new Mesh(
+                new float[]{
+                        // VO
+                        -0.5f,  0.5f,  0.5f,    1f, 1f, 1f, 1f,     0f,0f,
+                        // V1
+                        -0.5f, -0.5f,  0.5f,    1f, 1f, 1f, 1f,     0f,1f,
+                        // V2
+                        0.5f, -0.5f,  0.5f,    1f, 1f, 1f, 1f,      1f,1f,
+                        // V3
+                        0.5f,  0.5f,  0.5f,    1f, 1f, 1f, 1f,      1f,0f,
+                        // V4
+                        -0.5f,  0.5f, -0.5f,    1f, 1f, 1f, 1f,     0f,0f,
+                        // V5
+                        0.5f,  0.5f, -0.5f,    1f, 1f, 1f, 1f,      0f,1f,
+                                // V6
+                        -0.5f, -0.5f, -0.5f,    1f, 1f, 1f, 1f,     1f,1f,
+                        // V7
+                        0.5f, -0.5f, -0.5f,    1f, 1f, 1f, 1f,      1f,0f
+                },
+                new int[]{
+                        // Front face
+                        0, 1, 3, 3, 1, 2,
+                        // Top Face
+                        4, 0, 3, 5, 4, 3,
+                        // Right face
+                        3, 2, 7, 5, 3, 7,
+                        // Left face
+                        6, 1, 0, 6, 0, 4,
+                        // Bottom face
+                        2, 1, 6, 2, 6, 7,
+                        // Back face
+                        7, 6, 4, 7, 4, 5,
+                },
+                Mesh.DIMENSION_3, Mesh.RGBA, 2
+        ), "assets/beautiful.png", false);
+* */
 public class MyTestGame extends Game
 {
     Textured gelem;
     ArrayList<GraphicElement> list = new ArrayList<>();
     boolean centered = false;
+    GraphicElement t;
     @Override
     protected void load()
     {
         getPrimaryWindow().setClearColor(new Color(0, 0, 50));
         setFramerateLimit(60);
         getPrimaryWindow().setResizeable(true);
-        //getPrimaryWindow().setSize(1400, 800);
-        glViewport(0, 0, (int)getPrimaryWindow().getSize().x, (int)getPrimaryWindow().getSize().y);
         getPrimaryWindow().center();
 
         //getPrimaryWindow().setCursor(new Cursor("src/game/jgengine/sys/default-cursor.png"));
@@ -49,7 +86,54 @@ public class MyTestGame extends Game
                             -0.5f, -0.5f, 0f,   1f, 1f, 1f, 1f,         0,1},
                 new int[]{2, 1, 0,0,1,3}
         ), "assets/apple.png");*/
+/*
+        t = new GraphicElement(new Vector3f(), new Vector3f(), new Vector3f(1f, 1f, 1f), new Mesh(
+                new float[]{
+                        -0.5f, 0.5f, 0f,    1f, 0f, 1f, 1f,
+                        -0.5f, -0.5f, 0f,    0f, 1f, 1f, 1f,
+                        0.5f, -0.5f, 0f,     1f, 1f, 0f, 1f,
+                        0.5f, 0.5f, 0f,     0f, 0f, 1f, 1f
+                },
+                new int[]{0, 1, 3, 3, 1, 2}, Mesh.DIMENSION_3, Mesh.RGBA
+        ), GL_TRIANGLES);
+*/
+        t = new GraphicElement(new Vector3f(), new Vector3f(), new Vector3f(1,1,1), new Mesh(
+                new float[]{
+                        // VO
+                        -0.5f,  0.5f,  0.5f,    1f, 0f, 0f, 1f,
+                        // V1
+                        -0.5f, -0.5f,  0.5f,    0f, 1f, 0f, 1f,
+                        // V2
+                        0.5f, -0.5f,  0.5f,    0f, 0f, 1f, 1f,
+                        // V3
+                        0.5f,  0.5f,  0.5f,    1f, 1f, 0f, 1f,
+                        // V4
+                        -0.5f,  0.5f, -0.5f,    1f, 0f, 1f, 1f,
+                        // V5
+                        0.5f,  0.5f, -0.5f,    0f, 1f, 1f, 1f,
+                                // V6
+                        -0.5f, -0.5f, -0.5f,    0.5f, 0f, 0.5f, 1f,
+                        // V7
+                        0.5f, -0.5f, -0.5f,    0f, 0.5f, 0.5f, 1f
+                },
+                new int[]{
+                        // Front face
+                        0, 1, 3, 3, 1, 2,
+                        // Top Face
+                        4, 0, 3, 5, 4, 3,
+                        // Right face
+                        3, 2, 7, 5, 3, 7,
+                        // Left face
+                        6, 1, 0, 6, 0, 4,
+                        // Bottom face
+                        2, 1, 6, 2, 6, 7,
+                        // Back face
+                        7, 6, 4, 7, 4, 5,
+                },
+                Mesh.DIMENSION_3, Mesh.RGBA
+        ), GL_TRIANGLES);
 
+        addShape(t);
 
         System.out.println(primaryWindow.getSize());
 
@@ -63,10 +147,9 @@ public class MyTestGame extends Game
 
         getPrimaryWindow().clear();
 
-        for(GraphicElement t : list)
-        {
-            getShapeRenderer().render(t, camera);
-        }
+
+        getShapeRenderer().render(t, camera);
+
         getPrimaryWindow().flip();
     }
 
@@ -75,25 +158,9 @@ public class MyTestGame extends Game
     {
         if(Input.isLeftButtonPressed(getPrimaryWindow()))
         {
-            GraphicElement t = new GraphicElement(new Vector3f(), new Vector3f(), new Vector3f(1f, 1f, 1f), new Mesh(
-                    new float[]{-0.5f, 0.5f, 0f,    1f, 0f, 1f, 1f,   1f, 1f,
-                            0f, -0.5f, 0f,    0f, 1f, 1f, 1f,       0f,0f,
-                            0.5f, 0.5f, 0f,     1f, 1f, 0f, 1f, 1,0},
-                    new int[]{0, 1, 2}
-            ), GL_TRIANGLES);
-
-            list.add(t);
-            if(list.size() == 200)
-                list.remove(0);
-            addShape(t);
+            t.setPosition(new Vector3f(camera.getPosition()));
         }
         getPrimaryWindow().setTitle("fps " + Double.toString(1.f /dt));
-
-        for(GraphicElement t : list)
-        {
-            t.getPosition().z -= 0.1;
-            t.getRotation().z -= 0.002;
-        }
 
         if(Input.isKeyPressed(getPrimaryWindow(), GLFW_KEY_LEFT))
         {
@@ -147,7 +214,10 @@ public class MyTestGame extends Game
         {
             centered = !centered;
             if(centered)
+            {
+                camera.setOldMouse(Mouse.getPosition(getPrimaryWindow()));
                 getPrimaryWindow().disableCursor();
+            }
             else
                 getPrimaryWindow().resetCursor();
 
@@ -176,7 +246,7 @@ public class MyTestGame extends Game
     public void windowResizedEventHandler(int width, int height)
     {
 
-       glViewport(0, 0, (int)getPrimaryWindow().getSize().x, (int)getPrimaryWindow().getSize().y);
+       getPrimaryWindow().updateViewport();
 
     }
 

@@ -56,13 +56,11 @@ public class Transformable
 
 	public Matrix4f getTransformMatrix()
 	{
-		trMatrix.identity();
-		trMatrix.translate(position);
-		Matrix4f rotXMatrix = new Matrix4f().rotateX(rotation.x);
-		Matrix4f rotYMatrix = new Matrix4f().rotateY(rotation.y);
-		Matrix4f rotZMatrix = new Matrix4f().rotateZ(rotation.z);
-		Matrix4f scaleMatrix = new Matrix4f().scale(scale);
-		trMatrix.mul(rotXMatrix.mul(rotYMatrix.mul(rotZMatrix)).mul(scaleMatrix));
-		return trMatrix;
+		return trMatrix.identity()
+				.translate(position)
+				.rotateX((float)Math.toRadians(rotation.x))
+				.rotateY((float)Math.toRadians(rotation.y))
+				.rotateZ((float)Math.toRadians(rotation.z))
+				.scale(scale);
 	}
 }

@@ -10,10 +10,10 @@ public class Textured extends GraphicElement
 {
 	private Texture texture;
 
-	public Textured(Vector3f position, Vector3f rotation, Vector3f scale, Mesh mesh, String path)
+	public Textured(Vector3f position, Vector3f rotation, Vector3f scale, Mesh mesh, String path, boolean rgba)
 	{
 		super(position, rotation, scale, mesh, GL_TRIANGLES);
-		texture = new Texture(path);
+		texture = new Texture(path, rgba);
 	}
 
 	public Texture getTexture()
