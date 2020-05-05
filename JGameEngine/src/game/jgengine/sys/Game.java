@@ -3,9 +3,11 @@ package game.jgengine.sys;
 import game.jgengine.event.handler.EventHandler;
 import game.jgengine.exceptions.SysException;
 import game.jgengine.graphics.Camera;
+import game.jgengine.graphics.CustomRenderer;
 import game.jgengine.graphics.Renderer;
 import game.jgengine.graphics.shaders.Shader;
-import game.jgengine.graphics.vertex.GraphicElement;
+import game.jgengine.graphics.GraphicElement;
+import game.jgengine.graphics.shaders.Texture;
 import game.jgengine.utils.Time;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -26,8 +28,11 @@ public abstract class Game implements EventHandler
 	private double framerateLimit = 30;
 	private ArrayList<Shader> shaders = new ArrayList<>();
 	private ArrayList<GraphicElement> shapes = new ArrayList<>();
+	private ArrayList<Texture> textures = new ArrayList<>();
 	private Renderer shapeRenderer;
 	private Renderer textureRenderer;
+	private CustomRenderer shapeUColorRenderer;
+	private CustomRenderer textureUColorRenderer;
 
 	static
 	{
@@ -60,10 +65,14 @@ public abstract class Game implements EventHandler
 		shapes.add(shape);
 	}
 
+	public void addTexture(Texture texture){ textures.add(texture); }
+
 	final private void initGraphics()
 	{
-		addShader(Shader.DEFAULT);
-		addShader(Shader.DEFAULT_SHAPE);
+		addShader(Shader.TEXTURE_AND_COLOR);
+		addShader(Shader.SHAPE_AND_COLOR);
+		addShader(Shader.TEXTURE_AND_UNIFORM_COLOR);
+		addShader(Shader.SHAPE_AND_UNIFORM_COLOR);
 		glEnable(GL_BLEND);
 		glEnable(GL_DEPTH_TEST);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -95,8 +104,16 @@ public abstract class Game implements EventHandler
 		primaryWindow.updateViewport();
 
 		camera = new Camera(new Vector3f(0, 0, 1), primaryWindow.getSize());
-		shapeRenderer = new Renderer(Shader.DEFAULT_SHAPE, primaryWindow);
-		textureRenderer = new Renderer(Shader.DEFAULT, primaryWindow);
+		shapeRenderer = new Renderer(Shader.SHAPE_AND_COLOR, primaryWindow);
+		textureRenderer = new Renderer(Shader.TEXTURE_AND_COLOR, primaryWindow);
+		shapeUColorRenderer = new CustomRenderer(Shader.SHAPE_AND_UNIFORM_COLOR, primaryWindow, (s, o) -> {
+			if(o.getFillColor() != null)
+				s.uploadf4("fColor", o.getFillColor());
+		});
+		textureUColorRenderer = new CustomRenderer(Shader.TEXTURE_AND_UNIFORM_COLOR, primaryWindow, (s, o) -> {
+			if(o.getFillColor() != null)
+				s.uploadf4("fColor", o.getFillColor());
+		});
 
 		System.out.println("OpenGL version: " + glGetString(GL_VERSION));
 	}
@@ -137,6 +154,11 @@ public abstract class Game implements EventHandler
 		{
 			shape.destroy();
 		}
+
+		for(Texture tx : textures)
+		{
+			tx.destroy();
+		}
 		glfwTerminate();
 		glfwSetErrorCallback(null).free();
 	}
@@ -175,5 +197,15 @@ public abstract class Game implements EventHandler
 	public Renderer getTextureRenderer()
 	{
 		return textureRenderer;
+	}
+
+	public Renderer getShapeUColorRenderer()
+	{
+		return shapeUColorRenderer;
+	}
+
+	public Renderer getTextureUColorRenderer()
+	{
+		return textureUColorRenderer;
 	}
 }

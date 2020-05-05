@@ -1,8 +1,6 @@
 package game.jgengine.graphics;
 
 
-import game.jgengine.event.Input;
-import game.jgengine.graphics.vertex.GraphicElement;
 import org.joml.*;
 
 import java.lang.Math;

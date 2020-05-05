@@ -17,66 +17,42 @@ public class VertexArray
 		bind();
 	}
 
-	public void initAttribs(int dimension)
-	{
-		if(dimension != 2 && dimension != 3)
-			dimension = 3;
-		int positionSize = dimension;
-		int vertexSize = positionSize * Float.BYTES;
-		attribs = 1;
-		glVertexAttribPointer(0, positionSize, GL_FLOAT, false, vertexSize, 0);
-		glEnableVertexAttribArray(0);
-	}
-
-	public void initAttribs(int dimension, int colorDimension)
-	{
-		if(dimension != 2 && dimension != 3)
-			dimension = 3;
-		if(colorDimension != 3 && colorDimension != 4)
-			dimension = 4;
-		int positionSize = dimension;
-		int colorSize = colorDimension;
-		int vertexSize = (positionSize + colorSize) * Float.BYTES;
-		attribs = 2;
-		glVertexAttribPointer(0, positionSize, GL_FLOAT, false, vertexSize, 0);
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(1, colorSize, GL_FLOAT, false, vertexSize, positionSize * Float.BYTES);
-		glEnableVertexAttribArray(1);
-	}
 
 	public void initAttribs(int dimension, int colorDimension, int uv)
 	{
 		if(dimension != 2 && dimension != 3)
 			dimension = 3;
-		if(colorDimension != 3 && colorDimension != 4)
-			dimension = 4;
+
 		int positionSize = dimension;
 		int colorSize = colorDimension;
 		int uvSize = uv;
 		int vertexSize = (positionSize + colorSize + uv) * Float.BYTES;
-		attribs = 3;
+		attribs = 1;
 		glVertexAttribPointer(0, positionSize, GL_FLOAT, false, vertexSize, 0);
 		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(1, colorSize, GL_FLOAT, false, vertexSize, positionSize * Float.BYTES);
-		glEnableVertexAttribArray(1);
-		glVertexAttribPointer(2, uvSize, GL_FLOAT, false, vertexSize, (positionSize + colorSize) * Float.BYTES);
-		glEnableVertexAttribArray(2);
-	}
+		if(colorDimension > 0)
+		{
+			glVertexAttribPointer(1, colorSize, GL_FLOAT, false, vertexSize, positionSize * Float.BYTES);
+			glEnableVertexAttribArray(1);
+			attribs++;
+			if(uv > 0)
+			{
+				attribs++;
+				glVertexAttribPointer(2, uvSize, GL_FLOAT, false, vertexSize, (positionSize + colorSize) * Float.BYTES);
+				glEnableVertexAttribArray(2);
+			}
+		}
+		else
+		{
+			if(uv > 0)
+			{
+				attribs++;
+				glVertexAttribPointer(1, uvSize, GL_FLOAT, false, vertexSize, positionSize * Float.BYTES);
+				glEnableVertexAttribArray(1);
+			}
 
-	public void initAttribsst(int dimension, int uv)
-	{
-		if(dimension != 2 && dimension != 3)
-			dimension = 3;
-		int positionSize = dimension;
-		int uvSize = uv;
-		int vertexSize = (positionSize + uv) * Float.BYTES;
-		attribs = 3;
-		glVertexAttribPointer(0, positionSize, GL_FLOAT, false, vertexSize, 0);
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(1, uvSize, GL_FLOAT, false, vertexSize, (positionSize) * Float.BYTES);
-		glEnableVertexAttribArray(1);
+		}
 	}
-
 	public void bind()
 	{
 		glBindVertexArray(vao);

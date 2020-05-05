@@ -2,6 +2,7 @@ package game.jgengine.graphics.shaders;
 
 import game.jgengine.graphics.Camera;
 import org.joml.Matrix4f;
+import org.joml.Vector4f;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.system.MemoryUtil;
 
@@ -17,15 +18,27 @@ import static org.lwjgl.system.MemoryUtil.memFree;
 
 public class Shader
 {
-	public static final Shader DEFAULT = new Shader(
+	public static final Shader TEXTURE_AND_COLOR = new Shader(
 			"src/game/jgengine/graphics/shaders/vertex.glsl",
-			"src/game/jgengine/graphics/shaders/fragment.glsl",
+			"src/game/jgengine/graphics/shaders/fragment_texture_and_color.glsl",
 			true
 	);
 
-	public static final Shader DEFAULT_SHAPE = new Shader(
+	public static final Shader SHAPE_AND_COLOR = new Shader(
 			"src/game/jgengine/graphics/shaders/vertex.glsl",
-			"src/game/jgengine/graphics/shaders/fragment_shape.glsl",
+			"src/game/jgengine/graphics/shaders/fragment_shape_and_color.glsl",
+			true
+	);
+
+	public static final Shader TEXTURE_AND_UNIFORM_COLOR = new Shader(
+			"src/game/jgengine/graphics/shaders/vertex_no_vao_color.glsl",
+			"src/game/jgengine/graphics/shaders/fragment_texture_and_uniform_color.glsl",
+			true
+	);
+
+	public static final Shader SHAPE_AND_UNIFORM_COLOR = new Shader(
+			"src/game/jgengine/graphics/shaders/vertex_no_vao_color.glsl",
+			"src/game/jgengine/graphics/shaders/fragment_shape_and_uniform_color.glsl",
 			true
 	);
 
@@ -177,6 +190,11 @@ public class Shader
 		glUniform1f(uniforms.get(name), value);
 	}
 
+	public void uploadf4(String name, Vector4f value)
+	{
+		glUniform4f(uniforms.get(name), value.x, value.y, value.z, value.w);
+	}
+
 	public void destroy()
 	{
 		glDetachShader(program, vertexShader);
@@ -198,8 +216,10 @@ public class Shader
 		}
 	}
 
-	public void updaloadTexture(String name, int slot)
+	public void uploadTexture(String name, int slot)
 	{
-		glUniform1i(uniforms.get(name), slot);
+		var variable = uniforms.get(name);
+		if(variable != null)
+			glUniform1i(variable, slot);
 	}
 }

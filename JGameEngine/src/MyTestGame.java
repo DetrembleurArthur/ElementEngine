@@ -1,143 +1,60 @@
 import game.jgengine.event.Input;
 import game.jgengine.event.Mouse;
 import game.jgengine.exceptions.SysException;
-import game.jgengine.graphics.Camera;
+import game.jgengine.graphics.GameObject;
+import game.jgengine.graphics.Line;
 import game.jgengine.graphics.Mesh;
 import game.jgengine.graphics.Renderer;
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.graphics.shaders.Texture;
-import game.jgengine.graphics.shaders.Textured;
-import game.jgengine.graphics.vertex.GraphicElement;
-import game.jgengine.utils.Cursor;
+import game.jgengine.graphics.shapes.Cube;
+import game.jgengine.graphics.shapes.Rectangle;
 import game.jgengine.sys.Game;
-import game.jgengine.utils.Color;
 import game.jgengine.utils.Colors;
-import game.jgengine.utils.Time;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
+import org.joml.Vector4f;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Properties;
-import java.util.Random;
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
-import static org.lwjgl.opengl.GL11.glViewport;
+import static org.lwjgl.opengl.GL11.GL_LINES;
+import static org.lwjgl.opengl.GL11.GL_LINE_LOOP;
 
-/*
-*  t = new Textured(new Vector3f(), new Vector3f(), new Vector3f(1,1,1), new Mesh(
-                new float[]{
-                        // VO
-                        -0.5f,  0.5f,  0.5f,    1f, 1f, 1f, 1f,     0f,0f,
-                        // V1
-                        -0.5f, -0.5f,  0.5f,    1f, 1f, 1f, 1f,     0f,1f,
-                        // V2
-                        0.5f, -0.5f,  0.5f,    1f, 1f, 1f, 1f,      1f,1f,
-                        // V3
-                        0.5f,  0.5f,  0.5f,    1f, 1f, 1f, 1f,      1f,0f,
-                        // V4
-                        -0.5f,  0.5f, -0.5f,    1f, 1f, 1f, 1f,     0f,0f,
-                        // V5
-                        0.5f,  0.5f, -0.5f,    1f, 1f, 1f, 1f,      0f,1f,
-                                // V6
-                        -0.5f, -0.5f, -0.5f,    1f, 1f, 1f, 1f,     1f,1f,
-                        // V7
-                        0.5f, -0.5f, -0.5f,    1f, 1f, 1f, 1f,      1f,0f
-                },
-                new int[]{
-                        // Front face
-                        0, 1, 3, 3, 1, 2,
-                        // Top Face
-                        4, 0, 3, 5, 4, 3,
-                        // Right face
-                        3, 2, 7, 5, 3, 7,
-                        // Left face
-                        6, 1, 0, 6, 0, 4,
-                        // Bottom face
-                        2, 1, 6, 2, 6, 7,
-                        // Back face
-                        7, 6, 4, 7, 4, 5,
-                },
-                Mesh.DIMENSION_3, Mesh.RGBA, 2
-        ), "assets/beautiful.png", false);
-* */
+
 public class MyTestGame extends Game
 {
-    Textured gelem;
-    ArrayList<GraphicElement> list = new ArrayList<>();
+    GameObject gelem;
+    Line gelem2;
+
+
     boolean centered = false;
-    GraphicElement t;
+
     @Override
     protected void load()
     {
-        getPrimaryWindow().setClearColor(new Color(0, 0, 50));
+        getPrimaryWindow().setClearColor(Colors.BLACK);
         setFramerateLimit(60);
         getPrimaryWindow().setResizeable(true);
         getPrimaryWindow().center();
 
-        //getPrimaryWindow().setCursor(new Cursor("src/game/jgengine/sys/default-cursor.png"));
 
-        //glViewport(0, 0, 1400, 800);
-       /* gelem = new Textured(new Vector3f(), new Vector3f(), new Vector3f(1f, 1f, 1f), new Mesh(
-                new float[]{0.5f, -0.5f, 0f,    1f, 1f, 1f, 1f,    1,1,
-                            -0.5f, 0.5f, 0f,    1f, 1f, 1f, 1f,       0,0,
-                            0.5f, 0.5f, 0f,     1f, 1f, 1f, 1f,        1,0,
-                            -0.5f, -0.5f, 0f,   1f, 1f, 1f, 1f,         0,1},
-                new int[]{2, 1, 0,0,1,3}
-        ), "assets/apple.png");*/
-/*
-        t = new GraphicElement(new Vector3f(), new Vector3f(), new Vector3f(1f, 1f, 1f), new Mesh(
-                new float[]{
-                        -0.5f, 0.5f, 0f,    1f, 0f, 1f, 1f,
-                        -0.5f, -0.5f, 0f,    0f, 1f, 1f, 1f,
-                        0.5f, -0.5f, 0f,     1f, 1f, 0f, 1f,
-                        0.5f, 0.5f, 0f,     0f, 0f, 1f, 1f
-                },
-                new int[]{0, 1, 3, 3, 1, 2}, Mesh.DIMENSION_3, Mesh.RGBA
-        ), GL_TRIANGLES);
-*/
-        t = new GraphicElement(new Vector3f(), new Vector3f(), new Vector3f(1,1,1), new Mesh(
-                new float[]{
-                        // VO
-                        -0.5f,  0.5f,  0.5f,    1f, 0f, 0f, 1f,
-                        // V1
-                        -0.5f, -0.5f,  0.5f,    0f, 1f, 0f, 1f,
-                        // V2
-                        0.5f, -0.5f,  0.5f,    0f, 0f, 1f, 1f,
-                        // V3
-                        0.5f,  0.5f,  0.5f,    1f, 1f, 0f, 1f,
-                        // V4
-                        -0.5f,  0.5f, -0.5f,    1f, 0f, 1f, 1f,
-                        // V5
-                        0.5f,  0.5f, -0.5f,    0f, 1f, 1f, 1f,
-                                // V6
-                        -0.5f, -0.5f, -0.5f,    0.5f, 0f, 0.5f, 1f,
-                        // V7
-                        0.5f, -0.5f, -0.5f,    0f, 0.5f, 0.5f, 1f
-                },
-                new int[]{
-                        // Front face
-                        0, 1, 3, 3, 1, 2,
-                        // Top Face
-                        4, 0, 3, 5, 4, 3,
-                        // Right face
-                        3, 2, 7, 5, 3, 7,
-                        // Left face
-                        6, 1, 0, 6, 0, 4,
-                        // Bottom face
-                        2, 1, 6, 2, 6, 7,
-                        // Back face
-                        7, 6, 4, 7, 4, 5,
-                },
-                Mesh.DIMENSION_3, Mesh.RGBA
-        ), GL_TRIANGLES);
+        Texture texture = new Texture("assets/bricks.png", true);
+        addTexture(texture);
+        gelem = new Cube(texture);
+        gelem.setPosition(new Vector3f(0, 0, 5));
+        gelem2 = new Line();
+        gelem.setFillColor(Colors.WHITE);
 
-        addShape(t);
+        gelem2.setBeginPosition(new Vector3f());
+        gelem2.setEndPosition(new Vector3f(0f, 20f, 100f));
+        gelem2.setWidth(5);
+        gelem2.getMesh().setColor(0, Colors.TURQUOISE);
 
-        System.out.println(primaryWindow.getSize());
 
-       // addShape(gelem);
+        addShape(gelem);
+        addShape(gelem2);
+
     }
 
     @Override
@@ -147,8 +64,8 @@ public class MyTestGame extends Game
 
         getPrimaryWindow().clear();
 
-
-        getShapeRenderer().render(t, camera);
+        getTextureUColorRenderer().render(gelem, camera);
+        getShapeRenderer().render(gelem2, camera);
 
         getPrimaryWindow().flip();
     }
@@ -156,9 +73,10 @@ public class MyTestGame extends Game
     @Override
     protected void update(double dt)
     {
+        gelem.getRotation().y += 0.5;
+        gelem.getRotation().x -= 0.5;
         if(Input.isLeftButtonPressed(getPrimaryWindow()))
         {
-            t.setPosition(new Vector3f(camera.getPosition()));
         }
         getPrimaryWindow().setTitle("fps " + Double.toString(1.f /dt));
 
@@ -220,6 +138,10 @@ public class MyTestGame extends Game
             }
             else
                 getPrimaryWindow().resetCursor();
+
+        }
+        else
+        {
 
         }
     }

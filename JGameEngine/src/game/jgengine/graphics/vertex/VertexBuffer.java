@@ -1,8 +1,9 @@
 package game.jgengine.graphics.vertex;
 
-import game.jgengine.utils.Color;
+
 import org.joml.Vector2f;
 import org.joml.Vector3f;
+import org.joml.Vector4f;
 import org.lwjgl.system.MemoryUtil;
 
 import java.nio.FloatBuffer;
@@ -86,6 +87,11 @@ public class VertexBuffer
 		update(index * vertexSize * Float.BYTES, initBuffer(new float[]{x, y, z}));
 	}
 
+	public void setVertexPosition(int index, int vertexSize, float x, float y)
+	{
+		update(index * vertexSize * Float.BYTES, initBuffer(new float[]{x, y}));
+	}
+
 	public Vector2f getVertexPosition2(int index, int vertexSize)
 	{
 		float[] buffer = new float[2];
@@ -115,13 +121,13 @@ public class VertexBuffer
 	}
 
 
-	public Color getVertexColor(int index, int vertexSize, int dimension, boolean rgba)
+	public Vector4f getVertexColor(int index, int vertexSize, int dimension, boolean rgba)
 	{
 		float[] buffer = new float[rgba ? 4 : 3];
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 		glGetBufferSubData(GL_ARRAY_BUFFER, (index * vertexSize + dimension) * Float.BYTES, buffer);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		return new Color(buffer[0], buffer[1], buffer[2], rgba ? buffer[3] : 1);
+		return new Vector4f(buffer[0], buffer[1], buffer[2], rgba ? buffer[3] : 1);
 	}
 	public void destroy()
 	{

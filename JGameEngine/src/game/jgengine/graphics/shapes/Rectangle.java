@@ -1,58 +1,84 @@
 package game.jgengine.graphics.shapes;
 
-import game.jgengine.utils.Color;
-import org.joml.Vector2f;
-import org.joml.Vector4f;
+import game.jgengine.graphics.GameObject;
+import game.jgengine.graphics.Mesh;
+import game.jgengine.graphics.shaders.Texture;
+import org.w3c.dom.Text;
 
-import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
-
-public class Rectangle extends Shape
+public class Rectangle extends GameObject
 {
-	public Rectangle(Vector2f pos, Vector2f size, Color color)
+	private static final Mesh TEXTURED_MESH = new Mesh(new float[]{
+			-1f, 1f,        0,0,
+			-1f, -1f,     0,1,
+			1f, 1f,       1,0,
+			1f, -1f,  1,1
+	}, new int[]{
+			0, 1,2,
+			3,2,1
+	}, Mesh.DIMENSION_2, Mesh.NO_COLOR, Mesh.TEXTURED);
+
+	private static final Mesh NO_TEXTURED_MESH = new Mesh(new float[]{
+			-1f, 1f,
+			-1f, -1f,
+			1f, 1f,
+			1f, -1f,
+	}, new int[]{
+			0, 1,2,
+			3,2,1
+	}, Mesh.DIMENSION_2, Mesh.NO_COLOR, Mesh.NO_TEXTURED);
+
+	public Rectangle()
 	{
-		super(new float[]
-		{
-				pos.x, pos.y, 0f, color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio(),
-				pos.x, pos.y + size.y, 0f, color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio(),
-				pos.x + size.x, pos.y + size.y, 0f, color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio(),
-				pos.x + size.x, pos.y, 0f, color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio()
-		}
-		, new int[]
-		{
-				0, 1, 2,
-				2, 3, 0
-		}, GL_TRIANGLES);
+		this(null);
 	}
 
-	public void setHorizontalGradient(Color color, Color color2)
+	public Rectangle(int colorMode, Texture texture)
 	{
-		Vector4f cv = new Vector4f(color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio());
-		vertexBuffer.setVertexColor(0, cv.x, cv.y, cv.z, cv.w);
-		vertexBuffer.setVertexColor(1, cv.x, cv.y, cv.z, cv.w);
-		cv = new Vector4f(color2.getRedRatio(), color2.getGreenRatio(), color2.getBlueRatio(), color2.getAlphaRatio());
-		vertexBuffer.setVertexColor(2, cv.x, cv.y, cv.z, cv.w);
-		vertexBuffer.setVertexColor(3, cv.x, cv.y, cv.z, cv.w);
+		super(colorMode == 3 && (texture != null) ? new Mesh(new float[]{
+				-1f, 1f,      1f,1f,1f,		0,0,
+				-1f, -1f,      1f,1f,1f,	0, 1,
+				1f, 1f,     1f,1f,1f,		1,0,
+				1f, -1f,     1f,1f,1f,		1,1
+		}, new int[]{
+				0, 1,2,
+				3,2,1
+		}, Mesh.DIMENSION_2, Mesh.RGB, Mesh.TEXTURED) : (colorMode == 3 && !(texture != null) ?
+			new Mesh(new float[]{
+					-1f, 1f,      1f,1f,1f,
+					-1f, -1f,      1f,1f,1f,
+					1f, 1f,     1f,1f,1f,
+					1f, -1f,     1f,1f,1f,
+			}, new int[]{
+					0, 1,2,
+					3,2,1
+			}, Mesh.DIMENSION_2, Mesh.RGB, Mesh.NO_TEXTURED) : (colorMode == 4 && (texture != null) ?
+			new Mesh(new float[]{
+					-1f, 1f,      1f,1f,1f,1f,		0,0,
+					-1f, -1f,      1f,1f,1f,1f,	0, 1,
+					1f, 1f,     1f,1f,1f,1f,		1,0,
+					1f, -1f,     1f,1f,1f,1f,		1,1
+			}, new int[]{
+					0, 1,2,
+					3,2,1
+			}, Mesh.DIMENSION_2, Mesh.RGBA, Mesh.TEXTURED) :
+				new Mesh(new float[]{
+					-1f, 1f,      1f,1f,1f,1f,
+					-1f, -1f,      1f,1f,1f,1f,
+					1f, 1f,     1f,1f,1f,1f,
+					1f, -1f,     1f,1f,1f,1f
+					}, new int[]{
+							0, 1,2,
+					3,2,1
+					}, Mesh.DIMENSION_2, Mesh.RGBA, Mesh.NO_TEXTURED))), texture);
 	}
 
-	public void setVerticalGradient(Color color, Color color2)
+	public Rectangle(int colorMode)
 	{
-		Vector4f cv = new Vector4f(color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio());
-		vertexBuffer.setVertexColor(0, cv.x, cv.y, cv.z, cv.w);
-		vertexBuffer.setVertexColor(3, cv.x, cv.y, cv.z, cv.w);
-		cv = new Vector4f(color2.getRedRatio(), color2.getGreenRatio(), color2.getBlueRatio(), color2.getAlphaRatio());
-		vertexBuffer.setVertexColor(2, cv.x, cv.y, cv.z, cv.w);
-		vertexBuffer.setVertexColor(1, cv.x, cv.y, cv.z, cv.w);
+		this(colorMode, null);
 	}
 
-	public void setGradient(Color color, Color color2, Color color3, Color color4)
+	public Rectangle(Texture texture)
 	{
-		Vector4f cv = new Vector4f(color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio());
-		vertexBuffer.setVertexColor(0, cv.x, cv.y, cv.z, cv.w);
-		cv = new Vector4f(color2.getRedRatio(), color2.getGreenRatio(), color2.getBlueRatio(), color2.getAlphaRatio());
-		vertexBuffer.setVertexColor(1, cv.x, cv.y, cv.z, cv.w);
-		cv = new Vector4f(color3.getRedRatio(), color3.getGreenRatio(), color3.getBlueRatio(), color3.getAlphaRatio());
-		vertexBuffer.setVertexColor(2, cv.x, cv.y, cv.z, cv.w);
-		cv = new Vector4f(color4.getRedRatio(), color4.getGreenRatio(), color4.getBlueRatio(), color4.getAlphaRatio());
-		vertexBuffer.setVertexColor(3, cv.x, cv.y, cv.z, cv.w);
+		super(texture == null ? NO_TEXTURED_MESH : TEXTURED_MESH, texture);
 	}
 }

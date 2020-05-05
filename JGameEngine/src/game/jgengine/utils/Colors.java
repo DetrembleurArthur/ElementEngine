@@ -1,27 +1,28 @@
 package game.jgengine.utils;
 
+import org.joml.Vector4f;
+
 import java.util.Random;
 
 public class Colors
 {
-	public static final Color RED = new Color(255, 0, 0);
-	public static final Color GREEN = new Color(0, 255, 0);
-	public static final Color BLUE = new Color(0, 0, 255);
-	public static final Color TRANSPARENT = new Color(0, 0, 0, 0);
-	public static final Color BLACK = new Color(0, 0, 0);
-	public static final Color WHITE = new Color(255, 255, 255);
-	public static final Color CYAN = new Color(0, 255, 255);
-	public static final Color YELLOW = new Color(255, 255, 0);
-	public static final Color MAGENTA = new Color(255, 0, 255);
-	public static final Color ORANGE = new Color(255, 128, 0);
-	public static final Color PINK = new Color(255, 0, 128);
-	public static final Color TURQUOISE = new Color(0, 255, 200);
-	public static final Color LIME = new Color(150, 255, 0);
-	public static final Color PURPLE = new Color(200, 0, 255);
+	public static final Vector4f RED = new Vector4f(1, 0, 0, 1);
+	public static final Vector4f GREEN = new Vector4f(0, 1, 0, 1);
+	public static final Vector4f BLUE = new Vector4f(0, 0, 1, 1);
+	public static final Vector4f TRANSPARENT = new Vector4f(0, 0, 0, 0);
+	public static final Vector4f WHITE = new Vector4f(1, 1, 1, 1);
+	public static final Vector4f BLACK = new Vector4f(0, 0, 0, 1);
+	public static final Vector4f YELLOW = new Vector4f(1, 1, 0, 1);
+	public static final Vector4f MAGENTA = new Vector4f(1, 0, 1, 1);
+	public static final Vector4f ORANGE = new Vector4f(1, 0.5f, 0, 1);
+	public static final Vector4f PINK = new Vector4f(1, 0, 0.5f, 1);
+	public static final Vector4f TURQUOISE = new Vector4f(0, 1, 0.8f, 1);
+	public static final Vector4f LIME = new Vector4f(0.6f, 1, 0, 1);
+	public static final Vector4f PURPLE = new Vector4f(0.8f, 0, 1, 1);
 
-	public static Color random()
+	public static Vector4f random()
 	{
 		Random rand = new Random();
-		return new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
+		return new Vector4f(rand.nextFloat(), rand.nextFloat(), rand.nextFloat(), 1);
 	}
 }

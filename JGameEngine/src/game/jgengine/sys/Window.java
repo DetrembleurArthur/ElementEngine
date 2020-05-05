@@ -2,10 +2,10 @@ package game.jgengine.sys;
 
 import game.jgengine.event.handler.*;
 import game.jgengine.exceptions.SysException;
-import game.jgengine.utils.Color;
 import game.jgengine.utils.Cursor;
 import org.joml.Vector2f;
 import org.joml.Vector2i;
+import org.joml.Vector4f;
 import org.lwjgl.glfw.GLFWVidMode;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
@@ -99,10 +99,10 @@ public class Window
 		glfwSwapInterval(1);
 	}
 
-	public void setClearColor(Color color)
+	public void setClearColor(Vector4f color)
 	{
 		glfwMakeContextCurrent(windowId);
-		glClearColor(color.getRedRatio(), color.getGreenRatio(), color.getBlueRatio(), color.getAlphaRatio());
+		glClearColor(color.x, color.y, color.z, color.w);
 	}
 
 	public void setContext()
