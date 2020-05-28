@@ -1,14 +1,12 @@
 package game.jgengine.graphics.shaders;
 
-import game.jgengine.graphics.Camera;
+import game.jgengine.graphics.camera.Camera3D;
 import org.joml.Matrix4f;
 import org.joml.Vector4f;
-import org.lwjgl.BufferUtils;
 import org.lwjgl.system.MemoryUtil;
 
 import java.io.*;
 import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
 import java.util.HashMap;
 
 import static org.lwjgl.opengl.GL11.GL_FALSE;
@@ -156,11 +154,11 @@ public class Shader
 	{
 		glUseProgram(program);
 	}
-	public void start(Camera camera)
+	public void start(Camera3D camera3D)
 	{
 		glUseProgram(program);
-		uploadMat4f("uProjection", camera.getProjectionMatrix());
-		uploadMat4f("uView", camera.getViewMatrix());
+		uploadMat4f("uProjection", camera3D.getProjectionMatrix());
+		uploadMat4f("uView", camera3D.getViewMatrix());
 	}
 
 	public void stop()

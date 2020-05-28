@@ -1,8 +1,7 @@
 package game.jgengine.graphics;
 
-import game.jgengine.graphics.shaders.Texture;
+import game.jgengine.entity.GameObject;
 import org.joml.Vector3f;
-import org.joml.Vector4f;
 
 import static org.lwjgl.opengl.GL11.GL_LINES;
 import static org.lwjgl.opengl.GL11.glLineWidth;

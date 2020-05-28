@@ -1,9 +1,8 @@
 package game.jgengine.graphics.shapes;
 
-import game.jgengine.graphics.GameObject;
+import game.jgengine.entity.GameObject;
 import game.jgengine.graphics.Mesh;
 import game.jgengine.graphics.shaders.Texture;
-import org.w3c.dom.Text;
 
 public class Rectangle extends GameObject
 {

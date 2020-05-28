@@ -1,5 +1,7 @@
 package game.jgengine.graphics;
 
+import game.jgengine.entity.GameObject;
+import game.jgengine.graphics.camera.Camera3D;
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.sys.Window;
 
@@ -19,12 +21,12 @@ public class CustomRenderer extends Renderer
 	}
 
 	@Override
-	public void render(GameObject gelem, Camera camera)
+	public void render(GameObject gelem, Camera3D camera3D)
 	{
 		shader.start();
 		shader.uploadMat4f("uModel", gelem.getTransformMatrix());
-		shader.uploadMat4f("uView", camera.getViewMatrix());
-		shader.uploadMat4f("uProjection", camera.getProjectionMatrix());
+		shader.uploadMat4f("uView", camera3D.getViewMatrix());
+		shader.uploadMat4f("uProjection", camera3D.getProjectionMatrix());
 		if(gelem.getTexture() != null)
 			shader.uploadTexture("TEX_SAMPLER", 0);
 		if(gelem.getFillColor() != null)

@@ -2,12 +2,13 @@ package game.jgengine.sys;
 
 import game.jgengine.event.handler.EventHandler;
 import game.jgengine.exceptions.SysException;
-import game.jgengine.graphics.Camera;
+import game.jgengine.graphics.camera.Camera3D;
 import game.jgengine.graphics.CustomRenderer;
 import game.jgengine.graphics.Renderer;
+import game.jgengine.graphics.camera.PerspProjectionSettings;
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.graphics.GraphicElement;
-import game.jgengine.graphics.shaders.Texture;
+import game.jgengine.registry.Registry;
 import game.jgengine.utils.Time;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -23,12 +24,9 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 public abstract class Game implements EventHandler
 {
 	protected Window primaryWindow;
-	protected Camera camera;
 
 	private double framerateLimit = 30;
-	private ArrayList<Shader> shaders = new ArrayList<>();
 	private ArrayList<GraphicElement> shapes = new ArrayList<>();
-	private ArrayList<Texture> textures = new ArrayList<>();
 	private Renderer shapeRenderer;
 	private Renderer textureRenderer;
 	private CustomRenderer shapeUColorRenderer;
@@ -55,24 +53,12 @@ public abstract class Game implements EventHandler
 	abstract protected void update(double dt);
 
 
-	public void addShader(Shader shader)
-	{
-		shaders.add(shader);
-	}
-
 	public void addShape(GraphicElement shape)
 	{
 		shapes.add(shape);
 	}
-
-	public void addTexture(Texture texture){ textures.add(texture); }
-
 	final private void initGraphics()
 	{
-		addShader(Shader.TEXTURE_AND_COLOR);
-		addShader(Shader.SHAPE_AND_COLOR);
-		addShader(Shader.TEXTURE_AND_UNIFORM_COLOR);
-		addShader(Shader.SHAPE_AND_UNIFORM_COLOR);
 		glEnable(GL_BLEND);
 		glEnable(GL_DEPTH_TEST);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -100,10 +86,13 @@ public abstract class Game implements EventHandler
 		primaryWindow.active();
 		GL.createCapabilities();
 		initGraphics();
-
+		Registry.set("1", Shader.TEXTURE_AND_COLOR);
+		Registry.set("2", Shader.TEXTURE_AND_UNIFORM_COLOR);
+		Registry.set("3", Shader.SHAPE_AND_COLOR);
+		Registry.set("4", Shader.SHAPE_AND_UNIFORM_COLOR);
 		primaryWindow.updateViewport();
 
-		camera = new Camera(new Vector3f(0, 0, 1), primaryWindow.getSize());
+
 		shapeRenderer = new Renderer(Shader.SHAPE_AND_COLOR, primaryWindow);
 		textureRenderer = new Renderer(Shader.TEXTURE_AND_COLOR, primaryWindow);
 		shapeUColorRenderer = new CustomRenderer(Shader.SHAPE_AND_UNIFORM_COLOR, primaryWindow, (s, o) -> {
@@ -135,8 +124,6 @@ public abstract class Game implements EventHandler
 
 			update(deltaTime);
 
-
-
 			render(deltaTime);
 
 			if(framerateLimit != 0) while(Time.getElapsedTime() < beginTime + 1.0 / framerateLimit);
@@ -146,19 +133,13 @@ public abstract class Game implements EventHandler
 	final protected void close()
 	{
 		primaryWindow.destroy();
-		for(Shader shader : shaders)
-		{
-			shader.destroy();
-		}
+
 		for(GraphicElement shape : shapes)
 		{
 			shape.destroy();
 		}
 
-		for(Texture tx : textures)
-		{
-			tx.destroy();
-		}
+		Registry.close();
 		glfwTerminate();
 		glfwSetErrorCallback(null).free();
 	}
@@ -184,10 +165,6 @@ public abstract class Game implements EventHandler
 		framerateLimit = limit;
 	}
 
-	public Camera getCamera()
-	{
-		return camera;
-	}
 
 	public Renderer getShapeRenderer()
 	{

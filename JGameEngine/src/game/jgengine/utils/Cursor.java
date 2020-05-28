@@ -68,6 +68,7 @@ public class Cursor
 		GLFWImage image = GLFWImage.malloc();
 		image.set(bufferedImage.getWidth(), bufferedImage.getHeight(), pixels);
 		cursorId = glfwCreateCursor(image, 0, 0);
+		image.close();
 	}
 
 	public void destroy()
