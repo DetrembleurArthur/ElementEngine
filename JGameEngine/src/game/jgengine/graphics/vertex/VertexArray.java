@@ -18,39 +18,22 @@ public class VertexArray
 	}
 
 
-	public void initAttribs(int dimension, int colorDimension, int uv)
+	public void initAttribs(int dimension, int uv)
 	{
 		if(dimension != 2 && dimension != 3)
 			dimension = 3;
 
 		int positionSize = dimension;
-		int colorSize = colorDimension;
 		int uvSize = uv;
-		int vertexSize = (positionSize + colorSize + uv) * Float.BYTES;
+		int vertexSize = (positionSize + uv) * Float.BYTES;
 		attribs = 1;
 		glVertexAttribPointer(0, positionSize, GL_FLOAT, false, vertexSize, 0);
 		glEnableVertexAttribArray(0);
-		if(colorDimension > 0)
+		if(uv > 0)
 		{
-			glVertexAttribPointer(1, colorSize, GL_FLOAT, false, vertexSize, positionSize * Float.BYTES);
-			glEnableVertexAttribArray(1);
 			attribs++;
-			if(uv > 0)
-			{
-				attribs++;
-				glVertexAttribPointer(2, uvSize, GL_FLOAT, false, vertexSize, (positionSize + colorSize) * Float.BYTES);
-				glEnableVertexAttribArray(2);
-			}
-		}
-		else
-		{
-			if(uv > 0)
-			{
-				attribs++;
-				glVertexAttribPointer(1, uvSize, GL_FLOAT, false, vertexSize, positionSize * Float.BYTES);
-				glEnableVertexAttribArray(1);
-			}
-
+			glVertexAttribPointer(1, uvSize, GL_FLOAT, false, vertexSize, positionSize * Float.BYTES);
+			glEnableVertexAttribArray(1);
 		}
 	}
 	public void bind()

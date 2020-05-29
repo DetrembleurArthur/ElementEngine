@@ -1,8 +1,7 @@
 package game.jgengine.graphics;
 
 import game.jgengine.entity.GameObject;
-import game.jgengine.graphics.camera.Camera2D;
-import game.jgengine.graphics.camera.Camera3D;
+import game.jgengine.graphics.camera.Camera;
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.sys.Window;
 
@@ -18,51 +17,22 @@ public class Renderer
 	}
 
 
-	public void render(GraphicElement gelem, Camera3D camera3D)
+	public void render(GameObject gelem, Camera camera)
 	{
 		shader.start();
 		shader.uploadMat4f("uModel", gelem.getTransformMatrix());
-		shader.uploadMat4f("uView", camera3D.updateViewMatrix());
-		shader.uploadMat4f("uProjection", camera3D.getProjectionMatrix());
-		gelem.draw();
-		shader.stop();
-	}
-
-	public void render(GameObject gelem, Camera3D camera3D)
-	{
-		shader.start();
-		shader.uploadMat4f("uModel", gelem.getTransformMatrix());
-		shader.uploadMat4f("uView", camera3D.updateViewMatrix());
-		shader.uploadMat4f("uProjection", camera3D.getProjectionMatrix());
-		if(gelem.getTexture() != null)
-			shader.uploadTexture("TEX_SAMPLER", 0);
-		gelem.draw();
-		shader.stop();
-	}
-
-	public void render(GraphicElement gelem, Camera2D camera2D)
-	{
-		shader.start();
-		shader.uploadMat4f("uModel", gelem.getTransformMatrix());
-		shader.uploadMat4f("uView", camera2D.updateViewMatrix());
-		shader.uploadMat4f("uProjection", camera2D.getProjectionMatrix());
-		gelem.draw();
-		shader.stop();
-	}
-
-	public void render(GameObject gelem, Camera2D camera2D)
-	{
-		shader.start();
-		shader.uploadMat4f("uModel", gelem.getTransformMatrix());
-		shader.uploadMat4f("uView", camera2D.updateViewMatrix());
-		shader.uploadMat4f("uProjection", camera2D.getProjectionMatrix());
+		shader.uploadMat4f("uView", camera.updateViewMatrix());
+		shader.uploadMat4f("uProjection", camera.getProjectionMatrix());
 		if(gelem.getTexture() != null)
 		{
+			shader.setUniform1i("isTextured", 1);
 			shader.uploadTexture("TEX_SAMPLER", 0);
 		}
+		shader.setUniformf4("uFillColor", gelem.getFillColor());
 		gelem.draw();
 		shader.stop();
 	}
+
 
 
 	public Shader getShader()

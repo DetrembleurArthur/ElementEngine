@@ -17,7 +17,7 @@ public class Camera3D extends Camera
 
 	private PerspProjectionSettings projectionSettings;
 	private Vector2f oldMouse = new Vector2f();
-	private float moveSpeed = 0.05f;
+	private float moveSpeed = 0.15f;
 	private float mouseSensitivity = 0.15f;
 
 	private float verticalAngle, horizontalAngle;

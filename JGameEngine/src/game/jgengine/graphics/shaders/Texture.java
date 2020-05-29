@@ -46,8 +46,7 @@ public class Texture
 		{
 			System.out.println("Image error");
 		}
-
-
+		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
 	public void active()

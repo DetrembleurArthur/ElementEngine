@@ -3,7 +3,6 @@ package game.jgengine.sys;
 import game.jgengine.event.handler.EventHandler;
 import game.jgengine.exceptions.SysException;
 import game.jgengine.graphics.camera.Camera3D;
-import game.jgengine.graphics.CustomRenderer;
 import game.jgengine.graphics.Renderer;
 import game.jgengine.graphics.camera.PerspProjectionSettings;
 import game.jgengine.graphics.shaders.Shader;
@@ -27,10 +26,6 @@ public abstract class Game implements EventHandler
 
 	private double framerateLimit = 30;
 	private ArrayList<GraphicElement> shapes = new ArrayList<>();
-	private Renderer shapeRenderer;
-	private Renderer textureRenderer;
-	private CustomRenderer shapeUColorRenderer;
-	private CustomRenderer textureUColorRenderer;
 
 	static
 	{
@@ -86,23 +81,8 @@ public abstract class Game implements EventHandler
 		primaryWindow.active();
 		GL.createCapabilities();
 		initGraphics();
-		Registry.set("1", Shader.TEXTURE_AND_COLOR);
-		Registry.set("2", Shader.TEXTURE_AND_UNIFORM_COLOR);
-		Registry.set("3", Shader.SHAPE_AND_COLOR);
-		Registry.set("4", Shader.SHAPE_AND_UNIFORM_COLOR);
+		Registry.set("DEFAULT", Shader.DEFAULT);
 		primaryWindow.updateViewport();
-
-
-		shapeRenderer = new Renderer(Shader.SHAPE_AND_COLOR, primaryWindow);
-		textureRenderer = new Renderer(Shader.TEXTURE_AND_COLOR, primaryWindow);
-		shapeUColorRenderer = new CustomRenderer(Shader.SHAPE_AND_UNIFORM_COLOR, primaryWindow, (s, o) -> {
-			if(o.getFillColor() != null)
-				s.uploadf4("fColor", o.getFillColor());
-		});
-		textureUColorRenderer = new CustomRenderer(Shader.TEXTURE_AND_UNIFORM_COLOR, primaryWindow, (s, o) -> {
-			if(o.getFillColor() != null)
-				s.uploadf4("fColor", o.getFillColor());
-		});
 
 		System.out.println("OpenGL version: " + glGetString(GL_VERSION));
 	}
@@ -165,24 +145,4 @@ public abstract class Game implements EventHandler
 		framerateLimit = limit;
 	}
 
-
-	public Renderer getShapeRenderer()
-	{
-		return shapeRenderer;
-	}
-
-	public Renderer getTextureRenderer()
-	{
-		return textureRenderer;
-	}
-
-	public Renderer getShapeUColorRenderer()
-	{
-		return shapeUColorRenderer;
-	}
-
-	public Renderer getTextureUColorRenderer()
-	{
-		return textureUColorRenderer;
-	}
 }

@@ -2,16 +2,15 @@ import game.jgengine.event.Input;
 import game.jgengine.event.Mouse;
 import game.jgengine.exceptions.SysException;
 import game.jgengine.entity.GameObject;
-import game.jgengine.graphics.Mesh;
+import game.jgengine.graphics.Renderer;
 import game.jgengine.graphics.camera.*;
+import game.jgengine.graphics.loaders.ObjData;
+import game.jgengine.graphics.loaders.ObjLoader;
 import game.jgengine.graphics.shaders.Texture;
-import game.jgengine.graphics.shapes.Cube;
-import game.jgengine.graphics.shapes.Rectangle;
 import game.jgengine.registry.Registry;
 import game.jgengine.sys.Game;
 import game.jgengine.utils.Colors;
 import org.joml.Vector2f;
-import org.joml.Vector3f;
 
 import static org.lwjgl.glfw.GLFW.*;
 
@@ -19,10 +18,11 @@ import static org.lwjgl.glfw.GLFW.*;
 public class MyTestGame extends Game
 {
     GameObject gelem;
-    Rectangle gelem2;
 
     Camera2D camera;
     Camera3D camera3D;
+
+    Renderer renderer;
 
 
     boolean centered = false;
@@ -35,16 +35,23 @@ public class MyTestGame extends Game
         getPrimaryWindow().setResizeable(true);
         getPrimaryWindow().center();
 
-        Texture texture = new Texture("assets/bricks.png", true);
+        Texture texture = new Texture("assets/stone.jpg", false);
         Registry.set("brick", texture);
 
-        gelem2 = new Rectangle(Mesh.RGBA , texture);
-        gelem2.setPosition(new Vector3f(0f, 0f, 0f));
-        gelem2.setScale(new Vector3f(700, 400, 0));
-        addShape(gelem2);
+        ObjData objData = ObjLoader.loadModel("assets/3Dmodels/h4_carbine.obj");
+        //objData.show();
+        assert objData != null;
+        gelem = new GameObject(objData.extractMesh(), null);
+        gelem.setFillColor(Colors.TURQUOISE);
+        gelem.getRotation().y += 90;
+        renderer = new Renderer(Registry.getShader("DEFAULT"), getPrimaryWindow());
+
+
 
         camera = new Camera2D(new OrthoProjectionSettings(getPrimaryWindow()));
         camera3D = new Camera3D(new PerspProjectionSettings(70f, getPrimaryWindow()));
+        camera3D.getPosition().z += 50;
+
 
     }
 
@@ -55,8 +62,7 @@ public class MyTestGame extends Game
 
         getPrimaryWindow().clear();
 
-        getTextureRenderer().render(gelem2, camera);
-        getTextureRenderer().render(gelem2, camera3D);
+        renderer.render(gelem, camera3D);
 
         getPrimaryWindow().flip();
     }

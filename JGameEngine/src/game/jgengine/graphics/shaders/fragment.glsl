@@ -1,11 +1,20 @@
 #version 460 core
-in vec4 fColor;
+
 in vec2 fUV;
 out vec4 color;
+
+uniform vec4 uFillColor;
 uniform sampler2D TEX_SAMPLER;
+uniform int isTextured = 0;
 
 void main()
 {
-    //color = fColor;
-    color = texture(TEX_SAMPLER, fUV) * fColor;
+    if(isTextured == 1)
+    {
+        color = texture(TEX_SAMPLER, fUV) * uFillColor;
+    }
+    else
+    {
+        color = uFillColor;
+    }
 }

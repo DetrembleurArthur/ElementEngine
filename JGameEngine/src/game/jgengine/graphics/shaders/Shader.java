@@ -16,29 +16,13 @@ import static org.lwjgl.system.MemoryUtil.memFree;
 
 public class Shader
 {
-	public static final Shader TEXTURE_AND_COLOR = new Shader(
+	public static final Shader DEFAULT = new Shader(
 			"src/game/jgengine/graphics/shaders/vertex.glsl",
-			"src/game/jgengine/graphics/shaders/fragment_texture_and_color.glsl",
+			"src/game/jgengine/graphics/shaders/fragment.glsl",
 			true
 	);
 
-	public static final Shader SHAPE_AND_COLOR = new Shader(
-			"src/game/jgengine/graphics/shaders/vertex.glsl",
-			"src/game/jgengine/graphics/shaders/fragment_shape_and_color.glsl",
-			true
-	);
 
-	public static final Shader TEXTURE_AND_UNIFORM_COLOR = new Shader(
-			"src/game/jgengine/graphics/shaders/vertex_no_vao_color.glsl",
-			"src/game/jgengine/graphics/shaders/fragment_texture_and_uniform_color.glsl",
-			true
-	);
-
-	public static final Shader SHAPE_AND_UNIFORM_COLOR = new Shader(
-			"src/game/jgengine/graphics/shaders/vertex_no_vao_color.glsl",
-			"src/game/jgengine/graphics/shaders/fragment_shape_and_uniform_color.glsl",
-			true
-	);
 
 	private int vertexShader = -1;
 	private int fragmentShader = -1;
@@ -188,9 +172,14 @@ public class Shader
 		glUniform1f(uniforms.get(name), value);
 	}
 
-	public void uploadf4(String name, Vector4f value)
+	public void setUniformf4(String name, Vector4f value)
 	{
 		glUniform4f(uniforms.get(name), value.x, value.y, value.z, value.w);
+	}
+
+	public void setUniform1i(String name, int value)
+	{
+		glUniform1i(uniforms.get(name), value);
 	}
 
 	public void destroy()
