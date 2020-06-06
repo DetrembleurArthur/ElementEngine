@@ -1,23 +1,22 @@
 import game.jgengine.event.Input;
 import game.jgengine.event.Mouse;
 import game.jgengine.exceptions.SysException;
-import game.jgengine.entity.GameObject;
 import game.jgengine.graphics.Renderer;
 import game.jgengine.graphics.camera.*;
-import game.jgengine.graphics.loaders.ObjData;
-import game.jgengine.graphics.loaders.ObjLoader;
-import game.jgengine.graphics.shaders.Texture;
+import game.jgengine.graphics.loaders.TextureLoader;
+import game.jgengine.graphics.shapes.Rectangle;
 import game.jgengine.registry.Registry;
 import game.jgengine.sys.Game;
 import game.jgengine.utils.Colors;
-import org.joml.Vector2f;
+import org.joml.Vector3f;
+import org.joml.Vector4f;
 
 import static org.lwjgl.glfw.GLFW.*;
 
 
 public class MyTestGame extends Game
 {
-    GameObject gelem;
+    Rectangle gelem;
 
     Camera2D camera;
     Camera3D camera3D;
@@ -30,27 +29,24 @@ public class MyTestGame extends Game
     @Override
     protected void load()
     {
-        getPrimaryWindow().setClearColor(Colors.BLUE);
+        getPrimaryWindow().setClearColor(Colors.TURQUOISE);
         setFramerateLimit(60);
         getPrimaryWindow().setResizeable(true);
         getPrimaryWindow().center();
 
-        Texture texture = new Texture("assets/stone.jpg", false);
-        Registry.set("brick", texture);
 
-        ObjData objData = ObjLoader.loadModel("assets/3Dmodels/h4_carbine.obj");
-        //objData.show();
-        assert objData != null;
-        gelem = new GameObject(objData.extractMesh(), null);
-        gelem.setFillColor(Colors.TURQUOISE);
-        gelem.getRotation().y += 90;
+        TextureLoader.loadDir("assets/");
+        gelem = new Rectangle(Registry.getTexture("bricks.png"));
+
+        gelem.setDimension(200, 200);
+        //gelem.setCenterOrigin();
+        gelem.setOpacity(0.5f);
         renderer = new Renderer(Registry.getShader("DEFAULT"), getPrimaryWindow());
 
 
 
         camera = new Camera2D(new OrthoProjectionSettings(getPrimaryWindow()));
         camera3D = new Camera3D(new PerspProjectionSettings(70f, getPrimaryWindow()));
-        camera3D.getPosition().z += 50;
 
 
     }
@@ -62,7 +58,7 @@ public class MyTestGame extends Game
 
         getPrimaryWindow().clear();
 
-        renderer.render(gelem, camera3D);
+        renderer.render(gelem, camera);
 
         getPrimaryWindow().flip();
     }
@@ -71,9 +67,10 @@ public class MyTestGame extends Game
     protected void update(double dt)
     {
         getPrimaryWindow().setTitle("fps " + Double.toString(1.f /dt));
+        camera.activateKeys(getPrimaryWindow(), Camera2D.SPECTATOR_KEY_SET);
         var mp = Mouse.getPosition(getPrimaryWindow());
-        camera3D.activateKeys(Camera3D.SPECTATOR_KEY_SET,
-                getPrimaryWindow());
+        gelem.setPosition(new Vector3f(mp.x, mp.y, 0));
+        gelem.getRotation().z += 1;
     }
 
     @Override
@@ -81,14 +78,14 @@ public class MyTestGame extends Game
     {
         if(Input.isKeyPressed(getPrimaryWindow(), GLFW_KEY_ENTER))
         {
-            centered = !centered;
+            /*centered = !centered;
             if(centered)
             {
                 camera3D.setOldMouse(Mouse.getPosition(getPrimaryWindow()));
                 getPrimaryWindow().disableCursor();
             }
             else
-                getPrimaryWindow().resetCursor();
+                getPrimaryWindow().resetCursor();****/
 
         }
     }
@@ -100,7 +97,7 @@ public class MyTestGame extends Game
 
         if(centered)
         {
-            camera3D.update(new Vector2f((float)xpos, (float)ypos));
+            //camera3D.update(new Vector2f((float)xpos, (float)ypos));
         }
     }
 

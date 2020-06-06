@@ -39,6 +39,17 @@ public class GameObject extends GraphicElement
 		return fillColor;
 	}
 
+	public void setOpacity(float value)
+	{
+		if(fillColor != null)
+			fillColor.w = value;
+	}
+
+	public float getOpacity()
+	{
+		return fillColor.w;
+	}
+
 	@Override
 	public void draw()
 	{

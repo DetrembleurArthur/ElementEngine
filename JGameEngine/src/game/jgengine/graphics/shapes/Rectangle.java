@@ -3,81 +3,47 @@ package game.jgengine.graphics.shapes;
 import game.jgengine.entity.GameObject;
 import game.jgengine.graphics.Mesh;
 import game.jgengine.graphics.shaders.Texture;
+import org.joml.Vector2f;
 
 public class Rectangle extends GameObject
 {
-	private static final Mesh TEXTURED_MESH = new Mesh(new float[]{
-			-1f, 1f,        0,0,
-			-1f, -1f,     0,1,
-			1f, 1f,       1,0,
-			1f, -1f,  1,1
-	}, new int[]{
-			0, 1,2,
-			3,2,1
-	}, Mesh.DIMENSION_2, Mesh.NO_COLOR, Mesh.TEXTURED);
-
-	private static final Mesh NO_TEXTURED_MESH = new Mesh(new float[]{
-			-1f, 1f,
-			-1f, -1f,
-			1f, 1f,
-			1f, -1f,
-	}, new int[]{
-			0, 1,2,
-			3,2,1
-	}, Mesh.DIMENSION_2, Mesh.NO_COLOR, Mesh.NO_TEXTURED);
-
-	public Rectangle()
-	{
-		this(null);
-	}
-
-	public Rectangle(int colorMode, Texture texture)
-	{
-		super(colorMode == 3 && (texture != null) ? new Mesh(new float[]{
-				-1f, 1f,      1f,1f,1f,		0,0,
-				-1f, -1f,      1f,1f,1f,	0, 1,
-				1f, 1f,     1f,1f,1f,		1,0,
-				1f, -1f,     1f,1f,1f,		1,1
-		}, new int[]{
-				0, 1,2,
-				3,2,1
-		}, Mesh.DIMENSION_2, Mesh.RGB, Mesh.TEXTURED) : (colorMode == 3 && !(texture != null) ?
-			new Mesh(new float[]{
-					-1f, 1f,      1f,1f,1f,
-					-1f, -1f,      1f,1f,1f,
-					1f, 1f,     1f,1f,1f,
-					1f, -1f,     1f,1f,1f,
-			}, new int[]{
-					0, 1,2,
-					3,2,1
-			}, Mesh.DIMENSION_2, Mesh.RGB, Mesh.NO_TEXTURED) : (colorMode == 4 && (texture != null) ?
-			new Mesh(new float[]{
-					-1f, 1f,      1f,1f,1f,1f,		0,0,
-					-1f, -1f,      1f,1f,1f,1f,	0, 1,
-					1f, 1f,     1f,1f,1f,1f,		1,0,
-					1f, -1f,     1f,1f,1f,1f,		1,1
-			}, new int[]{
-					0, 1,2,
-					3,2,1
-			}, Mesh.DIMENSION_2, Mesh.RGBA, Mesh.TEXTURED) :
-				new Mesh(new float[]{
-					-1f, 1f,      1f,1f,1f,1f,
-					-1f, -1f,      1f,1f,1f,1f,
-					1f, 1f,     1f,1f,1f,1f,
-					1f, -1f,     1f,1f,1f,1f
-					}, new int[]{
-							0, 1,2,
-					3,2,1
-					}, Mesh.DIMENSION_2, Mesh.RGBA, Mesh.NO_TEXTURED))), texture);
-	}
-
-	public Rectangle(int colorMode)
-	{
-		this(colorMode, null);
-	}
-
 	public Rectangle(Texture texture)
 	{
-		super(texture == null ? NO_TEXTURED_MESH : TEXTURED_MESH, texture);
+		super(new Mesh(
+				new float[]{
+						0, 0,	0, 0,
+						0, 1,	0, 1,
+						1, 1,	1, 1,
+						1, 0,	1, 0
+				},
+				new int[]{
+						0, 1, 2, 0, 2, 3
+				},Mesh.DIMENSION_2, Mesh.TEXTURED
+
+		), texture);
+		if(texture != null)
+			setDimension(texture.getDimension());
+	}
+
+	public void setWidth(float width)
+	{
+		getScale().x = width;
+	}
+
+	public void setHeight(float height)
+	{
+		getScale().y = height;
+	}
+
+	public void setDimension(Vector2f dimension)
+	{
+		getScale().x = dimension.x;
+		getScale().y = dimension.y;
+	}
+
+	public void setDimension(float x, float y)
+	{
+		getScale().x = x;
+		getScale().y = y;
 	}
 }

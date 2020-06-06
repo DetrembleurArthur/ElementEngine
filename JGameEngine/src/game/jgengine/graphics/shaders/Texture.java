@@ -19,6 +19,7 @@ public class Texture
 {
 	private String path;
 	private int id;
+	private Vector2f dimension;
 
 	public Texture(String path, boolean rgba)
 	{
@@ -38,6 +39,7 @@ public class Texture
 		ByteBuffer image = stbi_load(path, width, height, channels, 0);
 		if(image != null)
 		{
+			dimension = new Vector2f(width.get(0), height.get(0));
 			glTexImage2D(GL_TEXTURE_2D, 0, rgba ? GL_RGBA : GL_RGB, width.get(0), height.get(0), 0, rgba ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, image);
 
 			stbi_image_free(image);
@@ -67,5 +69,10 @@ public class Texture
 	public void destroy()
 	{
 		glDeleteTextures(id);
+	}
+
+	public Vector2f getDimension()
+	{
+		return dimension;
 	}
 }

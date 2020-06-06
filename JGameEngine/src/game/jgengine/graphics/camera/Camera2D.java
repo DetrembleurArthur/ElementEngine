@@ -1,13 +1,25 @@
 package game.jgengine.graphics.camera;
 
+import game.jgengine.event.Input;
+import game.jgengine.sys.Window;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
+
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_DOWN;
 
 public class Camera2D extends Camera
 {
 	private Vector2f position;
 	private OrthoProjectionSettings orthoProjSettings;
+	private Vector2f speed;
+
+	public static final KeySet SPECTATOR_KEY_SET = new KeySet()
+			.set("right", GLFW_KEY_RIGHT)
+			.set("left", GLFW_KEY_LEFT)
+			.set("up", GLFW_KEY_UP)
+			.set("down", GLFW_KEY_DOWN);
 
 	public Camera2D()
 	{
@@ -17,6 +29,7 @@ public class Camera2D extends Camera
 	public Camera2D(Vector2f position)
 	{
 		super();
+		this.speed = new Vector2f(15, 15);
 		this.position = position;
 		orthoProjSettings = new OrthoProjectionSettings();
 		updateProjectionMatrix();
@@ -30,6 +43,7 @@ public class Camera2D extends Camera
 	public Camera2D(Vector2f position, OrthoProjectionSettings settings)
 	{
 		super();
+		this.speed = new Vector2f(15, 15);
 		this.position = position;
 		this.orthoProjSettings = settings;
 		updateProjectionMatrix();
@@ -74,5 +88,31 @@ public class Camera2D extends Camera
 	public void setOrthoProjSettings(OrthoProjectionSettings orthoProjSettings)
 	{
 		this.orthoProjSettings = orthoProjSettings;
+	}
+
+	public void move(float x, float y)
+	{
+		this.position.x += x;
+		this.position.y += y;
+	}
+
+	public void activateKeys(Window window, KeySet keys)
+	{
+		if(Input.isKeyPressed(window, keys.get("right")))
+		{
+			move(speed.x, 0);
+		}
+		if(Input.isKeyPressed(window, keys.get("left")))
+		{
+			move(-speed.x, 0);
+		}
+		if(Input.isKeyPressed(window, keys.get("up")))
+		{
+			move(0, -speed.y);
+		}
+		if(Input.isKeyPressed(window, keys.get("down")))
+		{
+			move(0, speed.y);
+		}
 	}
 }
