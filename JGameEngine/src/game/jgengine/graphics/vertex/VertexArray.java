@@ -27,12 +27,12 @@ public class VertexArray
 		int uvSize = uv;
 		int vertexSize = (positionSize + uv) * Float.BYTES;
 		attribs = 1;
-		glVertexAttribPointer(0, positionSize, GL_FLOAT, false, vertexSize, 0);
+		glVertexAttribPointer(0, positionSize, GL_FLOAT, true, vertexSize, 0);
 		glEnableVertexAttribArray(0);
 		if(uv > 0)
 		{
 			attribs++;
-			glVertexAttribPointer(1, uvSize, GL_FLOAT, false, vertexSize, positionSize * Float.BYTES);
+			glVertexAttribPointer(1, uvSize, GL_FLOAT, true, vertexSize, positionSize * Float.BYTES);
 			glEnableVertexAttribArray(1);
 		}
 	}

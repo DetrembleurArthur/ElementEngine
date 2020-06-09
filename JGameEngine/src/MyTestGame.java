@@ -7,9 +7,11 @@ import game.jgengine.graphics.loaders.TextureLoader;
 import game.jgengine.graphics.shapes.Rectangle;
 import game.jgengine.registry.Registry;
 import game.jgengine.sys.Game;
+import game.jgengine.tweening.TimedTweenAction;
+import game.jgengine.tweening.TweenAction;
+import game.jgengine.tweening.TweenObject;
+import game.jgengine.tweening.TweenFunctions;
 import game.jgengine.utils.Colors;
-import org.joml.Vector3f;
-import org.joml.Vector4f;
 
 import static org.lwjgl.glfw.GLFW.*;
 
@@ -23,13 +25,18 @@ public class MyTestGame extends Game
 
     Renderer renderer;
 
+    TimedTweenAction tweenAction1;
+    TimedTweenAction tweenAction2;
+    float cptr = 0f;
+    float cptr2 = 0f;
 
     boolean centered = false;
 
     @Override
     protected void load()
     {
-        getPrimaryWindow().setClearColor(Colors.TURQUOISE);
+        getPrimaryWindow().setClearColor(Colors.BLACK);
+        getPrimaryWindow().setSize(1800, 1000);
         setFramerateLimit(60);
         getPrimaryWindow().setResizeable(true);
         getPrimaryWindow().center();
@@ -39,8 +46,7 @@ public class MyTestGame extends Game
         gelem = new Rectangle(Registry.getTexture("bricks.png"));
 
         gelem.setDimension(200, 200);
-        //gelem.setCenterOrigin();
-        gelem.setOpacity(0.5f);
+        gelem.setCenterOrigin();
         renderer = new Renderer(Registry.getShader("DEFAULT"), getPrimaryWindow());
 
 
@@ -48,6 +54,12 @@ public class MyTestGame extends Game
         camera = new Camera2D(new OrthoProjectionSettings(getPrimaryWindow()));
         camera3D = new Camera3D(new PerspProjectionSettings(70f, getPrimaryWindow()));
 
+        tweenAction1 = new TimedTweenAction(new TweenObject(0, 1200, TweenFunctions.EASE_IN_CIRC),
+                (v) -> { gelem.getPosition().x = v;},
+                1000);
+        tweenAction2 = new TimedTweenAction(new TweenObject(0, 600, TweenFunctions.EASE_OUT_CIRC),
+                (v) -> { gelem.getPosition().y = v;},
+                1000);
 
     }
 
@@ -69,8 +81,15 @@ public class MyTestGame extends Game
         getPrimaryWindow().setTitle("fps " + Double.toString(1.f /dt));
         camera.activateKeys(getPrimaryWindow(), Camera2D.SPECTATOR_KEY_SET);
         var mp = Mouse.getPosition(getPrimaryWindow());
-        gelem.setPosition(new Vector3f(mp.x, mp.y, 0));
-        gelem.getRotation().z += 1;
+        //
+        // gelem.setPosition(new Vector3f(mp.x, mp.y, 0));
+
+        tweenAction1.run();
+        tweenAction2.run();
+        cptr += 0.005f;
+        cptr2 += 0.005f;
+
+
     }
 
     @Override
@@ -105,6 +124,17 @@ public class MyTestGame extends Game
     public void buttonPressedEventHandler(int button)
     {
         //rectangle.setColor(Colors.random());
+        cptr = 0.0f;
+        cptr2 = 0.0f;
+        var mpos = Mouse.getPosition(getPrimaryWindow());
+        var pos = gelem.getPosition();
+        tweenAction1.start();
+        tweenAction2.start();
+        tweenAction1.getTweenObject().setStartValue(pos.x);
+        tweenAction1.getTweenObject().setEndValue(mpos.x);
+        tweenAction2.getTweenObject().setStartValue(pos.y);
+        tweenAction2.getTweenObject().setEndValue(mpos.y);
+
     }
 
     @Override
