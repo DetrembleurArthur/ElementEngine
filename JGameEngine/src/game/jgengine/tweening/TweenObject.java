@@ -67,4 +67,16 @@ public class TweenObject
 	{
 		return startValue + (endValue - startValue) * func.f(currentPercent);
 	}
+
+	public boolean isFinished()
+	{
+		return currentPercent >= 1f;
+	}
+
+	public void swap()
+	{
+		float tmp = endValue;
+		endValue = startValue;
+		startValue = tmp;
+	}
 }

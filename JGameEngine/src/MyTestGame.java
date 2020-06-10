@@ -7,10 +7,7 @@ import game.jgengine.graphics.loaders.TextureLoader;
 import game.jgengine.graphics.shapes.Rectangle;
 import game.jgengine.registry.Registry;
 import game.jgengine.sys.Game;
-import game.jgengine.tweening.TimedTweenAction;
-import game.jgengine.tweening.TweenAction;
-import game.jgengine.tweening.TweenObject;
-import game.jgengine.tweening.TweenFunctions;
+import game.jgengine.tweening.*;
 import game.jgengine.utils.Colors;
 
 import static org.lwjgl.glfw.GLFW.*;
@@ -54,12 +51,17 @@ public class MyTestGame extends Game
         camera = new Camera2D(new OrthoProjectionSettings(getPrimaryWindow()));
         camera3D = new Camera3D(new PerspProjectionSettings(70f, getPrimaryWindow()));
 
-        tweenAction1 = new TimedTweenAction(new TweenObject(0, 1200, TweenFunctions.EASE_IN_CIRC),
-                (v) -> { gelem.getPosition().x = v;},
-                1000);
-        tweenAction2 = new TimedTweenAction(new TweenObject(0, 600, TweenFunctions.EASE_OUT_CIRC),
-                (v) -> { gelem.getPosition().y = v;},
-                1000);
+        tweenAction1 = new TimedTweenAction(new TweenObject(0, 1200, TweenFunctions.EASE_IN_OUT_CUBIC),
+                (v) -> { gelem.getPosition().x = v; gelem.getScale().x = v/2;},
+                500);
+        tweenAction1.setMaxCycle(TimedTweenAction.INFINITE_CYCLE);
+        tweenAction2 = new TimedTweenAction(new TweenObject(0, 600, TweenFunctions.EASE_IN_OUT_CUBIC),
+                (v) -> { gelem.getPosition().y = v;gelem.getScale().y = v/2;},
+                500);
+        tweenAction2.setMaxCycle(TimedTweenAction.INFINITE_CYCLE);
+
+        tweenAction1.setBack(true);
+        tweenAction2.setBack(true);
 
     }
 
@@ -86,8 +88,6 @@ public class MyTestGame extends Game
 
         tweenAction1.run();
         tweenAction2.run();
-        cptr += 0.005f;
-        cptr2 += 0.005f;
 
 
     }
@@ -112,7 +112,9 @@ public class MyTestGame extends Game
     @Override
     public void cursorMovedEventHandler(double xpos, double ypos)
     {
-        var pos = Mouse.getPosition(getPrimaryWindow());
+        var pos = gelem.getPosition();
+        var mpos = Mouse.getPosition(getPrimaryWindow());
+
 
         if(centered)
         {
@@ -128,8 +130,8 @@ public class MyTestGame extends Game
         cptr2 = 0.0f;
         var mpos = Mouse.getPosition(getPrimaryWindow());
         var pos = gelem.getPosition();
-        tweenAction1.start();
-        tweenAction2.start();
+        tweenAction1.restart();
+        tweenAction2.restart();
         tweenAction1.getTweenObject().setStartValue(pos.x);
         tweenAction1.getTweenObject().setEndValue(mpos.x);
         tweenAction2.getTweenObject().setStartValue(pos.y);
