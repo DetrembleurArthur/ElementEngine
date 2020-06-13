@@ -4,6 +4,7 @@ import game.jgengine.entity.GameObject;
 import game.jgengine.graphics.Mesh;
 import game.jgengine.graphics.shaders.Texture;
 import org.joml.Vector2f;
+import org.joml.Vector3f;
 
 public class Rectangle extends GameObject
 {
@@ -45,5 +46,60 @@ public class Rectangle extends GameObject
 	{
 		getScale().x = x;
 		getScale().y = y;
+	}
+
+	public Vector2f getDimension()
+	{
+		var scale = getScale();
+		return new Vector2f(scale.x, scale.y);
+	}
+
+	private void setVerticesOrigin(float x, float y)
+	{
+		Mesh mesh = getMesh();
+		mesh.setPosition(0, new Vector2f(0 + x, 0 + y));
+		mesh.setPosition(1, new Vector2f(0 + x, 1 + y));
+		mesh.setPosition(2, new Vector2f(1 + x, 1 + y));
+		mesh.setPosition(3, new Vector2f(1 + x, 0 + y));
+	}
+
+	public void setOrigin(float x, float y)
+	{
+		setVerticesOrigin(-x / getScale().x, -y / getScale().y);
+	}
+
+	public Vector2f getOrigin()
+	{
+		return getMesh().getPosition(0);
+	}
+
+	public void setOrigin(Vector2f origin)
+	{
+		setOrigin(origin.x, origin.y);
+	}
+
+	public void setTopLeftOrigin()
+	{
+		setOrigin(0, 0);
+	}
+
+	public void setTopRightOrigin()
+	{
+		setOrigin(getScale().x, 0);
+	}
+
+	public void setBottomLeftOrigin()
+	{
+		setOrigin(0, getScale().y);
+	}
+
+	public void setBottomRightOrigin()
+	{
+		setOrigin(getScale().x, getScale().y);
+	}
+
+	public void setCenterOrigin()
+	{
+		setOrigin(getScale().x / 2, getScale().y / 2);
 	}
 }

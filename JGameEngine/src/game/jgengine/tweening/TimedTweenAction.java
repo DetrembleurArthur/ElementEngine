@@ -1,6 +1,6 @@
 package game.jgengine.tweening;
 
-import game.jgengine.utils.Time;
+import game.jgengine.time.Time;
 
 public class TimedTweenAction extends TweenAction
 {
@@ -8,18 +8,20 @@ public class TimedTweenAction extends TweenAction
 	private float maxDelay;
 	private float beginTime = 0f;
 	private int cycle = 0;
-	private int maxCycle = 1;
+	private int maxCycle = 0;
 	private boolean back = true;
 	private boolean backFlag = false;
 
-	public TimedTweenAction(TweenObject tweenObject, TweenSetter property, float msMaxDelay)
+	public TimedTweenAction(float startValue, float endValue, TweenFunction func, TweenSetter binder, float maxDelay, int maxCycle, boolean back)
 	{
-		super(tweenObject, property, null);
-		setCounter(() ->
+		super(startValue, endValue, func, binder, null);
+		this.maxDelay = maxDelay;
+		this.maxCycle = maxCycle;
+		this.back = back;
+		setStepper(() ->
 		{
 			return (float)(Time.getTime() * 1000f - this.beginTime) / this.maxDelay;
 		});
-		maxDelay = msMaxDelay;
 	}
 
 	public boolean isBack()
@@ -55,6 +57,7 @@ public class TimedTweenAction extends TweenAction
 	public void start()
 	{
 		beginTime = (float)Time.getTime() * 1000f;
+		currentPercent = 0f;
 	}
 
 	public void restart()
@@ -62,7 +65,11 @@ public class TimedTweenAction extends TweenAction
 		start();
 		setCycle(0);
 		if(back)
+		{
+			if(backFlag)
+				swap();
 			backFlag = false;
+		}
 	}
 
 	public void stop()
@@ -76,13 +83,15 @@ public class TimedTweenAction extends TweenAction
 		if(beginTime != 0)
 		{
 			super.run();
-			if(getTweenObject().isFinished())
+			if(isFinished())
 			{
 
 				if(back)
 				{
 					if(backFlag)
+					{
 						cycle++;
+					}
 				}
 				else
 					cycle++;
@@ -91,15 +100,11 @@ public class TimedTweenAction extends TweenAction
 					start();
 					if(back)
 					{
-						getTweenObject().swap();
+						swap();
 						backFlag = !backFlag;
 					}
 				}
-
-
 			}
 		}
 	}
-
-
 }

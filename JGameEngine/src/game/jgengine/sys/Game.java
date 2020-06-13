@@ -1,15 +1,12 @@
 package game.jgengine.sys;
 
+import game.jgengine.debug.Logs;
 import game.jgengine.event.handler.EventHandler;
 import game.jgengine.exceptions.SysException;
-import game.jgengine.graphics.camera.Camera3D;
-import game.jgengine.graphics.Renderer;
-import game.jgengine.graphics.camera.PerspProjectionSettings;
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.graphics.GraphicElement;
 import game.jgengine.registry.Registry;
-import game.jgengine.utils.Time;
-import org.joml.Vector3f;
+import game.jgengine.time.Time;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
@@ -112,6 +109,7 @@ public abstract class Game implements EventHandler
 
 	final protected void close()
 	{
+
 		primaryWindow.destroy();
 
 		for(GraphicElement shape : shapes)

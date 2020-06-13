@@ -2,52 +2,112 @@ package game.jgengine.tweening;
 
 public class TweenAction implements Runnable
 {
-	private TweenObject tweenObject;
-	private TweenSetter property;
-	private TweenGetter counter;
+	protected float startValue;
+	protected float endValue;
+	protected float currentPercent;
+	private TweenFunction func;
+	protected TweenSetter binder;
+	protected TweenGetter stepper;
 
-	public TweenAction(TweenObject tweenObject, TweenSetter property, TweenGetter counter)
+	public TweenAction(float startValue, float endValue, TweenFunction func, TweenSetter binder, TweenGetter stepper)
 	{
-		this.tweenObject = tweenObject;
-		this.property = property;
-		this.counter = counter;
+		this.startValue = startValue;
+		this.endValue = endValue;
+		this.func = func;
+		this.binder = binder;
+		this.stepper = stepper;
+		this.currentPercent = 0f;
 	}
 
-
-	public TweenGetter getCounter()
+	public TweenFunction getFunc()
 	{
-		return counter;
+		return func;
 	}
 
-	public void setCounter(TweenGetter counter)
+	public void setFunc(TweenFunction func)
 	{
-		this.counter = counter;
+		this.func = func;
 	}
 
-	public TweenSetter getProperty()
+	public float getStartValue()
 	{
-		return property;
+		return startValue;
 	}
 
-	public void setProperty(TweenSetter property)
+	public void setStartValue(float startValue)
 	{
-		this.property = property;
+		this.startValue = startValue;
 	}
 
-	public TweenObject getTweenObject()
+	public float getEndValue()
 	{
-		return tweenObject;
+		return endValue;
 	}
 
-	public void setTweenObject(TweenObject tweenObject)
+	public void setEndValue(float endValue)
 	{
-		this.tweenObject = tweenObject;
+		this.endValue = endValue;
+	}
+
+	public float getCurrentPercent()
+	{
+		return currentPercent;
+	}
+
+	public void setCurrentPercent(float currentPercent)
+	{
+		if(currentPercent < 0) currentPercent = 0;
+		else if(currentPercent > 1) currentPercent = 1;
+		this.currentPercent = currentPercent;
+	}
+
+	public void setCurrentValue(float value)
+	{
+		float percent = value / startValue + (endValue - startValue);
+		setCurrentPercent(percent);
+	}
+
+	protected float action()
+	{
+		return startValue + (endValue - startValue) * func.f(currentPercent);
+	}
+
+	public boolean isFinished()
+	{
+		return currentPercent >= 1f;
+	}
+
+	public void swap()
+	{
+		float tmp = endValue;
+		endValue = startValue;
+		startValue = tmp;
+	}
+
+	public TweenGetter getStepper()
+	{
+		return stepper;
+	}
+
+	public void setStepper(TweenGetter stepper)
+	{
+		this.stepper = stepper;
+	}
+
+	public TweenSetter getBinder()
+	{
+		return binder;
+	}
+
+	public void setBinder(TweenSetter binder)
+	{
+		this.binder = binder;
 	}
 
 	@Override
 	public void run()
 	{
-		tweenObject.setCurrentPercent(counter.get());
-		property.set(tweenObject.action());
+		setCurrentPercent(stepper.get());
+		binder.set(action());
 	}
 }

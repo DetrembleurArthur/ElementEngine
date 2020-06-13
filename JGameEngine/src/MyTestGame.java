@@ -1,4 +1,4 @@
-import game.jgengine.event.Input;
+import game.jgengine.debug.Logs;
 import game.jgengine.event.Mouse;
 import game.jgengine.exceptions.SysException;
 import game.jgengine.graphics.Renderer;
@@ -7,10 +7,12 @@ import game.jgengine.graphics.loaders.TextureLoader;
 import game.jgengine.graphics.shapes.Rectangle;
 import game.jgengine.registry.Registry;
 import game.jgengine.sys.Game;
+import game.jgengine.time.DynamicTimer;
+import game.jgengine.time.StaticTimer;
+import game.jgengine.time.SyncTimer;
 import game.jgengine.tweening.*;
 import game.jgengine.utils.Colors;
-
-import static org.lwjgl.glfw.GLFW.*;
+import org.joml.Vector3f;
 
 
 public class MyTestGame extends Game
@@ -27,15 +29,16 @@ public class MyTestGame extends Game
     float cptr = 0f;
     float cptr2 = 0f;
 
+    SyncTimer staticTimer;
     boolean centered = false;
 
     @Override
     protected void load()
     {
-        getPrimaryWindow().setClearColor(Colors.BLACK);
+        getPrimaryWindow().setClearColor(Colors.TURQUOISE);
         getPrimaryWindow().setSize(1800, 1000);
         setFramerateLimit(60);
-        getPrimaryWindow().setResizeable(true);
+        getPrimaryWindow().setResizeable(false);
         getPrimaryWindow().center();
 
 
@@ -43,7 +46,9 @@ public class MyTestGame extends Game
         gelem = new Rectangle(Registry.getTexture("bricks.png"));
 
         gelem.setDimension(200, 200);
+
         gelem.setCenterOrigin();
+        gelem.setPosition(new Vector3f(900, 500, 0));
         renderer = new Renderer(Registry.getShader("DEFAULT"), getPrimaryWindow());
 
 
@@ -51,17 +56,18 @@ public class MyTestGame extends Game
         camera = new Camera2D(new OrthoProjectionSettings(getPrimaryWindow()));
         camera3D = new Camera3D(new PerspProjectionSettings(70f, getPrimaryWindow()));
 
-        tweenAction1 = new TimedTweenAction(new TweenObject(0, 1200, TweenFunctions.EASE_IN_OUT_CUBIC),
-                (v) -> { gelem.getPosition().x = v; gelem.getScale().x = v/2;},
-                500);
-        tweenAction1.setMaxCycle(TimedTweenAction.INFINITE_CYCLE);
-        tweenAction2 = new TimedTweenAction(new TweenObject(0, 600, TweenFunctions.EASE_IN_OUT_CUBIC),
-                (v) -> { gelem.getPosition().y = v;gelem.getScale().y = v/2;},
-                500);
-        tweenAction2.setMaxCycle(TimedTweenAction.INFINITE_CYCLE);
 
-        tweenAction1.setBack(true);
-        tweenAction2.setBack(true);
+        tweenAction1 = new TimedTweenAction(
+                0,
+                360,
+                TweenFunctions.LINEAR,
+                (x) -> {gelem.getRotation().z = x;},
+                6000,
+                TimedTweenAction.INFINITE_CYCLE,
+                true);
+        //tweenAction2 = new TimedTweenAction(0, 300, TweenFunctions.EASE_IN_OUT_QUART, (x) -> {gelem.getPosition().y = x;}, 3000, 1, true);
+        staticTimer = new SyncTimer(500, DynamicTimer.INFINITE, () -> { gelem.getRotation().z += 30;});
+        staticTimer.setContinuousTrigger(false);
 
     }
 
@@ -82,60 +88,23 @@ public class MyTestGame extends Game
     {
         getPrimaryWindow().setTitle("fps " + Double.toString(1.f /dt));
         camera.activateKeys(getPrimaryWindow(), Camera2D.SPECTATOR_KEY_SET);
-        var mp = Mouse.getPosition(getPrimaryWindow());
-        //
-        // gelem.setPosition(new Vector3f(mp.x, mp.y, 0));
+        var mp = Mouse.getPosition();
 
-        tweenAction1.run();
-        tweenAction2.run();
-
-
+        staticTimer.run();
     }
 
-    @Override
-    public void keyPressedEventHandler(int key)
-    {
-        if(Input.isKeyPressed(getPrimaryWindow(), GLFW_KEY_ENTER))
-        {
-            /*centered = !centered;
-            if(centered)
-            {
-                camera3D.setOldMouse(Mouse.getPosition(getPrimaryWindow()));
-                getPrimaryWindow().disableCursor();
-            }
-            else
-                getPrimaryWindow().resetCursor();****/
-
-        }
-    }
 
     @Override
-    public void cursorMovedEventHandler(double xpos, double ypos)
+    public void windowCloseEventHandler()
     {
-        var pos = gelem.getPosition();
-        var mpos = Mouse.getPosition(getPrimaryWindow());
 
-
-        if(centered)
-        {
-            //camera3D.update(new Vector2f((float)xpos, (float)ypos));
-        }
     }
 
     @Override
     public void buttonPressedEventHandler(int button)
     {
-        //rectangle.setColor(Colors.random());
-        cptr = 0.0f;
-        cptr2 = 0.0f;
-        var mpos = Mouse.getPosition(getPrimaryWindow());
-        var pos = gelem.getPosition();
-        tweenAction1.restart();
-        tweenAction2.restart();
-        tweenAction1.getTweenObject().setStartValue(pos.x);
-        tweenAction1.getTweenObject().setEndValue(mpos.x);
-        tweenAction2.getTweenObject().setStartValue(pos.y);
-        tweenAction2.getTweenObject().setEndValue(mpos.y);
+        staticTimer.activate();
+
 
     }
 
