@@ -51,6 +51,11 @@ public class Texture
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
+	public Texture(int id)
+	{
+		this.id = id;
+	}
+
 	public void active()
 	{
 		glActiveTexture(GL_TEXTURE0);

@@ -110,25 +110,11 @@ public class VertexBuffer
 		return new Vector3f(buffer[0], buffer[1], buffer[2]);
 	}
 
-	public void setVertexColor(int index, int vertexSize, int dimension , float r, float g, float b, float a)
+	public void setVertexUV(int index, int vertexSize, int offset, Vector2f uv)
 	{
-		float[] color = null;
-		if(a >= 0)
-			color = new float[]{r, g, b, a};
-		else
-			color = new float[]{r, g, b};
-		update((index * vertexSize + dimension) * Float.BYTES, color);
+		update(index * vertexSize * Float.BYTES + offset * Float.BYTES, initBuffer(new float[]{uv.x, uv.y}));
 	}
 
-
-	public Vector4f getVertexColor(int index, int vertexSize, int dimension, boolean rgba)
-	{
-		float[] buffer = new float[rgba ? 4 : 3];
-		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glGetBufferSubData(GL_ARRAY_BUFFER, (index * vertexSize + dimension) * Float.BYTES, buffer);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		return new Vector4f(buffer[0], buffer[1], buffer[2], rgba ? buffer[3] : 1);
-	}
 	public void destroy()
 	{
 		glDeleteBuffers(vbo);

@@ -76,6 +76,11 @@ public class Mesh
 		return vertexBuffer.getVertexPosition2(index, dimension + uv);
 	}
 
+	public void setUV(int index, Vector2f uvs)
+	{
+		vertexBuffer.setVertexUV(index, dimension + uv, dimension, uvs);
+	}
+
 	public void destroy()
 	{
 		vertexArray.destroy();

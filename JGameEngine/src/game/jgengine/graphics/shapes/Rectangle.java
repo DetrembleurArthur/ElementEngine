@@ -1,27 +1,31 @@
 package game.jgengine.graphics.shapes;
 
+import game.jgengine.debug.Logs;
 import game.jgengine.entity.GameObject;
 import game.jgengine.graphics.Mesh;
 import game.jgengine.graphics.shaders.Texture;
+import game.jgengine.utils.MathUtil;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
-public class Rectangle extends GameObject
+public class Rectangle extends Shape
 {
+	private static final Mesh MODEL = new Mesh(
+			new float[]{
+					0, 0,	0, 0,
+					0, 1,	0, 1,
+					1, 1,	1, 1,
+					1, 0,	1, 0
+			},
+			new int[]{
+					0, 1, 2, 0, 2, 3
+			},Mesh.DIMENSION_2, Mesh.TEXTURED
+
+	);
+
 	public Rectangle(Texture texture)
 	{
-		super(new Mesh(
-				new float[]{
-						0, 0,	0, 0,
-						0, 1,	0, 1,
-						1, 1,	1, 1,
-						1, 0,	1, 0
-				},
-				new int[]{
-						0, 1, 2, 0, 2, 3
-				},Mesh.DIMENSION_2, Mesh.TEXTURED
-
-		), texture);
+		super(MODEL, texture);
 		if(texture != null)
 			setDimension(texture.getDimension());
 	}
@@ -54,52 +58,22 @@ public class Rectangle extends GameObject
 		return new Vector2f(scale.x, scale.y);
 	}
 
-	private void setVerticesOrigin(float x, float y)
+
+	@Override
+	protected void setVerticesOrigin(float x, float y)
 	{
 		Mesh mesh = getMesh();
-		mesh.setPosition(0, new Vector2f(0 + x, 0 + y));
-		mesh.setPosition(1, new Vector2f(0 + x, 1 + y));
-		mesh.setPosition(2, new Vector2f(1 + x, 1 + y));
-		mesh.setPosition(3, new Vector2f(1 + x, 0 + y));
+		for(int i = 0; i < MODEL.getN(); i++)
+		{
+			Vector2f pos = new Vector2f(MODEL.getPosition(i)).add(x, y);
+			mesh.setPosition(i, pos);
+		}
 	}
 
-	public void setOrigin(float x, float y)
+	//marche que pour le top left origin
+	public boolean contains(Vector2f pos)
 	{
-		setVerticesOrigin(-x / getScale().x, -y / getScale().y);
-	}
-
-	public Vector2f getOrigin()
-	{
-		return getMesh().getPosition(0);
-	}
-
-	public void setOrigin(Vector2f origin)
-	{
-		setOrigin(origin.x, origin.y);
-	}
-
-	public void setTopLeftOrigin()
-	{
-		setOrigin(0, 0);
-	}
-
-	public void setTopRightOrigin()
-	{
-		setOrigin(getScale().x, 0);
-	}
-
-	public void setBottomLeftOrigin()
-	{
-		setOrigin(0, getScale().y);
-	}
-
-	public void setBottomRightOrigin()
-	{
-		setOrigin(getScale().x, getScale().y);
-	}
-
-	public void setCenterOrigin()
-	{
-		setOrigin(getScale().x / 2, getScale().y / 2);
+		//on applique la rotation du gameobject sur le point pos et on check la collision
+		return MathUtil.boxContains(getPosition2D(), getDimension(), MathUtil.rotateAround(pos, getPosition2D(), -getRotation2D()));
 	}
 }

@@ -63,13 +63,18 @@ public class TweenAction implements Runnable
 
 	public void setCurrentValue(float value)
 	{
-		float percent = value / startValue + (endValue - startValue);
+		float percent = value / (endValue - startValue);
 		setCurrentPercent(percent);
 	}
 
 	protected float action()
 	{
 		return startValue + (endValue - startValue) * func.f(currentPercent);
+	}
+
+	public static float get(TweenFunction f, float beg, float end, float value)
+	{
+		return beg + (end - beg) * f.f(value / (end - beg));
 	}
 
 	public boolean isFinished()

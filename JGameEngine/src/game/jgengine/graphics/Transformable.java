@@ -35,16 +35,34 @@ public class Transformable
 		this.position = position;
 	}
 
+	public void setPosition(Vector2f position)
+	{
+		this.position = new Vector3f(position.x, position.y, 0);
+	}
 
+	public Vector2f getPosition2D()
+	{
+		return new Vector2f(position.x, position.y);
+	}
 
 	public Vector3f getRotation()
 	{
 		return rotation;
 	}
 
+	public float getRotation2D()
+	{
+		return rotation.z;
+	}
+
 	public void setRotation(Vector3f rotation)
 	{
 		this.rotation = rotation;
+	}
+
+	public void setRotation(float angleDegre)
+	{
+		this.rotation = new Vector3f(0, 0, angleDegre);
 	}
 
 	public Vector3f getScale()
