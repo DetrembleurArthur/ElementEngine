@@ -5,6 +5,7 @@ import game.jgengine.entity.GameObject;
 import game.jgengine.graphics.Mesh;
 import game.jgengine.graphics.shaders.Texture;
 import game.jgengine.utils.MathUtil;
+import org.jetbrains.annotations.NotNull;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
@@ -12,15 +13,14 @@ public class Rectangle extends Shape
 {
 	private static final Mesh MODEL = new Mesh(
 			new float[]{
-					0, 0,	0, 0,
-					0, 1,	0, 1,
-					1, 1,	1, 1,
-					1, 0,	1, 0
+					0, 0,	0, 0, //top left
+					0, 1,	0, 1, //bottom left
+					1, 1,	1, 1, //bottom right
+					1, 0,	1, 0 //top right
 			},
 			new int[]{
 					0, 1, 2, 0, 2, 3
 			},Mesh.DIMENSION_2, Mesh.TEXTURED
-
 	);
 
 	public Rectangle(Texture texture)
@@ -75,5 +75,16 @@ public class Rectangle extends Shape
 	{
 		//on applique la rotation du gameobject sur le point pos et on check la collision
 		return MathUtil.boxContains(getPosition2D(), getDimension(), MathUtil.rotateAround(pos, getPosition2D(), -getRotation2D()));
+	}
+
+	public void setSprite(@NotNull Sprite sprite)
+	{
+		Mesh mesh = getMesh();
+		setTexture(sprite.getTexture());
+		Vector2f[] textCoords = sprite.getTextCoords();
+		mesh.setUV(0, textCoords[0]);
+		mesh.setUV(1, textCoords[1]);
+		mesh.setUV(2, textCoords[2]);
+		mesh.setUV(3, textCoords[3]);
 	}
 }

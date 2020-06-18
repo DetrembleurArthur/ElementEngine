@@ -62,4 +62,11 @@ public abstract class Shape extends GameObject
 	{
 		setOrigin(getScale().x / 2, getScale().y / 2);
 	}
+
+	public BoundingBox getBoundingBox()
+	{
+		var pos = getPosition2D();
+		var size = getScale();
+		return new BoundingBox(pos.x, pos.y, size.x, size.y);
+	}
 }

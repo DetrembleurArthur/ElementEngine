@@ -5,8 +5,8 @@ import java.time.Instant;
 
 public class Logs
 {
-	public static void print(String message)
+	public static <T> void print(T message)
 	{
-		System.err.println(Date.from(Instant.now()).toString() + " >> " + message);
+		System.err.println("[DEBUG] "+Date.from(Instant.now()).toString() + " >> " + message);
 	}
 }

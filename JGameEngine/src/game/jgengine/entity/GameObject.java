@@ -8,6 +8,8 @@ import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.system.CallbackI;
 
+import static org.lwjgl.opengl.GL11.glLineWidth;
+
 public class GameObject extends GraphicElement
 {
 	private Texture texture = null;

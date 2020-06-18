@@ -21,4 +21,11 @@ public class MathUtil
 	{
 		return point.x >= boxPosition.x && point.x <= boxPosition.x + boxSize.x && point.y >= boxPosition.y && point.y <= boxPosition.y + boxSize.y;
 	}
+
+	public static Vector2f getPoint(Vector2f center, float radius, float angleDegree)
+	{
+		return new Vector2f(
+				center.x + radius * (float)Math.sin(Math.toRadians(angleDegree)),
+				center.y + -radius * (float)Math.cos(Math.toRadians(angleDegree)));
+	}
 }
