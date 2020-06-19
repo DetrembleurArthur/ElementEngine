@@ -13,6 +13,11 @@ import java.util.HashMap;
 
 public class Font
 {
+	/*
+	Normaliser: height = height / size
+				width = width / size
+				+ offsets
+	*/
 	private String fontPath;
 	private String face;
 	private int size;
