@@ -1,5 +1,7 @@
 package game.jgengine.graphics.vertex;
 
+import game.jgengine.debug.Logs;
+
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL20.glVertexAttribPointer;

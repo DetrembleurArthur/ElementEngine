@@ -1,28 +1,59 @@
 package game.jgengine.graphics.text;
 
+import org.joml.Vector2f;
+
 public class Glyph
 {
 	private char id;
-	private int x;
-	private int y;
-	private int width;
-	private int height;
-	private int xoffset;
-	private int yoffset;
-	private int xadvance;
+	private float texX;
+	private float texY;
+	private float texWidth;
+	private float texHeight;
+	private float quadWidth;
+	private float quadHeight;
+	private float xoffset;
+	private float yoffset;
+	private float xadvance;
+
 
 	private Glyph()
 	{
 
 	}
 
-	public Glyph(char id, int x, int y, int width, int height, int xoffset, int yoffset, int xadvance)
+	public float getQuadWidth()
+	{
+		return quadWidth;
+	}
+
+	public float getQuadHeight()
+	{
+		return quadHeight;
+	}
+
+	public void adapt(Font font)
+	{
+		var padding = new float[]{0, 0, 0, 0};//font.getPadding();
+		this.texX = (texX) / font.getScaleW();
+		this.texY = (texY) / font.getScaleH();
+		float width = texWidth;
+		float height = texHeight;
+		quadWidth = width * font.getHorizontalPerPixelSize();
+		quadHeight = height * font.getVerticalPerPixelSize();
+		texWidth = width / font.getScaleW();
+		texHeight = height / font.getScaleH();
+		xoffset = (xoffset) * font.getHorizontalPerPixelSize();
+		yoffset = (yoffset) * font.getVerticalPerPixelSize();
+		xadvance = (xadvance) * font.getHorizontalPerPixelSize();
+	}
+
+	public Glyph(char id, int texX, int texY, int texWidth, int texHeight, int xoffset, int yoffset, int xadvance)
 	{
 		this.id = id;
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
+		this.texX = texX;
+		this.texY = texY;
+		this.texWidth = texWidth;
+		this.texHeight = texHeight;
 		this.xoffset = xoffset;
 		this.yoffset = yoffset;
 		this.xadvance = xadvance;
@@ -33,37 +64,37 @@ public class Glyph
 		return id;
 	}
 
-	public int getX()
+	public float getTexX()
 	{
-		return x;
+		return texX;
 	}
 
-	public int getY()
+	public float getTexY()
 	{
-		return y;
+		return texY;
 	}
 
-	public int getWidth()
+	public float getTexWidth()
 	{
-		return width;
+		return texWidth;
 	}
 
-	public int getHeight()
+	public float getTexHeight()
 	{
-		return height;
+		return texHeight;
 	}
 
-	public int getXoffset()
+	public float getXoffset()
 	{
 		return xoffset;
 	}
 
-	public int getYoffset()
+	public float getYoffset()
 	{
 		return /*37-*/yoffset;
 	}
 
-	public int getXadvance()
+	public float getXadvance()
 	{
 		return xadvance;
 	}
@@ -86,19 +117,19 @@ public class Glyph
 							break;
 
 						case "x":
-							glyph.x = Integer.parseInt(attr[1]);
+							glyph.texX = Integer.parseInt(attr[1]);
 							break;
 
 						case "y":
-							glyph.y = Integer.parseInt(attr[1]);
+							glyph.texY = Integer.parseInt(attr[1]);
 							break;
 
 						case "width":
-							glyph.width = Integer.parseInt(attr[1]);
+							glyph.texWidth = Integer.parseInt(attr[1]);
 							break;
 
 						case "height":
-							glyph.height = Integer.parseInt(attr[1]);
+							glyph.texHeight = Integer.parseInt(attr[1]);
 							break;
 
 						case "xoffset":
@@ -119,9 +150,20 @@ public class Glyph
 		return glyph;
 	}
 
+	public Vector2f[] getUVs()
+	{
+		return new Vector2f[]
+		{
+				new Vector2f(getTexX(), getTexY()),
+				new Vector2f(getTexX(), getTexY() + getTexHeight()),
+				new Vector2f(getTexX() + getTexWidth(), getTexY() + getTexHeight()),
+				new Vector2f(getTexX() + getTexWidth(), getTexY())
+		};
+	}
+
 	@Override
 	public String toString()
 	{
-		return this.id + ", " + this.x + ", " + this.y + ", " + this.width + ", " + this.height + ", " + this.xoffset + ", " + this.yoffset + ", " + this.xadvance;
+		return this.id + ", " + this.texX + ", " + this.texY + ", " + this.texWidth + ", " + this.texHeight + ", " + this.xoffset + ", " + this.yoffset + ", " + this.xadvance;
 	}
 }

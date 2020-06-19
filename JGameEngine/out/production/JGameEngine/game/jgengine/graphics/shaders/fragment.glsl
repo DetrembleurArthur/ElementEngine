@@ -5,7 +5,7 @@ out vec4 color;
 
 uniform vec4 uFillColor;
 uniform sampler2D TEX_SAMPLER;
-uniform int isTextured = 0;
+uniform int isTextured;
 
 void main()
 {

@@ -19,7 +19,7 @@ public class Window
 	private String title;
 	private Cursor cursor = null;
 
-	public static Window currentWindow = null;
+	public static Window WINDOW = null;
 
 	public String getTitle()
 	{
@@ -30,6 +30,11 @@ public class Window
 	{
 		glfwSetWindowTitle(windowId, title);
 		this.title = title;
+	}
+
+	public float getAspectRatio()
+	{
+		return getSize().x / getSize().y;
 	}
 
 	public Window() throws SysException
@@ -108,7 +113,7 @@ public class Window
 	public void setContext()
 	{
 		glfwMakeContextCurrent(windowId);
-		currentWindow = this;
+		WINDOW = this;
 	}
 
 	public void flip()

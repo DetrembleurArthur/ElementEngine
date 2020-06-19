@@ -41,11 +41,14 @@ public class MyTestGame extends Game
     Font font;
     Text text;
 
+    Rectangle rect;
+    Rectangle rect2;
+    Circle circle;
 
     @Override
     protected void load()
     {
-        getPrimaryWindow().setClearColor(Colors.WHITE);
+        getPrimaryWindow().setClearColor(Colors.TURQUOISE);
         getPrimaryWindow().setSize(1800, 1000);
         setFramerateLimit(60);
         getPrimaryWindow().setResizeable(false);
@@ -64,12 +67,29 @@ public class MyTestGame extends Game
         camera3D = new Camera3D(new PerspProjectionSettings(70f, getPrimaryWindow()));
 
         font = new Font("assets/fonts/test.fnt");
+
         text = new Text(font, "Hello world!");
         text.setFillColor(Colors.RED);
+        //text.setScale(new Vector3f(60, 60, 60));
 
-       // text.setLineLoopRenderMode();
-       // text.setTexture(null);
+        text.setLineStripRenderMode();
+        text.setTexture(null);
 
+        rect = new Rectangle(null);
+        rect.setScale(new Vector3f(100, 100, 100));
+        rect.setPosition(new Vector2f(200, 200));
+        rect.setFillColor(Colors.LIME);
+        circle = new Circle(50, 8, null);
+        circle.setFillColor(Colors.ORANGE);
+       // circle.setnPoints(10);
+        circle.setPosition(new Vector2f(500, 500));
+
+        rect2 = new Rectangle(null);
+        rect2.setPosition(new Vector2f(800, 200));
+        rect2.setFillColor(Colors.GREEN);
+        rect2.setScale(new Vector3f(100, 100, 100));
+        circle.setCenterOrigin();
+        rect.destroy();
 
     }
 
@@ -79,8 +99,11 @@ public class MyTestGame extends Game
         var pos = Mouse.getPosition(getPrimaryWindow());
         getPrimaryWindow().clear();
 
-
+        renderer.render(rect2, camera);
         renderer.render(text, camera);
+        renderer.render(rect, camera);
+        renderer.render(circle, camera);
+
 
 
         getPrimaryWindow().flip();
@@ -101,7 +124,7 @@ public class MyTestGame extends Game
     @Override
     public void buttonPressedEventHandler(int button)
     {
-
+        text.setText("AHAHA");
     }
 
     @Override

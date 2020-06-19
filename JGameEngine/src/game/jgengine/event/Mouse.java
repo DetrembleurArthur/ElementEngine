@@ -24,18 +24,18 @@ public class Mouse
 
 	public static Vector2f getPosition()
 	{
-		if(Window.currentWindow != null)
+		if(Window.WINDOW != null)
 		{
-			return getPosition(Window.currentWindow);
+			return getPosition(Window.WINDOW);
 		}
 		return null;
 	}
 
 	public static Vector2f getPosition(Camera2D camera)
 	{
-		if(Window.currentWindow != null)
+		if(Window.WINDOW != null)
 		{
-			return getPosition(Window.currentWindow, camera);
+			return getPosition(Window.WINDOW, camera);
 		}
 		return null;
 	}
@@ -59,17 +59,17 @@ public class Mouse
 
 	public static void setPosition(double x, double y)
 	{
-		if(Window.currentWindow != null)
+		if(Window.WINDOW != null)
 		{
-			setPosition(Window.currentWindow, x, y);
+			setPosition(Window.WINDOW, x, y);
 		}
 	}
 
 	public static void setPosition(Vector2f pos)
 	{
-		if(Window.currentWindow != null)
+		if(Window.WINDOW != null)
 		{
-			setPosition(Window.currentWindow, pos);
+			setPosition(Window.WINDOW, pos);
 		}
 	}
 }

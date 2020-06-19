@@ -28,6 +28,10 @@ public class Renderer
 			shader.setUniform1i("isTextured", 1);
 			shader.uploadTexture("TEX_SAMPLER", 0);
 		}
+		else
+		{
+			shader.setUniform1i("isTextured", 0);
+		}
 		shader.setUniformf4("uFillColor", gelem.getFillColor());
 		gelem.draw();
 		shader.stop();

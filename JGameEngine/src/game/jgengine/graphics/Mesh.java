@@ -83,9 +83,12 @@ public class Mesh
 
 	public void destroy()
 	{
-		vertexArray.destroy();
+		/*vertexArray.disableAttribs();
+		vertexBuffer.unbind();
 		vertexBuffer.destroy();
 		indexBuffer.destroy();
+		vertexArray.unbind();
+		vertexArray.destroy();*/
 	}
 
 }

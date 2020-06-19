@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import static java.lang.Thread.sleep;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL14.GL_BLEND_DST_ALPHA;
+import static org.lwjgl.opengl.GL14.GL_BLEND_SRC_ALPHA;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 public abstract class Game implements EventHandler
@@ -52,8 +54,8 @@ public abstract class Game implements EventHandler
 	final private void initGraphics()
 	{
 		glEnable(GL_BLEND);
-		glEnable(GL_DEPTH_TEST);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//glEnable(GL_DEPTH_TEST);
 	}
 
 

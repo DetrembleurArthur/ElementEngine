@@ -1,6 +1,7 @@
 package game.jgengine.graphics.vertex;
 
 
+import game.jgengine.debug.Logs;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
@@ -47,7 +48,7 @@ public class VertexBuffer
 	{
 		FloatBuffer buffer = initBuffer(vertices);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		glBufferData(GL_ARRAY_BUFFER, buffer, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, buffer, GL_DYNAMIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		if(buffer != null)
 			memFree(buffer);

@@ -1,5 +1,6 @@
 package game.jgengine.graphics;
 
+import game.jgengine.debug.Logs;
 import org.joml.Vector3f;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -88,7 +89,9 @@ public class GraphicElement extends Transformable
 		if(isRenderLine()) glLineWidth(lineWeight);
 		mesh.getVertexArray().bind();
 		mesh.getVertexArray().enableAttribs();
+		//mesh.getVertexBuffer().bind();
 		mesh.getIndexBuffer().drawElements(primitive);
+		//mesh.getVertexBuffer().unbind();
 		mesh.getVertexArray().disableAttribs();
 		mesh.getVertexArray().unbind();
 		if(isRenderLine()) glLineWidth(0);
@@ -101,6 +104,7 @@ public class GraphicElement extends Transformable
 
 	public void setMesh(Mesh mesh)
 	{
+		if(this.mesh != null) mesh.destroy();
 		this.mesh = mesh;
 	}
 

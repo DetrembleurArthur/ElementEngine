@@ -4,16 +4,12 @@ import game.jgengine.graphics.text.Glyph;
 import org.joml.Vector2f;
 import org.lwjgl.BufferUtils;
 
-import java.awt.*;
-import java.io.Console;
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
 import static org.lwjgl.opengl.GL13.glActiveTexture;
-import static org.lwjgl.opengl.GL30.glGenerateMipmap;
 import static org.lwjgl.stb.STBImage.stbi_image_free;
 import static org.lwjgl.stb.STBImage.stbi_load;
 
@@ -90,12 +86,6 @@ public class Texture
 	public float getHeight()
 	{
 		return dimension.y;
-	}
-
-
-	public Vector2f[] getUV2D(Glyph glyph)
-	{
-		return getUV2D(glyph.getX(), glyph.getY(), glyph.getWidth(), glyph.getHeight());
 	}
 
 	public Vector2f[] getUV2D(float x, float y, float w, float h)
