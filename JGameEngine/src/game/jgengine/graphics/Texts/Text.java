@@ -94,13 +94,16 @@ public class Text extends Shape
 	public BoundingBox getBoundingBox()
 	{
 		BoundingBox globalBox = (BoundingBox) getCharBox(0).clone();
+		float maxX = globalBox.getX();
 		for(int i = 1; i < text.length(); i++)
 		{
 			var box = getCharBox(i);
 			if(globalBox.getY() > box.getY()) globalBox.setY(box.getY());
-			globalBox.setWidth(globalBox.getWidth() + box.getWidth());
+			if(maxX < box.getX()) maxX = box.getX() + box.getWidth();
+
 			if(globalBox.getHeight() < box.getHeight()) globalBox.setHeight(box.getHeight());
 		}
+		globalBox.setWidth(maxX - globalBox.getX());
 		return globalBox;
 	}
 
