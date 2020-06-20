@@ -1,32 +1,21 @@
 import game.jgengine.debug.Logs;
-import game.jgengine.event.Input;
 import game.jgengine.event.Mouse;
 import game.jgengine.exceptions.SysException;
 import game.jgengine.graphics.Renderer;
-import game.jgengine.graphics.camera.*;
+import game.jgengine.graphics.camera.Camera2D;
+import game.jgengine.graphics.camera.Camera3D;
+import game.jgengine.graphics.camera.OrthoProjectionSettings;
+import game.jgengine.graphics.camera.PerspProjectionSettings;
 import game.jgengine.graphics.loaders.TextureLoader;
 import game.jgengine.graphics.shapes.Circle;
 import game.jgengine.graphics.shapes.Rectangle;
-import game.jgengine.graphics.shapes.SpriteSheet;
-import game.jgengine.graphics.text.Font;
-import game.jgengine.graphics.text.Text;
+import game.jgengine.graphics.texts.Font;
+import game.jgengine.graphics.texts.Text;
 import game.jgengine.registry.Registry;
 import game.jgengine.sys.Game;
-import game.jgengine.time.DynamicTimer;
-import game.jgengine.time.StaticTimer;
-import game.jgengine.time.SyncTimer;
-import game.jgengine.tweening.*;
 import game.jgengine.utils.Colors;
-import game.jgengine.utils.MathUtil;
-import org.joml.Circled;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
-import org.lwjgl.glfw.GLFW;
-
-import java.util.Objects;
-
-import static org.lwjgl.opengl.GL11.GL_LINES;
-import static org.lwjgl.opengl.GL11.GL_LINE_LOOP;
 
 
 public class MyTestGame extends Game
@@ -42,12 +31,11 @@ public class MyTestGame extends Game
     Text text;
 
     Rectangle rect;
-    Rectangle rect2;
-    Circle circle;
 
     @Override
     protected void load()
     {
+        Logs.print("test");
         getPrimaryWindow().setClearColor(Colors.TURQUOISE);
         getPrimaryWindow().setSize(1800, 1000);
         setFramerateLimit(60);
@@ -69,27 +57,17 @@ public class MyTestGame extends Game
         font = new Font("assets/fonts/test.fnt");
 
         text = new Text(font, "Hello world!");
+
         text.setFillColor(Colors.RED);
+        text.setSizePx(50);
+        text.setPosition(new Vector2f(100, 100));
         //text.setScale(new Vector3f(60, 60, 60));
 
-        text.setLineStripRenderMode();
-        text.setTexture(null);
+        //text.setLineStripRenderMode();
+        //text.setTexture(null);
 
-        rect = new Rectangle(null);
-        rect.setScale(new Vector3f(100, 100, 100));
-        rect.setPosition(new Vector2f(200, 200));
-        rect.setFillColor(Colors.LIME);
-        circle = new Circle(50, 8, null);
-        circle.setFillColor(Colors.ORANGE);
-       // circle.setnPoints(10);
-        circle.setPosition(new Vector2f(500, 500));
-
-        rect2 = new Rectangle(null);
-        rect2.setPosition(new Vector2f(800, 200));
-        rect2.setFillColor(Colors.GREEN);
-        rect2.setScale(new Vector3f(100, 100, 100));
-        circle.setCenterOrigin();
-        rect.destroy();
+        rect = text.getBoundingBox().asRectangle();
+        rect.setFillColor(Colors.BLUE);
 
     }
 
@@ -99,10 +77,9 @@ public class MyTestGame extends Game
         var pos = Mouse.getPosition(getPrimaryWindow());
         getPrimaryWindow().clear();
 
-        renderer.render(rect2, camera);
-        renderer.render(text, camera);
+
         renderer.render(rect, camera);
-        renderer.render(circle, camera);
+        renderer.render(text, camera);
 
 
 
@@ -114,8 +91,12 @@ public class MyTestGame extends Game
     {
         getPrimaryWindow().setTitle("fps " + Double.toString(1.f /dt));
         camera.activateKeys(getPrimaryWindow(), Camera2D.SPECTATOR_KEY_SET);
-        var mp = Mouse.getPosition();
-        text.setPosition(mp);
+        var mp = Mouse.getPosition(camera);
+
+        if(text.getCharBox(0).isCollision(mp))
+            text.setFillColor(Colors.GREEN);
+        else
+            text.setFillColor(Colors.RED);
     }
 
 
@@ -124,7 +105,7 @@ public class MyTestGame extends Game
     @Override
     public void buttonPressedEventHandler(int button)
     {
-        text.setText("AHAHA");
+        //text.setSizePx(text.getSizePx()+1);
     }
 
     @Override

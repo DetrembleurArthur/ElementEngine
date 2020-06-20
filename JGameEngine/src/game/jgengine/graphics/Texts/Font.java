@@ -1,4 +1,4 @@
-package game.jgengine.graphics.Texts;
+package game.jgengine.graphics.texts;
 
 import game.jgengine.debug.Logs;
 import game.jgengine.graphics.Mesh;
@@ -6,7 +6,6 @@ import game.jgengine.graphics.shaders.Texture;
 import game.jgengine.utils.VariableLoader;
 import org.joml.Vector2f;
 import org.joml.Vector2i;
-import org.lwjgl.system.CallbackI;
 
 import java.io.*;
 import java.util.HashMap;
@@ -20,7 +19,7 @@ public class Font
 	*/
 	private String fontPath;
 	private String face;
-	private int size;
+	private float sizePx;
 	private boolean bold;
 	private boolean italic;
 	private String texFile;
@@ -43,7 +42,7 @@ public class Font
 	private void setInfoFromLoader(VariableLoader loader)
 	{
 		face = loader.getString("face").replace("\"", "");
-		size = loader.getInt("size");
+		sizePx = loader.getInt("size");
 		bold = loader.getBool("bold");
 		italic = loader.getBool("italic");
 		texFile = loader.getString("file").replace("\"", "");
@@ -53,7 +52,6 @@ public class Font
 		base = loader.getFloat("base");
 		scaleW = loader.getFloat("scaleW");
 		scaleH = loader.getFloat("scaleH");
-		Logs.print(new File(fontPath).getParent() + "/"+texFile);
 		textureAtlas = new Texture(new File(fontPath).getParent() + "/"+texFile, true);
 	}
 
@@ -86,8 +84,13 @@ public class Font
 
 	public Mesh generateMesh(String text)
 	{
+		return generateMesh(text, 1f);
+	}
+
+	public Mesh generateMesh(String text, float ratioFactor)
+	{
 		var len = text.length();
-		float[] vertices = new float[len * 4];
+		float[] vertices = new float[len * 4 * 4];
 		int[] indices = new int[len * 6];
 		Vector2i counters = new Vector2i(0, 0);
 		Vector2f cursorPos = new Vector2f(0, 0);
@@ -98,19 +101,19 @@ public class Font
 		{
 			Glyph glyph = glyphs.get(text.charAt(i));
 			uvs = glyph.getUVs();
-			pos.x = cursorPos.x + glyph.getXoffset();
-			pos.y = cursorPos.y + glyph.getYoffset();
-			maxPos.x = pos.x + glyph.getTexWidth();
-			maxPos.y = pos.y + glyph.getTexHeight();
+			pos.x = cursorPos.x + glyph.getXoffset() * ratioFactor;
+			pos.y = cursorPos.y + glyph.getYoffset() * ratioFactor;
+			maxPos.x = pos.x + glyph.getTexWidth() * ratioFactor;
+			maxPos.y = pos.y + glyph.getTexHeight() * ratioFactor;
 
 			addVertex(counters, vertices, pos, uvs[0]); //top left
 			addVertex(counters, vertices, new Vector2f(pos.x, maxPos.y), uvs[1]); //bottom left
-			addVertex(counters, vertices, maxPos, uvs[0]); //bottom right
-			addVertex(counters, vertices, new Vector2f(maxPos.x, pos.y), uvs[0]); //top right
+			addVertex(counters, vertices, maxPos, uvs[2]); //bottom right
+			addVertex(counters, vertices, new Vector2f(maxPos.x, pos.y), uvs[3]); //top right
 
 			addIndex(counters, indices, i);
 
-			cursorPos.x += glyph.getXadvance();
+			cursorPos.x += glyph.getXadvance() * ratioFactor;
 		}
 		return new Mesh(vertices, indices, Mesh.DIMENSION_2, Mesh.TEXTURED);
 	}
@@ -143,9 +146,9 @@ public class Font
 		return face;
 	}
 
-	public int getSize()
+	public float getSizePx()
 	{
-		return size;
+		return sizePx;
 	}
 
 	public boolean isBold()
@@ -186,5 +189,20 @@ public class Font
 	public float getScaleH()
 	{
 		return scaleH;
+	}
+
+	public String getTexFile()
+	{
+		return texFile;
+	}
+
+	public Texture getTextureAtlas()
+	{
+		return textureAtlas;
+	}
+
+	public float getSizePt()
+	{
+		return sizePx / 1.333333f;
 	}
 }

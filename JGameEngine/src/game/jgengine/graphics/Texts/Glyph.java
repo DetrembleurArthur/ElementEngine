@@ -1,4 +1,4 @@
-package game.jgengine.graphics.Texts;
+package game.jgengine.graphics.texts;
 
 import game.jgengine.graphics.shaders.Texture;
 import game.jgengine.utils.VariableLoader;

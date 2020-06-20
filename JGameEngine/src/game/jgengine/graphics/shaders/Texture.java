@@ -1,6 +1,6 @@
 package game.jgengine.graphics.shaders;
 
-import game.jgengine.graphics.text.Glyph;
+
 import org.joml.Vector2f;
 import org.lwjgl.BufferUtils;
 

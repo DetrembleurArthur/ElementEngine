@@ -1,5 +1,6 @@
 package game.jgengine.graphics.shapes;
 
+import game.jgengine.utils.MathUtil;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
@@ -38,9 +39,34 @@ public class BoundingBox
 		return height;
 	}
 
+	public void setX(float x)
+	{
+		this.x = x;
+	}
+
+	public void setY(float y)
+	{
+		this.y = y;
+	}
+
+	public void setWidth(float width)
+	{
+		this.width = width;
+	}
+
+	public void setHeight(float height)
+	{
+		this.height = height;
+	}
+
 	public boolean isCollision(final BoundingBox other)
 	{
 		return x < other.x + other.width && x + width > other.x && y < other.y + other.height && y + height > other.y;
+	}
+
+	public boolean isCollision(final Vector2f pos)
+	{
+		return MathUtil.boxContains(new Vector2f(x, y), new Vector2f(width, height), pos);
 	}
 
 	public Rectangle asRectangle()
@@ -49,5 +75,11 @@ public class BoundingBox
 		r.setPosition(new Vector2f(x, y));
 		r.setScale(new Vector3f(width, height, 1));
 		return r;
+	}
+
+	@Override
+	public Object clone()
+	{
+		return new BoundingBox(x, y, width, height);
 	}
 }
