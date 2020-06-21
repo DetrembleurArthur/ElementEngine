@@ -255,6 +255,13 @@ public class Window
 		return new Vector2f(width[0], height[0]);
 	}
 
+	public Vector2i getiSize()
+	{
+		int[] width = new int[1], height = new int[1];
+		glfwGetWindowSize(windowId, width, height);
+		return new Vector2i(width[0], height[0]);
+	}
+
 	@Override
 	protected Object clone() throws CloneNotSupportedException
 	{

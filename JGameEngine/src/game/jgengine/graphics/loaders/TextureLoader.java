@@ -1,6 +1,6 @@
 package game.jgengine.graphics.loaders;
 
-import game.jgengine.graphics.shaders.Texture;
+import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.registry.Registry;
 
 import java.io.File;

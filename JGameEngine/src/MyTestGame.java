@@ -1,13 +1,12 @@
 import game.jgengine.debug.Logs;
 import game.jgengine.event.Mouse;
 import game.jgengine.exceptions.SysException;
-import game.jgengine.graphics.Renderer;
+import game.jgengine.graphics.rendering.*;
 import game.jgengine.graphics.camera.Camera2D;
 import game.jgengine.graphics.camera.Camera3D;
 import game.jgengine.graphics.camera.OrthoProjectionSettings;
 import game.jgengine.graphics.camera.PerspProjectionSettings;
 import game.jgengine.graphics.loaders.TextureLoader;
-import game.jgengine.graphics.shapes.Circle;
 import game.jgengine.graphics.shapes.Rectangle;
 import game.jgengine.graphics.texts.Font;
 import game.jgengine.graphics.texts.Text;
@@ -15,7 +14,7 @@ import game.jgengine.registry.Registry;
 import game.jgengine.sys.Game;
 import game.jgengine.utils.Colors;
 import org.joml.Vector2f;
-import org.joml.Vector3f;
+import org.joml.Vector2i;
 
 
 public class MyTestGame extends Game
@@ -31,6 +30,11 @@ public class MyTestGame extends Game
     Text text;
 
     Rectangle rect;
+
+
+    TargetRenderer targetRenderer;
+    TargetTexture target;
+    Rectangle targetRect;
 
     @Override
     protected void load()
@@ -69,6 +73,13 @@ public class MyTestGame extends Game
         rect = text.getBoundingBox().asRectangle();
         rect.setFillColor(Colors.BLUE);
 
+        target = new TargetTexture(new Vector2i(300, 300));
+        targetRect = new Rectangle(new Image("assets/bricks.png").toTexture(true));
+        targetRect.setPosition(new Vector2f(600, 600));
+        targetRect.setDimension(300, 300);
+        targetRenderer = new TargetRenderer(Registry.getShader("DEFAULT"), getPrimaryWindow(), target);
+
+
     }
 
     @Override
@@ -80,8 +91,7 @@ public class MyTestGame extends Game
 
         renderer.render(rect, camera);
         renderer.render(text, camera);
-
-
+        renderer.render(targetRect, camera);
 
         getPrimaryWindow().flip();
     }
@@ -105,7 +115,9 @@ public class MyTestGame extends Game
     @Override
     public void buttonPressedEventHandler(int button)
     {
-        //text.setSizePx(text.getSizePx()+1);
+        //targetRenderer.render(rect, camera);
+        //targetRenderer.render(text, camera);
+        Image.takeScreenShot("assets/screen.png");
     }
 
     @Override

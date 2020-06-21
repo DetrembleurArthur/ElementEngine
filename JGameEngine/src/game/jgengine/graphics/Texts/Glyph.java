@@ -1,6 +1,6 @@
 package game.jgengine.graphics.texts;
 
-import game.jgengine.graphics.shaders.Texture;
+import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.utils.VariableLoader;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector2f;

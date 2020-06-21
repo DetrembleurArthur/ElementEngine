@@ -21,7 +21,7 @@
 Command Line: -javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.3.4\lib\idea_rt.jar=63272:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.3.4\bin -Dfile.encoding=UTF-8 MyTestGame
 
 Host: Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz, 8 cores, 11G,  Windows 10 , 64 bit Build 18362 (10.0.18362.778)
-Time: Sat Jun  6 16:28:26 2020 Paris, Madrid (heure d?été) elapsed time: 0 seconds (0d 0h 0m 0s)
+Time: Sat Jun  6 16:28:26 2020 Paris, Madrid (heure d?ï¿½tï¿½) elapsed time: 0 seconds (0d 0h 0m 0s)
 
 ---------------  T H R E A D  ---------------
 
@@ -35,7 +35,7 @@ Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
 j  org.lwjgl.opengl.GL11C.nglTexImage2D(IIIIIIIIJ)V+0
 j  org.lwjgl.opengl.GL11C.glTexImage2D(IIIIIIIILjava/nio/ByteBuffer;)V+17
 j  org.lwjgl.opengl.GL11.glTexImage2D(IIIIIIIILjava/nio/ByteBuffer;)V+14
-j  game.jgengine.graphics.shaders.Texture.<init>(Ljava/lang/String;Z)V+155
+j  game.jgengine.graphics.rendering.Texture.<init>(Ljava/lang/String;Z)V+155
 j  game.jgengine.graphics.loaders.TextureLoader.load(Ljava/lang/String;Ljava/lang/String;)Lgame/jgengine/graphics/shaders/Texture;+48
 j  game.jgengine.graphics.loaders.TextureLoader.loadDir(Ljava/lang/String;)V+56
 j  MyTestGame.load()V+34

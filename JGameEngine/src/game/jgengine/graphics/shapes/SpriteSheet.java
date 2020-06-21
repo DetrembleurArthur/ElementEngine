@@ -1,7 +1,6 @@
 package game.jgengine.graphics.shapes;
 
-import game.jgengine.debug.Logs;
-import game.jgengine.graphics.shaders.Texture;
+import game.jgengine.graphics.rendering.Texture;
 import org.joml.Vector2f;
 
 import java.util.ArrayList;

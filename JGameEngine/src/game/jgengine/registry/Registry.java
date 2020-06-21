@@ -1,7 +1,7 @@
 package game.jgengine.registry;
 
 import game.jgengine.graphics.shaders.Shader;
-import game.jgengine.graphics.shaders.Texture;
+import game.jgengine.graphics.rendering.Texture;
 
 import java.util.HashMap;
 

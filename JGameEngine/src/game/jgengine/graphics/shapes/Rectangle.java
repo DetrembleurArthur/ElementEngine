@@ -1,13 +1,10 @@
 package game.jgengine.graphics.shapes;
 
-import game.jgengine.debug.Logs;
-import game.jgengine.entity.GameObject;
 import game.jgengine.graphics.Mesh;
-import game.jgengine.graphics.shaders.Texture;
+import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.utils.MathUtil;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector2f;
-import org.joml.Vector3f;
 
 public class Rectangle extends Shape
 {

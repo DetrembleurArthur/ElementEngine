@@ -1,8 +1,7 @@
 package game.jgengine.graphics.texts;
 
-import game.jgengine.debug.Logs;
 import game.jgengine.graphics.Mesh;
-import game.jgengine.graphics.shaders.Texture;
+import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.utils.VariableLoader;
 import org.joml.Vector2f;
 import org.joml.Vector2i;

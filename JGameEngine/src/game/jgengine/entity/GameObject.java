@@ -2,13 +2,9 @@ package game.jgengine.entity;
 
 import game.jgengine.graphics.GraphicElement;
 import game.jgengine.graphics.Mesh;
-import game.jgengine.graphics.shaders.Texture;
+import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.utils.Colors;
-import org.joml.Vector3f;
 import org.joml.Vector4f;
-import org.lwjgl.system.CallbackI;
-
-import static org.lwjgl.opengl.GL11.glLineWidth;
 
 public class GameObject extends GraphicElement
 {

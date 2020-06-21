@@ -1,6 +1,6 @@
 package game.jgengine.graphics.shapes;
 
-import game.jgengine.graphics.shaders.Texture;
+import game.jgengine.graphics.rendering.Texture;
 import org.joml.Vector2f;
 
 public class Sprite

@@ -2,10 +2,8 @@ package game.jgengine.graphics.shapes;
 
 import game.jgengine.entity.GameObject;
 import game.jgengine.graphics.Mesh;
-import game.jgengine.graphics.shaders.Texture;
+import game.jgengine.graphics.rendering.Texture;
 import org.joml.Vector2f;
-
-import java.util.HashMap;
 
 public abstract class Shape extends GameObject
 {
