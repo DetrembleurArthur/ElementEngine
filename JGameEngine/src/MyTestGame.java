@@ -39,7 +39,6 @@ public class MyTestGame extends Game
     @Override
     protected void load()
     {
-        Logs.print("test");
         getPrimaryWindow().setClearColor(Colors.TURQUOISE);
         getPrimaryWindow().setSize(1800, 1000);
         setFramerateLimit(60);
@@ -48,6 +47,8 @@ public class MyTestGame extends Game
 
 
         TextureLoader.loadDir("assets/");
+
+
 
 
 
@@ -60,7 +61,9 @@ public class MyTestGame extends Game
 
         font = new Font("assets/fonts/test.fnt");
 
-        text = new Text(font, "Hello world!");
+        Registry.set("test", font);
+
+        text = new Text(Registry.getFont("test"), "Hello\tworld!\n");
 
         text.setFillColor(Colors.RED);
         text.setSizePx(50);
@@ -117,7 +120,7 @@ public class MyTestGame extends Game
     {
         //targetRenderer.render(rect, camera);
         //targetRenderer.render(text, camera);
-        Image.takeScreenShot("assets/screen.png");
+        getPrimaryWindow().takeScreenShot("assets/screen.png");
     }
 
     @Override

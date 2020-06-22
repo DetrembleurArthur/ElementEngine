@@ -2,6 +2,7 @@ package game.jgengine.registry;
 
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.graphics.rendering.Texture;
+import game.jgengine.graphics.texts.Font;
 
 import java.util.HashMap;
 
@@ -9,10 +10,12 @@ public class Registry
 {
 	private static HashMap<String, Texture> textures;
 	private static HashMap<String, Shader> shaders;
+	private static HashMap<String, Font> fonts;
 	static
 	{
 		textures = new HashMap<>();
 		shaders = new HashMap<>();
+		fonts = new HashMap<>();
 	}
 
 	public static void set(String name, Texture texture)
@@ -33,6 +36,16 @@ public class Registry
 	public static Shader getShader(String name)
 	{
 		return shaders.get(name);
+	}
+
+	public static void set(String name, Font font)
+	{
+		fonts.put(name, font);
+	}
+
+	public static Font getFont(String name)
+	{
+		return fonts.get(name);
 	}
 
 	public static void close()

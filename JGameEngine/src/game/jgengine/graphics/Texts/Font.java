@@ -1,5 +1,6 @@
 package game.jgengine.graphics.texts;
 
+import game.jgengine.debug.Logs;
 import game.jgengine.graphics.Mesh;
 import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.utils.VariableLoader;
@@ -88,6 +89,7 @@ public class Font
 
 	public Mesh generateMesh(String text, float ratioFactor)
 	{
+		text = text.replace("\t", "    ");
 		var len = text.length();
 		float[] vertices = new float[len * 4 * 4];
 		int[] indices = new int[len * 6];
@@ -98,6 +100,11 @@ public class Font
 		Vector2f[] uvs;
 		for(int i = 0; i < len; i++)
 		{
+			if(text.charAt(i) == '\n')
+			{
+				cursorPos.y += lineHeight * ratioFactor;
+				cursorPos.x = 0;
+			}
 			Glyph glyph = glyphs.get(text.charAt(i));
 			uvs = glyph.getUVs();
 			pos.x = cursorPos.x + glyph.getXoffset() * ratioFactor;

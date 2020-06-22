@@ -6,7 +6,15 @@ import game.jgengine.utils.Cursor;
 import org.joml.Vector2f;
 import org.joml.Vector2i;
 import org.joml.Vector4f;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.opengl.GL11;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.ByteBuffer;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
@@ -385,6 +393,33 @@ public class Window
 	{
 		var size = getSize();
 		glViewport(0, 0, (int)size.x, (int)size.y);
+	}
+
+	public void takeScreenShot(String dst)
+	{
+		var size = getiSize();
+		ByteBuffer buffer = BufferUtils.createByteBuffer(size.x * size.y * 4);
+		GL11.glReadPixels(0, 0, size.x, size.y, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, buffer);
+		BufferedImage image = new BufferedImage(size.x, size.y, BufferedImage.TYPE_INT_ARGB);
+		for(int i = 0; i < size.x; i++)
+		{
+			for(int j = 0; j < size.y; j++)
+			{
+				int pos = (j * size.x + i) * 4;
+				int r = buffer.get(pos) & 0xff;
+				int g = buffer.get(pos + 1) & 0xff;
+				int b = buffer.get(pos + 2) & 0xff;
+				int a = buffer.get(pos + 3) & 0xff;
+				image.setRGB(i, size.y - 1 - j, (a << 24) | (r << 16) | (g << 8) | b);
+			}
+		}
+		try
+		{
+			ImageIO.write(image, "PNG", new File(dst));
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 }
 

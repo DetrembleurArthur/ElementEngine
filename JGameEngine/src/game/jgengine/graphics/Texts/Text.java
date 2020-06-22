@@ -56,7 +56,7 @@ public class Text extends Shape
 
 	public void setText(String text)
 	{
-		this.text = text;
+		this.text = text.replace("\t", "    ");
 		setMesh(font.generateMesh(text, sizePx / font.getSizePx()));
 		loadBoundingBoxes();
 	}
