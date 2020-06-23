@@ -2,7 +2,7 @@ package game.jgengine.graphics.camera;
 
 
 import game.jgengine.event.Input;
-import game.jgengine.graphics.Transformable;
+import game.jgengine.entity.Transformable;
 import game.jgengine.sys.Window;
 import org.joml.*;
 

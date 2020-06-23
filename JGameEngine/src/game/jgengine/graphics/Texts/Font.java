@@ -1,7 +1,6 @@
 package game.jgengine.graphics.texts;
 
-import game.jgengine.debug.Logs;
-import game.jgengine.graphics.Mesh;
+import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.utils.VariableLoader;
 import org.joml.Vector2f;
@@ -84,26 +83,30 @@ public class Font
 
 	public Mesh generateMesh(String text)
 	{
-		return generateMesh(text, 1f);
+		return generateMesh(text, 1f, new Vector2f());
 	}
 
-	public Mesh generateMesh(String text, float ratioFactor)
+	public Mesh generateMesh(String text, float ratioFactor, Vector2f origin)
 	{
 		text = text.replace("\t", "    ");
 		var len = text.length();
 		float[] vertices = new float[len * 4 * 4];
 		int[] indices = new int[len * 6];
 		Vector2i counters = new Vector2i(0, 0);
-		Vector2f cursorPos = new Vector2f(0, 0);
+		Vector2f cursorPos = new Vector2f(-origin.x, -origin.y);
 		Vector2f pos = new Vector2f();
 		Vector2f maxPos = new Vector2f();
 		Vector2f[] uvs;
+		int nlPadding = 0; //permet d'ajuster les indexs par rapport au nombre de lignes
+
 		for(int i = 0; i < len; i++)
 		{
 			if(text.charAt(i) == '\n')
 			{
 				cursorPos.y += lineHeight * ratioFactor;
-				cursorPos.x = 0;
+				cursorPos.x = -origin.x;
+				nlPadding++;
+				continue;
 			}
 			Glyph glyph = glyphs.get(text.charAt(i));
 			uvs = glyph.getUVs();
@@ -117,7 +120,7 @@ public class Font
 			addVertex(counters, vertices, maxPos, uvs[2]); //bottom right
 			addVertex(counters, vertices, new Vector2f(maxPos.x, pos.y), uvs[3]); //top right
 
-			addIndex(counters, indices, i);
+			addIndex(counters, indices, i - nlPadding);
 
 			cursorPos.x += glyph.getXadvance() * ratioFactor;
 		}

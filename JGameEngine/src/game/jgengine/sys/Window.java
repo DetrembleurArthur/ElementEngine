@@ -223,6 +223,12 @@ public class Window
 				(int)(screenSize.y - windowSize.y) / 2);
 	}
 
+	public Vector2f getCenter()
+	{
+		var size = getSize();
+		return new Vector2f(size.x / 2f, size.y / 2f);
+	}
+
 	public Vector2i getPosition()
 	{
 		int[] x = new int[1], y = new int[1];

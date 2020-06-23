@@ -11,7 +11,9 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 public class VertexArray
 {
 	private int vao = 0;
-	private byte attribs = 0;
+	private byte attribs = 3;
+	private byte positionSize = 0;
+	private byte uvSize = 0;
 
 	public VertexArray()
 	{
@@ -25,18 +27,13 @@ public class VertexArray
 		if(dimension != 2 && dimension != 3)
 			dimension = 3;
 
-		int positionSize = dimension;
-		int uvSize = uv;
+		positionSize = (byte)dimension;
+		uvSize = (byte)uv;
 		int vertexSize = (positionSize + uv) * Float.BYTES;
-		attribs = 1;
 		glVertexAttribPointer(0, positionSize, GL_FLOAT, true, vertexSize, 0);
 		glEnableVertexAttribArray(0);
-		if(uv > 0)
-		{
-			attribs++;
-			glVertexAttribPointer(1, uvSize, GL_FLOAT, true, vertexSize, positionSize * Float.BYTES);
-			glEnableVertexAttribArray(1);
-		}
+		glVertexAttribPointer(1, uvSize, GL_FLOAT, true, vertexSize, positionSize * Float.BYTES);
+		glEnableVertexAttribArray(1);
 	}
 	public void bind()
 	{
@@ -72,6 +69,26 @@ public class VertexArray
 		{
 			glDisableVertexAttribArray(i);
 		}
+	}
+
+	public int vertexSize()
+	{
+		return positionSize + uvSize;
+	}
+
+	public int vertexSizeByte()
+	{
+		return (positionSize + uvSize) * Float.BYTES;
+	}
+
+	public byte getPositionSize()
+	{
+		return positionSize;
+	}
+
+	public byte getUvSize()
+	{
+		return uvSize;
 	}
 
 	public void destroy()

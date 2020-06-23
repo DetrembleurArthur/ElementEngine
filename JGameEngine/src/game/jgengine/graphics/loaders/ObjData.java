@@ -1,6 +1,6 @@
 package game.jgengine.graphics.loaders;
 
-import game.jgengine.graphics.Mesh;
+import game.jgengine.graphics.vertex.Mesh;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.joml.Vector3i;

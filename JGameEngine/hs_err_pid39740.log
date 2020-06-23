@@ -433,7 +433,7 @@ Event: 1.207 Thread 0x000001326e669000 1051       1       org.joml.Vector3f::y (
 Event: 1.207 Thread 0x000001326e669000 nmethod 1051 0x000001325d133b90 code [0x000001325d133d20, 0x000001325d133e58]
 Event: 1.207 Thread 0x000001326e669000 1052       1       org.joml.Vector3f::z (5 bytes)
 Event: 1.208 Thread 0x000001326e669000 nmethod 1052 0x000001325d133f10 code [0x000001325d1340a0, 0x000001325d1341d8]
-Event: 1.208 Thread 0x000001326e669000 1053       1       game.jgengine.graphics.Mesh::getVertexArray (5 bytes)
+Event: 1.208 Thread 0x000001326e669000 1053       1       game.jgengine.graphics.vertex.Mesh::getVertexArray (5 bytes)
 Event: 1.208 Thread 0x000001326e669000 nmethod 1053 0x000001325d134290 code [0x000001325d134420, 0x000001325d134558]
 Event: 1.224 Thread 0x000001326e669000 1054       3       org.joml.Matrix4f::_m01 (7 bytes)
 Event: 1.224 Thread 0x000001326e669000 nmethod 1054 0x0000013255d86210 code [0x0000013255d863a0, 0x0000013255d86518]

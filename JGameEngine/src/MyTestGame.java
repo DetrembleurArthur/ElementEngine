@@ -15,6 +15,7 @@ import game.jgengine.sys.Game;
 import game.jgengine.utils.Colors;
 import org.joml.Vector2f;
 import org.joml.Vector2i;
+import org.joml.Vector3f;
 
 
 public class MyTestGame extends Game
@@ -29,21 +30,21 @@ public class MyTestGame extends Game
     Font font;
     Text text;
 
+    Vector2f speed;
+
     Rectangle rect;
 
 
-    TargetRenderer targetRenderer;
-    TargetTexture target;
-    Rectangle targetRect;
 
     @Override
     protected void load()
     {
-        getPrimaryWindow().setClearColor(Colors.TURQUOISE);
+        getPrimaryWindow().setClearColor(Colors.BLACK);
         getPrimaryWindow().setSize(1800, 1000);
         setFramerateLimit(60);
         getPrimaryWindow().setResizeable(false);
         getPrimaryWindow().center();
+
 
 
         TextureLoader.loadDir("assets/");
@@ -59,28 +60,25 @@ public class MyTestGame extends Game
         camera = new Camera2D(new OrthoProjectionSettings(getPrimaryWindow()));
         camera3D = new Camera3D(new PerspProjectionSettings(70f, getPrimaryWindow()));
 
-        font = new Font("assets/fonts/test.fnt");
+        font = new Font("assets/fonts/gotic.fnt");
 
         Registry.set("test", font);
 
-        text = new Text(Registry.getFont("test"), "Hello\tworld!\n");
+        text = new Text(Registry.getFont("test"), "Hello\nWorld!");
 
         text.setFillColor(Colors.RED);
         text.setSizePx(50);
-        text.setPosition(new Vector2f(100, 100));
-        //text.setScale(new Vector3f(60, 60, 60));
+        text.setCenterOrigin();
 
         //text.setLineStripRenderMode();
         //text.setTexture(null);
 
-        rect = text.getBoundingBox().asRectangle();
-        rect.setFillColor(Colors.BLUE);
 
-        target = new TargetTexture(new Vector2i(300, 300));
-        targetRect = new Rectangle(new Image("assets/bricks.png").toTexture(true));
-        targetRect.setPosition(new Vector2f(600, 600));
-        targetRect.setDimension(300, 300);
-        targetRenderer = new TargetRenderer(Registry.getShader("DEFAULT"), getPrimaryWindow(), target);
+        rect = new Rectangle(Registry.getTexture("bricks.png"));
+        rect.setDimension(50, 100);
+        rect.setCenterOrigin();
+        rect.setPosition(getPrimaryWindow().getCenter());
+        speed = rect.getComponent(getPrimaryWindow().getCenter());
 
 
     }
@@ -93,8 +91,6 @@ public class MyTestGame extends Game
 
 
         renderer.render(rect, camera);
-        renderer.render(text, camera);
-        renderer.render(targetRect, camera);
 
         getPrimaryWindow().flip();
     }
@@ -105,11 +101,7 @@ public class MyTestGame extends Game
         getPrimaryWindow().setTitle("fps " + Double.toString(1.f /dt));
         camera.activateKeys(getPrimaryWindow(), Camera2D.SPECTATOR_KEY_SET);
         var mp = Mouse.getPosition(camera);
-
-        if(text.getCharBox(0).isCollision(mp))
-            text.setFillColor(Colors.GREEN);
-        else
-            text.setFillColor(Colors.RED);
+        rect.rotateArounddt(mp, new Vector2f(360, 20));
     }
 
 
@@ -118,9 +110,7 @@ public class MyTestGame extends Game
     @Override
     public void buttonPressedEventHandler(int button)
     {
-        //targetRenderer.render(rect, camera);
-        //targetRenderer.render(text, camera);
-        getPrimaryWindow().takeScreenShot("assets/screen.png");
+        //getPrimaryWindow().takeScreenShot("assets/screen.png");
     }
 
     @Override

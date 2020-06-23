@@ -1,7 +1,7 @@
 package game.jgengine.graphics.shapes;
 
 import game.jgengine.entity.GameObject;
-import game.jgengine.graphics.Mesh;
+import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.rendering.Texture;
 import org.joml.Vector2f;
 

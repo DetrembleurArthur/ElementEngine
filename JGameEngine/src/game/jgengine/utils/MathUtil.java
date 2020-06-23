@@ -17,6 +17,19 @@ public class MathUtil
 		return pos;
 	}
 
+	public static Vector2f rotateAround(Vector2f rotable, Vector2f rotPoint, Vector2f angleDegree)
+	{
+		var pos = new Vector2f(rotable);
+		pos.x -= rotPoint.x;
+		pos.y -= rotPoint.y;
+		var angle = new Vector2f((float)Math.toRadians(angleDegree.x), (float)Math.toRadians(angleDegree.y));
+		var posx = (float) (Math.cos(angle.x) * pos.x - Math.sin(angle.x) * pos.y);
+		var posy = (float) (Math.sin(angle.y) * pos.x + Math.cos(angle.y) * pos.y);
+		pos.x = posx + rotPoint.x;
+		pos.y = posy + rotPoint.y;
+		return pos;
+	}
+
 	public static boolean boxContains(Vector2f boxPosition, Vector2f boxSize, Vector2f point)
 	{
 		return point.x >= boxPosition.x && point.x <= boxPosition.x + boxSize.x && point.y >= boxPosition.y && point.y <= boxPosition.y + boxSize.y;

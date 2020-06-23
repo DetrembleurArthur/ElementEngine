@@ -1,6 +1,6 @@
 package game.jgengine.graphics.shapes;
 
-import game.jgengine.graphics.Mesh;
+import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.utils.MathUtil;
 import org.jetbrains.annotations.NotNull;

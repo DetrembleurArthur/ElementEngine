@@ -1,10 +1,9 @@
 package game.jgengine.sys;
 
-import game.jgengine.debug.Logs;
 import game.jgengine.event.handler.EventHandler;
 import game.jgengine.exceptions.SysException;
 import game.jgengine.graphics.shaders.Shader;
-import game.jgengine.graphics.GraphicElement;
+import game.jgengine.entity.GraphicElement;
 import game.jgengine.registry.Registry;
 import game.jgengine.time.Time;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -15,8 +14,6 @@ import java.util.ArrayList;
 import static java.lang.Thread.sleep;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL14.GL_BLEND_DST_ALPHA;
-import static org.lwjgl.opengl.GL14.GL_BLEND_SRC_ALPHA;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 public abstract class Game implements EventHandler
@@ -25,6 +22,7 @@ public abstract class Game implements EventHandler
 
 	private double framerateLimit = 30;
 	private ArrayList<GraphicElement> shapes = new ArrayList<>();
+	public static double DT = 0;
 
 	static
 	{
@@ -100,6 +98,7 @@ public abstract class Game implements EventHandler
 		{
 			deltaTime = Time.getElapsedTime() - beginTime;
 			beginTime = Time.getElapsedTime();
+			Game.DT = deltaTime;
 
 			primaryWindow.pollEvents();
 
@@ -146,5 +145,4 @@ public abstract class Game implements EventHandler
 	{
 		framerateLimit = limit;
 	}
-
 }
