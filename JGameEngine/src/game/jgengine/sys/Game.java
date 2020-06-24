@@ -81,7 +81,7 @@ public abstract class Game implements EventHandler
 		GL.createCapabilities();
 		initGraphics();
 		Registry.set("DEFAULT", Shader.DEFAULT);
-		primaryWindow.updateViewport();
+		primaryWindow.simpleUpdateViewport();
 
 		System.out.println("OpenGL version: " + glGetString(GL_VERSION));
 	}

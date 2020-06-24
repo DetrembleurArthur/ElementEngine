@@ -1,5 +1,6 @@
 package game.jgengine.graphics.vertex;
 
+import game.jgengine.debug.Logs;
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.graphics.vertex.IndexBuffer;
 import game.jgengine.graphics.vertex.VertexArray;
@@ -84,12 +85,12 @@ public class Mesh
 
 	public void destroy()
 	{
-		/*vertexArray.disableAttribs();
+		vertexArray.disableAttribs();
 		vertexBuffer.unbind();
 		vertexBuffer.destroy();
 		indexBuffer.destroy();
 		vertexArray.unbind();
-		vertexArray.destroy();*/
+		vertexArray.destroy();
 	}
 
 }

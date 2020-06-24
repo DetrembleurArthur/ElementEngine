@@ -1,5 +1,7 @@
 package game.jgengine.entity;
 
+import game.jgengine.debug.Logs;
+import game.jgengine.graphics.texts.Text;
 import game.jgengine.graphics.vertex.Mesh;
 import org.joml.Vector3f;
 
@@ -104,12 +106,21 @@ public class GraphicElement extends Transformable
 
 	public void setMesh(Mesh mesh)
 	{
-		if(this.mesh != null) mesh.destroy();
+		if(this.mesh != null)
+		{
+			destroy();
+		}
 		this.mesh = mesh;
 	}
 
 	public void destroy()
 	{
 		mesh.destroy();
+		mesh = null;
+	}
+
+	public boolean isDefined()
+	{
+		return mesh != null;
 	}
 }

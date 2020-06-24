@@ -18,8 +18,8 @@ public class Text extends Shape
 	public Text(@NotNull Font font, String text)
 	{
 		super(null, font.getTextureAtlas());
-		setFont(font);
 		this.text = text;
+		setFont(font);
 		setSizePx(font.getSizePx());
 	}
 

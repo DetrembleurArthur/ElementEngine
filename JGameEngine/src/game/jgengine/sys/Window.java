@@ -1,5 +1,6 @@
 package game.jgengine.sys;
 
+import game.jgengine.debug.Logs;
 import game.jgengine.event.handler.*;
 import game.jgengine.exceptions.SysException;
 import game.jgengine.utils.Cursor;
@@ -20,14 +21,29 @@ import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
+import static org.lwjgl.system.MemoryUtil.memFree;
 
 public class Window
 {
 	private long windowId = -1;
 	private String title;
 	private Cursor cursor = null;
-
+	private Vector2f monitorSize;
+	private float targetApectRatio;
+	private Vector2f aspectRationSize;
 	public static Window WINDOW = null;
+	private boolean sizeRatioEnable;
+	private Vector2f aspectRationPosition;
+
+	public boolean isSizeRatioEnable()
+	{
+		return sizeRatioEnable;
+	}
+
+	public Vector2f getAspectRationPosition()
+	{
+		return aspectRationPosition;
+	}
 
 	public String getTitle()
 	{
@@ -58,6 +74,31 @@ public class Window
 			throw new SysException("Can not create a Window");
 		}
 		this.title = title;
+		GLFWVidMode mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+		monitorSize = new Vector2f(mode.width(), mode.height());
+		targetApectRatio = (float)mode.width() / (float)mode.height();
+		aspectRationPosition = new Vector2f();
+		aspectRationSize = new Vector2f(windowId, height);
+	}
+
+	public long getWindowId()
+	{
+		return windowId;
+	}
+
+	public Cursor getCursor()
+	{
+		return cursor;
+	}
+
+	public Vector2f getMonitorSize()
+	{
+		return monitorSize;
+	}
+
+	public float getTargetApectRatio()
+	{
+		return targetApectRatio;
 	}
 
 	public void destroy()
@@ -239,7 +280,7 @@ public class Window
 	public void setSize(int width, int height)
 	{
 		glfwSetWindowSize(windowId, width, height);
-		updateViewport();
+		simpleUpdateViewport();
 	}
 
 	public void setSize(Vector2f size)
@@ -395,10 +436,53 @@ public class Window
 		setDropCallback(new DropCallback(handler));
 	}
 
-	public void updateViewport()
+	public void simpleUpdateViewport()
 	{
 		var size = getSize();
 		glViewport(0, 0, (int)size.x, (int)size.y);
+	}
+
+	public void aspectRatioUpdateViewport(float w, float h)
+	{
+		int aspectWidth = (int)w;
+		int aspectHeight = (int)((float)aspectWidth / getTargetApectRatio());
+		if(aspectHeight > h)
+		{
+			aspectHeight = (int) h;
+			aspectWidth = (int)((float)aspectHeight * getTargetApectRatio());
+		}
+
+		int vpx = (int)(((float) w / 2f) - ((float)aspectWidth / 2f));
+		int vpy = (int)(((float) h / 2f) - ((float)aspectHeight / 2f));
+
+
+
+
+		Logs.print(vpx + " " + vpy + ",  " + aspectWidth + " " + aspectHeight);
+
+		glViewport(vpx, vpy, aspectWidth, aspectHeight);
+		if(sizeRatioEnable)
+		{
+			glfwSetWindowSize(windowId, (int) aspectWidth, (int) aspectHeight);
+			aspectRationSize = new Vector2f(aspectWidth, aspectHeight);
+			aspectRationPosition = new Vector2f(vpx, vpy);
+		}
+		else
+		{
+			glfwSetWindowSize(windowId, (int) w, (int) h);
+			aspectRationSize = new Vector2f(w, h);
+			aspectRationPosition = new Vector2f(0, 0);
+		}
+	}
+
+	public Vector2f getAspectRationSize()
+	{
+		return aspectRationSize;
+	}
+
+	public void maintainSizeRatio(boolean state)
+	{
+		sizeRatioEnable = state;
 	}
 
 	public void takeScreenShot(String dst)
@@ -426,6 +510,7 @@ public class Window
 		{
 			e.printStackTrace();
 		}
+		memFree(buffer);
 	}
 }
 

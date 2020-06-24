@@ -2,6 +2,7 @@ package game.jgengine.utils;
 
 import org.joml.Vector4f;
 
+import java.awt.*;
 import java.util.Random;
 
 public class Colors
@@ -24,5 +25,10 @@ public class Colors
 	{
 		Random rand = new Random();
 		return new Vector4f(rand.nextFloat(), rand.nextFloat(), rand.nextFloat(), 1);
+	}
+
+	public static Vector4f awtColor(Color awt)
+	{
+		return new Vector4f(awt.getRed() / 255f,awt.getGreen() / 255f,awt.getBlue() / 255f,awt.getAlpha() / 255f);
 	}
 }

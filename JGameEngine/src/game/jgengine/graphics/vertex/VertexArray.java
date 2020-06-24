@@ -5,13 +5,12 @@ import game.jgengine.debug.Logs;
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
-import static org.lwjgl.opengl.GL30.glBindVertexArray;
-import static org.lwjgl.opengl.GL30.glGenVertexArrays;
+import static org.lwjgl.opengl.GL30.*;
 
 public class VertexArray
 {
 	private int vao = 0;
-	private byte attribs = 3;
+	private byte attribs = 2;
 	private byte positionSize = 0;
 	private byte uvSize = 0;
 
@@ -93,6 +92,6 @@ public class VertexArray
 
 	public void destroy()
 	{
-		glDeleteBuffers(vao);
+		glDeleteVertexArrays(vao);
 	}
 }

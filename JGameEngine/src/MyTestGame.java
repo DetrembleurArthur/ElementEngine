@@ -7,6 +7,7 @@ import game.jgengine.graphics.camera.Camera3D;
 import game.jgengine.graphics.camera.OrthoProjectionSettings;
 import game.jgengine.graphics.camera.PerspProjectionSettings;
 import game.jgengine.graphics.loaders.TextureLoader;
+import game.jgengine.graphics.shapes.Circle;
 import game.jgengine.graphics.shapes.Rectangle;
 import game.jgengine.graphics.texts.Font;
 import game.jgengine.graphics.texts.Text;
@@ -16,6 +17,7 @@ import game.jgengine.utils.Colors;
 import org.joml.Vector2f;
 import org.joml.Vector2i;
 import org.joml.Vector3f;
+import org.joml.Vector4f;
 
 
 public class MyTestGame extends Game
@@ -33,17 +35,20 @@ public class MyTestGame extends Game
     Vector2f speed;
 
     Rectangle rect;
+    Circle circle;
+
 
 
 
     @Override
     protected void load()
     {
-        getPrimaryWindow().setClearColor(Colors.BLACK);
+        getPrimaryWindow().setClearColor(new Vector4f(0, 0.8f, 0.8f, 1));
         getPrimaryWindow().setSize(1800, 1000);
         setFramerateLimit(60);
-        getPrimaryWindow().setResizeable(false);
+        getPrimaryWindow().setResizeable(true);
         getPrimaryWindow().center();
+        getPrimaryWindow().maintainSizeRatio(false);
 
 
 
@@ -64,21 +69,30 @@ public class MyTestGame extends Game
 
         Registry.set("test", font);
 
-        text = new Text(Registry.getFont("test"), "Hello\nWorld!");
 
-        text.setFillColor(Colors.RED);
-        text.setSizePx(50);
-        text.setCenterOrigin();
 
         //text.setLineStripRenderMode();
         //text.setTexture(null);
 
 
-        rect = new Rectangle(Registry.getTexture("bricks.png"));
+        rect = new Rectangle(null);
         rect.setDimension(50, 100);
         rect.setCenterOrigin();
         rect.setPosition(getPrimaryWindow().getCenter());
         speed = rect.getComponent(getPrimaryWindow().getCenter());
+        rect.setFillColor(Colors.MAGENTA);
+
+        text = new Text(Registry.getFont("test"), "Hello World!");
+
+        text.setFillColor(Colors.RED);
+        text.setSizePx(50);
+        text.setCenterOrigin();
+        text.setPosition(new Vector2f(200, 200));
+
+        circle = new Circle(50, 30, null);
+        circle.setPosition(new Vector2f(600, 600));
+        circle.setFillColor(Colors.LIME);
+        circle.setCenterOrigin();
 
 
     }
@@ -90,7 +104,12 @@ public class MyTestGame extends Game
         getPrimaryWindow().clear();
 
 
+
+        renderer.render(text, camera);
+        renderer.render(circle, camera);
         renderer.render(rect, camera);
+
+
 
         getPrimaryWindow().flip();
     }
@@ -101,7 +120,7 @@ public class MyTestGame extends Game
         getPrimaryWindow().setTitle("fps " + Double.toString(1.f /dt));
         camera.activateKeys(getPrimaryWindow(), Camera2D.SPECTATOR_KEY_SET);
         var mp = Mouse.getPosition(camera);
-        rect.rotateArounddt(mp, new Vector2f(360, 20));
+        circle.setPosition(mp);
     }
 
 
@@ -117,7 +136,11 @@ public class MyTestGame extends Game
     public void windowResizedEventHandler(int width, int height)
     {
 
-       getPrimaryWindow().updateViewport();
+        getPrimaryWindow().maintainSizeRatio(true);
+        getPrimaryWindow().aspectRatioUpdateViewport(width, height);
+       if(camera == null) return;
+
+       //camera.getOrthoProjSettings().update(getPrimaryWindow());
 
     }
 

@@ -13,7 +13,9 @@ public class Mouse
 	{
 		double[] x = new double[1], y = new double[1];
 		glfwGetCursorPos(window.getId(), x, y);
-		return new Vector2f((float)x[0], (float)y[0]);
+		return new Vector2f(
+				(float)x[0],
+				(float)y[0]);
 	}
 
 	public static Vector2f getPosition(Window window, Camera2D camera)

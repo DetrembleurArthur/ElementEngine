@@ -22,7 +22,7 @@ public class Renderer
 		shader.start();
 		shader.uploadMat4f("uModel", gelem.getTransformMatrix());
 		shader.uploadMat4f("uView", camera.updateViewMatrix());
-		shader.uploadMat4f("uProjection", camera.getProjectionMatrix());
+		shader.uploadMat4f("uProjection", camera.updateProjectionMatrix());
 		if(gelem.getTexture() != null)
 		{
 			shader.setUniform1i("isTextured", 1);
