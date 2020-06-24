@@ -13,6 +13,8 @@ import game.jgengine.graphics.texts.Font;
 import game.jgengine.graphics.texts.Text;
 import game.jgengine.registry.Registry;
 import game.jgengine.sys.Game;
+import game.jgengine.tweening.TimedTweenAction;
+import game.jgengine.tweening.TweenFunctions;
 import game.jgengine.utils.Colors;
 import org.joml.Vector2f;
 import org.joml.Vector2i;
@@ -39,16 +41,18 @@ public class MyTestGame extends Game
 
 
 
+    TimedTweenAction a2;
+    TimedTweenAction a1;
 
     @Override
     protected void load()
     {
         getPrimaryWindow().setClearColor(new Vector4f(0, 0.8f, 0.8f, 1));
         getPrimaryWindow().setSize(1800, 1000);
+        getPrimaryWindow().maintainSizeRatio(true);
         setFramerateLimit(60);
         getPrimaryWindow().setResizeable(true);
         getPrimaryWindow().center();
-        getPrimaryWindow().maintainSizeRatio(false);
 
 
 
@@ -76,7 +80,7 @@ public class MyTestGame extends Game
 
 
         rect = new Rectangle(null);
-        rect.setDimension(50, 100);
+        rect.setSize(50, 100);
         rect.setCenterOrigin();
         rect.setPosition(getPrimaryWindow().getCenter());
         speed = rect.getComponent(getPrimaryWindow().getCenter());
@@ -90,17 +94,26 @@ public class MyTestGame extends Game
         text.setPosition(new Vector2f(200, 200));
 
         circle = new Circle(50, 30, null);
+        circle.setSize(100, 75);
         circle.setPosition(new Vector2f(600, 600));
         circle.setFillColor(Colors.LIME);
         circle.setCenterOrigin();
 
 
+        a1 = new TimedTweenAction(15, 100, TweenFunctions.EASE_IN_OUT_CUBIC,
+                (x) -> {circle.setSize(x, circle.getSize().y);}
+                , 2000, TimedTweenAction.INFINITE_CYCLE, true);
+        a2 = new TimedTweenAction(15, 100, TweenFunctions.EASE_OUT_ELASTIC,
+                (x) -> {circle.setSize(circle.getSize().y, x);}
+                , 2000, TimedTweenAction.INFINITE_CYCLE, true);
+
+        a1.start();
+        a2.start();
     }
 
     @Override
     protected void render(double dt)
     {
-        var pos = Mouse.getPosition(getPrimaryWindow());
         getPrimaryWindow().clear();
 
 
@@ -121,6 +134,8 @@ public class MyTestGame extends Game
         camera.activateKeys(getPrimaryWindow(), Camera2D.SPECTATOR_KEY_SET);
         var mp = Mouse.getPosition(camera);
         circle.setPosition(mp);
+        a1.run();
+        a2.run();
     }
 
 
@@ -130,18 +145,6 @@ public class MyTestGame extends Game
     public void buttonPressedEventHandler(int button)
     {
         //getPrimaryWindow().takeScreenShot("assets/screen.png");
-    }
-
-    @Override
-    public void windowResizedEventHandler(int width, int height)
-    {
-
-        getPrimaryWindow().maintainSizeRatio(true);
-        getPrimaryWindow().aspectRatioUpdateViewport(width, height);
-       if(camera == null) return;
-
-       //camera.getOrthoProjSettings().update(getPrimaryWindow());
-
     }
 
 

@@ -26,8 +26,9 @@ public class Circle extends Shape
 
 	public float getRadius()
 	{
-		return getScale().x;
+		return (getScale2D().x + getScale2D().y) / 2f;
 	}
+
 
 	public void build()
 	{

@@ -52,22 +52,22 @@ public class Camera2D extends Camera
 	@Override
 	public Matrix4f updateProjectionMatrix()
 	{
-		return projectionMatrix.identity().ortho(
+		return (projectionMatrix = projectionMatrix.identity().ortho(
 				orthoProjSettings.getLeft(),
 				orthoProjSettings.getRight(),
 				orthoProjSettings.getBottom(),
 				orthoProjSettings.getUp(),
 				0f,
-				100f);
+				100f));
 	}
 
 	@Override
 	public Matrix4f updateViewMatrix()
 	{
-		return viewMatrix.identity().lookAt(
+		return (viewMatrix = viewMatrix.identity().lookAt(
 				new Vector3f(position.x, position.y, 20f),
 				new Vector3f(0f, 0f, -1f).add(position.x, position.y, 0f),
-				new Vector3f(0f, 1f, 0f));
+				new Vector3f(0f, 1f, 0f)));
 	}
 
 	public Vector2f getPosition()

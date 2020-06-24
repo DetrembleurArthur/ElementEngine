@@ -13,6 +13,21 @@ public abstract class Shape extends GameObject
 	}
 
 	protected abstract void setVerticesOrigin(float x, float y);
+	public Vector2f getSize()
+	{
+		return getScale2D();
+	}
+
+	public void setSize(Vector2f size)
+	{
+		setScale(size);
+	}
+
+	public final void setSize(float w, float h)
+	{
+		setSize(new Vector2f(w, h));
+	}
+
 	public void setSprite(Sprite sprite)
 	{
 		for(int i = 0; i < sprite.getTextCoords().length; i++)

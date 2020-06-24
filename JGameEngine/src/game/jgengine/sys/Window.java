@@ -457,25 +457,21 @@ public class Window
 
 
 
-
-		Logs.print(vpx + " " + vpy + ",  " + aspectWidth + " " + aspectHeight);
-
+		aspectRationSize = new Vector2f(aspectWidth, aspectHeight);
 		glViewport(vpx, vpy, aspectWidth, aspectHeight);
 		if(sizeRatioEnable)
 		{
 			glfwSetWindowSize(windowId, (int) aspectWidth, (int) aspectHeight);
-			aspectRationSize = new Vector2f(aspectWidth, aspectHeight);
-			aspectRationPosition = new Vector2f(vpx, vpy);
+			aspectRationPosition = new Vector2f(0, 0);
 		}
 		else
 		{
 			glfwSetWindowSize(windowId, (int) w, (int) h);
-			aspectRationSize = new Vector2f(w, h);
-			aspectRationPosition = new Vector2f(0, 0);
+			aspectRationPosition = new Vector2f(vpx, vpy);
 		}
 	}
 
-	public Vector2f getAspectRationSize()
+	public Vector2f getAspectRatioSize()
 	{
 		return aspectRationSize;
 	}

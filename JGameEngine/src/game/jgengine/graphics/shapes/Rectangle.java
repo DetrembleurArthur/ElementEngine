@@ -24,7 +24,7 @@ public class Rectangle extends Shape
 	{
 		super(MODEL, texture);
 		if(texture != null)
-			setDimension(texture.getDimension());
+			setSize(texture.getDimension());
 	}
 
 	public void setWidth(float width)
@@ -35,24 +35,6 @@ public class Rectangle extends Shape
 	public void setHeight(float height)
 	{
 		getScale().y = height;
-	}
-
-	public void setDimension(Vector2f dimension)
-	{
-		getScale().x = dimension.x;
-		getScale().y = dimension.y;
-	}
-
-	public void setDimension(float x, float y)
-	{
-		getScale().x = x;
-		getScale().y = y;
-	}
-
-	public Vector2f getDimension()
-	{
-		var scale = getScale();
-		return new Vector2f(scale.x, scale.y);
 	}
 
 
@@ -71,7 +53,7 @@ public class Rectangle extends Shape
 	public boolean contains(Vector2f pos)
 	{
 		//on applique la rotation du gameobject sur le point pos et on check la collision
-		return MathUtil.boxContains(getPosition2D(), getDimension(), MathUtil.rotateAround(pos, getPosition2D(), -getRotation2D()));
+		return MathUtil.boxContains(getPosition2D(), getSize(), MathUtil.rotateAround(pos, getPosition2D(), -getRotation2D()));
 	}
 
 	public void setSprite(@NotNull Sprite sprite)

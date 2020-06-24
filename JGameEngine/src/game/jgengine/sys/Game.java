@@ -66,7 +66,7 @@ public abstract class Game implements EventHandler
 
 		String osName = System.getProperty("os.name");
 		System.out.println("OS: " + osName);
-		if (osName.contains("Mac"))
+		if (osName.toUpperCase().contains("MAC"))
 		{
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
@@ -144,5 +144,11 @@ public abstract class Game implements EventHandler
 	public void setFramerateLimit(double limit)
 	{
 		framerateLimit = limit;
+	}
+
+	@Override
+	public final void windowResizedEventHandler(int width, int height)
+	{
+		getPrimaryWindow().aspectRatioUpdateViewport(width, height);
 	}
 }

@@ -80,13 +80,14 @@ public class Text extends Shape
 				(bottomRight.y - topLeft.y) * size.y);
 	}
 
+	@Override
 	public Vector2f getSize()
 	{
 		var box = getScaledBoundingBox();
 		return new Vector2f(box.getWidth(), box.getHeight());
 	}
 
-
+	@Override
 	public void setSize(Vector2f size)
 	{
 		var box = getBoundingBox();
