@@ -214,4 +214,12 @@ public class Font
 	{
 		return sizePx / 1.333333f;
 	}
+
+	public int fontType()
+	{
+		if(italic && bold) return 3;
+		if(italic) return 1;
+		if(bold) return 2;
+		return 0;
+	}
 }

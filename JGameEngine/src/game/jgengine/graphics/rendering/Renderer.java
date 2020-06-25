@@ -4,6 +4,7 @@ import game.jgengine.entity.GameObject;
 import game.jgengine.graphics.camera.Camera;
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.sys.Window;
+import game.jgengine.time.Time;
 
 public class Renderer
 {
@@ -23,6 +24,7 @@ public class Renderer
 		shader.uploadMat4f("uModel", gelem.getTransformMatrix());
 		shader.uploadMat4f("uView", camera.updateViewMatrix());
 		shader.uploadMat4f("uProjection", camera.updateProjectionMatrix());
+		shader.setUniformf1("time", (float)Time.getTime());
 		if(gelem.getTexture() != null)
 		{
 			shader.setUniform1i("isTextured", 1);

@@ -5,13 +5,13 @@ import org.joml.Vector2f;
 import org.joml.Vector2i;
 import org.joml.Vector3i;
 import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL14;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
-import static org.lwjgl.opengl.GL13.glActiveTexture;
+import static org.lwjgl.opengl.GL13.*;
 import static org.lwjgl.stb.STBImage.stbi_image_free;
 import static org.lwjgl.stb.STBImage.stbi_load;
 
@@ -80,21 +80,67 @@ public class Texture
 	{
 		//glTexImage2D(GL_TEXTURE_2D, 0,GL_DEPTH_COMPONENT24, 1024, 768, 0,GL_DEPTH_COMPONENT, GL_FLOAT, 0); => profondeur
 		glTexImage2D(GL_TEXTURE_2D, 0, rgba ? GL_RGBA : GL_RGB, size.x, size.y, 0, rgba ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, image);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		initParameters();
 		dimension = new Vector2f(size.x, size.y);
 	}
 
 	public void init(Vector2i size, boolean rgba, int rid)
 	{
 		glTexImage2D(GL_TEXTURE_2D, 0, rgba ? GL_RGBA : GL_RGB, size.x, size.y, 0, rgba ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, rid);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		initParameters();
 		dimension = new Vector2f(size.x, size.y);
+	}
+
+	private void initParameters()
+	{
+		enableRepeat();
+		enableNearest();
+	}
+
+	private void enableWrapParameter(int param)
+	{
+		bind();
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, param);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, param);
+		unbind();
+	}
+
+	private void enableFilterParameter(int param)
+	{
+		bind();
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, param);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, param);
+		unbind();
+	}
+
+	public void enableLinear()
+	{
+		enableFilterParameter(GL_LINEAR);
+	}
+
+	public void enableNearest()
+	{
+		enableFilterParameter(GL_NEAREST);
+	}
+
+	public void enableRepeat()
+	{
+		enableWrapParameter(GL_REPEAT);
+	}
+
+	public void enableMirroredRepeat()
+	{
+		enableWrapParameter(GL14.GL_MIRRORED_REPEAT);
+	}
+
+	public void enableClampToEdge()
+	{
+		enableWrapParameter(GL_CLAMP_TO_EDGE);
+	}
+
+	public void enableClampToBorder()
+	{
+		enableWrapParameter(GL_CLAMP_TO_BORDER);
 	}
 
 	public void active()

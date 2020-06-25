@@ -1,7 +1,9 @@
 package game.jgengine.graphics.shapes;
 
+import game.jgengine.debug.Logs;
 import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.rendering.Texture;
+import game.jgengine.utils.MathUtil;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
@@ -26,7 +28,7 @@ public class Circle extends Shape
 
 	public float getRadius()
 	{
-		return (getScale2D().x + getScale2D().y) / 2f;
+		return (getScale2D().x/2 + getScale2D().y/2) / 2f;
 	}
 
 
@@ -70,6 +72,30 @@ public class Circle extends Shape
 		this.nPoints = nPoints;
 		build();
 	}
+
+
+
+	@Override
+	public Vector2f getTopLeftPosition()
+	{
+		var mesh = getMesh();
+		var len = mesh.getN();
+		var pos = mesh.getPosition(0);
+		for(int i = 1; i < len; i++)
+		{
+			var mpos = mesh.getPosition(i);
+			if(pos.x > mpos.x) pos.x = mpos.x;
+			if(pos.y > mpos.y) pos.y = mpos.y;
+		}
+		return new Vector2f(position.x + scale.x * pos.x, position.y + scale.y * pos.y);
+	}
+
+	public boolean isClosed(Vector2f point)
+	{
+		//Logs.print(getCenter().x + ", " + getCenter().y);
+		return getCenter().distance(point) <= getRadius();
+	}
+
 
 	@Override
 	protected void setVerticesOrigin(float x, float y)

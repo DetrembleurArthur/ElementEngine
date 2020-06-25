@@ -3,6 +3,7 @@ package game.jgengine.graphics.shapes;
 import game.jgengine.entity.GameObject;
 import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.rendering.Texture;
+import game.jgengine.utils.MathUtil;
 import org.joml.Vector2f;
 
 public abstract class Shape extends GameObject
@@ -76,10 +77,25 @@ public abstract class Shape extends GameObject
 		setOrigin(getScale().x / 2, getScale().y / 2);
 	}
 
+	public Vector2f getTopLeftPosition()
+	{
+		return getPosition2D();
+	}
+
+	public Vector2f getCenter()
+	{
+		return getTopLeftPosition().add(getSize().div(2));
+	}
+
 	public BoundingBox getBoundingBox()
 	{
-		var pos = getPosition2D();
-		var size = getScale();
+		var pos = getTopLeftPosition();
+		var size = getSize();
 		return new BoundingBox(pos.x, pos.y, size.x, size.y);
+	}
+
+	public boolean contains(Vector2f pos)
+	{
+		return getBoundingBox().isCollision(MathUtil.rotateAround(pos, getPosition2D(), -getRotation2D()));
 	}
 }

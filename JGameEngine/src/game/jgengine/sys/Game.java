@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import static java.lang.Thread.sleep;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.GL_MULTISAMPLE;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 public abstract class Game implements EventHandler
@@ -49,13 +50,22 @@ public abstract class Game implements EventHandler
 	{
 		shapes.add(shape);
 	}
-	final private void initGraphics()
+	private void initGraphics()
 	{
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+		enableAntialiasing(4);
+
+
 
 		//glEnable(GL_DEPTH_TEST);
+	}
+
+	protected void enableAntialiasing(int sample)
+	{
+		glEnable(GL_MULTISAMPLE);
+		glfwWindowHint(GLFW_SAMPLES, sample);
 	}
 
 
@@ -63,6 +73,7 @@ public abstract class Game implements EventHandler
 	final protected void init() throws SysException
 	{
 		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+
 
 		String osName = System.getProperty("os.name");
 		System.out.println("OS: " + osName);

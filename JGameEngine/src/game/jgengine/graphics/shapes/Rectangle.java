@@ -49,12 +49,15 @@ public class Rectangle extends Shape
 		}
 	}
 
-	//marche que pour le top left origin
-	public boolean contains(Vector2f pos)
+
+
+	@Override
+	public Vector2f getTopLeftPosition()
 	{
-		//on applique la rotation du gameobject sur le point pos et on check la collision
-		return MathUtil.boxContains(getPosition2D(), getSize(), MathUtil.rotateAround(pos, getPosition2D(), -getRotation2D()));
+		var meshPos = getMesh().getPosition(0);
+		return new Vector2f(position.x + scale.x * meshPos.x, position.y + scale.y * meshPos.y);
 	}
+
 
 	public void setSprite(@NotNull Sprite sprite)
 	{

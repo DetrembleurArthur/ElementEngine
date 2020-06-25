@@ -19,7 +19,7 @@ public class Text extends Shape
 	{
 		super(null, font.getTextureAtlas());
 		this.text = text;
-		setFont(font);
+		initFont(font);
 		setSizePx(font.getSizePx());
 	}
 
@@ -39,15 +39,26 @@ public class Text extends Shape
 		return font;
 	}
 
-	public void setFont(@NotNull Font font)
+	private void initFont(@NotNull Font font)
 	{
 		this.font = font;
 		setTexture(font.getTextureAtlas());
 	}
 
+	public void setFont(@NotNull Font font)
+	{
+		initFont(font);
+		setText();
+	}
+
 	public String getText()
 	{
 		return text;
+	}
+
+	public void setText()
+	{
+		setText(text);
 	}
 
 	public void setText(String text)
