@@ -10,6 +10,7 @@ import org.joml.Vector4f;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.system.MemoryUtil;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -484,7 +485,7 @@ public class Window
 	public void takeScreenShot(String dst)
 	{
 		var size = getiSize();
-		ByteBuffer buffer = BufferUtils.createByteBuffer(size.x * size.y * 4);
+		ByteBuffer buffer = MemoryUtil.memAlloc(size.x * size.y * 4);
 		GL11.glReadPixels(0, 0, size.x, size.y, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, buffer);
 		BufferedImage image = new BufferedImage(size.x, size.y, BufferedImage.TYPE_INT_ARGB);
 		for(int i = 0; i < size.x; i++)
@@ -506,6 +507,7 @@ public class Window
 		{
 			e.printStackTrace();
 		}
+
 		memFree(buffer);
 	}
 }

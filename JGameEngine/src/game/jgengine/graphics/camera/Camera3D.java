@@ -250,4 +250,23 @@ public class Camera3D extends Camera
 		}
 	}
 
+	public float getMoveSpeed()
+	{
+		return moveSpeed;
+	}
+
+	public void setMoveSpeed(float moveSpeed)
+	{
+		this.moveSpeed = moveSpeed;
+	}
+
+	public float getMouseSensitivity()
+	{
+		return mouseSensitivity;
+	}
+
+	public void setMouseSensitivity(float mouseSensitivity)
+	{
+		this.mouseSensitivity = mouseSensitivity;
+	}
 }

@@ -2,6 +2,7 @@ package game.jgengine.utils;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFWImage;
+import org.lwjgl.system.MemoryUtil;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -52,7 +53,7 @@ public class Cursor
 		{
 			e.printStackTrace();
 		}
-		ByteBuffer pixels = BufferUtils.createByteBuffer(bufferedImage.getWidth() * bufferedImage.getHeight() * 4);
+		ByteBuffer pixels = MemoryUtil.memAlloc(bufferedImage.getWidth() * bufferedImage.getHeight() * 4);
 		for(int i = 0; i < bufferedImage.getHeight(); i++)
 		{
 			for(int j = 0; j< bufferedImage.getWidth(); j++)
@@ -69,6 +70,7 @@ public class Cursor
 		image.set(bufferedImage.getWidth(), bufferedImage.getHeight(), pixels);
 		cursorId = glfwCreateCursor(image, 0, 0);
 		image.close();
+		MemoryUtil.memFree(pixels);
 	}
 
 	public void destroy()

@@ -10,6 +10,7 @@ import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static java.lang.Thread.sleep;
 import static org.lwjgl.glfw.GLFW.*;
@@ -17,13 +18,19 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.GL_MULTISAMPLE;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
-public abstract class Game implements EventHandler
+public abstract class Game implements ResourcesManageable
 {
 	protected Window primaryWindow;
 
 	private double framerateLimit = 30;
-	private ArrayList<GraphicElement> shapes = new ArrayList<>();
+
+	private HashMap<String, Scene> scenes;
+	private Scene currentScene;
+
+
+
 	public static double DT = 0;
+	public static Game GAME;
 
 	static
 	{
@@ -41,21 +48,23 @@ public abstract class Game implements EventHandler
 		}
 	}
 
-	abstract protected void load();
-	abstract protected void render(double dt);
-	abstract protected void update(double dt);
 
-
-	public void addShape(GraphicElement shape)
+	public void switchTo3D()
 	{
-		shapes.add(shape);
+		glEnable(GL_DEPTH_TEST);
 	}
+
+	public void switchTo2d()
+	{
+		glDisable(GL_DEPTH_TEST);
+	}
+
 	private void initGraphics()
 	{
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-		enableAntialiasing(4);
+		glEnable(GL_MULTISAMPLE);
+		//enableAntialiasing(4);
 
 
 
@@ -64,7 +73,7 @@ public abstract class Game implements EventHandler
 
 	protected void enableAntialiasing(int sample)
 	{
-		glEnable(GL_MULTISAMPLE);
+
 		glfwWindowHint(GLFW_SAMPLES, sample);
 	}
 
@@ -73,6 +82,7 @@ public abstract class Game implements EventHandler
 	final protected void init() throws SysException
 	{
 		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+		enableAntialiasing(4);
 
 
 		String osName = System.getProperty("os.name");
@@ -86,7 +96,7 @@ public abstract class Game implements EventHandler
 		}
 
 		primaryWindow = new Window(1400, 800, "Game");
-		primaryWindow.setEventHandler(this);
+		//primaryWindow.setEventHandler(this);
 		primaryWindow.center();
 		primaryWindow.active();
 		GL.createCapabilities();
@@ -95,6 +105,9 @@ public abstract class Game implements EventHandler
 		primaryWindow.simpleUpdateViewport();
 
 		System.out.println("OpenGL version: " + glGetString(GL_VERSION));
+
+		scenes = new HashMap<>();
+		GAME = this;
 	}
 
 	final protected void loop() throws InterruptedException
@@ -113,23 +126,26 @@ public abstract class Game implements EventHandler
 
 			primaryWindow.pollEvents();
 
-			update(deltaTime);
+			currentScene.update(deltaTime);
 
-			render(deltaTime);
+			primaryWindow.clear();
+			currentScene.render(deltaTime);
+			primaryWindow.flip();
 
 			if(framerateLimit != 0) while(Time.getElapsedTime() < beginTime + 1.0 / framerateLimit);
 		}
 	}
 
-	final protected void close()
+	@Override
+	final public void closeResources()
 	{
-
+		for(var key : scenes.keySet())
+		{
+			scenes.get(key).close();
+			scenes.get(key).closeResources();
+		}
 		primaryWindow.destroy();
 
-		for(GraphicElement shape : shapes)
-		{
-			shape.destroy();
-		}
 
 		Registry.close();
 		glfwTerminate();
@@ -139,11 +155,14 @@ public abstract class Game implements EventHandler
 	final protected void run() throws SysException, InterruptedException
 	{
 		init();
-		load();
+		loadResources();
 
-		loop();
+		if(currentScene != null)
+			loop();
+		else
+			throw new SysException("No scene selected");
 
-		close();
+		closeResources();
 	}
 
 	public Window getPrimaryWindow()
@@ -157,9 +176,38 @@ public abstract class Game implements EventHandler
 		framerateLimit = limit;
 	}
 
-	@Override
+	/*@Override
 	public final void windowResizedEventHandler(int width, int height)
 	{
 		getPrimaryWindow().aspectRatioUpdateViewport(width, height);
+	}*/
+
+	public void addScene(String id, Scene scene)
+	{
+		scenes.put(id, scene);
+		scene.loadResources();
+	}
+
+	public Scene getScene(String id)
+	{
+		return scenes.get(id);
+	}
+
+	public void setCurrentScene(Scene scene)
+	{
+		if(currentScene != null)
+			currentScene.close();
+		currentScene = scene;
+		if(scene instanceof Scene3D)
+			switchTo3D();
+		else
+			switchTo2d();
+		primaryWindow.setEventHandler(currentScene);
+		currentScene.load();
+	}
+
+	public void setCurrentScene(String id)
+	{
+		setCurrentScene(scenes.get(id));
 	}
 }

@@ -1,5 +1,6 @@
 package game.jgengine.registry;
 
+import game.jgengine.debug.Logs;
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.graphics.texts.Font;
