@@ -23,9 +23,7 @@ public class MyTestGame extends Game
         TextureLoader.load("bricks", "assets/bricks.png");
 
         addScene("MAIN", new MainScene());
-        addScene("MENU", new MenuScene());
-        addScene("FPS", new FpsScene());
-        setCurrentScene("MENU");
+        setCurrentScene("MAIN");
     }
 
 
