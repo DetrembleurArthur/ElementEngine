@@ -1,58 +1,67 @@
-import game.jgengine.binding.Listener;
-import game.jgengine.binding.NotifyProperty;
 import game.jgengine.binding.Property;
 
 public class ConsoleTest
 {
 	public static class MyObject
 	{
-		private int number;
-		private int numberf;
+		private int myNumber;
+		private String name;
 
-		public MyObject(int n, int nf)
+		public Property<Integer> MyNumber = new Property<>()
 		{
-			number = n;
-			numberf = nf;
+			@Override
+			public Integer getValue()
+			{
+				return myNumber;
+			}
+
+			@Override
+			public void setValue(Integer value)
+			{
+				myNumber = value;
+			}
+		};
+
+		public Property<String> Name = new Property<String>()
+		{
+			@Override
+			protected void setValue(String value)
+			{
+				name = value;
+			}
+
+			@Override
+			public String getValue()
+			{
+				return name;
+			}
+		};
+
+		public MyObject(int n, String na)
+		{
+			myNumber = n;
+			name = na;
 		}
 
-		public int getNumber()
-		{
-			return number;
-		}
-
-		public void setNumber(int number)
-		{
-			this.number = number;
-		}
-
-		public int getNumberf()
-		{
-			return numberf;
-		}
-
-		public void setNumberf(int numberf)
-		{
-			this.numberf = numberf;
-		}
 
 		@Override
 		public String toString()
 		{
-			return number + " : " + numberf;
+			return Integer.toString(myNumber) + " === " + name;
 		}
 	}
 
 	public static void main(String[] args)
 	{
-		NotifyProperty<MyObject> obj1 = new NotifyProperty<>(new MyObject(0, 0));
-		NotifyProperty<MyObject> obj = new NotifyProperty<>(new MyObject(0, 0));
+		MyObject o = new MyObject(0, "");
+		MyObject oo = new MyObject(0, "");
 
-		obj.bindIntField("number", obj1, "number", a -> a*5);
+		o.MyNumber.bind(oo.Name, n -> "[" + n + "]");
 
-		System.out.println(obj.get() + " => " + obj1.get());
+		System.out.println(o + " " + oo);
 
-		obj1.setFieldByName("number", 3);
+		o.MyNumber.set(777);
 
-		System.out.println(obj.get() + " => " + obj1.get());
+		System.out.println(o + " " + oo);
 	}
 }

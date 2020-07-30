@@ -1,4 +1,3 @@
-import game.jgengine.binding.NotifyProperty;
 import game.jgengine.binding.Property;
 import game.jgengine.debug.Logs;
 import game.jgengine.graphics.camera.Camera2D;
@@ -16,9 +15,6 @@ import static game.jgengine.sys.Game.GAME;
 public class MainScene extends Scene2D
 {
 	private Circle circle;
-	private NotifyProperty<Vector2f> property1;
-	private NotifyProperty<Vector2f> property2;
-
 	@Override
 	public void load()
 	{
@@ -34,11 +30,6 @@ public class MainScene extends Scene2D
 
 		//circle.getClass().getField("").get();
 
-		property1 = new NotifyProperty<>(circle.getPosition2D());
-		property2 = new NotifyProperty<>(property1.get());
-
-
-		property1.bindBidirectional(property2);
 	}
 
 	@Override
@@ -46,8 +37,6 @@ public class MainScene extends Scene2D
 	{
 
 		getCamera2d().activateKeys(Window.WINDOW, Camera2D.SPECTATOR_KEY_SET);
-		circle.setPosition(property2.get());
-		property1.set(getMousePosition());
 	}
 
 	@Override
