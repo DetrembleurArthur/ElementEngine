@@ -1,5 +1,6 @@
 package game.jgengine.binding;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public abstract class Property<T>
@@ -46,5 +47,16 @@ public abstract class Property<T>
 	{
 		bind(other, converter);
 		other.bind(this, converterBack);
+	}
+
+	public void bindBidirectional(Property<T> other, Converter<T, T> converter)
+	{
+		bindBidirectional(other, converter, converter);
+	}
+
+	@Override
+	public String toString()
+	{
+		return getValue().toString();
 	}
 }

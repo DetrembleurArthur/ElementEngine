@@ -1,67 +1,59 @@
+import game.jgengine.binding.FloatProperty;
+import game.jgengine.binding.IntegerProperty;
+import game.jgengine.binding.NumberProperty;
 import game.jgengine.binding.Property;
+import game.jgengine.debug.Logs;
+
+import java.util.ArrayList;
 
 public class ConsoleTest
 {
-	public static class MyObject
+	static ArrayList<Float> intList = new ArrayList<>();
+	static FloatProperty ListSUM = new FloatProperty()
 	{
-		private int myNumber;
-		private String name;
-
-		public Property<Integer> MyNumber = new Property<>()
+		@Override
+		protected void setValue(Float value)
 		{
-			@Override
-			public Integer getValue()
-			{
-				return myNumber;
-			}
-
-			@Override
-			public void setValue(Integer value)
-			{
-				myNumber = value;
-			}
-		};
-
-		public Property<String> Name = new Property<String>()
-		{
-			@Override
-			protected void setValue(String value)
-			{
-				name = value;
-			}
-
-			@Override
-			public String getValue()
-			{
-				return name;
-			}
-		};
-
-		public MyObject(int n, String na)
-		{
-			myNumber = n;
-			name = na;
+			intList.add(value);
 		}
-
 
 		@Override
-		public String toString()
+		public Float getValue()
 		{
-			return Integer.toString(myNumber) + " === " + name;
+			float sum = 0;
+			for(var i : intList)
+				sum += i;
+			return sum;
 		}
-	}
+	};
+
+	static float avg = 0;
+	static FloatProperty Avg = new FloatProperty()
+	{
+		@Override
+		protected void setValue(Float value)
+		{
+			avg = value;
+		}
+
+		@Override
+		public Float getValue()
+		{
+			return avg;
+		}
+	};
 
 	public static void main(String[] args)
 	{
-		MyObject o = new MyObject(0, "");
-		MyObject oo = new MyObject(0, "");
+		ListSUM.bind(Avg, value -> value / intList.size());
 
-		o.MyNumber.bind(oo.Name, n -> "[" + n + "]");
+		Logs.print(ListSUM + " => " + Avg);
 
-		System.out.println(o + " " + oo);
+		ListSUM.set(5f);
+		ListSUM.set(20f);
+		ListSUM.set(12f);
+		ListSUM.set(3f);
 
-		o.MyNumber.set(777);
-
-		System.out.println(o + " " + oo);
+		Logs.print(ListSUM + " => " + Avg);
 	}
 }

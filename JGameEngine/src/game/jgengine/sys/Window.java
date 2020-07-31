@@ -35,6 +35,7 @@ public class Window
 	public static Window WINDOW = null;
 	private boolean sizeRatioEnable;
 	private Vector2f aspectRationPosition;
+	private Vector4f clearColor;
 
 	public boolean isSizeRatioEnable()
 	{
@@ -158,6 +159,12 @@ public class Window
 	{
 		glfwMakeContextCurrent(windowId);
 		glClearColor(color.x, color.y, color.z, color.w);
+		clearColor = color;
+	}
+
+	public Vector4f getClearColor()
+	{
+		return clearColor;
 	}
 
 	public void setContext()
