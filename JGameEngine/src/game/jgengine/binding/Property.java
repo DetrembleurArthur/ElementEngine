@@ -7,12 +7,11 @@ public abstract class Property<T>
 {
 	private ArrayList<Listener> listeners = new ArrayList<>();
 
-	protected abstract void setValue(T value);
+	public abstract void setValue(T value);
 	public abstract T getValue();
 
-	public final void set(T value)
+	protected final void alertListeners()
 	{
-		setValue(value);
 		if(listeners != null)
 		{
 			for(Listener listener : listeners)
@@ -20,6 +19,18 @@ public abstract class Property<T>
 				listener.alert();
 			}
 		}
+	}
+
+	public final <U> void processAndAlert(Process<U> process, U value)
+	{
+		process.process(value);
+		alertListeners();
+	}
+
+	public final void set(T value)
+	{
+		setValue(value);
+		alertListeners();
 	}
 
 	public final void addListener(Listener listener)
@@ -58,5 +69,36 @@ public abstract class Property<T>
 	public String toString()
 	{
 		return getValue().toString();
+	}
+
+	public static <T> Property<T> generate(Field field, Object object)
+	{
+		return new Property<T>()
+		{
+			@Override
+			public void setValue(T value)
+			{
+				try
+				{
+					field.set(object, value);
+				} catch (IllegalAccessException e)
+				{
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public T getValue()
+			{
+				try
+				{
+					return (T) field.get(object);
+				} catch (IllegalAccessException e)
+				{
+					e.printStackTrace();
+				}
+				return null;
+			}
+		};
 	}
 }
