@@ -10,7 +10,7 @@ public abstract class Scene2D extends Scene
 {
 	public Scene2D()
 	{
-		buildCamera();
+		super();
 		Logs.print(getClass().getName() + " created");
 	}
 

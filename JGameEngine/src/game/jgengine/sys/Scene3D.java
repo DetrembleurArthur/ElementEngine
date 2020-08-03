@@ -12,7 +12,7 @@ public abstract class Scene3D extends Scene
 
 	public Scene3D()
 	{
-		buildCamera();
+		super();
 	}
 
 	@Override

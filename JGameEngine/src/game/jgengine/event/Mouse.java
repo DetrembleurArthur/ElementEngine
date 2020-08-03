@@ -6,11 +6,16 @@ import org.jetbrains.annotations.NotNull;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 
-import static org.lwjgl.glfw.GLFW.glfwGetCursorPos;
-import static org.lwjgl.glfw.GLFW.glfwSetCursorPos;
+import static org.lwjgl.glfw.GLFW.*;
 
 public class Mouse
 {
+	public static class Button
+	{
+		public static final int LEFT = GLFW_MOUSE_BUTTON_1;
+		public static final int RIGHT = GLFW_MOUSE_BUTTON_2;
+		public static final int MIDDLE = GLFW_MOUSE_BUTTON_3;
+	}
 
 	public static Vector2f getPosition()
 	{

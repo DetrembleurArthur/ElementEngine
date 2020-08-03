@@ -185,12 +185,18 @@ public abstract class Game implements ResourcesManageable
 	public void addScene(String id, Scene scene)
 	{
 		scenes.put(id, scene);
+		currentScene = scene;
 		scene.loadResources();
 	}
 
 	public Scene getScene(String id)
 	{
 		return scenes.get(id);
+	}
+
+	public Scene getCurrentScene()
+	{
+		return currentScene;
 	}
 
 	public void setCurrentScene(Scene scene)

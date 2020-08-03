@@ -14,6 +14,7 @@ public abstract class Scene implements Manageable, ResourcesManageable, EventHan
 	public Scene()
 	{
 		defaultRenderer = new Renderer(Shader.DEFAULT, Window.WINDOW);
+		buildCamera();
 	}
 
 	protected abstract void buildCamera();

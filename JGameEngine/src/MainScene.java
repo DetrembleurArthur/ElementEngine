@@ -1,112 +1,62 @@
-import game.jgengine.binding.Converter;
-import game.jgengine.binding.Property;
 import game.jgengine.debug.Logs;
+import game.jgengine.event.Mouse;
 import game.jgengine.graphics.camera.Camera2D;
-import game.jgengine.graphics.loaders.TextureLoader;
-import game.jgengine.graphics.rendering.Texture;
-import game.jgengine.graphics.shapes.Circle;
-import game.jgengine.graphics.shapes.Rectangle;
-import game.jgengine.graphics.texts.Text;
+import game.jgengine.graphics.gui.Label;
 import game.jgengine.registry.Registry;
-import game.jgengine.sys.Game;
 import game.jgengine.sys.Scene2D;
 import game.jgengine.sys.Window;
-import game.jgengine.tweening.TimedTweenAction;
-import game.jgengine.tweening.TweenFunctions;
 import game.jgengine.utils.Colors;
-import game.jgengine.utils.Cursor;
-import org.joml.Vector2f;
-import org.joml.Vector4f;
-import org.lwjgl.glfw.GLFW;
-
-import static game.jgengine.sys.Game.GAME;
 
 public class MainScene extends Scene2D
 {
-	Text text;
-	Rectangle rect;
-
-	Property<String> TextProperty;
-	Property<Float> XProperty;
-
-	TimedTweenAction tween;
+	Label label;
 
 	@Override
 	public void load()
 	{
-		tween.start();
+
 	}
 
 	@Override
 	public void loadResources()
 	{
-		text = new Text(Registry.getFont("impact"), "0%");
-		text.setSizePx(50);
-		text.setPosition(new Vector2f(20, 20));
-		text.setFillColor(Colors.BLUE);
+		label = new Label(Registry.getFont("impact"), "Hello world!");
+		label.getShape().setSizePx(100);
+		label.getShape().setPosition(Window.WINDOW.getCenter());
+		label.getShape().setCenterOrigin();
 
-		rect = new Rectangle(null);
-		rect.setFillColor(Colors.RED);
-		rect.setSize(100, 100);
-		rect.setCenterOrigin();
-		rect.setPosition(new Vector2f(0, Window.WINDOW.getSize().y / 2f));
+		/*label.onMouseHovering(sender -> {
+			//label.getShape().setSizePx(label.getShape().getSizePx()-1);
+			//label.getShape().setCenterOrigin();
+		});
 
-		TextProperty = new Property<String>()
-		{
-			@Override
-			public void setValue(String value)
-			{
-				text.setText(value);
-			}
+		label.onMouseEntered(sender -> {
+			label.getShape().setFillColor(Colors.LIME);
+		});
 
-			@Override
-			public String getValue()
-			{
-				return text.getText();
-			}
-		};
+		label.onMouseExited(sender -> {
+			label.getShape().setFillColor(Colors.RED);
+		});*/
 
-		XProperty = new Property<Float>()
-		{
-			@Override
-			public void setValue(Float value)
-			{
-				rect.setPosition(new Vector2f(value, rect.getPosition().y));
-			}
-
-			@Override
-			public Float getValue()
-			{
-				return tween.getCurrentPercent() * 100f;
-			}
-		};
-
-		XProperty.bind(TextProperty, value -> value.intValue() + "%");
-
-		tween = new TimedTweenAction(
-				0,
-				Window.WINDOW.getSize().x,
-				TweenFunctions.EASE_IN_OUT_QUAD,
-				value -> XProperty.set(value),
-				10000f,
-				TimedTweenAction.INFINITE_CYCLE,
-				true);
-
-
+		label.onMouseLeftButtonClicked(
+				sender -> label.getShape().setFillColor(Colors.random()),
+				false);
+		label.onMouseRightButtonClicked(
+				sender -> label.getShape().setFillColor(Colors.random()),
+				false);
 	}
 
 	@Override
 	public void update(double dt)
 	{
-		//getCamera2d().activateKeys(Window.WINDOW, Camera2D.SPECTATOR_KEY_SET);
-		tween.run();
+		getCamera2d().activateKeys(Window.WINDOW, Camera2D.SPECTATOR_KEY_SET);
+		label.update();
 	}
 
 	@Override
 	public void render(double dt)
 	{
-		draw(text);
-		draw(rect);
+		draw(label.getShape());
 	}
 
 	@Override
@@ -118,8 +68,9 @@ public class MainScene extends Scene2D
 	@Override
 	public void closeResources()
 	{
-		text.destroy();
-		rect.destroy();
+		label.getShape().destroy();
+
+		Logs.print("Resources closed");
 	}
 
 	@Override
