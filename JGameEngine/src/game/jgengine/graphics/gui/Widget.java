@@ -24,7 +24,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseHoveringEvent.class, action))
 		{
-			getEvents().add(new MouseHoveringEvent(getShape()).addActionEvent(action));
+			addEvent(new MouseHoveringEvent(getShape()).addActionEvent(action));
 		}
 	}
 
@@ -32,7 +32,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseEnteredEvent.class, action))
 		{
-			getEvents().add(new MouseEnteredEvent(getShape()).addActionEvent(action));
+			addEvent(new MouseEnteredEvent(getShape()).addActionEvent(action));
 		}
 	}
 
@@ -40,7 +40,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseExitedEvent.class, action))
 		{
-			getEvents().add(new MouseExitedEvent(getShape()).addActionEvent(action));
+			addEvent(new MouseExitedEvent(getShape()).addActionEvent(action));
 		}
 	}
 
@@ -48,15 +48,15 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseMoveEvent.class, action))
 		{
-			getEvents().add(new MouseMoveEvent(getShape()).addActionEvent(action));
+			addEvent(new MouseMoveEvent(getShape()).addActionEvent(action));
 		}
 	}
 
-	public void onMouseButtonClicked(ActionEvent action, int buttonId, boolean repeated)
+	public void onMouseButtonClicked(ActionEvent action, boolean repeated)
 	{
-		if(!onMouseButtonEvent(buttonId, action))
+		if(!onEvent(MouseButtonClickEvent.class, action))
 		{
-			getEvents().add(new MouseButtonClickEvent(getShape(), buttonId, repeated).addActionEvent(action));
+			addEvent(new MouseButtonClickEvent(getShape(), repeated).addActionEvent(action));
 		}
 	}
 
@@ -64,7 +64,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseLeftButtonClickEvent.class, action))
 		{
-			getEvents().add(new MouseLeftButtonClickEvent(getShape(), repeated).addActionEvent(action));
+			addEvent(new MouseLeftButtonClickEvent(getShape(), repeated).addActionEvent(action));
 		}
 	}
 
@@ -72,7 +72,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseRightButtonClickEvent.class, action))
 		{
-			getEvents().add(new MouseRightButtonClickEvent(getShape(), repeated).addActionEvent(action));
+			addEvent(new MouseRightButtonClickEvent(getShape(), repeated).addActionEvent(action));
 		}
 	}
 
@@ -80,7 +80,39 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseMiddleButtonClickEvent.class, action))
 		{
-			getEvents().add(new MouseMiddleButtonClickEvent(getShape(), repeated).addActionEvent(action));
+			addEvent(new MouseMiddleButtonClickEvent(getShape(), repeated).addActionEvent(action));
+		}
+	}
+
+	public void onMouseButtonReleased(ActionEvent action)
+	{
+		if(!onEvent(MouseButtonReleasedEvent.class, action))
+		{
+			addEvent(new MouseButtonReleasedEvent(getShape()).addActionEvent(action));
+		}
+	}
+
+	public void onMouseLeftButtonReleased(ActionEvent action)
+	{
+		if(!onEvent(MouseLeftButtonRealeasedEvent.class, action))
+		{
+			addEvent(new MouseLeftButtonRealeasedEvent(getShape()).addActionEvent(action));
+		}
+	}
+
+	public void onMouseRightButtonReleased(ActionEvent action)
+	{
+		if(!onEvent(MouseRightButtonRealeasedEvent.class, action))
+		{
+			addEvent(new MouseRightButtonRealeasedEvent(getShape()).addActionEvent(action));
+		}
+	}
+
+	public void onMouseMiddleButtonReleased(ActionEvent action)
+	{
+		if(!onEvent(MouseMiddleButtonRealeasedEvent.class, action))
+		{
+			addEvent(new MouseMiddleButtonRealeasedEvent(getShape()).addActionEvent(action));
 		}
 	}
 }

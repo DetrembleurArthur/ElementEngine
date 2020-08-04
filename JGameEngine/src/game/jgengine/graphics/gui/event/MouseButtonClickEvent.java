@@ -5,16 +5,19 @@ import game.jgengine.event.Mouse;
 import game.jgengine.graphics.shapes.Shape;
 import org.joml.Vector2f;
 
-public class MouseButtonClickEvent extends MouseEvent
+public class MouseButtonClickEvent extends MouseButtonEvent
 {
-	private int buttonId;
 	private boolean clickBloqued;
 	private boolean repeated;
 
+	public MouseButtonClickEvent(Shape relativeObject, boolean repeated)
+	{
+		this(relativeObject, -1, repeated);
+	}
+
 	public MouseButtonClickEvent(Shape relativeObject, int buttonId, boolean repeated)
 	{
-		super(relativeObject);
-		this.buttonId = buttonId;
+		super(relativeObject, buttonId);
 		clickBloqued = false;
 		this.repeated = repeated;
 	}
@@ -22,7 +25,7 @@ public class MouseButtonClickEvent extends MouseEvent
 	@Override
 	boolean isAppend()
 	{
-		if(Input.isButtonPressed(buttonId))
+		if((buttonId == -1 && Input.isButtonPressed()) || (buttonId != -1 && Input.isButtonPressed(buttonId)))
 		{
 			Vector2f mousePosition = Mouse.getPosition(camera);
 			if(relativeObject.contains(mousePosition))
@@ -46,11 +49,6 @@ public class MouseButtonClickEvent extends MouseEvent
 			}
 		}
 		return false;
-	}
-
-	public int getButtonId()
-	{
-		return buttonId;
 	}
 
 	public boolean isClickBloqued()

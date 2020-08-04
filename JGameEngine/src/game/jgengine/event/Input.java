@@ -21,6 +21,19 @@ public class Input
 		return glfwGetMouseButton(Window.WINDOW.getId(), buttonCode) == 1;
 	}
 
+	public static boolean isButtonPressed()
+	{
+		long wid = Window.WINDOW.getId();
+		for(int i = 0; i < 8; i++)
+		{
+			if(glfwGetMouseButton(wid, i) == 1)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public static boolean isLeftButtonPressed(Window window)
 	{
 		return glfwGetMouseButton(window.getId(), GLFW_MOUSE_BUTTON_1) == 1;

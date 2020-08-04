@@ -2,6 +2,9 @@ import game.jgengine.debug.Logs;
 import game.jgengine.event.Mouse;
 import game.jgengine.graphics.camera.Camera2D;
 import game.jgengine.graphics.gui.Label;
+import game.jgengine.graphics.gui.event.Event;
+import game.jgengine.graphics.gui.event.MouseExitedEvent;
+import game.jgengine.graphics.gui.event.MouseLeftButtonClickEvent;
 import game.jgengine.registry.Registry;
 import game.jgengine.sys.Scene2D;
 import game.jgengine.sys.Window;
@@ -24,26 +27,12 @@ public class MainScene extends Scene2D
 		label.getShape().setSizePx(100);
 		label.getShape().setPosition(Window.WINDOW.getCenter());
 		label.getShape().setCenterOrigin();
+		label.getShape().setFillColor(Colors.BLACK);
 
-		/*label.onMouseHovering(sender -> {
-			//label.getShape().setSizePx(label.getShape().getSizePx()-1);
-			//label.getShape().setCenterOrigin();
-		});
-
-		label.onMouseEntered(sender -> {
-			label.getShape().setFillColor(Colors.LIME);
-		});
-
-		label.onMouseExited(sender -> {
-			label.getShape().setFillColor(Colors.RED);
-		});*/
-
-		label.onMouseLeftButtonClicked(
-				sender -> label.getShape().setFillColor(Colors.random()),
-				false);
-		label.onMouseRightButtonClicked(
-				sender -> label.getShape().setFillColor(Colors.random()),
-				false);
+		label.onMouseExited(sender -> label.getShape().setFillColor(Colors.BLACK));
+		label.onMouseLeftButtonClicked(sender -> label.getShape().setFillColor(Colors.RED), true);
+		label.onMouseHovering(sender -> label.getShape().setFillColor(Colors.BLUE));
+		label.setEventPriority(MouseLeftButtonClickEvent.class, Event.HIGHER_PRIORITY);
 	}
 
 	@Override

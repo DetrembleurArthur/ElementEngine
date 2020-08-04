@@ -1,16 +1,22 @@
 package game.jgengine.graphics.gui.event;
 
 import game.jgengine.graphics.gui.Widget;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
-public abstract class Event
+public abstract class Event implements Comparable<Event>
 {
 	private ArrayList<ActionEvent> actions;
+	private int priority;
+	public static final int LOWER_PRIORITY = Integer.MIN_VALUE;
+	public static final int HIGHER_PRIORITY = Integer.MAX_VALUE;
 
 	public Event()
 	{
 		actions = new ArrayList<>();
+		priority = Integer.MIN_VALUE;
 	}
 
 	abstract boolean isAppend();
@@ -26,5 +32,21 @@ public abstract class Event
 	{
 		actions.add(action);
 		return this;
+	}
+
+	public int getPriority()
+	{
+		return priority;
+	}
+
+	public void setPriority(int priority)
+	{
+		this.priority = priority;
+	}
+
+	@Override
+	public int compareTo(@NotNull Event o)
+	{
+		return Integer.compare(priority, o.priority);
 	}
 }

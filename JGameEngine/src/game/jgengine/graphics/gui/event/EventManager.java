@@ -19,6 +19,23 @@ public abstract class EventManager implements Updateable
 		return events;
 	}
 
+	public void sortEvents()
+	{
+		events.sort(Event::compareTo);
+	}
+
+	public void setEventPriority(Class<? extends Event> eventClass, int priority)
+	{
+		getEvent(eventClass).setPriority(priority);
+		sortEvents();
+	}
+
+	public void addEvent(Event event)
+	{
+		events.add(event);
+		sortEvents();
+	}
+
 	public <T extends Event> T getEvent(Class<T> eventClass)
 	{
 		for(Event event : events)
@@ -56,22 +73,6 @@ public abstract class EventManager implements Updateable
 			{
 				event.addActionEvent(action);
 				return true;
-			}
-		}
-		return false;
-	}
-
-	protected boolean onMouseButtonEvent(int buttonId, ActionEvent action)
-	{
-		for(Event event : getEvents())
-		{
-			if(event instanceof MouseButtonClickEvent)
-			{
-				if(((MouseButtonClickEvent) event).getButtonId() == buttonId)
-				{
-					event.addActionEvent(action);
-					return true;
-				}
 			}
 		}
 		return false;
