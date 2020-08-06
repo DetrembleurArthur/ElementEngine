@@ -39,4 +39,6 @@ public abstract class Scene implements Manageable, ResourcesManageable, EventHan
 	{
 		Window.WINDOW.aspectRatioUpdateViewport(width, height);
 	}
+
+
 }

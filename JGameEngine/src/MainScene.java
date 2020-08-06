@@ -1,18 +1,17 @@
 import game.jgengine.debug.Logs;
 import game.jgengine.event.Mouse;
 import game.jgengine.graphics.camera.Camera2D;
-import game.jgengine.graphics.gui.Label;
-import game.jgengine.graphics.gui.event.Event;
-import game.jgengine.graphics.gui.event.MouseExitedEvent;
-import game.jgengine.graphics.gui.event.MouseLeftButtonClickEvent;
+import game.jgengine.graphics.gui.widgets.Label;
+import game.jgengine.graphics.shapes.ProgressBar;
 import game.jgengine.registry.Registry;
 import game.jgengine.sys.Scene2D;
 import game.jgengine.sys.Window;
 import game.jgengine.utils.Colors;
+import org.joml.Vector2f;
 
 public class MainScene extends Scene2D
 {
-	Label label;
+	ProgressBar bar;
 
 	@Override
 	public void load()
@@ -23,29 +22,22 @@ public class MainScene extends Scene2D
 	@Override
 	public void loadResources()
 	{
-		label = new Label(Registry.getFont("impact"), "Hello world!");
-		label.getShape().setSizePx(100);
-		label.getShape().setPosition(Window.WINDOW.getCenter());
-		label.getShape().setCenterOrigin();
-		label.getShape().setFillColor(Colors.BLACK);
-
-		label.onMouseExited(sender -> label.getShape().setFillColor(Colors.BLACK));
-		label.onMouseLeftButtonClicked(sender -> label.getShape().setFillColor(Colors.RED), true);
-		label.onMouseHovering(sender -> label.getShape().setFillColor(Colors.BLUE));
-		label.setEventPriority(MouseLeftButtonClickEvent.class, Event.HIGHER_PRIORITY);
+		bar = new ProgressBar(0, 100, 100, new Vector2f(Window.WINDOW.getSize().x, 75));
+		bar.setFillColor(Colors.LIME);
 	}
 
 	@Override
 	public void update(double dt)
 	{
 		getCamera2d().activateKeys(Window.WINDOW, Camera2D.SPECTATOR_KEY_SET);
-		label.update();
+		bar.setPosition(Mouse.getPosition(getCamera2d()));
+		bar.setCurrentValue(bar.getCurrentValue() - 0.5f);
 	}
 
 	@Override
 	public void render(double dt)
 	{
-		draw(label.getShape());
+		draw(bar);
 	}
 
 	@Override
@@ -57,7 +49,7 @@ public class MainScene extends Scene2D
 	@Override
 	public void closeResources()
 	{
-		label.getShape().destroy();
+		bar.destroy();
 
 		Logs.print("Resources closed");
 	}

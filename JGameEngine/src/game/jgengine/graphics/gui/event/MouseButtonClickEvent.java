@@ -8,6 +8,7 @@ import org.joml.Vector2f;
 public class MouseButtonClickEvent extends MouseButtonEvent
 {
 	private boolean clickBloqued;
+	private boolean clicked;
 	private boolean repeated;
 
 	public MouseButtonClickEvent(Shape relativeObject, boolean repeated)
@@ -19,6 +20,7 @@ public class MouseButtonClickEvent extends MouseButtonEvent
 	{
 		super(relativeObject, buttonId);
 		clickBloqued = false;
+		clicked = false;
 		this.repeated = repeated;
 	}
 
@@ -28,11 +30,12 @@ public class MouseButtonClickEvent extends MouseButtonEvent
 		if((buttonId == -1 && Input.isButtonPressed()) || (buttonId != -1 && Input.isButtonPressed(buttonId)))
 		{
 			Vector2f mousePosition = Mouse.getPosition(camera);
-			if(relativeObject.contains(mousePosition))
+			if(relativeObject.contains(mousePosition) || clicked)
 			{
 				if(!clickBloqued)
 				{
 					clickBloqued = !repeated;
+					clicked = true;
 					return true;
 				}
 			}
@@ -47,6 +50,7 @@ public class MouseButtonClickEvent extends MouseButtonEvent
 			{
 				clickBloqued = false;
 			}
+			clicked = false;
 		}
 		return false;
 	}
@@ -59,5 +63,10 @@ public class MouseButtonClickEvent extends MouseButtonEvent
 	public boolean isRepeated()
 	{
 		return repeated;
+	}
+
+	public boolean isClicked()
+	{
+		return clicked;
 	}
 }

@@ -1,10 +1,8 @@
 package game.jgengine.graphics.gui.event;
 
-import game.jgengine.graphics.gui.Widget;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public abstract class Event implements Comparable<Event>
 {
