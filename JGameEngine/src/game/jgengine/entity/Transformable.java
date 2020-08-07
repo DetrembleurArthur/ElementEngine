@@ -1,10 +1,11 @@
 package game.jgengine.entity;
 
+import game.jgengine.utils.FreeReflectable;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
-public class Transformable
+public class Transformable extends FreeReflectable
 {
 	private Matrix4f trMatrix;
 	protected Vector3f position;

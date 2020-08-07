@@ -77,6 +77,11 @@ public class TweenAction implements Runnable
 		return beg + (end - beg) * f.f(value / (end - beg));
 	}
 
+	public static float getProgress(TweenFunction f, float beg, float end, float value)
+	{
+		return f.f(value / (end - beg));
+	}
+
 	public boolean isFinished()
 	{
 		return currentPercent >= 1f;

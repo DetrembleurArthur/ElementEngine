@@ -1,5 +1,6 @@
 package game.jgengine.graphics.gui.event;
 
+import game.jgengine.debug.Logs;
 import game.jgengine.graphics.shapes.Shape;
 
 public class ValueChangedEvent extends Event

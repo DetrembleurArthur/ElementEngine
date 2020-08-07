@@ -16,7 +16,7 @@ public abstract class ValuableWidget<T extends Shape> extends Widget<T> implemen
 	{
 		if(!onEvent(ValueChangedEvent.class, action))
 		{
-			addEvent(new ValueChangedEvent(this, getValue()));
+			addEvent(new ValueChangedEvent(this, getValue()).addActionEvent(action));
 		}
 	}
 }

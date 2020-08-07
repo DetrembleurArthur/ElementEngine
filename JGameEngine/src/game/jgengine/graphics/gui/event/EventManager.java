@@ -1,5 +1,6 @@
 package game.jgengine.graphics.gui.event;
 
+import game.jgengine.debug.Logs;
 import game.jgengine.entity.GameObject;
 import game.jgengine.entity.Updateable;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 public abstract class EventManager implements Updateable
 {
 	private ArrayList<Event> events;
+	private ArrayList<Event> callLaterEvents = new ArrayList<>();
 
 	public EventManager()
 	{
@@ -54,8 +56,16 @@ public abstract class EventManager implements Updateable
 		{
 			if(event.isAppend())
 			{
+				callLaterEvents.add(event);
+			}
+		}
+		if(!callLaterEvents.isEmpty())
+		{
+			for (Event event : callLaterEvents)
+			{
 				event.run(this);
 			}
+			callLaterEvents.clear();
 		}
 	}
 
@@ -76,5 +86,17 @@ public abstract class EventManager implements Updateable
 			}
 		}
 		return false;
+	}
+
+	public void clearEvents()
+	{
+		events.clear();
+	}
+
+	public void clearEvent(Class<? extends Event> eventClass)
+	{
+		Event event = getEvent(eventClass);
+		if(event != null)
+			events.remove(event);
 	}
 }

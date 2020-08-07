@@ -1,5 +1,6 @@
 package game.jgengine.entity;
 
+import game.jgengine.graphics.rendering.Renderer;
 import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.sys.Game;
@@ -66,6 +67,11 @@ public class GameObject extends GraphicElement
 		{
 			super.draw();
 		}
+	}
+
+	public void draw(Renderer renderer)
+	{
+		renderer.render(this);
 	}
 
 	public void move(float vx, float vy, float vz)

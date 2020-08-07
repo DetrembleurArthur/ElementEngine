@@ -13,8 +13,8 @@ public abstract class Scene implements Manageable, ResourcesManageable, EventHan
 
 	public Scene()
 	{
-		defaultRenderer = new Renderer(Shader.DEFAULT, Window.WINDOW);
 		buildCamera();
+		defaultRenderer = new Renderer(Shader.DEFAULT, camera);
 	}
 
 	protected abstract void buildCamera();
@@ -31,7 +31,7 @@ public abstract class Scene implements Manageable, ResourcesManageable, EventHan
 
 	public void draw(GameObject gobject)
 	{
-		defaultRenderer.render(gobject, camera);
+		gobject.draw(defaultRenderer);
 	}
 
 	@Override

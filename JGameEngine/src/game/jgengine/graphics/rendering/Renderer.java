@@ -3,22 +3,21 @@ package game.jgengine.graphics.rendering;
 import game.jgengine.entity.GameObject;
 import game.jgengine.graphics.camera.Camera;
 import game.jgengine.graphics.shaders.Shader;
-import game.jgengine.sys.Window;
 import game.jgengine.time.Time;
 
 public class Renderer
 {
 	protected Shader shader;
-	protected Window window;
+	protected Camera camera;
 
-	public Renderer(Shader shader, Window window)
+	public Renderer(Shader shader, Camera camera)
 	{
 		this.shader = shader;
-		this.window = window;
+		this.camera = camera;
 	}
 
 
-	public void render(GameObject gelem, Camera camera)
+	public void render(GameObject gelem)
 	{
 		shader.start();
 		shader.uploadMat4f("uModel", gelem.getTransformMatrix());
@@ -51,13 +50,13 @@ public class Renderer
 		this.shader = shader;
 	}
 
-	public Window getWindow()
+	public Camera getCamera()
 	{
-		return window;
+		return camera;
 	}
 
-	public void setWindow(Window window)
+	public void setCamera(Camera camera)
 	{
-		this.window = window;
+		this.camera = camera;
 	}
 }

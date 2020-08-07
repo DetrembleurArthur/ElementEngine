@@ -1,5 +1,6 @@
 package game.jgengine.graphics.gui.widgets;
 
+import game.jgengine.debug.Logs;
 import game.jgengine.event.Mouse;
 import game.jgengine.graphics.camera.Camera2D;
 import game.jgengine.graphics.gui.event.*;
@@ -124,17 +125,58 @@ public class Widget<T extends Shape> extends EventManager
 		}
 	}
 
-	public void ableMouseDragging()
+	private void enableMouseDragging(int orientation)
 	{
 		MouseButtonDragEvent event = getEvent(MouseButtonDragEvent.class);
 		if(event != null)
 		{
-			event.addActionEvent(event.generateDragActionEvent());
+			event.setDragActionEvent(orientation);
 		}
 		else
 		{
 			event = new MouseButtonDragEvent(getShape());
-			addEvent(event.addActionEvent(event.generateDragActionEvent()));
+			event.setDragActionEvent(orientation);
+			addEvent(event);
+		}
+	}
+
+	public void enableMouseDragging()
+	{
+		enableMouseDragging(MouseButtonDragEvent.Orientation.BOTH);
+	}
+
+	public void enableHorizontalMouseDragging()
+	{
+		enableMouseDragging(MouseButtonDragEvent.Orientation.HORIZONTAL);
+	}
+
+	public void enableVerticalMouseDragging()
+	{
+		enableMouseDragging(MouseButtonDragEvent.Orientation.VERTICAL);
+	}
+
+	public void changeDraggingOrientation(int orientation)
+	{
+		clearEvent(MouseButtonDragEvent.class);
+		enableMouseDragging(orientation);
+	}
+
+	public void onPositionChanged(ActionEvent action)
+	{
+		if(!onEvent(PositionChangedEvent.class, action))
+		{
+			addEvent(new PositionChangedEvent(getShape()).addActionEvent(action));
+		}
+	}
+
+	public void on(ActionEvent action, String getter)
+	{
+		if(!onEvent(ShapeChangedEvent.class, action))
+		{
+			addEvent(new ShapeChangedEvent(getShape(), getShape().getter(getter))
+			{
+
+			}.addActionEvent(action));
 		}
 	}
 }

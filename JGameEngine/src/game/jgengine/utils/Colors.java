@@ -1,5 +1,6 @@
 package game.jgengine.utils;
 
+import game.jgengine.tweening.TweenFunction;
 import org.joml.Vector4f;
 
 import java.awt.*;
@@ -30,5 +31,16 @@ public class Colors
 	public static Vector4f awtColor(Color awt)
 	{
 		return new Vector4f(awt.getRed() / 255f,awt.getGreen() / 255f,awt.getBlue() / 255f,awt.getAlpha() / 255f);
+	}
+
+	public static Vector4f interpolate(Vector4f c1, Vector4f c2, float perc)
+	{
+		return new Vector4f(c1).mul(1f-perc).add(new Vector4f(c2).mul(perc));
+	}
+
+	public static Vector4f interpolate(Vector4f c1, Vector4f c2, float perc, TweenFunction function)
+	{
+		perc = function.f(perc);
+		return new Vector4f(c1).mul(1f-perc).add(new Vector4f(c2).mul(perc));
 	}
 }

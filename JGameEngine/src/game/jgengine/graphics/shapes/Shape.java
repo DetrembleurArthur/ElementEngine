@@ -8,9 +8,12 @@ import org.joml.Vector2f;
 
 public abstract class Shape extends GameObject
 {
+	private Vector2f origin;
+
 	public Shape(Mesh mesh, Texture texture)
 	{
 		super(mesh, texture);
+		origin = new Vector2f();
 	}
 
 	protected abstract void setVerticesOrigin(float x, float y);
@@ -40,6 +43,12 @@ public abstract class Shape extends GameObject
 	public void setOrigin(float x, float y)
 	{
 		setVerticesOrigin(-x / getScale().x, -y / getScale().y);
+		origin = new Vector2f(x, y);
+	}
+
+	public void updateOrigin()
+	{
+		setOrigin(origin.x, origin.y);
 	}
 
 	public Vector2f getOrigin()
