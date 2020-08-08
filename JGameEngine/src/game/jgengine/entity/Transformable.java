@@ -26,6 +26,26 @@ public class Transformable extends FreeReflectable
 		return trMatrix;
 	}
 
+	public float getX()
+	{
+		return position.x;
+	}
+
+	public void setX(float x)
+	{
+		position.x = x;
+	}
+
+	public float getY()
+	{
+		return position.y;
+	}
+
+	public void setY(float y)
+	{
+		position.y = y;
+	}
+
 	public Vector3f getPosition()
 	{
 		return position;

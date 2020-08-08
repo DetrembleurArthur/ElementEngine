@@ -1,6 +1,7 @@
 package game.jgengine.graphics.shapes;
 
 import game.jgengine.debug.Logs;
+import game.jgengine.graphics.rendering.Renderer;
 import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.sys.Game;
 import game.jgengine.tweening.TweenAction;
@@ -18,6 +19,10 @@ public class ProgressBar extends Rectangle
 	private Vector2f maxSize;
 	private Vector2f currentSize;
 	private TweenFunction widthProgressFunction;
+	private Vector4f minColor;
+	private Vector4f maxColor;
+	private Vector4f backgroundColor;
+	private TweenFunction colorProgressFunction;
 
 	public ProgressBar(float minValue, float maxValue, float currentValue, Vector2f maxSize)
 	{
@@ -27,6 +32,10 @@ public class ProgressBar extends Rectangle
 		this.currentValue = currentValue;
 		this.maxSize = maxSize;
 		this.widthProgressFunction = TweenFunctions.LINEAR;
+		this.colorProgressFunction = TweenFunctions.LINEAR;
+		this.minColor = Colors.RED;
+		this.maxColor = Colors.LIME;
+		this.backgroundColor = Colors.BLACK;
 		setSize(maxSize);
 		updateRectangle();
 	}
@@ -37,9 +46,20 @@ public class ProgressBar extends Rectangle
 	}
 
 	@Override
-	public void draw()
+	public void draw(Renderer renderer)
 	{
-		super.draw();
+		renderer.render(this);
+		setFillColor(getProgressColor());
+		setSize(currentSize);
+		renderer.render(this);
+		setFillColor(backgroundColor);
+		setSize(maxSize);
+	}
+
+
+	public Vector4f getProgressColor()
+	{
+		return Colors.interpolate(minColor, maxColor, getPercent(), colorProgressFunction);
 	}
 
 	public float getMinValue()
@@ -77,6 +97,11 @@ public class ProgressBar extends Rectangle
 		updateRectangle();
 	}
 
+	public void setCurrentPercent(float percent)
+	{
+		setCurrentValue(percent * (maxValue - minValue) + minValue);
+	}
+
 	public Vector2f getMaxSize()
 	{
 		return maxSize;
@@ -97,6 +122,16 @@ public class ProgressBar extends Rectangle
 		this.widthProgressFunction = widthProgressFunction;
 	}
 
+	public TweenFunction getColorProgressFunction()
+	{
+		return colorProgressFunction;
+	}
+
+	public void setColorProgressFunction(TweenFunction colorProgressFunction)
+	{
+		this.colorProgressFunction = colorProgressFunction;
+	}
+
 	public float getPercent()
 	{
 		float shift = 0 - minValue;
@@ -105,12 +140,42 @@ public class ProgressBar extends Rectangle
 			minValue += shift;
 			maxValue += shift;
 		}
-		float perc = TweenAction.get(widthProgressFunction, minValue, maxValue, currentValue) / 100;
+		float perc = TweenAction.getProgress(widthProgressFunction, minValue, maxValue, currentValue);
 		if(shift > 0)
 		{
 			minValue -= shift;
 			maxValue -= shift;
 		}
 		return perc;
+	}
+
+	public Vector4f getMinColor()
+	{
+		return minColor;
+	}
+
+	public void setMinColor(Vector4f minColor)
+	{
+		this.minColor = minColor;
+	}
+
+	public Vector4f getMaxColor()
+	{
+		return maxColor;
+	}
+
+	public void setMaxColor(Vector4f maxColor)
+	{
+		this.maxColor = maxColor;
+	}
+
+	public Vector4f getBackgroundColor()
+	{
+		return backgroundColor;
+	}
+
+	public void setBackgroundColor(Vector4f backgroundColor)
+	{
+		this.backgroundColor = backgroundColor;
 	}
 }

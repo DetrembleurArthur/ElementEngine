@@ -92,5 +92,4 @@ public class Mesh
 		vertexArray.unbind();
 		vertexArray.destroy();
 	}
-
 }

@@ -1,14 +1,15 @@
 package game.jgengine.graphics.gui.widgets;
 
-import game.jgengine.debug.Logs;
-import game.jgengine.event.Mouse;
-import game.jgengine.graphics.camera.Camera2D;
 import game.jgengine.graphics.gui.event.*;
 import game.jgengine.graphics.shapes.Shape;
-import game.jgengine.sys.Game;
 
 public class Widget<T extends Shape> extends EventManager
 {
+	public static interface Configure<T extends Shape>
+	{
+		void configure(T shape);
+	}
+
 	private final T shape;
 
 	protected Widget(T shape)
@@ -19,6 +20,11 @@ public class Widget<T extends Shape> extends EventManager
 	public T getShape()
 	{
 		return shape;
+	}
+
+	public void with(Configure<T> configure)
+	{
+		configure.configure(shape);
 	}
 
 	public void onMouseHovering(ActionEvent action)
@@ -169,14 +175,19 @@ public class Widget<T extends Shape> extends EventManager
 		}
 	}
 
-	public void on(ActionEvent action, String getter)
+	public void onMouseButtonDoubleClicked(ActionEvent action)
 	{
-		if(!onEvent(ShapeChangedEvent.class, action))
+		if(!onEvent(MouseButtonDoubleClickEvent.class, action))
 		{
-			addEvent(new ShapeChangedEvent(getShape(), getShape().getter(getter))
-			{
+			addEvent(new MouseButtonDoubleClickEvent(getShape()).addActionEvent(action));
+		}
+	}
 
-			}.addActionEvent(action));
+	public void onFillColorChanged(ActionEvent action)
+	{
+		if(!onEvent(FillColorChangedEvent.class, action))
+		{
+			addEvent(new FillColorChangedEvent(getShape()).addActionEvent(action));
 		}
 	}
 }

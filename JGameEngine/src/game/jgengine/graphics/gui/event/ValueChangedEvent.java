@@ -35,4 +35,9 @@ public class ValueChangedEvent extends Event
 	{
 		return valuable;
 	}
+
+	public void ignoreNewValue()
+	{
+		oldValue = valuable.getValue();
+	}
 }

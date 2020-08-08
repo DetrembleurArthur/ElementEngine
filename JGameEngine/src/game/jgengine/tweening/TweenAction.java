@@ -1,5 +1,7 @@
 package game.jgengine.tweening;
 
+import game.jgengine.debug.Logs;
+
 public class TweenAction implements Runnable
 {
 	protected float startValue;
@@ -63,7 +65,7 @@ public class TweenAction implements Runnable
 
 	public void setCurrentValue(float value)
 	{
-		float percent = value / (endValue - startValue);
+		float percent = (value-startValue) / (endValue - startValue);
 		setCurrentPercent(percent);
 	}
 
@@ -74,12 +76,17 @@ public class TweenAction implements Runnable
 
 	public static float get(TweenFunction f, float beg, float end, float value)
 	{
-		return beg + (end - beg) * f.f(value / (end - beg));
+		return beg + (end - beg) * f.f((value-beg) / (end - beg));
+	}
+
+	public static float getByProgress(TweenFunction f, float beg, float end, float perc)
+	{
+		return beg + (end - beg) * f.f(perc);
 	}
 
 	public static float getProgress(TweenFunction f, float beg, float end, float value)
 	{
-		return f.f(value / (end - beg));
+		return f.f((value-beg) / (end - beg));
 	}
 
 	public boolean isFinished()

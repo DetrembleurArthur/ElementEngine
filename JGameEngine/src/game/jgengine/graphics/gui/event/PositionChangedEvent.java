@@ -1,10 +1,8 @@
 package game.jgengine.graphics.gui.event;
 
-import game.jgengine.entity.Transformable;
 import game.jgengine.graphics.shapes.Shape;
-import org.joml.Vector2f;
 
-public class PositionChangedEvent extends ShapeChangedEvent
+public class PositionChangedEvent extends DataChangedEvent
 {
 	public PositionChangedEvent(Shape object)
 	{

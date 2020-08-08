@@ -22,7 +22,17 @@ public class Rectangle extends Shape
 
 	public Rectangle(Texture texture)
 	{
-		super(MODEL, texture);
+		super(new Mesh(
+				new float[]{
+						0, 0,	0, 0, //top left
+						0, 1,	0, 1, //bottom left
+						1, 1,	1, 1, //bottom right
+						1, 0,	1, 0 //top right
+				},
+				new int[]{
+						0, 1, 2, 0, 2, 3
+				},Mesh.DIMENSION_2, Mesh.TEXTURED
+		), texture);
 		if(texture != null)
 			setSize(texture.getDimension());
 	}

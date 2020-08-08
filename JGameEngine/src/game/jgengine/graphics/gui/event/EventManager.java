@@ -63,6 +63,7 @@ public abstract class EventManager implements Updateable
 		{
 			for (Event event : callLaterEvents)
 			{
+				Logs.print("EVENT => " + event.getClass().getSimpleName() + " ON " + this.getClass().getSimpleName());
 				event.run(this);
 			}
 			callLaterEvents.clear();

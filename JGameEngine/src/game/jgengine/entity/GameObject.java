@@ -14,12 +14,27 @@ import org.joml.Vector4f;
 public class GameObject extends GraphicElement
 {
 	private Texture texture = null;
-	private Vector4f fillColor = Colors.WHITE;
+	private Vector4f fillColor = new Vector4f(Colors.WHITE);
 
 	public GameObject(Mesh mesh, Texture texture)
 	{
 		super(mesh);
 		setTexture(texture);
+	}
+
+	public Vector2f getSize()
+	{
+		return getScale2D();
+	}
+
+	public void setSize(Vector2f size)
+	{
+		setScale(size);
+	}
+
+	public final void setSize(float w, float h)
+	{
+		setSize(new Vector2f(w, h));
 	}
 
 	public Texture getTexture()
@@ -32,14 +47,50 @@ public class GameObject extends GraphicElement
 		this.texture = texture;
 	}
 
+	public void setTextureAndResize(Texture texture, float mulFactor)
+	{
+		setTexture(texture);
+		setSize(new Vector2f(texture.getDimension()).mul(mulFactor));
+	}
+
+	public void setTextureAndResize(Texture texture)
+	{
+		setTextureAndResize(texture, 1f);
+	}
+
 	public void setFillColor(Vector4f color)
+	{
+		this.fillColor = new Vector4f(color);
+	}
+
+	public void setFillColorKeep(Vector4f color)
 	{
 		this.fillColor = color;
 	}
 
+	public void setR(float r)
+	{
+		this.fillColor.x = r;
+	}
+
+	public void setG(float g)
+	{
+		this.fillColor.y = g;
+	}
+
+	public void setB(float b)
+	{
+		this.fillColor.z = b;
+	}
+
+	public void setA(float a)
+	{
+		this.fillColor.w = a;
+	}
+
 	public Vector4f getFillColor()
 	{
-		return fillColor;
+		return new Vector4f(fillColor);
 	}
 
 	public void setOpacity(float value)

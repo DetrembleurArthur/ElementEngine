@@ -6,6 +6,7 @@ import org.joml.Vector2i;
 import org.joml.Vector3i;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL14;
+import org.lwjgl.system.MemoryUtil;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
@@ -78,7 +79,6 @@ public class Texture
 
 	public void init(Vector2i size, boolean rgba, ByteBuffer image)
 	{
-		//glTexImage2D(GL_TEXTURE_2D, 0,GL_DEPTH_COMPONENT24, 1024, 768, 0,GL_DEPTH_COMPONENT, GL_FLOAT, 0); => profondeur
 		glTexImage2D(GL_TEXTURE_2D, 0, rgba ? GL_RGBA : GL_RGB, size.x, size.y, 0, rgba ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, image);
 		initParameters();
 		dimension = new Vector2f(size.x, size.y);
@@ -165,7 +165,7 @@ public class Texture
 
 	public Vector2f getDimension()
 	{
-		return dimension;
+		return new Vector2f(dimension);
 	}
 
 	public float getWidth()
