@@ -16,7 +16,7 @@ public class MouseEnteredEvent extends MouseEvent
 	@Override
 	boolean isAppend()
 	{
-		boolean intersects = relativeObject.contains(Mouse.getPosition(camera));
+		boolean intersects = object.contains(Mouse.getPosition(camera));
 		if(intersects)
 		{
 			if(!entered)

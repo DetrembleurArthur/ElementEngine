@@ -1,11 +1,15 @@
 import game.jgengine.binding.Property;
 import game.jgengine.debug.Logs;
+import game.jgengine.event.Input;
 import game.jgengine.graphics.camera.Camera2D;
 import game.jgengine.graphics.gui.event.Event;
 import game.jgengine.graphics.gui.event.MouseButtonDoubleClickEvent;
 import game.jgengine.graphics.gui.event.MouseLeftButtonClickEvent;
 import game.jgengine.graphics.gui.event.ValueChangedEvent;
 import game.jgengine.graphics.gui.widgets.*;
+import game.jgengine.graphics.rendering.TargetRenderer;
+import game.jgengine.graphics.rendering.TargetTexture;
+import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.graphics.shapes.Rectangle;
 import game.jgengine.graphics.shapes.Slider;
 import game.jgengine.registry.Registry;
@@ -17,6 +21,11 @@ import game.jgengine.utils.Colors;
 import game.jgengine.utils.To;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
+import org.lwjgl.glfw.GLFW;
+
+import javax.swing.*;
+import java.sql.Date;
+import java.time.Instant;
 
 public class MainScene extends Scene2D
 {
@@ -28,6 +37,12 @@ public class MainScene extends Scene2D
 	WProgressBar bar;
 
 	Vector2f winSize;
+
+	TargetRenderer target;
+	TargetTexture targetTexture;
+	WRectangle sceneView;
+
+	Entry entry;
 
 	@Override
 	public void load()
@@ -106,6 +121,20 @@ public class MainScene extends Scene2D
 			color.div(255);
 			bar.getShape().setCurrentValue(color.x + color.y + color.z);
 		});
+
+		targetTexture = new TargetTexture(Window.WINDOW.getSize().mul(0.25f));
+		target = new TargetRenderer(Shader.DEFAULT, getCamera2d(), targetTexture);
+		sceneView = new WRectangle(targetTexture.getTexture());
+		sceneView.enableMouseDragging();
+		sceneView.getShape().setCenterOrigin();
+		sceneView.getShape().getHomotetie().y = -1;
+		sceneView.getShape().setTopLeftPosition(new Vector2f(0));
+
+
+
+		entry = new Entry(Registry.getFont("impact"), 50);
+		entry.getShape().setPosition(new Vector2f(600, 800));
+		entry.enableMouseDragging();
 	}
 
 	@Override
@@ -119,6 +148,8 @@ public class MainScene extends Scene2D
 		background.update();
 		colorLabel.update();
 		bar.update();
+		sceneView.update();
+		entry.update();
 	}
 
 	@Override
@@ -131,6 +162,18 @@ public class MainScene extends Scene2D
 		draw(sliders[2].getShape());
 		draw(colorLabel.getShape());
 		draw(bar.getShape());
+		draw(entry.getShape());
+
+		draw(target, background.getShape());
+		draw(target, rect.getShape());
+		draw(target, sliders[0].getShape());
+		draw(target, sliders[1].getShape());
+		draw(target, sliders[2].getShape());
+		draw(target, colorLabel.getShape());
+		draw(target, bar.getShape());
+		draw(target, entry.getShape());
+
+		draw(sceneView.getShape());
 	}
 
 	@Override
@@ -149,11 +192,31 @@ public class MainScene extends Scene2D
 		sliders[2].getShape().destroy();
 		colorLabel.getShape().destroy();
 		bar.getShape().destroy();
+		targetTexture.destroy();
+		sceneView.getShape().destroy();
+		entry.getShape().destroy();
 		Logs.print("Resources closed");
 	}
 
 	@Override
 	public void keyPressedEventHandler(int key)
 	{
+		entry.updateKeys(key);
+		if(key == GLFW.GLFW_KEY_LEFT_CONTROL)
+		{
+			Logs.print("SCREENSHOT TOOK");
+			Window.WINDOW
+					.takeScreenShot(
+					("demo_screenshots/" +
+							Date.from(Instant.now()) + ".png")
+					.replace(" ", "_")
+					.replace(":", "-"));
+		}
+	}
+
+	@Override
+	public void keyRepeatedEventHandler(int key)
+	{
+		entry.updateKeys(key);
 	}
 }

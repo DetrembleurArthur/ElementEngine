@@ -30,7 +30,7 @@ public class MouseButtonClickEvent extends MouseButtonEvent
 		if((buttonId == -1 && Input.isButtonPressed()) || (buttonId != -1 && Input.isButtonPressed(buttonId)))
 		{
 			Vector2f mousePosition = Mouse.getPosition(camera);
-			if(relativeObject.contains(mousePosition) || clicked)
+			if(object.contains(mousePosition) || clicked)
 			{
 				if(!clickBloqued)
 				{

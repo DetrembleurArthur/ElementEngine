@@ -18,7 +18,7 @@ public class MouseMoveEvent extends MouseEvent
 	boolean isAppend()
 	{
 		Vector2f newMousePosition = Mouse.getPosition(camera);
-		if(!newMousePosition.equals(lastMousePosition) && relativeObject.contains(newMousePosition))
+		if(!newMousePosition.equals(lastMousePosition) && object.contains(newMousePosition))
 		{
 			lastMousePosition = newMousePosition;
 			return true;

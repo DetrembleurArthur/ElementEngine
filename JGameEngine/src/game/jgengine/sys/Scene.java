@@ -31,7 +31,12 @@ public abstract class Scene implements Manageable, ResourcesManageable, EventHan
 
 	public void draw(GameObject gobject)
 	{
-		gobject.draw(defaultRenderer);
+		draw(defaultRenderer, gobject);
+	}
+
+	public void draw(Renderer renderer, GameObject gobject)
+	{
+		gobject.draw(renderer);
 	}
 
 	@Override

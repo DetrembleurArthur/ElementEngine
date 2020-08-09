@@ -11,6 +11,7 @@ public class Transformable extends FreeReflectable
 	protected Vector3f position;
 	protected Vector3f rotation;
 	protected Vector3f scale;
+	protected Vector3f homotetie;
 
 	public Transformable(Vector3f position, Vector3f rotation, Vector3f scale)
 	{
@@ -19,6 +20,7 @@ public class Transformable extends FreeReflectable
 		this.position = position;
 		this.rotation = rotation;
 		this.scale = scale;
+		this.homotetie = new Vector3f(1);
 	}
 
 	public Matrix4f getMatrix()
@@ -106,6 +108,16 @@ public class Transformable extends FreeReflectable
 		this.scale = new Vector3f(scale2d.x, scale2d.y, scale.z);
 	}
 
+	public Vector3f getHomotetie()
+	{
+		return homotetie;
+	}
+
+	public void setHomotetie(Vector3f homotetie)
+	{
+		this.homotetie = homotetie.normalize();
+	}
+
 	public Matrix4f getTransformMatrix()
 	{
 		return trMatrix.identity()
@@ -113,6 +125,6 @@ public class Transformable extends FreeReflectable
 				.rotateX((float)Math.toRadians(rotation.x))
 				.rotateY((float)Math.toRadians(rotation.y))
 				.rotateZ((float)Math.toRadians(rotation.z))
-				.scale(scale);
+				.scale(scale).scale(homotetie);
 	}
 }

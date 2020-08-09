@@ -1,5 +1,6 @@
 package game.jgengine.graphics.texts;
 
+import game.jgengine.debug.Logs;
 import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.utils.VariableLoader;
@@ -36,6 +37,11 @@ public class Font
 		this.fontPath = fontPath;
 		glyphs = new HashMap<>();
 		load();
+	}
+
+	public HashMap<Character, Glyph> getGlyphs()
+	{
+		return glyphs;
 	}
 
 	private void setInfoFromLoader(VariableLoader loader)
@@ -109,6 +115,7 @@ public class Font
 				continue;
 			}
 			Glyph glyph = glyphs.get(text.charAt(i));
+			if(glyph == null) continue;
 			uvs = glyph.getUVs();
 			pos.x = cursorPos.x + glyph.getXoffset() * ratioFactor;
 			pos.y = cursorPos.y + glyph.getYoffset() * ratioFactor;

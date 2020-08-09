@@ -6,21 +6,15 @@ import game.jgengine.graphics.shapes.Shape;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class DataChangedEvent extends Event
+public class DataChangedEvent extends RelativeEvent
 {
-	private Shape object;
 	private Method getter;
 	private Object oldValue;
 
 	public DataChangedEvent(Shape object, Method method)
 	{
-		this.object = object;
+		super(object);
 		this.getter = method;
-	}
-
-	public Shape getObject()
-	{
-		return object;
 	}
 
 	@Override

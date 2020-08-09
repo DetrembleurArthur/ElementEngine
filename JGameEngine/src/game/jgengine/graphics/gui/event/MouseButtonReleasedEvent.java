@@ -1,6 +1,5 @@
 package game.jgengine.graphics.gui.event;
 
-import game.jgengine.debug.Logs;
 import game.jgengine.event.Input;
 import game.jgengine.event.Mouse;
 import game.jgengine.graphics.shapes.Shape;
@@ -46,7 +45,7 @@ public class MouseButtonReleasedEvent extends MouseButtonEvent
 		{
 			if(pressed)
 			{
-				if(relativeObject.contains(Mouse.getPosition(camera)))
+				if(object.contains(Mouse.getPosition(camera)))
 				{
 					buttonPressed = true;
 				}

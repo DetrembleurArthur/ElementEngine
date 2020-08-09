@@ -78,6 +78,11 @@ public abstract class Shape extends GameObject
 		return getPosition2D();
 	}
 
+	public void setTopLeftPosition(Vector2f pos)
+	{
+		setPosition((new Vector2f(origin).sub(pos)));
+	}
+
 	public Vector2f getCenter()
 	{
 		return getTopLeftPosition().add(getSize().div(2));

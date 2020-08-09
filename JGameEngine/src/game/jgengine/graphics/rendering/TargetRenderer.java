@@ -25,9 +25,7 @@ public class TargetRenderer extends Renderer
 
 	public void render(GameObject[] gelem)
 	{
-		target.bind();
 		for(var o : gelem)
-			render(o);
-		target.unbind();
+			super.render(o);
 	}
 }

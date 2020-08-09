@@ -1,6 +1,8 @@
 package game.jgengine.graphics.rendering;
 
+import game.jgengine.debug.Logs;
 import game.jgengine.sys.Window;
+import org.joml.Vector2f;
 import org.joml.Vector2i;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.*;
@@ -22,7 +24,6 @@ public class TargetTexture
 
 		texture = new Texture(true, size);
 		texture.bind();
-
 		depthId = GL30.glGenRenderbuffers();
 		GL30.glBindRenderbuffer(GL30.GL_RENDERBUFFER, depthId);
 		GL30.glRenderbufferStorage(GL30.GL_RENDERBUFFER, GL11.GL_DEPTH_COMPONENT, size.x, size.y);
@@ -37,6 +38,11 @@ public class TargetTexture
 
 		texture.unbind();
 		unbind();
+	}
+
+	public TargetTexture(Vector2f size)
+	{
+		this(new Vector2i((int)size.x, (int)size.y));
 	}
 
 	public void bind()
@@ -70,5 +76,10 @@ public class TargetTexture
 	public Vector2i getSize()
 	{
 		return size;
+	}
+
+	public void destroy()
+	{
+		texture.destroy();
 	}
 }
