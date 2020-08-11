@@ -1,5 +1,7 @@
 package game.jgengine.sys;
 
+import game.jgengine.audio.SoundBuffer;
+import game.jgengine.audio.SoundManager;
 import game.jgengine.event.handler.EventHandler;
 import game.jgengine.exceptions.SysException;
 import game.jgengine.graphics.shaders.Shader;
@@ -101,6 +103,7 @@ public abstract class Game implements ResourcesManageable
 		primaryWindow.active();
 		GL.createCapabilities();
 		initGraphics();
+		initAudio();
 		Registry.set("DEFAULT", Shader.DEFAULT);
 		primaryWindow.simpleUpdateViewport();
 
@@ -108,6 +111,11 @@ public abstract class Game implements ResourcesManageable
 
 		scenes = new HashMap<>();
 		GAME = this;
+	}
+
+	private void initAudio()
+	{
+		SoundManager.initAL();
 	}
 
 	final protected void loop() throws InterruptedException
@@ -148,6 +156,7 @@ public abstract class Game implements ResourcesManageable
 
 
 		Registry.close();
+		SoundManager.closeAL();
 		glfwTerminate();
 		glfwSetErrorCallback(null).free();
 	}
