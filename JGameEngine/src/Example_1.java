@@ -46,7 +46,7 @@ public class Example_1 extends Scene2D
 	{
 		winSize = Window.WINDOW.getSize();
 		background = new WRectangle(Registry.getTexture("background"));
-		background.getShape().setSize(Window.WINDOW.getSize());
+		background.getShape().setSize(winSize);
 
 		rect = new WRectangle(Registry.getTexture("folder"));
 		rect.with(shape -> {

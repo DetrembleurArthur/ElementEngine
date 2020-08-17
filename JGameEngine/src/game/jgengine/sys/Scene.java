@@ -1,5 +1,6 @@
 package game.jgengine.sys;
 
+import game.jgengine.debug.Logs;
 import game.jgengine.entity.GameObject;
 import game.jgengine.event.handler.EventHandler;
 import game.jgengine.graphics.camera.Camera;
@@ -44,6 +45,4 @@ public abstract class Scene implements Manageable, ResourcesManageable, EventHan
 	{
 		Window.WINDOW.aspectRatioUpdateViewport(width, height);
 	}
-
-
 }

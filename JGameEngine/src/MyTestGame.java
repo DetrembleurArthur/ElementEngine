@@ -25,7 +25,7 @@ public class MyTestGame extends Game
         TextureLoader.load("apple", "assets/apple.png");
         TextureLoader.load("bricks", "assets/bricks.png");
 
-        addScene("MAIN", new MainScene());
+        addScene("MAIN", new Example_1());
         setCurrentScene("MAIN");
     }
 

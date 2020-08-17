@@ -35,9 +35,7 @@ import java.time.Instant;
 
 public class MainScene extends Scene2D
 {
-	SoundBuffer soundBuffer;
-	SoundSource soundSource;
-
+	WRectangle rect;
 
 
 	@Override
@@ -47,30 +45,30 @@ public class MainScene extends Scene2D
 	}
 
 
-	int i = 0;
+
 	@Override
 	public void loadResources()
 	{
-		soundBuffer = new SoundBuffer("assets/audio/test.ogg");
-		soundSource = new SoundSource(false, true);
-		soundSource.setBuffer(soundBuffer.getId());
-		soundSource.setGain(100);
+		rect = new WRectangle(null);
+		rect.getShape().setFillColor(Colors.RED);
+		rect.getShape().setSize(300, 300);
+		rect.getShape().setPosition(new Vector2f(Window.WINDOW.getCenter()));
 
+		rect.enableMouseDragging();
 	}
 
 	@Override
 	public void update(double dt)
 	{
 		getCamera2d().activateKeys(Window.WINDOW, Camera2D.SPECTATOR_KEY_SET);
-		SoundManager.getListener().setPosition(getCamera2d().getPosition());
-		Logs.print(getCamera2d().getPosition());
 
+		rect.update();
 	}
 
 	@Override
 	public void render(double dt)
 	{
-
+		draw(rect.getShape());
 	}
 
 	@Override
@@ -82,8 +80,7 @@ public class MainScene extends Scene2D
 	@Override
 	public void closeResources()
 	{
-		soundBuffer.destroy();
-		soundSource.destroy();
+		rect.getShape().destroy();
 	}
 
 	@Override
@@ -91,18 +88,12 @@ public class MainScene extends Scene2D
 	{
 		if(key == GLFW.GLFW_KEY_LEFT_CONTROL)
 		{
-			Logs.print("SCREENSHOT TOOK");
 			Window.WINDOW
 					.takeScreenShot(
 					("demo_screenshots/" +
 							Date.from(Instant.now()) + ".png")
 					.replace(" ", "_")
 					.replace(":", "-"));
-		}
-		else
-		{
-
-			soundSource.play();
 		}
 	}
 }

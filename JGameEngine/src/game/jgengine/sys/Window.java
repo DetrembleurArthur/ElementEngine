@@ -36,6 +36,7 @@ public class Window
 	private boolean sizeRatioEnable;
 	private Vector2f aspectRationPosition;
 	private Vector4f clearColor;
+	public Vector2f firstSize;
 
 	public boolean isSizeRatioEnable()
 	{
@@ -70,6 +71,7 @@ public class Window
 
 	public Window(int width, int height, String title) throws SysException
 	{
+		firstSize = new Vector2f(width, height);
 		windowId = glfwCreateWindow(width, height, title, NULL, NULL);
 		if(windowId == NULL)
 		{
@@ -448,6 +450,11 @@ public class Window
 	{
 		var size = getSize();
 		glViewport(0, 0, (int)size.x, (int)size.y);
+	}
+
+	public void aspectRatioUpdateViewport()
+	{
+		aspectRatioUpdateViewport(Window.WINDOW.getSize().x, Window.WINDOW.getSize().y);
 	}
 
 	public void aspectRatioUpdateViewport(float w, float h)

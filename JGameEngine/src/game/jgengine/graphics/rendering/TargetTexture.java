@@ -54,7 +54,7 @@ public class TargetTexture
 	public void unbind()
 	{
 		GL30.glBindFramebuffer(GL30.GL_FRAMEBUFFER, 0);
-		GL11.glViewport(0, 0, (int)Window.WINDOW.getSize().x, (int)Window.WINDOW.getSize().y);
+		Window.WINDOW.aspectRatioUpdateViewport();
 	}
 
 
