@@ -28,9 +28,9 @@ public class Entry extends Label
 	}
 
 	@Override
-	public void update()
+	public void run()
 	{
-		super.update();
+		super.run();
 		if(focused)
 		{
 			if(Input.isButtonPressed() && !getShape().contains(Mouse.getPosition(getEvent(MouseButtonReleasedEvent.class).getCamera())))

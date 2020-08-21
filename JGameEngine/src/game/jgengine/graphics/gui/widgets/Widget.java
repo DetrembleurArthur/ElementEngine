@@ -1,20 +1,190 @@
 package game.jgengine.graphics.gui.widgets;
 
+import game.jgengine.debug.Logs;
 import game.jgengine.graphics.gui.event.*;
 import game.jgengine.graphics.shapes.Shape;
+import game.jgengine.tweening.*;
+import org.joml.Vector2f;
+import org.joml.Vector4f;
+
+import java.util.ArrayList;
 
 public class Widget<T extends Shape> extends EventManager
 {
-	public static interface Configure<T extends Shape>
+	public interface Configure<T extends Shape>
 	{
 		void configure(T shape);
 	}
 
 	private final T shape;
+	private ArrayList<Sequence> sequences;
+	private ActionsPack lastActionPack;
+	private Sequence lastSequence;
 
 	protected Widget(T shape)
 	{
 		this.shape = shape;
+		this.sequences = new ArrayList<>();
+		lastSequence = null;
+		lastActionPack = null;
+	}
+
+	private interface PackInitializer
+	{
+		void init(ActionsPack pack);
+	}
+
+	private void packInitialize(PackInitializer init)
+	{
+		Sequence sequence = lastSequence != null ? lastSequence : new Sequence();
+		ActionsPack pack = lastActionPack != null ? lastActionPack : new ActionsPack();
+		init.init(pack);
+		if(lastActionPack == null)
+		{
+			sequence.addActionPack(pack);
+			lastActionPack = pack;
+		}
+		lastSequence = sequence;
+		sequences.add(sequence);
+	}
+
+	public Widget<T> goTo(Vector2f position, TweenFunction func ,float delay)
+	{
+		packInitialize(pack ->
+			pack
+			.addAction(
+				new TimedTweenAction(
+						shape.getX(),
+						position.x,
+						func, shape::setX,
+						delay,
+						0,
+						false))
+			.addAction(
+				new TimedTweenAction(
+						shape.getY(),
+						position.y,
+						func, shape::setY,
+						delay,
+						0,
+						false)
+			)
+		);
+		return this;
+	}
+
+	public Widget<T> sizeTo(Vector2f size, TweenFunction func ,float delay)
+	{
+		packInitialize(pack ->
+			pack
+			.addAction(
+				new TimedTweenAction(
+						shape.getSize().x,
+						size.x,
+						func, value -> shape.setSize(value, shape.getSize().y),
+						delay,
+						0,
+						false))
+			.addAction(
+				new TimedTweenAction(
+						shape.getSize().y,
+						size.y,
+						func, value -> shape.setSize(shape.getSize().x, value),
+						delay,
+						0,
+						false)
+			)
+		);
+		return this;
+	}
+
+	public Widget<T> rotateTo(float angleDegree, TweenFunction func ,float delay)
+	{
+		packInitialize(pack ->
+			pack
+				.addAction(
+					new TimedTweenAction(
+							shape.getRotation2D(),
+							angleDegree,
+							func, shape::setRotation,
+							delay,
+							0,
+							false))
+		);
+		return this;
+	}
+
+	public Widget<T> fillTo(Vector4f color, TweenFunction func , float delay)
+	{
+		packInitialize(pack ->
+			pack
+				.addAction(
+					new TimedTweenAction(
+							shape.getR(),
+							color.x,
+							func, shape::setR,
+							delay,
+							0,
+							false))
+				.addAction(
+						new TimedTweenAction(
+								shape.getG(),
+								color.y,
+								func, shape::setG,
+								delay,
+								0,
+								false))
+				.addAction(
+						new TimedTweenAction(
+								shape.getB(),
+								color.z,
+								func, shape::setB,
+								delay,
+								0,
+								false))
+		);
+		return this;
+	}
+
+	public void startSequences()
+	{
+		for(Sequence sequence : sequences)
+		{
+			sequence.start();
+		}
+	}
+
+	public void stopActionPack()
+	{
+		lastActionPack = null;
+	}
+
+	public void stopSequence()
+	{
+		stopActionPack();
+		lastSequence = null;
+	}
+
+	private void runSequences()
+	{
+		ArrayList<Sequence> removeList = new ArrayList<>();
+		for(Sequence sequence : sequences)
+		{
+			sequence.run();
+			if(sequence.isFinished())
+				removeList.add(sequence);
+		}
+		for(Sequence sequence : removeList)
+		{
+			sequences.remove(sequence);
+		}
+	}
+
+	@Override
+	public void run()
+	{
+		super.run();
+		runSequences();
 	}
 
 	public T getShape()

@@ -88,6 +88,26 @@ public class GameObject extends GraphicElement
 		this.fillColor.w = a;
 	}
 
+	public float getR()
+	{
+		return this.fillColor.x;
+	}
+
+	public float getG()
+	{
+		return this.fillColor.y;
+	}
+
+	public float getB()
+	{
+		return this.fillColor.z;
+	}
+
+	public float getA()
+	{
+		return this.fillColor.w;
+	}
+
 	public Vector4f getFillColor()
 	{
 		return new Vector4f(fillColor);

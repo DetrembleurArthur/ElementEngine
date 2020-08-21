@@ -1,12 +1,10 @@
 package game.jgengine.graphics.gui.event;
 
 import game.jgengine.debug.Logs;
-import game.jgengine.entity.GameObject;
-import game.jgengine.entity.Updateable;
 
 import java.util.ArrayList;
 
-public abstract class EventManager implements Updateable
+public abstract class EventManager implements Runnable
 {
 	private ArrayList<Event> events;
 	private ArrayList<Event> callLaterEvents = new ArrayList<>();
@@ -71,7 +69,7 @@ public abstract class EventManager implements Updateable
 	}
 
 	@Override
-	public void update()
+	public void run()
 	{
 		pollEvent();
 	}

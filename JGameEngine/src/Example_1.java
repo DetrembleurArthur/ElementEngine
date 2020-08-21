@@ -8,6 +8,7 @@ import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.registry.Registry;
 import game.jgengine.sys.Scene2D;
 import game.jgengine.sys.Window;
+import game.jgengine.tweening.TweenFunctions;
 import game.jgengine.utils.Colors;
 import game.jgengine.utils.To;
 import org.joml.Vector2f;
@@ -53,12 +54,20 @@ public class Example_1 extends Scene2D
 			shape.setFillColor(new Vector4f(Colors.WHITE));
 			shape.setSize(Registry.getTexture("folder").getDimension().div(3));
 			shape.setCenterOrigin();
-			shape.setPosition(Window.WINDOW.getCenter());
 		});
 
 		rect.onMouseEntered(sender -> rect.getShape().setFillColor(rect.getShape().getFillColor().mul(1.3f)));
 		rect.onMouseExited(sender -> rect.getShape().setFillColor(rect.getShape().getFillColor().div(1.3f)));
 		rect.enableMouseDragging();
+
+		rect.goTo(Window.WINDOW.getCenter(), TweenFunctions.EASE_IN_OUT_CUBIC, 3000);
+		rect.stopActionPack();
+		rect.sizeTo(new Vector2f(300, 300), TweenFunctions.EASE_IN_OUT_ELASTIC, 3000);
+		rect.fillTo(Colors.LIME, TweenFunctions.EASE_IN_OUT_BOUNCE, 3000);
+		rect.stopActionPack();
+		rect.rotateTo(180, TweenFunctions.EASE_IN_OUT_CIRC, 2000);
+		rect.stopSequence();
+		rect.startSequences();
 
 
 		sliders = new WSlider[3];
@@ -129,15 +138,15 @@ public class Example_1 extends Scene2D
 	public void update(double dt)
 	{
 		getCamera2d().activateKeys(Window.WINDOW, Camera2D.SPECTATOR_KEY_SET);
-		rect.update();
-		sliders[0].update();
-		sliders[1].update();
-		sliders[2].update();
-		background.update();
-		colorLabel.update();
-		bar.update();
-		sceneView.update();
-		entry.update();
+		rect.run();
+		sliders[0].run();
+		sliders[1].run();
+		sliders[2].run();
+		background.run();
+		colorLabel.run();
+		bar.run();
+		sceneView.run();
+		entry.run();
 	}
 
 	@Override

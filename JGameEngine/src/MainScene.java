@@ -4,6 +4,7 @@ import game.jgengine.audio.SoundSource;
 import game.jgengine.binding.Property;
 import game.jgengine.debug.Logs;
 import game.jgengine.event.Input;
+import game.jgengine.event.Mouse;
 import game.jgengine.graphics.camera.Camera2D;
 import game.jgengine.graphics.camera.OrthoProjectionSettings;
 import game.jgengine.graphics.gui.event.Event;
@@ -16,6 +17,8 @@ import game.jgengine.graphics.rendering.TargetTexture;
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.graphics.shapes.Rectangle;
 import game.jgengine.graphics.shapes.Slider;
+import game.jgengine.graphics.texts.PrimitiveFont;
+import game.jgengine.graphics.texts.PrimitiveText;
 import game.jgengine.registry.Registry;
 import game.jgengine.sys.Scene2D;
 import game.jgengine.sys.Window;
@@ -35,8 +38,8 @@ import java.time.Instant;
 
 public class MainScene extends Scene2D
 {
-	WRectangle rect;
-
+	PrimitiveFont font;
+	PrimitiveText text;
 
 	@Override
 	public void load()
@@ -49,12 +52,18 @@ public class MainScene extends Scene2D
 	@Override
 	public void loadResources()
 	{
-		rect = new WRectangle(null);
-		rect.getShape().setFillColor(Colors.RED);
-		rect.getShape().setSize(300, 300);
-		rect.getShape().setPosition(new Vector2f(Window.WINDOW.getCenter()));
-
-		rect.enableMouseDragging();
+		font = new PrimitiveFont();
+		font.setChar('A', new Character[][]
+		{
+				{' ', '#', '#', ' '},
+				{'#', '#', '#', '#'},
+				{'#', ' ', ' ', '#'},
+				{'#', '#', '#', '#'},
+				{'#', ' ', ' ', '#'},
+				{'#', ' ', ' ', '#'},
+		});
+		text = new PrimitiveText("AAAAAA", font);
+		text.setSize(50, 50);
 	}
 
 	@Override
@@ -62,13 +71,14 @@ public class MainScene extends Scene2D
 	{
 		getCamera2d().activateKeys(Window.WINDOW, Camera2D.SPECTATOR_KEY_SET);
 
-		rect.update();
+		text.setPosition(Mouse.getPosition(getCamera2d()));
+
 	}
 
 	@Override
 	public void render(double dt)
 	{
-		draw(rect.getShape());
+		draw(text);
 	}
 
 	@Override
@@ -80,7 +90,7 @@ public class MainScene extends Scene2D
 	@Override
 	public void closeResources()
 	{
-		rect.getShape().destroy();
+		text.destroy();
 	}
 
 	@Override

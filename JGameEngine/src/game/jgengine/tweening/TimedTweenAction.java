@@ -1,5 +1,6 @@
 package game.jgengine.tweening;
 
+import game.jgengine.debug.Logs;
 import game.jgengine.time.Time;
 
 public class TimedTweenAction extends TweenAction
@@ -20,8 +21,13 @@ public class TimedTweenAction extends TweenAction
 		this.back = back;
 		setStepper(() ->
 		{
-			return (float)(Time.getTime() * 1000f - this.beginTime) / this.maxDelay;
+			return getCurrentTime() / this.maxDelay;
 		});
+	}
+
+	public float getCurrentTime()
+	{
+		return (float) (Time.getTime() * 1000f - this.beginTime);
 	}
 
 	public boolean isBack()
@@ -52,6 +58,26 @@ public class TimedTweenAction extends TweenAction
 	public void setCycle(int cycle)
 	{
 		this.cycle = cycle;
+	}
+
+	public float getMaxDelay()
+	{
+		return maxDelay;
+	}
+
+	public void setMaxDelay(float maxDelay)
+	{
+		this.maxDelay = maxDelay;
+	}
+
+	public float getBeginTime()
+	{
+		return beginTime;
+	}
+
+	public void setBeginTime(float beginTime)
+	{
+		this.beginTime = beginTime;
 	}
 
 	public void start()
@@ -85,7 +111,6 @@ public class TimedTweenAction extends TweenAction
 			super.run();
 			if(isFinished())
 			{
-
 				if(back)
 				{
 					if(backFlag)
