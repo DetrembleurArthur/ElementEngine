@@ -60,15 +60,6 @@ public class Example_1 extends Scene2D
 		rect.onMouseExited(sender -> rect.getShape().setFillColor(rect.getShape().getFillColor().div(1.3f)));
 		rect.enableMouseDragging();
 
-		rect.goTo(Window.WINDOW.getCenter(), TweenFunctions.EASE_IN_OUT_CUBIC, 3000);
-		rect.stopActionPack();
-		rect.sizeTo(new Vector2f(300, 300), TweenFunctions.EASE_IN_OUT_ELASTIC, 3000);
-		rect.fillTo(Colors.LIME, TweenFunctions.EASE_IN_OUT_BOUNCE, 3000);
-		rect.stopActionPack();
-		rect.rotateTo(180, TweenFunctions.EASE_IN_OUT_CIRC, 2000);
-		rect.stopSequence();
-		rect.startSequences();
-
 
 		sliders = new WSlider[3];
 		sliders[0] = new WSlider(0f, 1f, 1f, new Vector2f(300, 10));

@@ -1,6 +1,5 @@
 package game.jgengine.graphics.gui.widgets;
 
-import game.jgengine.debug.Logs;
 import game.jgengine.graphics.gui.event.*;
 import game.jgengine.graphics.shapes.Shape;
 import game.jgengine.tweening.*;
@@ -17,38 +16,38 @@ public class Widget<T extends Shape> extends EventManager
 	}
 
 	private final T shape;
-	private ArrayList<Sequence> sequences;
-	private ActionsPack lastActionPack;
-	private Sequence lastSequence;
+	private ArrayList<AnimationsSequence> animationsSequences;
+	private AnimationsPack lastActionPack;
+	private AnimationsSequence lastAnimationsSequence;
 
 	protected Widget(T shape)
 	{
 		this.shape = shape;
-		this.sequences = new ArrayList<>();
-		lastSequence = null;
+		this.animationsSequences = new ArrayList<>();
+		lastAnimationsSequence = null;
 		lastActionPack = null;
 	}
 
 	private interface PackInitializer
 	{
-		void init(ActionsPack pack);
+		void init(AnimationsPack pack);
 	}
 
 	private void packInitialize(PackInitializer init)
 	{
-		Sequence sequence = lastSequence != null ? lastSequence : new Sequence();
-		ActionsPack pack = lastActionPack != null ? lastActionPack : new ActionsPack();
+		AnimationsSequence animationsSequence = lastAnimationsSequence != null ? lastAnimationsSequence : new AnimationsSequence();
+		AnimationsPack pack = lastActionPack != null ? lastActionPack : new AnimationsPack();
 		init.init(pack);
 		if(lastActionPack == null)
 		{
-			sequence.addActionPack(pack);
+			animationsSequence.addActionPack(pack);
 			lastActionPack = pack;
 		}
-		lastSequence = sequence;
-		sequences.add(sequence);
+		lastAnimationsSequence = animationsSequence;
+		animationsSequences.add(animationsSequence);
 	}
 
-	public Widget<T> goTo(Vector2f position, TweenFunction func ,float delay)
+	public Widget<T> toPosition(Vector2f position, TweenFunction func ,float delay, int maxCycle, boolean back)
 	{
 		packInitialize(pack ->
 			pack
@@ -58,22 +57,27 @@ public class Widget<T extends Shape> extends EventManager
 						position.x,
 						func, shape::setX,
 						delay,
-						0,
-						false))
+						maxCycle,
+						back))
 			.addAction(
 				new TimedTweenAction(
 						shape.getY(),
 						position.y,
 						func, shape::setY,
 						delay,
-						0,
-						false)
+						maxCycle,
+						back)
 			)
 		);
 		return this;
 	}
 
-	public Widget<T> sizeTo(Vector2f size, TweenFunction func ,float delay)
+	public Widget<T> toPosition(Vector2f position, TweenFunction func ,float delay)
+	{
+		return toPosition(position, func, delay, 0, false);
+	}
+
+	public Widget<T> toSize(Vector2f size, TweenFunction func ,float delay, int maxCycle, boolean back)
 	{
 		packInitialize(pack ->
 			pack
@@ -83,22 +87,27 @@ public class Widget<T extends Shape> extends EventManager
 						size.x,
 						func, value -> shape.setSize(value, shape.getSize().y),
 						delay,
-						0,
-						false))
+						maxCycle,
+						back))
 			.addAction(
 				new TimedTweenAction(
 						shape.getSize().y,
 						size.y,
 						func, value -> shape.setSize(shape.getSize().x, value),
 						delay,
-						0,
-						false)
+						maxCycle,
+						back)
 			)
 		);
 		return this;
 	}
 
-	public Widget<T> rotateTo(float angleDegree, TweenFunction func ,float delay)
+	public Widget<T> toSize(Vector2f size, TweenFunction func ,float delay)
+	{
+		return toSize(size, func, delay, 0, false);
+	}
+
+	public Widget<T> toRotation(float angleDegree, TweenFunction func ,float delay, int maxCycle, boolean back)
 	{
 		packInitialize(pack ->
 			pack
@@ -108,13 +117,18 @@ public class Widget<T extends Shape> extends EventManager
 							angleDegree,
 							func, shape::setRotation,
 							delay,
-							0,
-							false))
+							maxCycle,
+							back))
 		);
 		return this;
 	}
 
-	public Widget<T> fillTo(Vector4f color, TweenFunction func , float delay)
+	public Widget<T> toRotation(float angleDegree, TweenFunction func ,float delay)
+	{
+		return toRotation(angleDegree, func, delay, 0, false);
+	}
+
+	public Widget<T> toColor(Vector4f color, TweenFunction func , float delay, int maxCycle, boolean back)
 	{
 		packInitialize(pack ->
 			pack
@@ -124,33 +138,122 @@ public class Widget<T extends Shape> extends EventManager
 							color.x,
 							func, shape::setR,
 							delay,
-							0,
-							false))
+							maxCycle,
+							back))
 				.addAction(
 						new TimedTweenAction(
 								shape.getG(),
 								color.y,
 								func, shape::setG,
 								delay,
-								0,
-								false))
+								maxCycle,
+								back))
 				.addAction(
 						new TimedTweenAction(
 								shape.getB(),
 								color.z,
 								func, shape::setB,
 								delay,
-								0,
-								false))
+								maxCycle,
+								back))
 		);
 		return this;
 	}
 
-	public void startSequences()
+	public Widget<T> toColor(Vector4f color, TweenFunction func , float delay)
 	{
-		for(Sequence sequence : sequences)
+		return toColor(color, func, delay, 0, false);
+	}
+
+	public Widget<T> toR(float r, TweenFunction func , float delay, int maxCycle, boolean back)
+	{
+		packInitialize(pack ->
+			pack
+				.addAction(
+					new TimedTweenAction(
+						shape.getR(),
+						r,
+						func, shape::setR,
+						delay,
+						maxCycle,
+						back))
+		);
+		return this;
+	}
+
+	public Widget<T> toR(float r, TweenFunction func , float delay)
+	{
+		return toR(r, func, delay, 0, false);
+	}
+
+	public Widget<T> toG(float g, TweenFunction func , float delay, int maxCycle, boolean back)
+	{
+		packInitialize(pack ->
+				pack
+						.addAction(
+								new TimedTweenAction(
+										shape.getG(),
+										g,
+										func, shape::setG,
+										delay,
+										maxCycle,
+										back))
+		);
+		return this;
+	}
+
+	public Widget<T> toG(float g, TweenFunction func , float delay)
+	{
+		return toG(g, func, delay, 0, false);
+	}
+
+	public Widget<T> toB(float b, TweenFunction func , float delay, int maxCycle, boolean back)
+	{
+		packInitialize(pack ->
+				pack
+						.addAction(
+								new TimedTweenAction(
+										shape.getB(),
+										b,
+										func, shape::setB,
+										delay,
+										maxCycle,
+										back))
+		);
+		return this;
+	}
+
+	public Widget<T> toB(float b, TweenFunction func , float delay)
+	{
+		return toR(b, func, delay, 0, false);
+	}
+
+	public Widget<T> toOpacity(float opacity, TweenFunction func , float delay, int maxCycle, boolean back)
+	{
+		packInitialize(pack ->
+			pack
+				.addAction(
+					new TimedTweenAction(
+							shape.getOpacity(),
+							opacity,
+							func, shape::setOpacity,
+							delay,
+							maxCycle,
+							back))
+		);
+		return this;
+	}
+
+	public Widget<T> toOpacity(float opacity, TweenFunction func , float delay)
+	{
+		return toOpacity(opacity, func, delay, 0, false);
+	}
+
+	public void startAnimations()
+	{
+		for(AnimationsSequence animationsSequence : animationsSequences)
 		{
-			sequence.start();
+			animationsSequence.start();
 		}
 	}
 
@@ -159,24 +262,24 @@ public class Widget<T extends Shape> extends EventManager
 		lastActionPack = null;
 	}
 
-	public void stopSequence()
+	public void stopAnimationSequence()
 	{
 		stopActionPack();
-		lastSequence = null;
+		lastAnimationsSequence = null;
 	}
 
-	private void runSequences()
+	private void runAnimations()
 	{
-		ArrayList<Sequence> removeList = new ArrayList<>();
-		for(Sequence sequence : sequences)
+		ArrayList<AnimationsSequence> removeList = new ArrayList<>();
+		for(AnimationsSequence animationsSequence : animationsSequences)
 		{
-			sequence.run();
-			if(sequence.isFinished())
-				removeList.add(sequence);
+			animationsSequence.run();
+			if(animationsSequence.isFinished())
+				removeList.add(animationsSequence);
 		}
-		for(Sequence sequence : removeList)
+		for(AnimationsSequence animationsSequence : removeList)
 		{
-			sequences.remove(sequence);
+			animationsSequences.remove(animationsSequence);
 		}
 	}
 
@@ -184,7 +287,7 @@ public class Widget<T extends Shape> extends EventManager
 	public void run()
 	{
 		super.run();
-		runSequences();
+		runAnimations();
 	}
 
 	public T getShape()
