@@ -1,6 +1,7 @@
 package game.jgengine.graphics.gui.event;
 
 import game.jgengine.debug.Logs;
+import game.jgengine.graphics.gui.widgets.Widget;
 import game.jgengine.graphics.shapes.Shape;
 
 import java.lang.reflect.InvocationTargetException;
@@ -11,7 +12,7 @@ public class DataChangedEvent extends RelativeEvent
 	private Method getter;
 	private Object oldValue;
 
-	public DataChangedEvent(Shape object, Method method)
+	public DataChangedEvent(Widget<?> object, Method method)
 	{
 		super(object);
 		this.getter = method;

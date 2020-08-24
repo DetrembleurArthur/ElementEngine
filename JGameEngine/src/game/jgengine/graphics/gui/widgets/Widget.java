@@ -1,7 +1,10 @@
 package game.jgengine.graphics.gui.widgets;
 
+import game.jgengine.binding.FloatProperty;
+import game.jgengine.binding.Property;
 import game.jgengine.graphics.gui.event.*;
 import game.jgengine.graphics.shapes.Shape;
+import game.jgengine.scripting.Script;
 import game.jgengine.tweening.*;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
@@ -19,6 +22,192 @@ public class Widget<T extends Shape> extends EventManager
 	private ArrayList<AnimationsSequence> animationsSequences;
 	private AnimationsPack lastActionPack;
 	private AnimationsSequence lastAnimationsSequence;
+	private ArrayList<Script> scripts;
+
+	public final Property<Vector2f> positionProperty = new Property<>()
+	{
+		@Override
+		public void setValue(Vector2f value)
+		{
+			xProperty.set(value.x);
+			yProperty.set(value.y);
+		}
+
+		@Override
+		public Vector2f getValue()
+		{
+			return shape.getPosition2D();
+		}
+	};
+
+	public final FloatProperty xProperty = new FloatProperty()
+	{
+		@Override
+		public void setValue(Float value)
+		{
+			shape.setX(value);
+		}
+
+		@Override
+		public Float getValue()
+		{
+			return shape.getX();
+		}
+	};
+
+	public final FloatProperty yProperty = new FloatProperty()
+	{
+		@Override
+		public void setValue(Float value)
+		{
+			shape.setY(value);
+		}
+
+		@Override
+		public Float getValue()
+		{
+			return shape.getY();
+		}
+	};
+
+	public final Property<Vector2f> sizeProperty = new Property<>()
+	{
+		@Override
+		public void setValue(Vector2f value)
+		{
+			widthProperty.set(value.x);
+			heightProperty.set(value.y);
+		}
+
+		@Override
+		public Vector2f getValue()
+		{
+			return shape.getSize();
+		}
+	};
+
+	public final FloatProperty widthProperty = new FloatProperty()
+	{
+		@Override
+		public void setValue(Float value)
+		{
+			shape.setWidth(value);
+		}
+
+		@Override
+		public Float getValue()
+		{
+			return shape.getWidth();
+		}
+	};
+
+	public final FloatProperty heightProperty = new FloatProperty()
+	{
+		@Override
+		public void setValue(Float value)
+		{
+			shape.setHeight(value);
+		}
+
+		@Override
+		public Float getValue()
+		{
+			return shape.getHeight();
+		}
+	};
+
+	public final FloatProperty rotationProperty = new FloatProperty()
+	{
+		@Override
+		public void setValue(Float value)
+		{
+			shape.setRotation(value);
+		}
+
+		@Override
+		public Float getValue()
+		{
+			return shape.getRotation2D();
+		}
+	};
+
+	public final Property<Vector4f> fillColorProperty = new Property<>()
+	{
+		@Override
+		public void setValue(Vector4f value)
+		{
+			redProperty.set(value.x);
+			greenProperty.set(value.y);
+			blueProperty.set(value.z);
+			opacityProperty.set(value.w);
+		}
+
+		@Override
+		public Vector4f getValue()
+		{
+			return shape.getFillColor();
+		}
+	};
+
+	public final FloatProperty redProperty = new FloatProperty()
+	{
+		@Override
+		public void setValue(Float value)
+		{
+			shape.setR(value);
+		}
+
+		@Override
+		public Float getValue()
+		{
+			return shape.getR();
+		}
+	};
+
+	public final FloatProperty greenProperty = new FloatProperty()
+	{
+		@Override
+		public void setValue(Float value)
+		{
+			shape.setG(value);
+		}
+
+		@Override
+		public Float getValue()
+		{
+			return shape.getG();
+		}
+	};
+
+	public final FloatProperty blueProperty = new FloatProperty()
+	{
+		@Override
+		public void setValue(Float value)
+		{
+			shape.setB(value);
+		}
+
+		@Override
+		public Float getValue()
+		{
+			return shape.getB();
+		}
+	};
+
+	public final FloatProperty opacityProperty = new FloatProperty()
+	{
+		@Override
+		public void setValue(Float value)
+		{
+			shape.setOpacity(value);
+		}
+
+		@Override
+		public Float getValue()
+		{
+			return shape.getOpacity();
+		}
+	};
 
 	protected Widget(T shape)
 	{
@@ -26,6 +215,7 @@ public class Widget<T extends Shape> extends EventManager
 		this.animationsSequences = new ArrayList<>();
 		lastAnimationsSequence = null;
 		lastActionPack = null;
+		this.scripts = new ArrayList<>();
 	}
 
 	private interface PackInitializer
@@ -48,33 +238,75 @@ public class Widget<T extends Shape> extends EventManager
 	}
 
 	public Widget<T> toPosition(Vector2f position, TweenFunction func ,float delay, int maxCycle, boolean back)
-	{
-		packInitialize(pack ->
+{
+	packInitialize(pack ->
 			pack
-			.addAction(
-				new TimedTweenAction(
-						shape.getX(),
-						position.x,
-						func, shape::setX,
-						delay,
-						maxCycle,
-						back))
-			.addAction(
-				new TimedTweenAction(
-						shape.getY(),
-						position.y,
-						func, shape::setY,
-						delay,
-						maxCycle,
-						back)
-			)
-		);
-		return this;
-	}
+					.addAction(
+							new TimedTweenAction(
+									positionProperty.getValue().x,
+									position.x,
+									func, value -> positionProperty.set(new Vector2f(value, positionProperty.getValue().y)),
+									delay,
+									maxCycle,
+									back))
+					.addAction(
+							new TimedTweenAction(
+									positionProperty.getValue().y,
+									position.y,
+									func, value -> positionProperty.set(new Vector2f(positionProperty.getValue().x, value)),
+									delay,
+									maxCycle,
+									back)
+					)
+	);
+	return this;
+}
 
 	public Widget<T> toPosition(Vector2f position, TweenFunction func ,float delay)
 	{
 		return toPosition(position, func, delay, 0, false);
+	}
+
+	public Widget<T> toX(float x, TweenFunction func ,float delay, int maxCycle, boolean back)
+	{
+		packInitialize(pack ->
+			pack
+				.addAction(
+					new TimedTweenAction(
+						xProperty.getValue(),
+						x,
+						func, xProperty::set,
+						delay,
+						maxCycle,
+						back))
+		);
+		return this;
+	}
+
+	public Widget<T> toX(float x, TweenFunction func ,float delay)
+	{
+		return toX(x, func, delay, 0, false);
+	}
+
+	public Widget<T> toY(float y, TweenFunction func ,float delay, int maxCycle, boolean back)
+	{
+		packInitialize(pack ->
+			pack
+				.addAction(
+					new TimedTweenAction(
+						yProperty.getValue(),
+						y,
+						func, yProperty::set,
+						delay,
+						maxCycle,
+						back))
+		);
+		return this;
+	}
+
+	public Widget<T> toY(float y, TweenFunction func ,float delay)
+	{
+		return toY(y, func, delay, 0, false);
 	}
 
 	public Widget<T> toSize(Vector2f size, TweenFunction func ,float delay, int maxCycle, boolean back)
@@ -83,17 +315,17 @@ public class Widget<T extends Shape> extends EventManager
 			pack
 			.addAction(
 				new TimedTweenAction(
-						shape.getSize().x,
+						sizeProperty.getValue().x,
 						size.x,
-						func, value -> shape.setSize(value, shape.getSize().y),
+						func, value -> sizeProperty.set(new Vector2f(value, shape.getSize().y)),
 						delay,
 						maxCycle,
 						back))
 			.addAction(
 				new TimedTweenAction(
-						shape.getSize().y,
+						sizeProperty.getValue().y,
 						size.y,
-						func, value -> shape.setSize(shape.getSize().x, value),
+						func, value -> sizeProperty.set(new Vector2f(shape.getSize().x, value)),
 						delay,
 						maxCycle,
 						back)
@@ -107,18 +339,60 @@ public class Widget<T extends Shape> extends EventManager
 		return toSize(size, func, delay, 0, false);
 	}
 
+	public Widget<T> toWidth(float width, TweenFunction func ,float delay, int maxCycle, boolean back)
+	{
+		packInitialize(pack ->
+			pack
+				.addAction(
+					new TimedTweenAction(
+						widthProperty.getValue(),
+						width,
+						func, widthProperty::set,
+						delay,
+						maxCycle,
+						back))
+		);
+		return this;
+	}
+
+	public Widget<T> toWidth(float width, TweenFunction func ,float delay)
+	{
+		return toWidth(width, func, delay, 0, false);
+	}
+
+	public Widget<T> toHeight(float height, TweenFunction func ,float delay, int maxCycle, boolean back)
+	{
+		packInitialize(pack ->
+			pack
+				.addAction(
+					new TimedTweenAction(
+						heightProperty.getValue(),
+						height,
+						func, heightProperty::set,
+						delay,
+						maxCycle,
+						back))
+		);
+		return this;
+	}
+
+	public Widget<T> toHeight(float height, TweenFunction func ,float delay)
+	{
+		return toWidth(height, func, delay, 0, false);
+	}
+
 	public Widget<T> toRotation(float angleDegree, TweenFunction func ,float delay, int maxCycle, boolean back)
 	{
 		packInitialize(pack ->
 			pack
 				.addAction(
 					new TimedTweenAction(
-							shape.getRotation2D(),
-							angleDegree,
-							func, shape::setRotation,
-							delay,
-							maxCycle,
-							back))
+						rotationProperty.getValue(),
+						angleDegree,
+						func, rotationProperty::set,
+						delay,
+						maxCycle,
+						back))
 		);
 		return this;
 	}
@@ -134,28 +408,28 @@ public class Widget<T extends Shape> extends EventManager
 			pack
 				.addAction(
 					new TimedTweenAction(
-							shape.getR(),
+							fillColorProperty.getValue().x,
 							color.x,
-							func, shape::setR,
+							func, value -> fillColorProperty.set(new Vector4f(value, fillColorProperty.getValue().y, fillColorProperty.getValue().z, fillColorProperty.getValue().w)),
 							delay,
 							maxCycle,
 							back))
 				.addAction(
 						new TimedTweenAction(
-								shape.getG(),
-								color.y,
-								func, shape::setG,
-								delay,
-								maxCycle,
-								back))
+							fillColorProperty.getValue().y,
+							color.y,
+							func, value -> fillColorProperty.set(new Vector4f(fillColorProperty.getValue().x, value, fillColorProperty.getValue().z, fillColorProperty.getValue().w)),
+							delay,
+							maxCycle,
+							back))
 				.addAction(
 						new TimedTweenAction(
-								shape.getB(),
-								color.z,
-								func, shape::setB,
-								delay,
-								maxCycle,
-								back))
+							fillColorProperty.getValue().x,
+							color.z,
+							func, value -> fillColorProperty.set(new Vector4f(fillColorProperty.getValue().x, fillColorProperty.getValue().y, value, fillColorProperty.getValue().w)),
+							delay,
+							maxCycle,
+							back))
 		);
 		return this;
 	}
@@ -171,9 +445,9 @@ public class Widget<T extends Shape> extends EventManager
 			pack
 				.addAction(
 					new TimedTweenAction(
-						shape.getR(),
+						redProperty.getValue(),
 						r,
-						func, shape::setR,
+						func, redProperty::set,
 						delay,
 						maxCycle,
 						back))
@@ -189,15 +463,15 @@ public class Widget<T extends Shape> extends EventManager
 	public Widget<T> toG(float g, TweenFunction func , float delay, int maxCycle, boolean back)
 	{
 		packInitialize(pack ->
-				pack
-						.addAction(
-								new TimedTweenAction(
-										shape.getG(),
-										g,
-										func, shape::setG,
-										delay,
-										maxCycle,
-										back))
+			pack
+				.addAction(
+					new TimedTweenAction(
+						greenProperty.getValue(),
+						g,
+						func, greenProperty::set,
+						delay,
+						maxCycle,
+						back))
 		);
 		return this;
 	}
@@ -210,15 +484,15 @@ public class Widget<T extends Shape> extends EventManager
 	public Widget<T> toB(float b, TweenFunction func , float delay, int maxCycle, boolean back)
 	{
 		packInitialize(pack ->
-				pack
-						.addAction(
-								new TimedTweenAction(
-										shape.getB(),
-										b,
-										func, shape::setB,
-										delay,
-										maxCycle,
-										back))
+			pack
+				.addAction(
+					new TimedTweenAction(
+						blueProperty.getValue(),
+						b,
+						func, blueProperty::set,
+						delay,
+						maxCycle,
+						back))
 		);
 		return this;
 	}
@@ -234,9 +508,9 @@ public class Widget<T extends Shape> extends EventManager
 			pack
 				.addAction(
 					new TimedTweenAction(
-							shape.getOpacity(),
+							opacityProperty.getValue(),
 							opacity,
-							func, shape::setOpacity,
+							func, opacityProperty::set,
 							delay,
 							maxCycle,
 							back))
@@ -283,11 +557,25 @@ public class Widget<T extends Shape> extends EventManager
 		}
 	}
 
+	public void addScript(Script script)
+	{
+		scripts.add(script);
+	}
+
+	private void runScripts()
+	{
+		for(Script script : scripts)
+		{
+			script.run();
+		}
+	}
+
 	@Override
 	public void run()
 	{
 		super.run();
 		runAnimations();
+		runScripts();
 	}
 
 	public T getShape()
@@ -304,7 +592,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseHoveringEvent.class, action))
 		{
-			addEvent(new MouseHoveringEvent(getShape()).addActionEvent(action));
+			addEvent(new MouseHoveringEvent(this).addActionEvent(action));
 		}
 	}
 
@@ -312,7 +600,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseEnteredEvent.class, action))
 		{
-			addEvent(new MouseEnteredEvent(getShape()).addActionEvent(action));
+			addEvent(new MouseEnteredEvent(this).addActionEvent(action));
 		}
 	}
 
@@ -320,7 +608,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseExitedEvent.class, action))
 		{
-			addEvent(new MouseExitedEvent(getShape()).addActionEvent(action));
+			addEvent(new MouseExitedEvent(this).addActionEvent(action));
 		}
 	}
 
@@ -328,7 +616,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseMoveEvent.class, action))
 		{
-			addEvent(new MouseMoveEvent(getShape()).addActionEvent(action));
+			addEvent(new MouseMoveEvent(this).addActionEvent(action));
 		}
 	}
 
@@ -336,7 +624,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseButtonClickEvent.class, action))
 		{
-			addEvent(new MouseButtonClickEvent(getShape(), repeated).addActionEvent(action));
+			addEvent(new MouseButtonClickEvent(this, repeated).addActionEvent(action));
 		}
 	}
 
@@ -344,7 +632,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseLeftButtonClickEvent.class, action))
 		{
-			addEvent(new MouseLeftButtonClickEvent(getShape(), repeated).addActionEvent(action));
+			addEvent(new MouseLeftButtonClickEvent(this, repeated).addActionEvent(action));
 		}
 	}
 
@@ -352,7 +640,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseRightButtonClickEvent.class, action))
 		{
-			addEvent(new MouseRightButtonClickEvent(getShape(), repeated).addActionEvent(action));
+			addEvent(new MouseRightButtonClickEvent(this, repeated).addActionEvent(action));
 		}
 	}
 
@@ -360,7 +648,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseMiddleButtonClickEvent.class, action))
 		{
-			addEvent(new MouseMiddleButtonClickEvent(getShape(), repeated).addActionEvent(action));
+			addEvent(new MouseMiddleButtonClickEvent(this, repeated).addActionEvent(action));
 		}
 	}
 
@@ -368,7 +656,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseButtonReleasedEvent.class, action))
 		{
-			addEvent(new MouseButtonReleasedEvent(getShape()).addActionEvent(action));
+			addEvent(new MouseButtonReleasedEvent(this).addActionEvent(action));
 		}
 	}
 
@@ -376,7 +664,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseLeftButtonRealeasedEvent.class, action))
 		{
-			addEvent(new MouseLeftButtonRealeasedEvent(getShape()).addActionEvent(action));
+			addEvent(new MouseLeftButtonRealeasedEvent(this).addActionEvent(action));
 		}
 	}
 
@@ -384,7 +672,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseRightButtonRealeasedEvent.class, action))
 		{
-			addEvent(new MouseRightButtonRealeasedEvent(getShape()).addActionEvent(action));
+			addEvent(new MouseRightButtonRealeasedEvent(this).addActionEvent(action));
 		}
 	}
 
@@ -392,7 +680,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseMiddleButtonRealeasedEvent.class, action))
 		{
-			addEvent(new MouseMiddleButtonRealeasedEvent(getShape()).addActionEvent(action));
+			addEvent(new MouseMiddleButtonRealeasedEvent(this).addActionEvent(action));
 		}
 	}
 
@@ -400,7 +688,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseButtonDragEvent.class, action))
 		{
-			addEvent(new MouseButtonDragEvent(getShape()).addActionEvent(action));
+			addEvent(new MouseButtonDragEvent(this).addActionEvent(action));
 		}
 	}
 
@@ -413,7 +701,7 @@ public class Widget<T extends Shape> extends EventManager
 		}
 		else
 		{
-			event = new MouseButtonDragEvent(getShape());
+			event = new MouseButtonDragEvent(this);
 			event.setDragActionEvent(orientation);
 			addEvent(event);
 		}
@@ -444,7 +732,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(PositionChangedEvent.class, action))
 		{
-			addEvent(new PositionChangedEvent(getShape()).addActionEvent(action));
+			addEvent(new PositionChangedEvent(this).addActionEvent(action));
 		}
 	}
 
@@ -452,7 +740,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(MouseButtonDoubleClickEvent.class, action))
 		{
-			addEvent(new MouseButtonDoubleClickEvent(getShape()).addActionEvent(action));
+			addEvent(new MouseButtonDoubleClickEvent(this).addActionEvent(action));
 		}
 	}
 
@@ -460,7 +748,7 @@ public class Widget<T extends Shape> extends EventManager
 	{
 		if(!onEvent(FillColorChangedEvent.class, action))
 		{
-			addEvent(new FillColorChangedEvent(getShape()).addActionEvent(action));
+			addEvent(new FillColorChangedEvent(this).addActionEvent(action));
 		}
 	}
 }

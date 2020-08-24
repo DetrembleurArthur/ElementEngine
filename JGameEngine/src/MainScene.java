@@ -1,8 +1,8 @@
+import game.jgengine.binding.Converter;
 import game.jgengine.debug.Logs;
 import game.jgengine.event.Mouse;
 import game.jgengine.graphics.camera.Camera2D;
-import game.jgengine.graphics.gui.widgets.Label;
-import game.jgengine.graphics.gui.widgets.WRectangle;
+import game.jgengine.graphics.gui.widgets.*;
 import game.jgengine.registry.Registry;
 import game.jgengine.scripting.AndCondition;
 import game.jgengine.scripting.OrCondition;
@@ -20,7 +20,11 @@ import java.time.Instant;
 public class MainScene extends Scene2D
 {
 	WRectangle rect;
-	Script script;
+	WCircle circle;
+
+
+	WSlider slider;
+	WProgressBar bar;
 
 	@Override
 	public void load()
@@ -40,23 +44,38 @@ public class MainScene extends Scene2D
 			shape.setCenterOrigin();
 			shape.setPosition(Window.WINDOW.getCenter());
 		});
+		//rect.enableMouseDragging();
+
+		circle = new WCircle(50, 30, null);
+		circle.getShape().setCenterOrigin();
+		circle.getShape().setFillColor(Colors.BLACK);
+		circle.getShape().setPosition(Window.WINDOW.getCenter());
+
 		rect.enableMouseDragging();
 
-		rect.toR(1f, TweenFunctions.EASE_IN_OUT_CUBIC, 1000, TimedTweenAction.INFINITE_CYCLE, true);
-		rect.toG(1f, TweenFunctions.EASE_IN_OUT_CUBIC, 1500, TimedTweenAction.INFINITE_CYCLE, true);
-		rect.toB(1f, TweenFunctions.EASE_IN_OUT_CUBIC, 2000, TimedTweenAction.INFINITE_CYCLE, true);
+		rect.xProperty.bind(circle.yProperty);
+		rect.yProperty.bind(circle.xProperty);
+		rect.redProperty.bind(circle.redProperty, value -> 1f-value);
+
+		rect.toR(1, TweenFunctions.EASE_IN_OUT_QUART, 3000, TimedTweenAction.INFINITE_CYCLE, true);
 		rect.stopAnimationSequence();
 		rect.startAnimations();
 
+		circle.addScript(new Script().setCondition(() -> circle.redProperty.getValue() < 0.5f).addAction(() -> Logs.print("Action 1")));
 
 
-		script = new Script();
-		script.addAction(() -> rect.getShape().setPosition(Mouse.getPosition(getCamera2d())));
-		script.setCondition(() -> rect.getShape().getR() < 0.5f);
-		script.setCondition(new OrCondition()
-				.addCondition(() -> rect.getShape().getR() < 0.5f)
-				.addCondition(() -> rect.getShape().getG() < 0.5f)
-				.addCondition(() -> rect.getShape().getB() < 0.5f));
+		slider = new WSlider(0, 300, 0, new Vector2f(300, 50));
+
+		slider.positionProperty.set(Window.WINDOW.getCenter().add(0, 300));
+		slider.valueProperty.set(0f);
+		bar = new WProgressBar(0, 300, 0, new Vector2f(300, 50));
+
+		bar.enableHorizontalMouseDragging();
+		slider.valueProperty.bindBidirectional(bar.valueProperty);
+
+		float winx = Window.WINDOW.getSize().x;
+		bar.xProperty.bindBidirectional(bar.valueProperty, value -> (value/winx)*bar.getShape().getMaxValue());
+
 
 		Logs.print("Resources loaded");
 	}
@@ -67,13 +86,18 @@ public class MainScene extends Scene2D
 		getCamera2d().activateKeys(Window.WINDOW, Camera2D.SPECTATOR_KEY_SET);
 
 		rect.run();
-		script.run();
+		circle.run();
+		slider.run();
+		bar.run();
 	}
 
 	@Override
 	public void render(double dt)
 	{
 		draw(rect.getShape());
+		draw(circle.getShape());
+		draw(slider.getShape());
+		draw(bar.getShape());
 	}
 
 	@Override
@@ -86,6 +110,9 @@ public class MainScene extends Scene2D
 	public void closeResources()
 	{
 		rect.getShape().destroy();
+		circle.getShape().destroy();
+		slider.getShape().destroy();
+		bar.getShape().destroy();
 	}
 
 	@Override

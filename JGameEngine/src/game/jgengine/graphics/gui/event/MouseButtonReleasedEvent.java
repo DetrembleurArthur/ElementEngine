@@ -2,6 +2,7 @@ package game.jgengine.graphics.gui.event;
 
 import game.jgengine.event.Input;
 import game.jgengine.event.Mouse;
+import game.jgengine.graphics.gui.widgets.Widget;
 import game.jgengine.graphics.shapes.Shape;
 
 public class MouseButtonReleasedEvent extends MouseButtonEvent
@@ -9,12 +10,12 @@ public class MouseButtonReleasedEvent extends MouseButtonEvent
 	private boolean buttonPressed;
 	private boolean falseRelease;
 
-	public MouseButtonReleasedEvent(Shape relativeObject)
+	public MouseButtonReleasedEvent(Widget<?> relativeObject)
 	{
 		this(relativeObject, -1);
 	}
 
-	public MouseButtonReleasedEvent(Shape relativeObject, int buttonId)
+	public MouseButtonReleasedEvent(Widget<?> relativeObject, int buttonId)
 	{
 		super(relativeObject, buttonId);
 		buttonPressed = false;
@@ -45,7 +46,7 @@ public class MouseButtonReleasedEvent extends MouseButtonEvent
 		{
 			if(pressed)
 			{
-				if(object.contains(Mouse.getPosition(camera)))
+				if(object.getShape().contains(Mouse.getPosition(camera)))
 				{
 					buttonPressed = true;
 				}

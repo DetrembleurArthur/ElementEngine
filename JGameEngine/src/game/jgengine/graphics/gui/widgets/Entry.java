@@ -55,20 +55,19 @@ public class Entry extends Label
 					String text = new String(getShape().getText());
 					int len = text.length();
 					if(!text.isEmpty())
-						getShape().setText(text.substring(0, len-1));
+						textProperty.set(text.substring(0, len-1));
 				}
 				else if(keyCode == GLFW.GLFW_KEY_ENTER)
 				{
-					getShape().setText(getShape().getText() + "\n");
+					textProperty.set(getShape().getText() + "\n");
 				}
 				else
 				{
 					if(getShape().getFont().getGlyphs().containsKey(keyId))
 					{
-						getShape().setText(getShape().getText() + new String(new char[]{keyId}));
+						textProperty.set(getShape().getText() + new String(new char[]{keyId}));
 					}
 				}
-				Logs.print(getShape().getText());
 				timer.activate();
 			}
 		}

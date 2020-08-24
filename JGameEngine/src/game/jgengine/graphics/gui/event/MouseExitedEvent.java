@@ -1,12 +1,13 @@
 package game.jgengine.graphics.gui.event;
 
 import game.jgengine.event.Mouse;
+import game.jgengine.graphics.gui.widgets.Widget;
 import game.jgengine.graphics.shapes.Shape;
 
 public class MouseExitedEvent extends MouseEvent
 {
 	protected boolean exited;
-	public MouseExitedEvent(Shape relativeObject)
+	public MouseExitedEvent(Widget<?> relativeObject)
 	{
 		super(relativeObject);
 		exited = true;
@@ -15,7 +16,7 @@ public class MouseExitedEvent extends MouseEvent
 	@Override
 	boolean isAppend()
 	{
-		boolean intersects = object.contains(Mouse.getPosition(camera));
+		boolean intersects = object.getShape().contains(Mouse.getPosition(camera));
 		if(intersects)
 		{
 			if(exited)

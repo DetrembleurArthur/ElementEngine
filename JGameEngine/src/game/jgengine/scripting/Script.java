@@ -13,9 +13,10 @@ public class Script implements Runnable
 		actions = new ArrayList<>();
 	}
 
-	public void setCondition(Condition condition)
+	public Script setCondition(Condition condition)
 	{
 		this.condition = condition;
+		return this;
 	}
 
 	public Script addAction(Runnable action)

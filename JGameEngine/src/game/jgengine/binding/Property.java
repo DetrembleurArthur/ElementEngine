@@ -10,13 +10,25 @@ public abstract class Property<T>
 	public abstract void setValue(T value);
 	public abstract T getValue();
 
-	protected final void alertListeners()
+	public final void alertListeners()
 	{
 		if(listeners != null)
 		{
 			for(Listener listener : listeners)
 			{
 				listener.alert();
+			}
+		}
+	}
+
+	public final void alertListeners(Listener except)
+	{
+		if(listeners != null)
+		{
+			for(Listener listener : listeners)
+			{
+				if(listener != except)
+					listener.alert();
 			}
 		}
 	}
@@ -51,7 +63,16 @@ public abstract class Property<T>
 
 	public <U> void bind(Property<U> other, Converter<T, U> converter)
 	{
-		addListener(() -> other.setValue(converter.convert(getValue())));
+		Listener listener = new Listener()
+		{
+			@Override
+			public void alert()
+			{
+				other.setValue(converter.convert(getValue()));
+				//other.alertListeners(this);
+			}
+		};
+		addListener(listener);
 	}
 
 	public <U> void bindBidirectional(Property<U> other, Converter<T, U> converter, Converter<U, T> converterBack)

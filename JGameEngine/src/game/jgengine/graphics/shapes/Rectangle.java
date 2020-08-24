@@ -37,15 +37,6 @@ public class Rectangle extends Shape
 			setSize(texture.getDimension());
 	}
 
-	public void setWidth(float width)
-	{
-		getScale().x = width;
-	}
-
-	public void setHeight(float height)
-	{
-		getScale().y = height;
-	}
 
 
 	@Override

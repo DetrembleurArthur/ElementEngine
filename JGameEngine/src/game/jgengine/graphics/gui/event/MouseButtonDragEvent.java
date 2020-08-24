@@ -1,6 +1,7 @@
 package game.jgengine.graphics.gui.event;
 
 import game.jgengine.event.Mouse;
+import game.jgengine.graphics.gui.widgets.Widget;
 import game.jgengine.graphics.shapes.Shape;
 import org.joml.Vector2f;
 
@@ -15,7 +16,7 @@ public class MouseButtonDragEvent extends MouseLeftButtonClickEvent
 
 	private Vector2f relativeVector;
 
-	public MouseButtonDragEvent(Shape relativeObject)
+	public MouseButtonDragEvent(Widget<?> relativeObject)
 	{
 		super(relativeObject, true);
 		relativeVector = new Vector2f();
@@ -31,7 +32,7 @@ public class MouseButtonDragEvent extends MouseLeftButtonClickEvent
 			var mousePosition = Mouse.getPosition(camera);
 			if(!clicked)
 			{
-				relativeVector = mousePosition.sub(object.getPosition2D());
+				relativeVector = mousePosition.sub(object.getShape().getPosition2D());
 			}
 			else
 			{
@@ -67,16 +68,16 @@ public class MouseButtonDragEvent extends MouseLeftButtonClickEvent
 
 	public void setBothDragActionEvent()
 	{
-		addActionEvent(sender -> object.setPosition(Mouse.getPosition(camera).sub(relativeVector)));
+		addActionEvent(sender -> object.positionProperty.set(Mouse.getPosition(camera).sub(relativeVector)));
 	}
 
 	public void setHorizontalDragActionEvent()
 	{
-		addActionEvent(sender -> object.setPosition(new Vector2f(Mouse.getPosition(camera).sub(new Vector2f(relativeVector.x, 0)).x, object.getPosition2D().y)));
+		addActionEvent(sender -> object.xProperty.set(Mouse.getPosition(camera).x - relativeVector.x));
 	}
 
 	public void setVerticalDragActionEvent()
 	{
-		addActionEvent(sender -> object.setPosition(new Vector2f(object.getPosition2D().x, Mouse.getPosition(camera).sub(new Vector2f(0, relativeVector.y)).y)));
+		addActionEvent(sender -> object.yProperty.set(Mouse.getPosition(camera).y - relativeVector.y));
 	}
 }

@@ -1,13 +1,12 @@
 package game.jgengine.graphics.gui.event;
 
+import game.jgengine.graphics.gui.widgets.Widget;
 import game.jgengine.graphics.shapes.Shape;
-
-import java.lang.reflect.Method;
 
 public class FillColorChangedEvent extends DataChangedEvent
 {
-	public FillColorChangedEvent(Shape object)
+	public FillColorChangedEvent(Widget<?> object)
 	{
-		super(object, object.getter("getFillColor"));
+		super(object, object.getShape().method("getFillColor"));
 	}
 }

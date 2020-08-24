@@ -2,6 +2,7 @@ package game.jgengine.graphics.gui.event;
 
 import game.jgengine.event.Input;
 import game.jgengine.event.Mouse;
+import game.jgengine.graphics.gui.widgets.Widget;
 import game.jgengine.graphics.shapes.Shape;
 import org.joml.Vector2f;
 
@@ -11,12 +12,12 @@ public class MouseButtonClickEvent extends MouseButtonEvent
 	private boolean clicked;
 	private boolean repeated;
 
-	public MouseButtonClickEvent(Shape relativeObject, boolean repeated)
+	public MouseButtonClickEvent(Widget<?> relativeObject, boolean repeated)
 	{
 		this(relativeObject, -1, repeated);
 	}
 
-	public MouseButtonClickEvent(Shape relativeObject, int buttonId, boolean repeated)
+	public MouseButtonClickEvent(Widget<?> relativeObject, int buttonId, boolean repeated)
 	{
 		super(relativeObject, buttonId);
 		clickBloqued = false;
@@ -30,7 +31,7 @@ public class MouseButtonClickEvent extends MouseButtonEvent
 		if((buttonId == -1 && Input.isButtonPressed()) || (buttonId != -1 && Input.isButtonPressed(buttonId)))
 		{
 			Vector2f mousePosition = Mouse.getPosition(camera);
-			if(object.contains(mousePosition) || clicked)
+			if(object.getShape().contains(mousePosition) || clicked)
 			{
 				if(!clickBloqued)
 				{

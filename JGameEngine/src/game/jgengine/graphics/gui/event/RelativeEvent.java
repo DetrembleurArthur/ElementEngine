@@ -1,17 +1,18 @@
 package game.jgengine.graphics.gui.event;
 
+import game.jgengine.graphics.gui.widgets.Widget;
 import game.jgengine.graphics.shapes.Shape;
 
 public abstract class RelativeEvent extends Event
 {
-	protected Shape object;
+	protected Widget<?> object;
 
-	public RelativeEvent(Shape object)
+	public RelativeEvent(Widget<?> object)
 	{
 		this.object = object;
 	}
 
-	public Shape getObject()
+	public Widget<?> getObject()
 	{
 		return object;
 	}
