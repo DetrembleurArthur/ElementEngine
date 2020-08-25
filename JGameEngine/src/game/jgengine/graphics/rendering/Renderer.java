@@ -1,6 +1,7 @@
 package game.jgengine.graphics.rendering;
 
 import game.jgengine.entity.GameObject;
+import game.jgengine.entity.GraphicElement;
 import game.jgengine.graphics.camera.Camera;
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.time.Time;
@@ -17,14 +18,14 @@ public class Renderer
 	}
 
 
-	public void render(GameObject gelem)
+	public void render(GraphicElement gelem)
 	{
 		shader.start();
 		shader.uploadMat4f("uModel", gelem.getTransformMatrix());
 		shader.uploadMat4f("uView", camera.updateViewMatrix());
 		shader.uploadMat4f("uProjection", camera.updateProjectionMatrix());
 		shader.setUniformf1("time", (float)Time.getTime());
-		if(gelem.getTexture() != null)
+		if(gelem instanceof GameObject && ((GameObject)gelem).getTexture() != null)
 		{
 			shader.setUniform1i("isTextured", 1);
 			shader.uploadTexture("TEX_SAMPLER", 0);

@@ -38,6 +38,11 @@ public abstract class Shape extends GameObject
 		setOrigin(origin.x, origin.y);
 	}
 
+	public Vector2f getArgumentOrigin()
+	{
+		return origin;
+	}
+
 	public Vector2f getOrigin()
 	{
 		return getMesh().getPosition(0);

@@ -2,6 +2,7 @@ package game.jgengine.sys;
 
 import game.jgengine.debug.Logs;
 import game.jgengine.entity.GameObject;
+import game.jgengine.entity.GraphicElement;
 import game.jgengine.event.handler.EventHandler;
 import game.jgengine.graphics.camera.Camera;
 import game.jgengine.graphics.rendering.Renderer;
@@ -30,12 +31,12 @@ public abstract class Scene implements Manageable, ResourcesManageable, EventHan
 		return defaultRenderer;
 	}
 
-	public void draw(GameObject gobject)
+	public void draw(GraphicElement gobject)
 	{
 		draw(defaultRenderer, gobject);
 	}
 
-	public void draw(Renderer renderer, GameObject gobject)
+	public void draw(Renderer renderer, GraphicElement gobject)
 	{
 		gobject.draw(renderer);
 	}

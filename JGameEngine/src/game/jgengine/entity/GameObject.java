@@ -14,7 +14,6 @@ import org.joml.Vector4f;
 public class GameObject extends GraphicElement
 {
 	private Texture texture = null;
-	private Vector4f fillColor = new Vector4f(Colors.WHITE);
 
 	public GameObject(Mesh mesh, Texture texture)
 	{
@@ -78,72 +77,6 @@ public class GameObject extends GraphicElement
 		setTextureAndResize(texture, 1f);
 	}
 
-	public void setFillColor(Vector4f color)
-	{
-		this.fillColor = new Vector4f(color);
-	}
-
-	public void setFillColorKeep(Vector4f color)
-	{
-		this.fillColor = color;
-	}
-
-	public void setR(float r)
-	{
-		this.fillColor.x = r;
-	}
-
-	public void setG(float g)
-	{
-		this.fillColor.y = g;
-	}
-
-	public void setB(float b)
-	{
-		this.fillColor.z = b;
-	}
-
-	public void setA(float a)
-	{
-		this.fillColor.w = a;
-	}
-
-	public float getR()
-	{
-		return this.fillColor.x;
-	}
-
-	public float getG()
-	{
-		return this.fillColor.y;
-	}
-
-	public float getB()
-	{
-		return this.fillColor.z;
-	}
-
-	public float getA()
-	{
-		return this.fillColor.w;
-	}
-
-	public Vector4f getFillColor()
-	{
-		return new Vector4f(fillColor);
-	}
-
-	public void setOpacity(float value)
-	{
-		if(fillColor != null)
-			fillColor.w = value;
-	}
-
-	public float getOpacity()
-	{
-		return fillColor.w;
-	}
-
 	@Override
 	public void draw()
 	{
@@ -160,10 +93,6 @@ public class GameObject extends GraphicElement
 		}
 	}
 
-	public void draw(Renderer renderer)
-	{
-		renderer.render(this);
-	}
 
 	public void move(float vx, float vy, float vz)
 	{
