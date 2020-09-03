@@ -21,41 +21,6 @@ public class GameObject extends GraphicElement
 		setTexture(texture);
 	}
 
-	public Vector2f getSize()
-	{
-		return getScale2D();
-	}
-
-	public void setSize(Vector2f size)
-	{
-		setScale(size);
-	}
-
-	public final void setSize(float w, float h)
-	{
-		setSize(new Vector2f(w, h));
-	}
-
-	public final void setWidth(float w)
-	{
-		setSize(w, getHeight());
-	}
-
-	public final void setHeight(float h)
-	{
-		setSize(getWidth(), h);
-	}
-
-	public float getWidth()
-	{
-		return getSize().x;
-	}
-
-	public float getHeight()
-	{
-		return getSize().y;
-	}
-
 	public Texture getTexture()
 	{
 		return texture;

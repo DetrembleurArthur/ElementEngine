@@ -37,29 +37,6 @@ public class Rectangle extends Shape
 			setSize(texture.getDimension());
 	}
 
-
-
-	@Override
-	protected void setVerticesOrigin(float x, float y)
-	{
-		Mesh mesh = getMesh();
-		for(int i = 0; i < MODEL.getN(); i++)
-		{
-			Vector2f pos = new Vector2f(MODEL.getPosition(i)).add(x, y);
-			mesh.setPosition(i, pos);
-		}
-	}
-
-
-
-	@Override
-	public Vector2f getTopLeftPosition()
-	{
-		var meshPos = getMesh().getPosition(0);
-		return new Vector2f(position.x + scale.x * meshPos.x, position.y + scale.y * meshPos.y);
-	}
-
-
 	public void setSprite(@NotNull Sprite sprite)
 	{
 		Mesh mesh = getMesh();

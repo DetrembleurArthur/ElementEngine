@@ -41,4 +41,20 @@ public class MathUtil
 				center.x + radius * (float)Math.sin(Math.toRadians(angleDegree)),
 				center.y + -radius * (float)Math.cos(Math.toRadians(angleDegree)));
 	}
+
+	public static void normalize(float[] vector)
+	{
+		float min = vector[0];
+		float max = vector[0];
+		for(int i = 0; i < vector.length; i++)
+		{
+			if(min > vector[i]) min = vector[i];
+			if(max < vector[i]) max = vector[i];
+		}
+		for(int i = 0; i < vector.length; i++)
+		{
+			vector[i] -= min;
+			vector[i] /= (max - min);
+		}
+	}
 }

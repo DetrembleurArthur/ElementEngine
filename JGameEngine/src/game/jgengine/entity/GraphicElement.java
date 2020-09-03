@@ -10,7 +10,7 @@ import org.joml.Vector4f;
 
 import static org.lwjgl.opengl.GL11.*;
 
-public class GraphicElement extends Transformable
+public class GraphicElement extends Transformable implements Dynamic
 {
 	private Mesh mesh;
 	private int primitive;
@@ -95,9 +95,7 @@ public class GraphicElement extends Transformable
 		if(isRenderLine()) glLineWidth(lineWeight);
 		mesh.getVertexArray().bind();
 		mesh.getVertexArray().enableAttribs();
-		//mesh.getVertexBuffer().bind();
 		mesh.getIndexBuffer().drawElements(primitive);
-		//mesh.getVertexBuffer().unbind();
 		mesh.getVertexArray().disableAttribs();
 		mesh.getVertexArray().unbind();
 		if(isRenderLine()) glLineWidth(0);

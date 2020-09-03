@@ -2,7 +2,9 @@ package game.jgengine.graphics.gui.widgets;
 
 import game.jgengine.binding.FloatProperty;
 import game.jgengine.binding.Property;
+import game.jgengine.entity.Dynamic;
 import game.jgengine.graphics.gui.event.*;
+import game.jgengine.graphics.rendering.Renderer;
 import game.jgengine.graphics.shapes.Shape;
 import game.jgengine.scripting.Script;
 import game.jgengine.tweening.*;
@@ -11,7 +13,7 @@ import org.joml.Vector4f;
 
 import java.util.ArrayList;
 
-public class Widget<T extends Shape> extends EventManager
+public class Widget<T extends Shape> extends EventManager implements Dynamic
 {
 	public interface Configure<T extends Shape>
 	{
@@ -82,7 +84,7 @@ public class Widget<T extends Shape> extends EventManager
 		@Override
 		public Vector2f getValue()
 		{
-			return shape.getSize();
+			return shape.getSize2D();
 		}
 	};
 
@@ -424,7 +426,7 @@ public class Widget<T extends Shape> extends EventManager
 							back))
 				.addAction(
 						new TimedTweenAction(
-							fillColorProperty.getValue().x,
+							fillColorProperty.getValue().z,
 							color.z,
 							func, value -> fillColorProperty.set(new Vector4f(fillColorProperty.getValue().x, fillColorProperty.getValue().y, value, fillColorProperty.getValue().w)),
 							delay,
@@ -523,6 +525,13 @@ public class Widget<T extends Shape> extends EventManager
 		return toOpacity(opacity, func, delay, 0, false);
 	}
 
+	public void flushAnimations()
+	{
+		animationsSequences.clear();
+		lastActionPack = null;
+		lastAnimationsSequence = null;
+	}
+
 	public void startAnimations()
 	{
 		for(AnimationsSequence animationsSequence : animationsSequences)
@@ -536,7 +545,7 @@ public class Widget<T extends Shape> extends EventManager
 		lastActionPack = null;
 	}
 
-	public void stopAnimationSequence()
+	public void stopAnimationSequenceConfiguration()
 	{
 		stopActionPack();
 		lastAnimationsSequence = null;
@@ -573,7 +582,7 @@ public class Widget<T extends Shape> extends EventManager
 	@Override
 	public void run()
 	{
-		super.run();
+		pollEvent();
 		runAnimations();
 		runScripts();
 	}
@@ -750,5 +759,23 @@ public class Widget<T extends Shape> extends EventManager
 		{
 			addEvent(new FillColorChangedEvent(this).addActionEvent(action));
 		}
+	}
+
+	@Override
+	public void destroy()
+	{
+		shape.destroy();
+	}
+
+	@Override
+	public void draw()
+	{
+		shape.draw();
+	}
+
+	@Override
+	public void draw(Renderer renderer)
+	{
+		shape.draw(renderer);
 	}
 }

@@ -73,7 +73,7 @@ public class BoundingBox
 	{
 		var r = new Rectangle(null);
 		r.setPosition(new Vector2f(x, y));
-		r.setScale(new Vector3f(width, height, 1));
+		r.setSize(new Vector3f(width, height, 1));
 		return r;
 	}
 

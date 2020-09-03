@@ -16,10 +16,10 @@ public class Entry extends Label
 	private float speedKey;
 	private StaticTimer timer;
 
-	public Entry(Font font, float size)
+	public Entry(Font font, float width)
 	{
 		super(font, "your text here");
-		getShape().setSizePx(size);
+		getShape().setTextWidth(width);
 		focused = false;
 		onMouseButtonReleased(sender -> focused = true);
 		speedKey = 0;

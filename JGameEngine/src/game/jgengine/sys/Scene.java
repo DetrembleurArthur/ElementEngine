@@ -1,6 +1,7 @@
 package game.jgengine.sys;
 
 import game.jgengine.debug.Logs;
+import game.jgengine.entity.Dynamic;
 import game.jgengine.entity.GameObject;
 import game.jgengine.entity.GraphicElement;
 import game.jgengine.event.handler.EventHandler;
@@ -31,12 +32,12 @@ public abstract class Scene implements Manageable, ResourcesManageable, EventHan
 		return defaultRenderer;
 	}
 
-	public void draw(GraphicElement gobject)
+	public void draw(Dynamic gobject)
 	{
-		draw(defaultRenderer, gobject);
+		gobject.draw(defaultRenderer);
 	}
 
-	public void draw(Renderer renderer, GraphicElement gobject)
+	public void draw(Renderer renderer, Dynamic gobject)
 	{
 		gobject.draw(renderer);
 	}

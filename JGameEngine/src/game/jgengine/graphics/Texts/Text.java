@@ -1,5 +1,6 @@
 package game.jgengine.graphics.texts;
 
+import game.jgengine.debug.Logs;
 import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.shapes.BoundingBox;
 import game.jgengine.graphics.shapes.Shape;
@@ -13,24 +14,12 @@ public class Text extends Shape
 {
 	private Font font;
 	private String text;
-	private float sizePx;
+	private float ratio;
 
 	public Text(@NotNull Font font, String text)
 	{
 		super(null, font.getTextureAtlas());
-		this.text = text;
 		initFont(font);
-		setSizePx(font.getSizePx());
-	}
-
-	public float getSizePx()
-	{
-		return sizePx;
-	}
-
-	public void setSizePx(float sizePx)
-	{
-		this.sizePx = sizePx;
 		setText(text);
 	}
 
@@ -69,103 +58,36 @@ public class Text extends Shape
 
 	private void generate()
 	{
-		generate(new Vector2f());
+		var info = font.generateMesh(text);
+		ratio = info.heightRatio;
+		setMesh(info.mesh);
 	}
 
-	private void generate(Vector2f origin)
+	public void setTextWidth(float width)
 	{
-		setMesh(font.generateMesh(text, sizePx / font.getSizePx(), origin));
+		setSize(width, width * ratio);
+	}
+
+	public void setTextHeight(float height)
+	{
+		setSize(height / ratio, height);
 	}
 
 	public BoundingBox getCharBox(int i)
 	{
 		Mesh mesh = getMesh();
 		var pos = getPosition2D();
-		var size = getScale();
+		var size = getSize2D();
 		var topLeft = mesh.getPosition(i * 4);
 		var bottomRight = mesh.getPosition(i * 4 + 2);
+		Logs.print(pos.x);
 		return new BoundingBox(
-				topLeft.x + pos.x,
-				topLeft.y + pos.y,
+				topLeft.x * size.x + pos.x,
+				topLeft.y * size.y + pos.y,
 				(bottomRight.x - topLeft.x) * size.x,
 				(bottomRight.y - topLeft.y) * size.y);
 	}
 
-	@Override
-	public Vector2f getSize()
-	{
-		var box = getScaledBoundingBox();
-		return new Vector2f(box.getWidth(), box.getHeight());
-	}
-
-	@Override
-	public void setSize(Vector2f size)
-	{
-		var box = getBoundingBox();
-		setScale(new Vector3f(size.x / box.getWidth(), size.y / box.getHeight(), getScale().z));
-	}
-
-	@Override
-	protected void setVerticesOrigin(float x, float y)
-	{
-		generate(new Vector2f(-x, -y));
-	}
-
-	@Override
-	public void setTopRightOrigin()
-	{
-		var size = getSize();
-		setOrigin(size.x, 0);
-	}
-
-	@Override
-	public void setBottomLeftOrigin()
-	{
-		var size = getSize();
-		setOrigin(0, size.y);
-	}
-
-	@Override
-	public void setBottomRightOrigin()
-	{
-		var size = getSize();
-		setOrigin(size);
-	}
-
-	@Override
-	public void setCenterOrigin()
-	{
-		var size = getSize();
-		setOrigin(size.x / 2, size.y / 2);
-	}
-
-	@Override
-	public BoundingBox getBoundingBox()
-	{
-		String text = this.text.replace("\n", "");
-		BoundingBox globalBox = (BoundingBox) getCharBox(0).clone();
-		float width = globalBox.getX() + globalBox.getWidth();
-		float height = globalBox.getY() + globalBox.getHeight();
-		for(int i = 1; i < text.length(); i++)
-		{
-			BoundingBox box = getCharBox(i);
-			if(globalBox.getX() > box.getX()) globalBox.setX(box.getX());
-			if(globalBox.getY() > box.getY()) globalBox.setY(box.getY());
-			if(width < box.getX() + box.getWidth()) width = box.getX() + box.getWidth();
-			if(height < box.getY() + box.getHeight()) height = box.getY() + box.getHeight();
-		}
-		globalBox.setWidth(width - globalBox.getX());
-		globalBox.setHeight(height - globalBox.getY());
-		return globalBox;
-	}
-
-	public BoundingBox getScaledBoundingBox()
-	{
-		BoundingBox box = getBoundingBox();
-		box.setWidth(box.getWidth() * getScale().x);
-		box.setHeight(box.getHeight() * getScale().y);
-		return box;
-	}
 
 	public boolean complexCollide(Vector2f pos)
 	{

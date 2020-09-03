@@ -3,11 +3,13 @@ package game.jgengine.graphics.texts;
 import game.jgengine.debug.Logs;
 import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.rendering.Texture;
+import game.jgengine.utils.MathUtil;
 import game.jgengine.utils.VariableLoader;
 import org.joml.Vector2f;
 import org.joml.Vector2i;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Font
@@ -87,59 +89,98 @@ public class Font
 		}
 	}
 
-	public Mesh generateMesh(String text)
+	class TextInfo
 	{
-		return generateMesh(text, 1f, new Vector2f());
+		Mesh mesh;
+		float heightRatio = 0f;
 	}
 
-	public Mesh generateMesh(String text, float ratioFactor, Vector2f origin)
+	TextInfo generateMesh(String text)
 	{
 		text = text.replace("\t", "    ");
 		var len = text.length();
-		float[] vertices = new float[len * 4 * 4];
+		float[] positionsX = new float[len * 4];
+		float[] positionsY = new float[len * 4];
+		float[] uvs = new float[len * 4 * 2];
 		int[] indices = new int[len * 6];
 		Vector2i counters = new Vector2i(0, 0);
-		Vector2f cursorPos = new Vector2f(-origin.x, -origin.y);
+		Vector2f cursorPos = new Vector2f(0);
 		Vector2f pos = new Vector2f();
 		Vector2f maxPos = new Vector2f();
-		Vector2f[] uvs;
+		Vector2f[] gluvs;
 		int nlPadding = 0; //permet d'ajuster les indexs par rapport au nombre de lignes
+
+		ArrayList<Glyph> mem = new ArrayList<>();
+		float maxWidth = 0;
+		float maxHeight = 0;
 
 		for(int i = 0; i < len; i++)
 		{
 			if(text.charAt(i) == '\n')
 			{
-				cursorPos.y += lineHeight * ratioFactor;
-				cursorPos.x = -origin.x;
+				cursorPos.y += lineHeight;
+				cursorPos.x = 0;
 				nlPadding++;
+				float w=0, h=0;
+				for(var g : mem)
+				{
+					w += g.getTexWidth();
+					h = Math.max(g.getTexHeight() + maxHeight, h);
+				}
+				maxWidth = Math.max(w, maxWidth);
+				maxHeight = Math.max(h, maxHeight);
+				mem.clear();
 				continue;
 			}
 			Glyph glyph = glyphs.get(text.charAt(i));
+			mem.add(glyph);
 			if(glyph == null) continue;
-			uvs = glyph.getUVs();
-			pos.x = cursorPos.x + glyph.getXoffset() * ratioFactor;
-			pos.y = cursorPos.y + glyph.getYoffset() * ratioFactor;
-			maxPos.x = pos.x + glyph.getTexWidth() * ratioFactor;
-			maxPos.y = pos.y + glyph.getTexHeight() * ratioFactor;
+			gluvs = glyph.getUVs();
+			pos.x = cursorPos.x + glyph.getXoffset();
+			pos.y = cursorPos.y + glyph.getYoffset();
+			maxPos.x = pos.x + glyph.getTexWidth();
+			maxPos.y = pos.y + glyph.getTexHeight();
 
-			addVertex(counters, vertices, pos, uvs[0]); //top left
-			addVertex(counters, vertices, new Vector2f(pos.x, maxPos.y), uvs[1]); //bottom left
-			addVertex(counters, vertices, maxPos, uvs[2]); //bottom right
-			addVertex(counters, vertices, new Vector2f(maxPos.x, pos.y), uvs[3]); //top right
+			addVertex(counters, positionsX, positionsY, uvs, pos, gluvs[0]); //top left
+			addVertex(counters, positionsX, positionsY, uvs, new Vector2f(pos.x, maxPos.y), gluvs[1]); //bottom left
+			addVertex(counters, positionsX, positionsY, uvs, maxPos, gluvs[2]); //bottom right
+			addVertex(counters, positionsX, positionsY, uvs, new Vector2f(maxPos.x, pos.y), gluvs[3]); //top right
 
 			addIndex(counters, indices, i - nlPadding);
 
-			cursorPos.x += glyph.getXadvance() * ratioFactor;
+			cursorPos.x += glyph.getXadvance();
 		}
-		return new Mesh(vertices, indices, Mesh.DIMENSION_2, Mesh.TEXTURED);
+		float w=0, h=0;
+		for(var g : mem)
+		{
+			w += g.getTexWidth();
+			h = Math.max(g.getTexHeight() + maxHeight, h);
+		}
+		maxWidth = Math.max(w, maxWidth);
+		maxHeight = Math.max(h, maxHeight);
+
+		MathUtil.normalize(positionsX);
+		MathUtil.normalize(positionsY);
+		float[] positions = new float[positionsX.length + positionsY.length];
+		for(int i = 0; i < positions.length / 2; i++)
+		{
+			positions[i * 2] = positionsX[i];
+			positions[i * 2 + 1] = positionsY[i];
+		}
+		var info = new TextInfo();
+		info.mesh = new Mesh(positions, uvs, indices, Mesh.DIMENSION_2, Mesh.TEXTURED);
+		info.heightRatio = maxHeight / maxWidth;
+		return info;
 	}
 
-	private void addVertex(Vector2i counters, float[] vertices, Vector2f pos, Vector2f uv)
+	private void addVertex(Vector2i counters, float[] positionsX, float[] positionsY, float[] uvs, Vector2f pos, Vector2f uv)
 	{
-		vertices[counters.x++] = pos.x;
-		vertices[counters.x++] = pos.y;
-		vertices[counters.x++] = uv.x;
-		vertices[counters.x++] = uv.y;
+		int i = counters.x;
+		counters.x++;
+		positionsX[i] = pos.x;
+		positionsY[i] = pos.y;
+		uvs[i*2] = uv.x;
+		uvs[i*2 + 1] = uv.y;
 	}
 
 	private void addIndex(Vector2i counters, int[] indices, int i)

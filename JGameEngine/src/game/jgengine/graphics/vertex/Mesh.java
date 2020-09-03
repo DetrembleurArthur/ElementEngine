@@ -28,6 +28,21 @@ public class Mesh
 		initVertices(vertices, indexes,dimension,uv);
 	}
 
+	public Mesh(float[] positions, float[] uvs, int[] indexes, int dimension, int uv)
+	{
+		float[] vertices = new float[positions.length + uvs.length];
+		for(int i = 0; i < positions.length / dimension; i++)
+		{
+			for(int j = 0; j < dimension; j++)
+			{
+				vertices[i * (dimension + 2) + j] = positions[i * dimension + j];
+			}
+			vertices[i * (dimension + 2) + dimension] = uvs[i * 2];
+			vertices[i * (dimension + 2) + dimension + 1] = uvs[i * 2 + 1];
+		}
+		initVertices(vertices, indexes,dimension,uv);
+	}
+
 
 
 	protected void initVertices(float[] vertices, int[] indexes, int dimension, int uv)

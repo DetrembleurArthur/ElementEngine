@@ -96,7 +96,7 @@ public class Example_1 extends Scene2D
 
 
 		colorLabel = new Label(Registry.getFont("impact"), "Background color: none");
-		colorLabel.getShape().setSizePx(50);
+		//colorLabel.getShape().setSizePx(50);
 		colorLabel.getShape().setPosition(new Vector2f(30, winSize.y - 100));
 
 		bar = new WProgressBar(0, 3, 3, new Vector2f(300, 50));

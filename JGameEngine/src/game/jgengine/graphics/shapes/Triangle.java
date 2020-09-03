@@ -7,31 +7,18 @@ import org.joml.Vector3f;
 
 public class Triangle extends Shape
 {
-	private Vector2f[] base;
-	private Vector2f origin;
 
 	public Triangle(Texture texture)
 	{
 		super(Triangle.build(new Vector2f(0.5f, 0f), new Vector2f(0f, 1f), new Vector2f(1f, 1f)), texture);
-		origin = new Vector2f();
-		updateBase();
-	}
-
-	private void updateBase()
-	{
-		base = new Vector2f[3];
-		base[0] = getMesh().getPosition(0);
-		base[1] = getMesh().getPosition(1);
-		base[2] = getMesh().getPosition(2);
 	}
 
 	public void setPoint(int index, Vector2f point)
 	{
 		if(point.x < 1f && point.y < 1f)
 		{
-			getMesh().setPosition(index, new Vector2f(point).add(origin));
-			getMesh().setUV(index, new Vector2f(point).add(origin));
-			base[index] = new Vector2f(point);
+			getMesh().setPosition(index, point);
+			getMesh().setUV(index, point);
 		}
 	}
 
@@ -56,40 +43,5 @@ public class Triangle extends Shape
 				0, 1, 2
 		};
 		return new Mesh(vertices, indexes, Mesh.DIMENSION_2, Mesh.TEXTURED);
-	}
-
-	public Vector2f[] getPoints()
-	{
-		Vector2f[] points = new Vector2f[3];
-		points[0] = getMesh().getPosition(0);
-		points[1] = getMesh().getPosition(1);
-		points[2] = getMesh().getPosition(2);
-		return points;
-	}
-
-	@Override
-	protected void setVerticesOrigin(float x, float y)
-	{
-		origin = new Vector2f(x, y);
-		setMesh(Triangle.build(new Vector2f(base[0]).add(x, y), new Vector2f(base[1]).add(x, y), new Vector2f(base[2]).add(x, y)));
-	}
-
-	@Override
-	public Vector2f getTopLeftPosition()
-	{
-		Vector2f pos = getMesh().getPosition(0);
-		for(int i = 1; i < getMesh().getN(); i++)
-		{
-			var mpos = getMesh().getPosition(i);
-			if(pos.x > mpos.x) pos.x = mpos.x;
-			if(pos.y > mpos.y) pos.y = mpos.y;
-		}
-		return pos.mul(getSize()).add(getPosition2D());
-	}
-
-	@Override
-	public void setTopLeftPosition(Vector2f pos)
-	{
-		setPosition(pos.sub(new Vector2f(origin).mul(getSize())));
 	}
 }

@@ -4,7 +4,7 @@ import game.jgengine.debug.Logs;
 
 import java.util.ArrayList;
 
-public abstract class EventManager implements Runnable
+public abstract class EventManager
 {
 	private ArrayList<Event> events;
 	private ArrayList<Event> callLaterEvents = new ArrayList<>();
@@ -66,12 +66,6 @@ public abstract class EventManager implements Runnable
 			}
 			callLaterEvents.clear();
 		}
-	}
-
-	@Override
-	public void run()
-	{
-		pollEvent();
 	}
 
 	protected boolean onEvent(Class<? extends Event> eventClass, ActionEvent action)
