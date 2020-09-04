@@ -1,12 +1,11 @@
 package game.jgengine.graphics.gui.event;
 
 import game.jgengine.event.Mouse;
-import game.jgengine.graphics.gui.widgets.Widget;
-import game.jgengine.graphics.shapes.Shape;
+import game.jgengine.graphics.gui.widgets.SmartShape;
 
 public class MouseHoveringEvent extends MouseEvent
 {
-	public MouseHoveringEvent(Widget<?> relativeObject)
+	public MouseHoveringEvent(SmartShape<?> relativeObject)
 	{
 		super(relativeObject);
 	}

@@ -4,7 +4,7 @@ import game.jgengine.binding.Property;
 import game.jgengine.graphics.texts.Font;
 import game.jgengine.graphics.texts.Text;
 
-public class Label extends ValuableWidget<Text>
+public class Label extends ValuableSmartShape<Text>
 {
 	public final Property<String> textProperty = new Property<>()
 	{

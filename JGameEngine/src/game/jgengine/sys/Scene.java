@@ -9,6 +9,8 @@ import game.jgengine.graphics.camera.Camera;
 import game.jgengine.graphics.rendering.Renderer;
 import game.jgengine.graphics.shaders.Shader;
 
+import java.util.ArrayList;
+
 public abstract class Scene implements Manageable, ResourcesManageable, EventHandler
 {
 	protected Camera camera;

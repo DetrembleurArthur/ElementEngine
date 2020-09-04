@@ -159,8 +159,11 @@ public class Font
 		maxWidth = Math.max(w, maxWidth);
 		maxHeight = Math.max(h, maxHeight);
 
-		MathUtil.normalize(positionsX);
-		MathUtil.normalize(positionsY);
+		if(positionsX.length > 0)
+		{
+			MathUtil.normalize(positionsX);
+			MathUtil.normalize(positionsY);
+		}
 		float[] positions = new float[positionsX.length + positionsY.length];
 		for(int i = 0; i < positions.length / 2; i++)
 		{

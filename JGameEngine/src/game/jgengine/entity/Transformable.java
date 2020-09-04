@@ -117,6 +117,26 @@ public class Transformable extends FreeReflectable
 		this.scale = new Vector3f(scale2d.x, scale2d.y, scale.z);
 	}
 
+	public void setScaleX(float scaleX)
+	{
+		scale.x = scaleX;
+	}
+
+	public void setScaleY(float scaleY)
+	{
+		scale.y = scaleY;
+	}
+
+	public float getScaleX()
+	{
+		return scale.x;
+	}
+
+	public float getScaleY()
+	{
+		return scale.y;
+	}
+
 	public Vector3f getSize()
 	{
 		return size;
@@ -217,21 +237,65 @@ public class Transformable extends FreeReflectable
 	}
 
 
+	public void setOriginPosition(Vector2f origin, Vector2f position)
+	{
+		setPosition(new Vector2f(position).add(getOrigin2D().sub(origin)));
+	}
+
+	public Vector2f getOriginPosition(Vector2f origin)
+	{
+		return new Vector2f(getPosition2D()).sub(getOrigin2D().sub(origin));
+	}
+
 	public Vector2f getTopLeftPosition()
 	{
-		return new Vector2f(getPosition2D()).sub(getOrigin2D());
+		return getOriginPosition(new Vector2f(0, 0));
+	}
+
+	public Vector2f getCenterPosition()
+	{
+		return getOriginPosition(getSize2D().div(2f));
+	}
+
+	public Vector2f getTopRightPosition()
+	{
+		return getOriginPosition(new Vector2f(getWidth(), 0));
+	}
+
+	public Vector2f getBottomLeftPosition()
+	{
+		return getOriginPosition(new Vector2f(0, getHeight()));
+	}
+
+	public Vector2f getBottomRightPosition()
+	{
+		return getOriginPosition(new Vector2f(getWidth(), getHeight()));
 	}
 
 	public void setTopLeftPosition(Vector2f pos)
 	{
-		setPosition(new Vector2f(pos).add(getOrigin2D()));
+		setOriginPosition(new Vector2f(0, 0), pos);
 	}
 
-	public Vector2f getCenter()
+	public void setCenterPosition(Vector2f pos)
 	{
-		return getTopLeftPosition().add(getSize2D().div(2));
+		setOriginPosition(getSize2D().div(2f), pos);
 	}
 
+	public void setTopRightPosition(Vector2f pos)
+	{
+		setOriginPosition(new Vector2f(getWidth(), 0), pos);
+	}
+
+	public void setBottomLeftPosition(Vector2f pos)
+	{
+		setOriginPosition(new Vector2f(0, getHeight()), pos);
+	}
+
+	public void setBottomRightPosition(Vector2f pos)
+	{
+		setOriginPosition(new Vector2f(getWidth(), getHeight()), pos);
+	}
 
 	public Matrix4f getTransformMatrix()
 	{

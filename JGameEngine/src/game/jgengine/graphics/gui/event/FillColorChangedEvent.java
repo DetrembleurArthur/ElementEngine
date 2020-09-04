@@ -1,11 +1,10 @@
 package game.jgengine.graphics.gui.event;
 
-import game.jgengine.graphics.gui.widgets.Widget;
-import game.jgengine.graphics.shapes.Shape;
+import game.jgengine.graphics.gui.widgets.SmartShape;
 
 public class FillColorChangedEvent extends DataChangedEvent
 {
-	public FillColorChangedEvent(Widget<?> object)
+	public FillColorChangedEvent(SmartShape<?> object)
 	{
 		super(object, object.getShape().method("getFillColor"));
 	}

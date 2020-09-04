@@ -73,6 +73,12 @@ public class Text extends Shape
 		setSize(height / ratio, height);
 	}
 
+
+	public void normalize()
+	{
+		setTextHeight(getHeight());
+	}
+
 	public BoundingBox getCharBox(int i)
 	{
 		Mesh mesh = getMesh();

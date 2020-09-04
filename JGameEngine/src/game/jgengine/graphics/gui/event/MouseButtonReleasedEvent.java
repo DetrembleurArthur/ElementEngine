@@ -2,20 +2,19 @@ package game.jgengine.graphics.gui.event;
 
 import game.jgengine.event.Input;
 import game.jgengine.event.Mouse;
-import game.jgengine.graphics.gui.widgets.Widget;
-import game.jgengine.graphics.shapes.Shape;
+import game.jgengine.graphics.gui.widgets.SmartShape;
 
 public class MouseButtonReleasedEvent extends MouseButtonEvent
 {
 	private boolean buttonPressed;
 	private boolean falseRelease;
 
-	public MouseButtonReleasedEvent(Widget<?> relativeObject)
+	public MouseButtonReleasedEvent(SmartShape<?> relativeObject)
 	{
 		this(relativeObject, -1);
 	}
 
-	public MouseButtonReleasedEvent(Widget<?> relativeObject, int buttonId)
+	public MouseButtonReleasedEvent(SmartShape<?> relativeObject, int buttonId)
 	{
 		super(relativeObject, buttonId);
 		buttonPressed = false;

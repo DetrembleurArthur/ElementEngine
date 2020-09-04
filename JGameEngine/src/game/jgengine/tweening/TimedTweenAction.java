@@ -103,6 +103,7 @@ public class TimedTweenAction extends TweenAction
 		beginTime = 0f;
 	}
 
+
 	@Override
 	public void run()
 	{

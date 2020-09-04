@@ -74,7 +74,7 @@ public class Slider extends Rectangle
 						getTopLeftPosition().x +
 								(getSize().x *
 										TweenAction.getProgress(TweenFunctions.LINEAR, minValue, maxValue, currentValue)),
-						getCenter().y));
+						getCenterPosition().y));
 	}
 
 	@Override

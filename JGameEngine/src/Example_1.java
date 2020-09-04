@@ -8,7 +8,6 @@ import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.registry.Registry;
 import game.jgengine.sys.Scene2D;
 import game.jgengine.sys.Window;
-import game.jgengine.tweening.TweenFunctions;
 import game.jgengine.utils.Colors;
 import game.jgengine.utils.To;
 import org.joml.Vector2f;
@@ -21,17 +20,17 @@ import java.time.Instant;
 public class Example_1 extends Scene2D
 {
 
-	WRectangle background;
-	WRectangle rect;
-	WSlider[] sliders;
+	SmartRectangle background;
+	SmartRectangle rect;
+	SmartSlider[] sliders;
 	Label colorLabel;
-	WProgressBar bar;
+	SmartProgressBar bar;
 
 	Vector2f winSize;
 
 	TargetRenderer target;
 	TargetTexture targetTexture;
-	WRectangle sceneView;
+	SmartRectangle sceneView;
 
 	Entry entry;
 
@@ -46,10 +45,10 @@ public class Example_1 extends Scene2D
 	public void loadResources()
 	{
 		winSize = Window.WINDOW.getSize();
-		background = new WRectangle(Registry.getTexture("background"));
+		background = new SmartRectangle(Registry.getTexture("background"));
 		background.getShape().setSize(winSize);
 
-		rect = new WRectangle(Registry.getTexture("folder"));
+		rect = new SmartRectangle(Registry.getTexture("folder"));
 		rect.with(shape -> {
 			shape.setFillColor(new Vector4f(Colors.WHITE));
 			shape.setSize(Registry.getTexture("folder").getDimension().div(3));
@@ -61,8 +60,8 @@ public class Example_1 extends Scene2D
 		rect.enableMouseDragging();
 
 
-		sliders = new WSlider[3];
-		sliders[0] = new WSlider(0f, 1f, 1f, new Vector2f(300, 10));
+		sliders = new SmartSlider[3];
+		sliders[0] = new SmartSlider(0f, 1f, 1f, new Vector2f(300, 10));
 		sliders[0].with(shape -> {
 			shape.setFillColor(Colors.RED);
 			shape.setPosition(new Vector2f(30, 30));
@@ -72,7 +71,7 @@ public class Example_1 extends Scene2D
 			background.getShape().setR(perc);
 		});
 
-		sliders[1] = new WSlider(0f, 1f, 1f, new Vector2f(300, 10));
+		sliders[1] = new SmartSlider(0f, 1f, 1f, new Vector2f(300, 10));
 		sliders[1].with(shape -> {
 			shape.setFillColor(Colors.GREEN);
 			shape.setPosition(new Vector2f(30, 50));
@@ -82,7 +81,7 @@ public class Example_1 extends Scene2D
 			background.getShape().setG(perc);
 		});
 
-		sliders[2] = new WSlider(0f, 1f, 1f, new Vector2f(300, 10));
+		sliders[2] = new SmartSlider(0f, 1f, 1f, new Vector2f(300, 10));
 		sliders[2].with(shape -> {
 			shape.setFillColor(Colors.BLUE);
 			shape.setPosition(new Vector2f(30, 70));
@@ -99,7 +98,7 @@ public class Example_1 extends Scene2D
 		//colorLabel.getShape().setSizePx(50);
 		colorLabel.getShape().setPosition(new Vector2f(30, winSize.y - 100));
 
-		bar = new WProgressBar(0, 3, 3, new Vector2f(300, 50));
+		bar = new SmartProgressBar(0, 3, 3, new Vector2f(300, 50));
 		bar.enableHorizontalMouseDragging();
 		bar.getShape().setPosition(new Vector2f(30, winSize.y - 200));
 
@@ -114,7 +113,7 @@ public class Example_1 extends Scene2D
 
 		targetTexture = new TargetTexture(Window.WINDOW.getSize().mul(0.25f));
 		target = new TargetRenderer(Shader.DEFAULT, new Camera2D(new OrthoProjectionSettings(0, winSize.x, 0, winSize.y)), targetTexture);
-		sceneView = new WRectangle(targetTexture.getTexture());
+		sceneView = new SmartRectangle(targetTexture.getTexture());
 		sceneView.enableMouseDragging();
 		sceneView.getShape().setTopLeftPosition(new Vector2f(0));
 
@@ -189,7 +188,7 @@ public class Example_1 extends Scene2D
 	@Override
 	public void keyPressedEventHandler(int key)
 	{
-		entry.updateKeys(key);
+		entry.updateTextKeys(key);
 		if(key == GLFW.GLFW_KEY_LEFT_CONTROL)
 		{
 			Logs.print("SCREENSHOT TOOK");
@@ -205,6 +204,6 @@ public class Example_1 extends Scene2D
 	@Override
 	public void keyRepeatedEventHandler(int key)
 	{
-		entry.updateKeys(key);
+		entry.updateTextKeys(key);
 	}
 }

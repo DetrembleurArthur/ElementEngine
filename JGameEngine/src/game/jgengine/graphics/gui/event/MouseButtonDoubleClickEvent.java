@@ -1,15 +1,13 @@
 package game.jgengine.graphics.gui.event;
 
-import game.jgengine.graphics.gui.widgets.Widget;
-import game.jgengine.graphics.shapes.Shape;
+import game.jgengine.graphics.gui.widgets.SmartShape;
 import game.jgengine.time.StaticTimer;
-import game.jgengine.time.SyncTimer;
 
 public class MouseButtonDoubleClickEvent extends MouseLeftButtonClickEvent
 {
 	private StaticTimer timer;
 
-	public MouseButtonDoubleClickEvent(Widget<?> relativeObject)
+	public MouseButtonDoubleClickEvent(SmartShape<?> relativeObject)
 	{
 		super(relativeObject, false);
 		timer = new StaticTimer(200f);

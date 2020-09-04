@@ -74,6 +74,6 @@ public class Circle extends Shape
 
 	public boolean isClosed(Vector2f point)
 	{
-		return getCenter().distance(point) <= getRadius();
+		return getCenterPosition().distance(point) <= getRadius();
 	}
 }

@@ -1,18 +1,17 @@
 package game.jgengine.graphics.gui.event;
 
-import game.jgengine.graphics.gui.widgets.Widget;
-import game.jgengine.graphics.shapes.Shape;
+import game.jgengine.graphics.gui.widgets.SmartShape;
 
 public abstract class RelativeEvent extends Event
 {
-	protected Widget<?> object;
+	protected SmartShape<?> object;
 
-	public RelativeEvent(Widget<?> object)
+	public RelativeEvent(SmartShape<?> object)
 	{
 		this.object = object;
 	}
 
-	public Widget<?> getObject()
+	public SmartShape<?> getObject()
 	{
 		return object;
 	}

@@ -16,10 +16,10 @@ public class Entry extends Label
 	private float speedKey;
 	private StaticTimer timer;
 
-	public Entry(Font font, float width)
+	public Entry(Font font, float height)
 	{
 		super(font, "your text here");
-		getShape().setTextWidth(width);
+		getShape().setTextHeight(height);
 		focused = false;
 		onMouseButtonReleased(sender -> focused = true);
 		speedKey = 0;
@@ -40,13 +40,26 @@ public class Entry extends Label
 		}
 	}
 
-	public void updateKeys(int keyCode)
+	public void updateTextKeys(int keyCode)
 	{
 		if (focused)
 		{
-			if(Input.isKeyPressed(Window.WINDOW, GLFW.GLFW_KEY_LEFT_SHIFT))
-				keyCode += 32;
 			char keyId = (char)keyCode;
+			if (timer.isFinished())
+			{
+				if(getShape().getFont().getGlyphs().containsKey(keyId))
+				{
+					textProperty.set(getShape().getText() + new String(new char[]{keyId}));
+				}
+				timer.activate();
+			}
+		}
+	}
+
+	public void updatePhysicalKeys(int keyCode)
+	{
+		if (focused)
+		{
 			if (timer.isFinished())
 			{
 				Logs.print(keyCode);
@@ -54,19 +67,12 @@ public class Entry extends Label
 				{
 					String text = new String(getShape().getText());
 					int len = text.length();
-					if(!text.isEmpty())
+					if(text.length() > 0)
 						textProperty.set(text.substring(0, len-1));
 				}
 				else if(keyCode == GLFW.GLFW_KEY_ENTER)
 				{
 					textProperty.set(getShape().getText() + "\n");
-				}
-				else
-				{
-					if(getShape().getFont().getGlyphs().containsKey(keyId))
-					{
-						textProperty.set(getShape().getText() + new String(new char[]{keyId}));
-					}
 				}
 				timer.activate();
 			}
