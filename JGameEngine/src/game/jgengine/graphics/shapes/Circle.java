@@ -1,13 +1,14 @@
 package game.jgengine.graphics.shapes;
 
 import game.jgengine.debug.Logs;
+import game.jgengine.entity.GameObject;
 import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.utils.MathUtil;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
-public class Circle extends Shape
+public class Circle extends GameObject
 {
 	private int nPoints;
 

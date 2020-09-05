@@ -1,17 +1,18 @@
 package game.jgengine.graphics.shapes;
 
+import game.jgengine.components.event.Valuable;
 import game.jgengine.debug.Logs;
 import game.jgengine.graphics.rendering.Renderer;
 import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.sys.Game;
+import game.jgengine.tweening.TFunc;
 import game.jgengine.tweening.TweenAction;
 import game.jgengine.tweening.TweenFunction;
-import game.jgengine.tweening.TweenFunctions;
 import game.jgengine.utils.Colors;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 
-public class ProgressBar extends Rectangle
+public class ProgressBar extends Rectangle implements Valuable
 {
 	private float minValue;
 	private float maxValue;
@@ -31,8 +32,8 @@ public class ProgressBar extends Rectangle
 		this.maxValue = maxValue;
 		this.currentValue = currentValue;
 		this.maxSize = maxSize;
-		this.widthProgressFunction = TweenFunctions.LINEAR;
-		this.colorProgressFunction = TweenFunctions.LINEAR;
+		this.widthProgressFunction = TFunc.LINEAR;
+		this.colorProgressFunction = TFunc.LINEAR;
 		this.minColor = Colors.RED;
 		this.maxColor = Colors.LIME;
 		this.backgroundColor = Colors.BLACK;
@@ -177,5 +178,17 @@ public class ProgressBar extends Rectangle
 	public void setBackgroundColor(Vector4f backgroundColor)
 	{
 		this.backgroundColor = backgroundColor;
+	}
+
+	@Override
+	public Object getValue()
+	{
+		return getCurrentValue();
+	}
+
+	@Override
+	public void setValue(Object value)
+	{
+		setCurrentValue((Float) value);
 	}
 }

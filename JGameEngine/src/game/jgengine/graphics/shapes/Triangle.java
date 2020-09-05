@@ -1,11 +1,12 @@
 package game.jgengine.graphics.shapes;
 
+import game.jgengine.entity.GameObject;
 import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.graphics.vertex.Mesh;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
-public class Triangle extends Shape
+public class Triangle extends GameObject
 {
 
 	public Triangle(Texture texture)

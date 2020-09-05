@@ -1,5 +1,13 @@
 package game.jgengine.entity;
 
+import game.jgengine.binding.Property;
+import game.jgengine.components.Component;
+import game.jgengine.components.ScriptsComponent;
+import game.jgengine.components.animations.AnimationsComponent;
+import game.jgengine.components.event.EventManagerComponent;
+import game.jgengine.components.properties.CommonPropertiesComponent;
+import game.jgengine.components.properties.TextPropertyComponent;
+import game.jgengine.components.properties.ValuePropertyComponent;
 import game.jgengine.graphics.rendering.Renderer;
 import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.rendering.Texture;
@@ -11,53 +19,109 @@ import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+
 public class GameObject extends GraphicElement
 {
-	private Texture texture = null;
+	private ArrayList<Component> components;
 
 	public GameObject(Mesh mesh, Texture texture)
 	{
-		super(mesh);
-		setTexture(texture);
+		super(mesh, texture);
 	}
 
-	public Texture getTexture()
+	public <T extends Component> boolean addComponent(T component)
 	{
-		return texture;
+		if(components == null) components = new ArrayList<>();
+		for(Component c : components)
+		{
+			if(c.getClass().equals(component.getClass()))
+				return false;
+		}
+		components.add(component);
+		return true;
 	}
 
-	public void setTexture(Texture texture)
+	@SuppressWarnings("unchecked")
+	public <T extends Component> T getComponent(Class<T> cclass)
 	{
-		this.texture = texture;
+		if(components == null)
+		{
+			components = new ArrayList<>();
+			return null;
+		}
+		for(Component c : components)
+		{
+			if(c.getClass().equals(cclass))
+				return (T)c;
+		}
+		return null;
 	}
 
-	public void setTextureAndResize(Texture texture, float mulFactor)
+	public <T extends Component> boolean removeComponent(Class<T> cclass)
 	{
-		setTexture(texture);
-		setSize(new Vector2f(texture.getDimension()).mul(mulFactor));
+		return components.removeIf(component -> component.getClass().equals(cclass));
 	}
 
-	public void setTextureAndResize(Texture texture)
+	public <T extends Component> T accessComponent(Class<T> cclass)
 	{
-		setTextureAndResize(texture, 1f);
+		T component = getComponent(cclass);
+		if(component == null)
+		{
+			try
+			{
+				addComponent(component = cclass.getConstructor(GameObject.class).newInstance(this));
+			} catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		return component;
+	}
+
+	public EventManagerComponent events()
+	{
+		return accessComponent(EventManagerComponent.class);
+	}
+
+	public CommonPropertiesComponent properties()
+	{
+		return accessComponent(CommonPropertiesComponent.class);
+	}
+
+	public TextPropertyComponent textProperty()
+	{
+		return accessComponent(TextPropertyComponent.class);
+	}
+
+	public ValuePropertyComponent valueProperty()
+	{
+		return accessComponent(ValuePropertyComponent.class);
+	}
+
+	public AnimationsComponent animations()
+	{
+		return accessComponent(AnimationsComponent.class);
+	}
+
+	public ScriptsComponent scripts()
+	{
+		return accessComponent(ScriptsComponent.class);
 	}
 
 	@Override
-	public void draw()
+	public void run()
 	{
-		if(texture != null)
+		if(components != null)
 		{
-			texture.active();
-			texture.bind();
-			super.draw();
-			texture.unbind();
-		}
-		else
-		{
-			super.draw();
+			for(Component component : components)
+			{
+				if(component instanceof Runnable)
+					((Runnable) component).run();
+			}
 		}
 	}
-
 
 	public void move(float vx, float vy, float vz)
 	{
@@ -103,75 +167,75 @@ public class GameObject extends GraphicElement
 		movedt(speed.x, speed.y, speed.z);
 	}
 
-	public Vector2f getComponent(@NotNull Vector2f pos)
+	public Vector2f getVectorComponent(@NotNull Vector2f pos)
 	{
 		if(pos.x == position.x && pos.y == position.y) return new Vector2f();
 		return pos.sub(getPosition2D()).normalize();
 	}
 
-	public Vector2f getComponent(float x, float y)
+	public Vector2f getVectorComponent(float x, float y)
 	{
-		return getComponent(new Vector2f(x, y));
+		return getVectorComponent(new Vector2f(x, y));
 	}
 
-	public Vector2f getComponent(Vector2f pos, Vector2f speed)
+	public Vector2f getVectorComponent(Vector2f pos, Vector2f speed)
 	{
-		return getComponent(pos).mul(speed);
+		return getVectorComponent(pos).mul(speed);
 	}
 
-	public Vector2f getComponent(float x, float y, float sx, float sy)
+	public Vector2f getVectorComponent(float x, float y, float sx, float sy)
 	{
-		return getComponent(new Vector2f(x, y), new Vector2f(sx, sy));
+		return getVectorComponent(new Vector2f(x, y), new Vector2f(sx, sy));
 	}
 
-	public Vector2f getComponent(float x, float y, float s)
+	public Vector2f getVectorComponent(float x, float y, float s)
 	{
-		return getComponent(x, y, s, s);
+		return getVectorComponent(x, y, s, s);
 	}
 
-	public Vector2f getComponent(Vector2f pos, float s)
+	public Vector2f getVectorComponent(Vector2f pos, float s)
 	{
-		return getComponent(pos, new Vector2f(s, s));
+		return getVectorComponent(pos, new Vector2f(s, s));
 	}
 
 	public void moveToward(Vector2f pos, Vector2f speed)
 	{
-		move(getComponent(pos, speed));
+		move(getVectorComponent(pos, speed));
 	}
 
 	public void moveToward(float x, float y,  float sx, float sy)
 	{
-		move(getComponent(x, y, sx, sy));
+		move(getVectorComponent(x, y, sx, sy));
 	}
 
 	public void moveToward(Vector2f pos, float speed)
 	{
-		move(getComponent(pos, speed));
+		move(getVectorComponent(pos, speed));
 	}
 
 	public void moveToward(float x, float y, float speed)
 	{
-		move(getComponent(x, y, speed));
+		move(getVectorComponent(x, y, speed));
 	}
 
 	public void moveTowarddt(Vector2f pos, Vector2f speed)
 	{
-		movedt(getComponent(pos, speed));
+		movedt(getVectorComponent(pos, speed));
 	}
 
 	public void moveTowarddt(float x, float y,  float sx, float sy)
 	{
-		movedt(getComponent(x, y, sx, sy));
+		movedt(getVectorComponent(x, y, sx, sy));
 	}
 
 	public void moveTowarddt(Vector2f pos, float speed)
 	{
-		movedt(getComponent(pos, speed));
+		movedt(getVectorComponent(pos, speed));
 	}
 
 	public void moveTowarddt(float x, float y, float speed)
 	{
-		movedt(getComponent(x, y, speed));
+		movedt(getVectorComponent(x, y, speed));
 	}
 
 	public void rotate(float angle)

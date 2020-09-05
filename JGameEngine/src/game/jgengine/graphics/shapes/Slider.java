@@ -1,13 +1,12 @@
 package game.jgengine.graphics.shapes;
 
-import game.jgengine.debug.Logs;
+import game.jgengine.components.event.Valuable;
 import game.jgengine.graphics.rendering.Renderer;
-import game.jgengine.graphics.rendering.Texture;
+import game.jgengine.tweening.TFunc;
 import game.jgengine.tweening.TweenAction;
-import game.jgengine.tweening.TweenFunctions;
 import org.joml.Vector2f;
 
-public class Slider extends Rectangle
+public class Slider extends Rectangle implements Valuable
 {
 	private float minValue;
 	private float maxValue;
@@ -64,7 +63,7 @@ public class Slider extends Rectangle
 	public void setCurrentValue(Vector2f position)
 	{
 		setCurrentValue(minValue + ((maxValue-minValue) *
-				TweenAction.getProgress(TweenFunctions.LINEAR, getTopLeftPosition().x, getTopLeftPosition().x + getSize().x, position.x)));
+				TweenAction.getProgress(TFunc.LINEAR, getTopLeftPosition().x, getTopLeftPosition().x + getSize().x, position.x)));
 	}
 
 	private void updateCursor()
@@ -73,7 +72,7 @@ public class Slider extends Rectangle
 				new Vector2f(
 						getTopLeftPosition().x +
 								(getSize().x *
-										TweenAction.getProgress(TweenFunctions.LINEAR, minValue, maxValue, currentValue)),
+										TweenAction.getProgress(TFunc.LINEAR, minValue, maxValue, currentValue)),
 						getCenterPosition().y));
 	}
 
@@ -97,7 +96,7 @@ public class Slider extends Rectangle
 			minValue += shift;
 			maxValue += shift;
 		}
-		float perc = TweenAction.getProgress(TweenFunctions.LINEAR, minValue, maxValue, currentValue);
+		float perc = TweenAction.getProgress(TFunc.LINEAR, minValue, maxValue, currentValue);
 		if(shift > 0)
 		{
 			minValue -= shift;
@@ -118,5 +117,17 @@ public class Slider extends Rectangle
 	{
 		super.destroy();
 		cursor.destroy();
+	}
+
+	@Override
+	public Object getValue()
+	{
+		return getCurrentValue();
+	}
+
+	@Override
+	public void setValue(Object value)
+	{
+		setCurrentValue((Float) value);
 	}
 }

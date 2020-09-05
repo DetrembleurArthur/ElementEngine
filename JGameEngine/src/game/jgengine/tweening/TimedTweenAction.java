@@ -133,4 +133,14 @@ public class TimedTweenAction extends TweenAction
 			}
 		}
 	}
+
+	public boolean isStarted()
+	{
+		return beginTime != 0f;
+	}
+
+	public boolean isSleep()
+	{
+		return !isStarted() || isFinished();
+	}
 }

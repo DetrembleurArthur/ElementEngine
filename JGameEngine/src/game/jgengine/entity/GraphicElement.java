@@ -2,9 +2,12 @@ package game.jgengine.entity;
 
 import game.jgengine.debug.Logs;
 import game.jgengine.graphics.rendering.Renderer;
+import game.jgengine.graphics.rendering.Sprite;
+import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.graphics.texts.Text;
 import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.utils.Colors;
+import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 
@@ -16,6 +19,36 @@ public class GraphicElement extends Transformable implements Dynamic
 	private int primitive;
 	private int lineWeight = 1;
 	private Vector4f fillColor = new Vector4f(Colors.WHITE);
+
+	private Texture texture;
+
+	public GraphicElement(Mesh mesh)
+	{
+		this(mesh, null);
+	}
+
+	public GraphicElement(Mesh mesh, Texture texture)
+	{
+		super(new Vector3f(), new Vector3f(),  new Vector3f(1,1,1));
+		this.mesh = mesh;
+		primitive = GL_TRIANGLES;
+		setTexture(texture);
+	}
+	public GraphicElement(Vector3f position, Vector3f rotation, Vector3f scale, Mesh mesh, Texture texture, int primitive)
+	{
+		super(position, rotation, scale);
+		this.mesh = mesh;
+		this.primitive = primitive;
+		setTexture(texture);
+	}
+
+	public void setSprite(Sprite sprite)
+	{
+		for(int i = 0; i < sprite.getTextCoords().length; i++)
+		{
+			getMesh().setUV(i, sprite.getTextCoords()[i]);
+		}
+	}
 
 	public int getLineWeight()
 	{
@@ -77,29 +110,55 @@ public class GraphicElement extends Transformable implements Dynamic
 		return primitive > 0 && primitive < GL_TRIANGLES;
 	}
 
-	public GraphicElement(Mesh mesh)
+	public Texture getTexture()
 	{
-		super(new Vector3f(), new Vector3f(),  new Vector3f(1,1,1));
-		this.mesh = mesh;
-		primitive = GL_TRIANGLES;
-	}
-	public GraphicElement(Vector3f position, Vector3f rotation, Vector3f scale, Mesh mesh, int primitive)
-	{
-		super(position, rotation, scale);
-		this.mesh = mesh;
-		this.primitive = primitive;
+		return texture;
 	}
 
+	public void setTexture(Texture texture)
+	{
+		this.texture = texture;
+	}
+
+	public void setTextureAndResize(Texture texture, float mulFactor)
+	{
+		setTexture(texture);
+		setSize(new Vector2f(texture.getDimension()).mul(mulFactor));
+	}
+
+	public void setTextureAndResize(Texture texture)
+	{
+		setTextureAndResize(texture, 1f);
+	}
+
+	@Override
 	public void draw()
 	{
-		if(isRenderLine()) glLineWidth(lineWeight);
-		mesh.getVertexArray().bind();
-		mesh.getVertexArray().enableAttribs();
-		mesh.getIndexBuffer().drawElements(primitive);
-		mesh.getVertexArray().disableAttribs();
-		mesh.getVertexArray().unbind();
-		if(isRenderLine()) glLineWidth(0);
+		if(texture != null)
+		{
+			texture.active();
+			texture.bind();
+			if(isRenderLine()) glLineWidth(lineWeight);
+			mesh.getVertexArray().bind();
+			mesh.getVertexArray().enableAttribs();
+			mesh.getIndexBuffer().drawElements(primitive);
+			mesh.getVertexArray().disableAttribs();
+			mesh.getVertexArray().unbind();
+			if(isRenderLine()) glLineWidth(0);
+			texture.unbind();
+		}
+		else
+		{
+			if(isRenderLine()) glLineWidth(lineWeight);
+			mesh.getVertexArray().bind();
+			mesh.getVertexArray().enableAttribs();
+			mesh.getIndexBuffer().drawElements(primitive);
+			mesh.getVertexArray().disableAttribs();
+			mesh.getVertexArray().unbind();
+			if(isRenderLine()) glLineWidth(0);
+		}
 	}
+
 
 	public Mesh getMesh()
 	{

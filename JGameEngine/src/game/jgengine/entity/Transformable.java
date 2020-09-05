@@ -1,6 +1,8 @@
 package game.jgengine.entity;
 
+import game.jgengine.graphics.shapes.BoundingBox;
 import game.jgengine.utils.FreeReflectable;
+import game.jgengine.utils.MathUtil;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
@@ -151,7 +153,7 @@ public class Transformable extends FreeReflectable
 	{
 		Vector3f old = this.size;
 		this.size = new Vector3f(size);
-		this.origin.mul(size.div(old));
+		this.origin.mul(size.div(old.x != 0 ? old.x : 1, old.y != 0 ? old.y : 1, old.z != 0 ? old.z : 1));
 	}
 
 	public void setSize(Vector2f size)
@@ -308,5 +310,18 @@ public class Transformable extends FreeReflectable
 				.rotateZ((float)Math.toRadians(rotation.z))
 				.translate(new Vector3f(origin).mul(scale).negate())
 				.scale(size).scale(scale);
+	}
+
+
+	public BoundingBox getBoundingBox()
+	{
+		var pos = getTopLeftPosition();
+		var size = getSize();
+		return new BoundingBox(pos.x, pos.y, size.x, size.y);
+	}
+
+	public boolean contains(Vector2f pos)
+	{
+		return getBoundingBox().isCollision(MathUtil.rotateAround(pos, getPosition2D(), -getRotation2D()));
 	}
 }

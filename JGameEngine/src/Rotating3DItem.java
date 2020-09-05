@@ -1,10 +1,10 @@
-import game.jgengine.debug.Logs;
+/*import game.jgengine.debug.Logs;
 import game.jgengine.entity.Dynamic;
 import game.jgengine.event.Mouse;
 import game.jgengine.graphics.camera.Camera2D;
 import game.jgengine.graphics.camera.Camera3D;
 import game.jgengine.graphics.camera.PerspProjectionSettings;
-import game.jgengine.graphics.gui.widgets.SmartRectangle;
+import game.jgengine.graphics.gui.smart.SmartRectangle;
 import game.jgengine.graphics.rendering.TargetRenderer;
 import game.jgengine.graphics.rendering.TargetTexture;
 import game.jgengine.graphics.shaders.Shader;
@@ -125,3 +125,4 @@ public class Rotating3DItem extends Scene2D
 		}
 	}
 }
+*/

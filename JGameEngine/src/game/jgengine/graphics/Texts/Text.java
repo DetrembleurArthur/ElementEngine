@@ -1,16 +1,17 @@
 package game.jgengine.graphics.texts;
 
+import game.jgengine.components.event.Valuable;
 import game.jgengine.debug.Logs;
+import game.jgengine.entity.GameObject;
 import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.shapes.BoundingBox;
-import game.jgengine.graphics.shapes.Shape;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 import java.util.ArrayList;
 
-public class Text extends Shape
+public class Text extends GameObject implements Valuable
 {
 	private Font font;
 	private String text;
@@ -106,4 +107,15 @@ public class Text extends Shape
 		return false;
 	}
 
+	@Override
+	public Object getValue()
+	{
+		return getText();
+	}
+
+	@Override
+	public void setValue(Object value)
+	{
+		setText((String) value);
+	}
 }

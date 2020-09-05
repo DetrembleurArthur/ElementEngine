@@ -1,12 +1,13 @@
 package game.jgengine.graphics.shapes;
 
+import game.jgengine.entity.GameObject;
+import game.jgengine.graphics.rendering.Sprite;
 import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.rendering.Texture;
-import game.jgengine.utils.MathUtil;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector2f;
 
-public class Rectangle extends Shape
+public class Rectangle extends GameObject
 {
 	private static final Mesh MODEL = new Mesh(
 			new float[]{

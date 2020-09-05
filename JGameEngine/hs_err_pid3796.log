@@ -21,7 +21,7 @@
 Command Line: -javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.3.4\lib\idea_rt.jar=56483:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.3.4\bin -Dfile.encoding=UTF-8 MyTestGame
 
 Host: Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz, 8 cores, 11G,  Windows 10 , 64 bit Build 18362 (10.0.18362.959)
-Time: Sat Aug  8 09:41:49 2020 Paris, Madrid (heure d?été) elapsed time: 16 seconds (0d 0h 0m 16s)
+Time: Sat Aug  8 09:41:49 2020 Paris, Madrid (heure d?ï¿½tï¿½) elapsed time: 16 seconds (0d 0h 0m 16s)
 
 ---------------  T H R E A D  ---------------
 
@@ -432,7 +432,7 @@ Event: 8.293 Thread 0x0000023022f61000 1319       3       MainScene::update (21 
 Event: 8.294 Thread 0x0000023022f61000 nmethod 1319 0x000002300a051510 code [0x000002300a0516e0, 0x000002300a051c80]
 Event: 8.294 Thread 0x0000023022f61000 1321       3       game.jgengine.graphics.camera.Camera2D::activateKeys (127 bytes)
 Event: 8.295 Thread 0x0000023022f61000 nmethod 1321 0x000002300a051e10 code [0x000002300a052280, 0x000002300a0541e0]
-Event: 8.295 Thread 0x0000023022f61000 1322       3       game.jgengine.graphics.gui.event.EventManager::update (5 bytes)
+Event: 8.295 Thread 0x0000023022f61000 1322       3       game.jgengine.components.event.EventManagerComponent::update (5 bytes)
 Event: 8.295 Thread 0x0000023022f61000 nmethod 1322 0x000002300a054c10 code [0x000002300a054dc0, 0x000002300a055010]
 Event: 8.296 Thread 0x0000023022f61000 1323       3       game.jgengine.sys.Window::flip (8 bytes)
 Event: 8.296 Thread 0x0000023022f61000 nmethod 1323 0x000002300a055110 code [0x000002300a0552e0, 0x000002300a0556a0]
