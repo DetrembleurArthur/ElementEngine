@@ -6,6 +6,7 @@ import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.rendering.Texture;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector2f;
+import org.w3c.dom.css.Rect;
 
 public class Rectangle extends GameObject
 {
@@ -36,6 +37,11 @@ public class Rectangle extends GameObject
 		), texture);
 		if(texture != null)
 			setSize(texture.getDimension());
+	}
+
+	public Rectangle()
+	{
+		this(null);
 	}
 
 	public void setSprite(@NotNull Sprite sprite)

@@ -4,19 +4,11 @@ import java.util.ArrayList;
 
 public class Script implements Runnable
 {
-	private Condition condition;
 	private ArrayList<Runnable> actions;
 
 	public Script()
 	{
-		condition = null;
 		actions = new ArrayList<>();
-	}
-
-	public Script setCondition(Condition condition)
-	{
-		this.condition = condition;
-		return this;
 	}
 
 	public Script addAction(Runnable action)
@@ -26,17 +18,11 @@ public class Script implements Runnable
 	}
 
 	@Override
-	public final void run()
+	public void run()
 	{
-		if(condition != null)
+		for(Runnable action : actions)
 		{
-			if(condition.isTrue())
-			{
-				for(Runnable action : actions)
-				{
-					action.run();
-				}
-			}
+			action.run();
 		}
 	}
 }

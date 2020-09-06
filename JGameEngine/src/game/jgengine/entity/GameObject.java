@@ -1,23 +1,20 @@
 package game.jgengine.entity;
 
-import game.jgengine.binding.Property;
 import game.jgengine.components.Component;
-import game.jgengine.components.ScriptsComponent;
+import game.jgengine.components.forces.MoveManagerComponent;
+import game.jgengine.components.scripts.ScriptsComponent;
 import game.jgengine.components.animations.AnimationsComponent;
 import game.jgengine.components.event.EventManagerComponent;
 import game.jgengine.components.properties.CommonPropertiesComponent;
 import game.jgengine.components.properties.TextPropertyComponent;
 import game.jgengine.components.properties.ValuePropertyComponent;
-import game.jgengine.graphics.rendering.Renderer;
 import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.sys.Game;
-import game.jgengine.utils.Colors;
 import game.jgengine.utils.MathUtil;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
-import org.joml.Vector4f;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -108,6 +105,11 @@ public class GameObject extends GraphicElement
 	public ScriptsComponent scripts()
 	{
 		return accessComponent(ScriptsComponent.class);
+	}
+
+	public MoveManagerComponent moves()
+	{
+		return accessComponent(MoveManagerComponent.class);
 	}
 
 	@Override

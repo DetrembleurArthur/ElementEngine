@@ -1,32 +1,34 @@
-package game.jgengine.components;
+package game.jgengine.components.scripts;
 
+import game.jgengine.components.Component;
 import game.jgengine.entity.GameObject;
+import game.jgengine.scripting.CScript;
 import game.jgengine.scripting.Script;
 
 import java.util.ArrayList;
 
 public class ScriptsComponent extends Component implements Runnable
 {
-	private ArrayList<Script> scripts;
+	private ArrayList<Script> CScripts;
 
 	public ScriptsComponent(GameObject relativeObject)
 	{
 		super(relativeObject);
-		scripts = new ArrayList<>();
+		CScripts = new ArrayList<>();
 	}
 
-	public ScriptsComponent add(Script script)
+	public ScriptsComponent add(Script CScript)
 	{
-		scripts.add(script);
+		CScripts.add(CScript);
 		return this;
 	}
 
 	@Override
 	public void run()
 	{
-		for(Script script : scripts)
+		for(Script CScript : CScripts)
 		{
-			script.run();
+			CScript.run();
 		}
 	}
 }

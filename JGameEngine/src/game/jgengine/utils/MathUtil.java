@@ -57,4 +57,9 @@ public class MathUtil
 			vector[i] /= (max - min);
 		}
 	}
+
+	public static boolean sameSign(float v1, float v2)
+	{
+		return v1 >= 0f ^ v2 < 0f;
+	}
 }

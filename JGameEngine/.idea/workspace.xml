@@ -65,12 +65,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets\audio" />
+      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\src\game\jgengine\graphics" />
+      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\src\game\jgengine" />
+      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets" />
+      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets\3Dmodels" />
+    </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="game.jgengine.graphics" />
-      <recent name="game.jgengine.event" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="game.jgengine.graphics.gui.event" />
       <recent name="game.jgengine.event" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -81,18 +84,15 @@
       <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\libs\joml" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="game.jgengine.scripting" />
       <recent name="" />
       <recent name="game.jgengine.graphics.gui.event" />
       <recent name="game.jgengine.graphics.Texts" />
       <recent name="game.jgengine.utils" />
-      <recent name="game.jgengine.graphics" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets\audio" />
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\src\game\jgengine\graphics" />
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\src\game\jgengine" />
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets" />
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets\3Dmodels" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="game.jgengine.graphics.gui.event" />
+      <recent name="game.jgengine.event" />
     </key>
   </component>
   <component name="RunManager" selected="Application.MyTestGame">
@@ -140,10 +140,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2592" y="305" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597137111749" />
-    <state x="2641" y="160" key="#com.intellij.ide.util.MemberChooser" timestamp="1599304846593">
+    <state x="2641" y="160" key="#com.intellij.ide.util.MemberChooser" timestamp="1599385981982">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2641" y="160" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599304846593" />
+    <state x="2641" y="160" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599385981982" />
     <state x="577" y="108" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1592126795262" />
     <state x="2547" y="268" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1597668639357">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -153,10 +153,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2646" y="384" width="491" height="284" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599294444505" />
-    <state x="2093" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1599221554220">
+    <state x="2093" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1599382740600">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2093" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599221554220" />
+    <state x="2093" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599382740600" />
     <state x="2547" y="205" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1596784217865">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -169,29 +169,29 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2464" y="146" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592830485845" />
-    <state width="1865" height="282" key="GridCell.Tab.0.bottom" timestamp="1599310328770">
+    <state width="1865" height="209" key="GridCell.Tab.0.bottom" timestamp="1599386240969">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1481" height="144" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597044853568" />
-    <state width="1865" height="282" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599310328770" />
+    <state width="1865" height="209" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599386240969" />
     <state width="1481" height="90" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592126899872" />
-    <state width="1865" height="282" key="GridCell.Tab.0.center" timestamp="1599310328770">
+    <state width="1865" height="209" key="GridCell.Tab.0.center" timestamp="1599386240969">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1481" height="144" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597044853568" />
-    <state width="1865" height="282" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599310328770" />
+    <state width="1865" height="209" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599386240969" />
     <state width="1481" height="90" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1592126899872" />
-    <state width="1865" height="282" key="GridCell.Tab.0.left" timestamp="1599310328770">
+    <state width="1865" height="209" key="GridCell.Tab.0.left" timestamp="1599386240969">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1481" height="144" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597044853568" />
-    <state width="1865" height="282" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599310328770" />
+    <state width="1865" height="209" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599386240969" />
     <state width="1481" height="90" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1592126899872" />
-    <state width="1865" height="282" key="GridCell.Tab.0.right" timestamp="1599310328770">
+    <state width="1865" height="209" key="GridCell.Tab.0.right" timestamp="1599386240969">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1481" height="144" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597044853568" />
-    <state width="1865" height="282" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599310328770" />
+    <state width="1865" height="209" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599386240969" />
     <state width="1481" height="90" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1592126899872" />
     <state width="1865" height="252" key="GridCell.Tab.1.bottom" timestamp="1599213573767">
       <screen x="1920" y="0" width="1920" height="1040" />
