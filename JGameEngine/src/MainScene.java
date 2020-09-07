@@ -24,7 +24,7 @@ public class MainScene extends Scene2D
 	@Override
 	public void load()
 	{
-
+		Window.WINDOW.setClearColor(Colors.BLACK);
 	}
 
 
@@ -33,12 +33,15 @@ public class MainScene extends Scene2D
 	{
 		rect = new Rectangle();
 		rect.setSize(150, 150);
-		rect.setFillColor(Colors.GREEN);
+		rect.setFillColor(Colors.WHITE);
 		rect.setPosition(Window.WINDOW.getCenter());
 		rect.setCenterOrigin();
 
 
 		float height = Window.WINDOW.getSize().y;
+
+		rect.moves().setRotationSpeed(600);
+		rect.moves().setRotationAcceleration(-20);
 
 
 
@@ -104,7 +107,5 @@ public class MainScene extends Scene2D
 	public void buttonPressedEventHandler(int button)
 	{
 		var component = rect.getVectorComponent(Mouse.getPosition(getCamera2d()));
-		rect.moves().speedToward(Mouse.getPosition(getCamera2d()), new Vector2f(1000));
-		rect.moves().accelerationToward(Mouse.getPosition(getCamera2d()), new Vector2f(-500));
 	}
 }

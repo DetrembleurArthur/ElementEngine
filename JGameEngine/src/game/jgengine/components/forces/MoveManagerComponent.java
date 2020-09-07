@@ -5,16 +5,15 @@ import game.jgengine.entity.GameObject;
 import game.jgengine.sys.Game;
 import game.jgengine.utils.MathUtil;
 import org.joml.Vector2f;
-import org.joml.Vector3f;
-import org.joml.Vector4f;
-
-import java.util.ArrayList;
 
 public class MoveManagerComponent extends Component implements Runnable
 {
 	private Vector2f speed;
 	private Vector2f acceleration;
-	private boolean zeroCondition = true;
+	private boolean speedZeroCondition = false;
+	private float rotationSpeed;
+	private float rotationAcceleration;
+	private boolean rotationSpeedZeroCondition = false;
 
 	public MoveManagerComponent(GameObject relativeObject)
 	{
@@ -43,24 +42,59 @@ public class MoveManagerComponent extends Component implements Runnable
 		return acceleration;
 	}
 
+	public float getRotationSpeed()
+	{
+		return rotationSpeed;
+	}
+
+	public void setRotationSpeed(float rotationSpeed)
+	{
+		this.rotationSpeed = rotationSpeed;
+	}
+
+	public float getRotationAcceleration()
+	{
+		return rotationAcceleration;
+	}
+
+	public void setRotationAcceleration(float rotationAcceleration)
+	{
+		this.rotationAcceleration = rotationAcceleration;
+	}
+
+	public boolean isRotationSpeedZeroCondition()
+	{
+		return rotationSpeedZeroCondition;
+	}
+
+	public void setRotationSpeedZeroCondition(boolean rotationSpeedZeroCondition)
+	{
+		this.rotationSpeedZeroCondition = rotationSpeedZeroCondition;
+	}
+
 	private void updateSpeed()
 	{
 		speed.add(new Vector2f(acceleration).mul((float) Game.DT));
-		if(zeroCondition)
+		if(speedZeroCondition)
 		{
 			if(MathUtil.sameSign(acceleration.x, speed.x)) speed.x = 0;
 			if(MathUtil.sameSign(acceleration.y, speed.y)) speed.y = 0;
 		}
+		rotationSpeed += rotationAcceleration * Game.DT;
+		if(rotationSpeedZeroCondition)
+		{
+			if(MathUtil.sameSign(rotationSpeed, rotationAcceleration)) rotationSpeed = 0;
+		}
 	}
 
-	public boolean isZeroCondition()
+	public boolean isSpeedZeroCondition()
 	{
-		return zeroCondition;
+		return speedZeroCondition;
 	}
 
-	public void setZeroCondition(boolean zeroCondition)
+	public void setSpeedZeroCondition(boolean speedZeroCondition)
 	{
-		this.zeroCondition = zeroCondition;
+		this.speedZeroCondition = speedZeroCondition;
 	}
 
 	public void speedToward(Vector2f position, Vector2f speed)
@@ -78,5 +112,7 @@ public class MoveManagerComponent extends Component implements Runnable
 	{
 		updateSpeed();
 		getRelativeObject().movedt(speed);
+		if(rotationSpeed != 0)
+			getRelativeObject().rotatedt(rotationSpeed);
 	}
 }
