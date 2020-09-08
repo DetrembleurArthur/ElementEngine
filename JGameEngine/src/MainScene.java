@@ -1,8 +1,12 @@
+import game.jgengine.components.particles.Emitter;
+import game.jgengine.debug.Logs;
 import game.jgengine.entity.Dynamic;
 import game.jgengine.event.Mouse;
 import game.jgengine.graphics.camera.Camera2D;
 import game.jgengine.graphics.shapes.Rectangle;
+import game.jgengine.registry.Registry;
 import game.jgengine.scripting.Script;
+import game.jgengine.sys.Game;
 import game.jgengine.sys.Scene2D;
 import game.jgengine.sys.Window;
 import game.jgengine.utils.Colors;
@@ -18,7 +22,7 @@ public class MainScene extends Scene2D
 
 	ArrayList<Dynamic> list = new ArrayList<>();
 
-	Rectangle rect;
+	Emitter emitter;
 
 
 	@Override
@@ -31,21 +35,8 @@ public class MainScene extends Scene2D
 	@Override
 	public void loadResources()
 	{
-		rect = new Rectangle();
-		rect.setSize(150, 150);
-		rect.setFillColor(Colors.WHITE);
-		rect.setPosition(Window.WINDOW.getCenter());
-		rect.setCenterOrigin();
-
-
-		float height = Window.WINDOW.getSize().y;
-
-		rect.moves().setRotationSpeed(600);
-		rect.moves().setRotationAcceleration(-20);
-
-
-
-		list.add(rect);
+		emitter = new Emitter(1);
+		list.add(emitter);
 
 	}
 
@@ -106,6 +97,6 @@ public class MainScene extends Scene2D
 	@Override
 	public void buttonPressedEventHandler(int button)
 	{
-		var component = rect.getVectorComponent(Mouse.getPosition(getCamera2d()));
+
 	}
 }

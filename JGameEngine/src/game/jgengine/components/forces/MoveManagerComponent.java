@@ -112,7 +112,6 @@ public class MoveManagerComponent extends Component implements Runnable
 	{
 		updateSpeed();
 		getRelativeObject().movedt(speed);
-		if(rotationSpeed != 0)
-			getRelativeObject().rotatedt(rotationSpeed);
+		getRelativeObject().rotatedt(rotationSpeed);
 	}
 }

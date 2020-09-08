@@ -8,6 +8,8 @@ import game.jgengine.components.event.EventManagerComponent;
 import game.jgengine.components.properties.CommonPropertiesComponent;
 import game.jgengine.components.properties.TextPropertyComponent;
 import game.jgengine.components.properties.ValuePropertyComponent;
+import game.jgengine.debug.Logs;
+import game.jgengine.event.Mouse;
 import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.sys.Game;
@@ -313,5 +315,59 @@ public class GameObject extends GraphicElement
 	public void rotateArounddt(float x, float y, float ax, float ay)
 	{
 		rotateArounddt(new Vector2f(x, y), new Vector2f(ax, ay));
+	}
+
+	public float getTowardRotationComponent(Vector2f target)
+	{
+		float r1 = getRotation(target);
+		float r2 = getRotation2D();
+		float rt1 = r1 - r2;
+		float rt2 = 360 - Math.abs(rt1);
+		return Float.compare(Math.max(rt2, Math.abs(rt1)), rt2) == 0 ? rt1 : -rt2;
+	}
+
+	public float getTowardRotationComponent(Vector2f target, float speed)
+	{
+		return getTowardRotationComponent(target) * speed;
+	}
+
+	public void rotateToward(Vector2f target)
+	{
+		rotate(getTowardRotationComponent(target));
+	}
+
+	public void rotateToward(float x, float y)
+	{
+		rotateToward(new Vector2f(x, y));
+	}
+
+	public void rotateTowarddt(Vector2f target)
+	{
+		rotate((float) (getTowardRotationComponent(target) * Game.DT));
+	}
+
+	public void rotateTowarddt(float x, float y)
+	{
+		rotateTowarddt(new Vector2f(x, y));
+	}
+
+	public void rotateToward(Vector2f target, float speed)
+	{
+		rotate(getTowardRotationComponent(target, speed));
+	}
+
+	public void rotateToward(float x, float y, float speed)
+	{
+		rotateToward(new Vector2f(x, y), speed);
+	}
+
+	public void rotateTowarddt(Vector2f target, float speed)
+	{
+		rotate((float) (getTowardRotationComponent(target, speed) * Game.DT));
+	}
+
+	public void rotateTowarddt(float x, float y, float speed)
+	{
+		rotateTowarddt(new Vector2f(x, y), speed);
 	}
 }

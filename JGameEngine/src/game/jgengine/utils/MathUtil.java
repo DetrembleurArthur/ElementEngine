@@ -62,4 +62,9 @@ public class MathUtil
 	{
 		return v1 >= 0f ^ v2 < 0f;
 	}
+
+	public static float rand(float max, float min)
+	{
+		return (float) (Math.random() * ((max - min) + 1));
+	}
 }
