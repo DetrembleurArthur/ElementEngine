@@ -16,4 +16,9 @@ public abstract class Component
 	{
 		return relativeObject;
 	}
+
+	public void remove()
+	{
+		relativeObject.removeComponent(getClass());
+	}
 }

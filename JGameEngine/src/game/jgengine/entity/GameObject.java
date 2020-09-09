@@ -8,6 +8,7 @@ import game.jgengine.components.event.EventManagerComponent;
 import game.jgengine.components.properties.CommonPropertiesComponent;
 import game.jgengine.components.properties.TextPropertyComponent;
 import game.jgengine.components.properties.ValuePropertyComponent;
+import game.jgengine.components.sprites.SpritesComponent;
 import game.jgengine.debug.Logs;
 import game.jgengine.event.Mouse;
 import game.jgengine.graphics.vertex.Mesh;
@@ -112,6 +113,11 @@ public class GameObject extends GraphicElement
 	public MoveManagerComponent moves()
 	{
 		return accessComponent(MoveManagerComponent.class);
+	}
+
+	public SpritesComponent sprites()
+	{
+		return accessComponent(SpritesComponent.class);
 	}
 
 	@Override
@@ -369,5 +375,21 @@ public class GameObject extends GraphicElement
 	public void rotateTowarddt(float x, float y, float speed)
 	{
 		rotateTowarddt(new Vector2f(x, y), speed);
+	}
+
+	public Vector2f getAngleVectorComponent(float angle)
+	{
+		angle = (float) Math.toRadians(angle);
+		return getPosition2D().mul((float) Math.cos(angle), (float) Math.sin(angle)).normalize();
+	}
+
+	public Vector2f getAngleVectorComponent(float angle, Vector2f speed)
+	{
+		return getAngleVectorComponent(angle).mul(speed);
+	}
+
+	public Vector2f getAngleVectorComponent(float angle, float speed)
+	{
+		return getAngleVectorComponent(angle).mul(speed);
 	}
 }

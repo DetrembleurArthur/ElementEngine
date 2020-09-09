@@ -40,4 +40,9 @@ public class StaticTimer
 	{
 		return (Time.getTime() * 1000 - beginDelay) >= maxDelay;
 	}
+
+	public float getElapsedTime()
+	{
+		return (float) (Time.getTime() * 1000 - beginDelay);
+	}
 }

@@ -1,5 +1,6 @@
 package game.jgengine.utils;
 
+import game.jgengine.debug.Logs;
 import org.joml.Vector2f;
 
 public class MathUtil
@@ -65,6 +66,6 @@ public class MathUtil
 
 	public static float rand(float max, float min)
 	{
-		return (float) (Math.random() * ((max - min) + 1));
+		return (float) (Math.random() * ((max - min) + 1) + min);
 	}
 }

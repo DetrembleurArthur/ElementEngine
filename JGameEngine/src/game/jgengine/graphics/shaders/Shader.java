@@ -2,6 +2,7 @@ package game.jgengine.graphics.shaders;
 
 import game.jgengine.graphics.camera.Camera3D;
 import org.joml.Matrix4f;
+import org.joml.Vector2f;
 import org.joml.Vector4f;
 import org.lwjgl.system.MemoryUtil;
 
@@ -196,11 +197,7 @@ public class Shader
 		FloatBuffer buffer = MemoryUtil.memAllocFloat(16); //4 x 4
 		matrix.get(buffer);
 		glUniformMatrix4fv(uniforms.get(name), false, buffer);
-		if(buffer != null)
-		{
-			memFree(buffer);
-
-		}
+		memFree(buffer);
 	}
 
 	public void uploadTexture(String name, int slot)
@@ -208,5 +205,10 @@ public class Shader
 		var variable = uniforms.get(name);
 		if(variable != null)
 			glUniform1i(variable, slot);
+	}
+
+	public void setUniformf2(String name, Vector2f dimension)
+	{
+		glUniform2f(uniforms.get(name), dimension.x, dimension.y);
 	}
 }
