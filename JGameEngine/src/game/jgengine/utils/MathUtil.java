@@ -1,7 +1,11 @@
 package game.jgengine.utils;
 
 import game.jgengine.debug.Logs;
+import game.jgengine.graphics.camera.Camera2D;
+import game.jgengine.sys.Window;
+import org.jetbrains.annotations.NotNull;
 import org.joml.Vector2f;
+import org.joml.Vector4f;
 
 public class MathUtil
 {
@@ -67,5 +71,20 @@ public class MathUtil
 	public static float rand(float max, float min)
 	{
 		return (float) (Math.random() * ((max - min) + 1) + min);
+	}
+
+	public static Vector2f screenToWorld(Vector2f screen, @NotNull Camera2D camera)
+	{
+		var pos = screen.sub(
+				Window.WINDOW.getSize().sub(Window.WINDOW.getAspectRatioSize()).div(new Vector2f(2, 2))
+		).div(new Vector2f(
+				Window.WINDOW.getAspectRatioSize().x,
+				-Window.WINDOW.getAspectRatioSize().y
+		)).mul(2).sub(new Vector2f(1, -1));
+		var tmp = new Vector4f(pos.x, pos.y, 0, 1).mul(camera.getInvProjectionMatrix()).mul(camera.getInvViewMatrix());
+		pos.x = tmp.x;
+		pos.y = tmp.y;
+
+		return pos;
 	}
 }

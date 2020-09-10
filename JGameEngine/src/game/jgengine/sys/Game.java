@@ -6,6 +6,7 @@ import game.jgengine.event.handler.EventHandler;
 import game.jgengine.exceptions.SysException;
 import game.jgengine.graphics.shaders.Shader;
 import game.jgengine.entity.GraphicElement;
+import game.jgengine.graphics.shapes.Rectangle;
 import game.jgengine.registry.Registry;
 import game.jgengine.time.Time;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -105,6 +106,7 @@ public abstract class Game implements ResourcesManageable
 		initGraphics();
 		initAudio();
 		Registry.set("DEFAULT", Shader.DEFAULT);
+		Registry.set("LIGHT", Shader.LIGHT);
 		primaryWindow.simpleUpdateViewport();
 
 		System.out.println("OpenGL version: " + glGetString(GL_VERSION));
@@ -156,6 +158,7 @@ public abstract class Game implements ResourcesManageable
 
 
 		Registry.close();
+		Rectangle.MODEL.destroy();
 		SoundManager.closeAL();
 		glfwTerminate();
 		glfwSetErrorCallback(null).free();

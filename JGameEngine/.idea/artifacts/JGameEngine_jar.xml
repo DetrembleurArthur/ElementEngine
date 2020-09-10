@@ -1,12 +1,8 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="JGameEngine:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/JGameEngine_jar</output-path>
-    <properties id="ant-preprocessing">
-      <options enabled="true" />
-    </properties>
     <root id="archive" name="JGameEngine.jar">
       <element id="module-output" name="JGameEngine" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/libs/joml/joml-graal-1.9.24.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/18.0.0/annotations-18.0.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/windows/lwjgl.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/windows/lwjgl-egl.jar" path-in-jar="/" />
@@ -154,7 +150,7 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/windows/lwjgl-remotery-natives-windows.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/windows/lwjgl-rpmalloc-natives-windows.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/windows/lwjgl-libdivide-natives-windows.jar" path-in-jar="/" />
-      <element id="dir-copy" path="$PROJECT_DIR$/assets" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/joml/joml-graal-1.9.24.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

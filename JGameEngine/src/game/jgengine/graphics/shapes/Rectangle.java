@@ -10,7 +10,7 @@ import org.w3c.dom.css.Rect;
 
 public class Rectangle extends GameObject
 {
-	private static final Mesh MODEL = new Mesh(
+	public static final Mesh MODEL = new Mesh(
 			new float[]{
 					0, 0,	0, 0, //top left
 					0, 1,	0, 1, //bottom left
@@ -21,10 +21,21 @@ public class Rectangle extends GameObject
 					0, 1, 2, 0, 2, 3
 			},Mesh.DIMENSION_2, Mesh.TEXTURED
 	);
+	private static boolean commonModel = false;
+
+	public static boolean isCommonModel()
+	{
+		return commonModel;
+	}
+
+	public static void setCommonModel(boolean commonModel)
+	{
+		Rectangle.commonModel = commonModel;
+	}
 
 	public Rectangle(Texture texture)
 	{
-		super(new Mesh(
+		super(commonModel ? MODEL : new Mesh(
 				new float[]{
 						0, 0,	0, 0, //top left
 						0, 1,	0, 1, //bottom left
@@ -53,5 +64,12 @@ public class Rectangle extends GameObject
 		mesh.setUV(1, textCoords[1]);
 		mesh.setUV(2, textCoords[2]);
 		mesh.setUV(3, textCoords[3]);
+	}
+
+	@Override
+	public void destroy()
+	{
+		if(getMesh() != MODEL)
+			super.destroy();
 	}
 }

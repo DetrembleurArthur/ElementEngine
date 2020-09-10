@@ -59,34 +59,12 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/audio" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="ExtractSuperBase.RECENT_KEYS">
-      <recent name="game.jgengine.graphics" />
-      <recent name="game.jgengine.event" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="game.jgengine.graphics.gui.event" />
-      <recent name="game.jgengine.event" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets" />
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets\audio" />
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets\fonts" />
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets\3Dmodels" />
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\libs\joml" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="game.jgengine.scripting" />
-      <recent name="" />
-      <recent name="game.jgengine.graphics.gui.event" />
-      <recent name="game.jgengine.graphics.Texts" />
-      <recent name="game.jgengine.utils" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets\audio" />
       <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\src\game\jgengine\graphics" />
@@ -94,25 +72,48 @@
       <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets" />
       <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets\3Dmodels" />
     </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="game.jgengine.graphics" />
+      <recent name="game.jgengine.event" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets" />
+      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets\fonts" />
+      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\src\tests" />
+      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\examples" />
+      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets\audio" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="game.jgengine.graphics.rendering" />
+      <recent name="game.jgengine.scripting" />
+      <recent name="" />
+      <recent name="game.jgengine.graphics.gui.event" />
+      <recent name="game.jgengine.graphics.Texts" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="game.jgengine.graphics.rendering" />
+      <recent name="game.jgengine.graphics.gui.event" />
+      <recent name="game.jgengine.event" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.MyTestGame">
     <configuration name="ConsoleTest" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="ConsoleTest" />
+      <option name="MAIN_CLASS_NAME" value="tests.ConsoleTest" />
       <module name="JGameEngine" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyTestGame" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MyTestGame" />
+    <configuration name="MyTestGame" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="tests.MyTestGame" />
       <module name="JGameEngine" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.ConsoleTest" />
       <item itemvalue="Application.MyTestGame" />
+      <item itemvalue="Application.ConsoleTest" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -132,23 +133,23 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.fnt" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597668640571">
+    <state x="2334" y="174" width="1092" height="804" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599721909156">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2334" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597668640571" />
+    <state x="2334" y="174" width="1092" height="804" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599721909156" />
     <state x="2592" y="305" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1597137111749">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2592" y="305" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597137111749" />
-    <state x="2641" y="160" key="#com.intellij.ide.util.MemberChooser" timestamp="1599643755257">
+    <state x="2641" y="160" key="#com.intellij.ide.util.MemberChooser" timestamp="1599744786826">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2641" y="160" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599643755257" />
+    <state x="2641" y="160" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599744786826" />
     <state x="577" y="108" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1592126795262" />
-    <state x="2547" y="268" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1597668639357">
+    <state x="2547" y="268" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1599721908094">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2547" y="268" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597668639357" />
+    <state x="2547" y="268" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599721908094" />
     <state x="2646" y="384" width="491" height="284" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1599294444505">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -169,50 +170,50 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2464" y="146" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592830485845" />
-    <state width="1865" height="158" key="GridCell.Tab.0.bottom" timestamp="1599644988200">
+    <state width="1865" height="118" key="GridCell.Tab.0.bottom" timestamp="1599745334634">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1481" height="144" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597044853568" />
-    <state width="1865" height="158" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599644988200" />
+    <state width="1865" height="118" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599745334634" />
     <state width="1481" height="90" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592126899872" />
-    <state width="1865" height="158" key="GridCell.Tab.0.center" timestamp="1599644988199">
+    <state width="1865" height="118" key="GridCell.Tab.0.center" timestamp="1599745334634">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1481" height="144" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597044853568" />
-    <state width="1865" height="158" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599644988199" />
+    <state width="1865" height="118" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599745334634" />
     <state width="1481" height="90" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1592126899872" />
-    <state width="1865" height="158" key="GridCell.Tab.0.left" timestamp="1599644988199">
+    <state width="1865" height="118" key="GridCell.Tab.0.left" timestamp="1599745334634">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1481" height="144" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597044853568" />
-    <state width="1865" height="158" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599644988199" />
+    <state width="1865" height="118" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599745334634" />
     <state width="1481" height="90" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1592126899872" />
-    <state width="1865" height="158" key="GridCell.Tab.0.right" timestamp="1599644988200">
+    <state width="1865" height="118" key="GridCell.Tab.0.right" timestamp="1599745334634">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state width="1481" height="144" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597044853568" />
-    <state width="1865" height="158" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599644988200" />
+    <state width="1865" height="118" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599745334634" />
     <state width="1481" height="90" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1592126899872" />
-    <state width="1865" height="673" key="GridCell.Tab.1.bottom" timestamp="1599641184713">
+    <state width="1865" height="673" key="GridCell.Tab.1.bottom" timestamp="1599645016090">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1865" height="673" key="GridCell.Tab.1.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599641184713" />
-    <state width="1865" height="673" key="GridCell.Tab.1.center" timestamp="1599641184712">
+    <state width="1865" height="673" key="GridCell.Tab.1.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599645016090" />
+    <state width="1865" height="673" key="GridCell.Tab.1.center" timestamp="1599645016090">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1865" height="673" key="GridCell.Tab.1.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599641184712" />
-    <state width="1865" height="673" key="GridCell.Tab.1.left" timestamp="1599641184712">
+    <state width="1865" height="673" key="GridCell.Tab.1.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599645016090" />
+    <state width="1865" height="673" key="GridCell.Tab.1.left" timestamp="1599645016090">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1865" height="673" key="GridCell.Tab.1.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599641184712" />
-    <state width="1865" height="673" key="GridCell.Tab.1.right" timestamp="1599641184713">
+    <state width="1865" height="673" key="GridCell.Tab.1.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599645016090" />
+    <state width="1865" height="673" key="GridCell.Tab.1.right" timestamp="1599645016090">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1865" height="673" key="GridCell.Tab.1.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599641184713" />
-    <state x="2024" y="128" width="1458" height="824" key="SettingsEditor" timestamp="1592911815141">
+    <state width="1865" height="673" key="GridCell.Tab.1.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599645016090" />
+    <state x="2024" y="128" width="1458" height="824" key="SettingsEditor" timestamp="1599649859130">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2024" y="128" width="1458" height="912" key="SettingsEditor/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592911815141" />
+    <state x="2024" y="128" width="1458" height="912" key="SettingsEditor/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599649859130" />
     <state x="2534" y="198" width="675" height="655" key="StructurePopup" timestamp="1592911565676">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -225,10 +226,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="0" y="0" width="1550" height="788" maximized="true" key="dock-window-1/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592556175578" />
-    <state x="2150" y="52" key="new project wizard" timestamp="1596958534409">
+    <state x="2150" y="52" key="new project wizard" timestamp="1599649944221">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2150" y="52" key="new project wizard/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596958534409" />
+    <state x="2150" y="52" key="new project wizard/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599649944221" />
     <state x="2562" y="74" key="refactoring.ChangeSignatureDialog" timestamp="1599297801840">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>

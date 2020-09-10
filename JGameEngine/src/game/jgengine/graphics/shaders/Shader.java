@@ -23,6 +23,12 @@ public class Shader
 			true
 	);
 
+	public static final Shader LIGHT = new Shader(
+			"src/game/jgengine/graphics/shaders/light/vertex.glsl",
+			"src/game/jgengine/graphics/shaders/light/fragment.glsl",
+			true
+	);
+
 
 
 	private int vertexShader = -1;

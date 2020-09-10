@@ -24,7 +24,6 @@ public class Renderer
 		shader.uploadMat4f("uModel", gelem.getTransformMatrix());
 		shader.uploadMat4f("uView", camera.updateViewMatrix());
 		shader.uploadMat4f("uProjection", camera.updateProjectionMatrix());
-		shader.setUniformf1("time", (float)Time.getTime());
 		if(gelem instanceof GameObject && gelem.getTexture() != null)
 		{
 			shader.setUniform1i("isTextured", 1);

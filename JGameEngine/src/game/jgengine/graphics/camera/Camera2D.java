@@ -26,6 +26,8 @@ public class Camera2D extends Camera
 		this(new Vector2f());
 	}
 
+
+
 	public Camera2D(Vector2f position)
 	{
 		super();

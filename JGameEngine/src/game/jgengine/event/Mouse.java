@@ -2,6 +2,7 @@ package game.jgengine.event;
 
 import game.jgengine.graphics.camera.Camera2D;
 import game.jgengine.sys.Window;
+import game.jgengine.utils.MathUtil;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
@@ -28,17 +29,7 @@ public class Mouse
 
 	public static Vector2f getPosition(@NotNull Camera2D camera)
 	{
-		var pos = getPosition().sub(
-						Window.WINDOW.getSize().sub(Window.WINDOW.getAspectRatioSize()).div(new Vector2f(2, 2))
-		).div(new Vector2f(
-				Window.WINDOW.getAspectRatioSize().x,
-				-Window.WINDOW.getAspectRatioSize().y
-		)).mul(2).sub(new Vector2f(1, -1));
-		var tmp = new Vector4f(pos.x, pos.y, 0, 1).mul(camera.getInvProjectionMatrix()).mul(camera.getInvViewMatrix());
-		pos.x = tmp.x;
-		pos.y = tmp.y;
-
-		return pos;
+		return MathUtil.screenToWorld(getPosition(), camera);
 	}
 
 
