@@ -82,7 +82,7 @@ public class Window
 		monitorSize = new Vector2f(mode.width(), mode.height());
 		targetApectRatio = (float)mode.width() / (float)mode.height();
 		aspectRationPosition = new Vector2f();
-		aspectRationSize = new Vector2f(windowId, height);
+		aspectRationSize = new Vector2f(width, height);
 	}
 
 	public long getWindowId()
@@ -457,6 +457,7 @@ public class Window
 		aspectRatioUpdateViewport(Window.WINDOW.getSize().x, Window.WINDOW.getSize().y);
 	}
 
+	public float trueRatio=1f;
 	public void aspectRatioUpdateViewport(float w, float h)
 	{
 		int aspectWidth = (int)w;
@@ -473,6 +474,9 @@ public class Window
 
 
 		aspectRationSize = new Vector2f(aspectWidth, aspectHeight);
+
+		trueRatio = aspectRationSize.x / firstSize.x;
+
 		glViewport(vpx, vpy, aspectWidth, aspectHeight);
 		if(sizeRatioEnable)
 		{

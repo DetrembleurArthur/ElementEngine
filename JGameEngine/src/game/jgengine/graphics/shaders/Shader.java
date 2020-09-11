@@ -30,7 +30,6 @@ public class Shader
 	);
 
 
-
 	private int vertexShader = -1;
 	private int fragmentShader = -1;
 	private int program = -1;
@@ -216,5 +215,20 @@ public class Shader
 	public void setUniformf2(String name, Vector2f dimension)
 	{
 		glUniform2f(uniforms.get(name), dimension.x, dimension.y);
+	}
+
+	public void setUniform2fv(String name, float[] array)
+	{
+		glUniform2fv(uniforms.get(name), array);
+	}
+
+	public void setUniform4fv(String name, float[] array)
+	{
+		glUniform4fv(uniforms.get(name), array);
+	}
+
+	public void setUniform1fv(String name, float[] array)
+	{
+		glUniform1fv(uniforms.get(name), array);
 	}
 }

@@ -13,13 +13,16 @@ import game.jgengine.utils.MathUtil;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
+import org.joml.Vector4f;
+
+import java.util.ArrayList;
 
 import static java.lang.Math.pow;
 import static org.joml.Math.sqrt;
 
 public class LightRenderer extends Renderer
 {
-	protected Light light;
+	private Light light;
 
 	public LightRenderer(Camera camera, Light light)
 	{
@@ -55,27 +58,16 @@ public class LightRenderer extends Renderer
 		}
 
 		shader.setUniformf4("uFillColor", gelem.getFillColor());
-		shader.setUniformf2("lightPosition", getTranformLightPosition());
 		shader.setUniformf2("screenSize", Window.WINDOW.getAspectRatioSize());
 		shader.setUniformf2("aspectPosition", Window.WINDOW.getAspectRationPosition());
+
+		shader.setUniformf2("lightPosition", light.getPosition());
 		shader.setUniformf4("lightColor", light.getColor());
 		shader.setUniformf4("basicPower", light.getBasicPower());
-		shader.setUniformf1("lightRadius", light.getRadius());
+		shader.setUniformf1("lightRadius", light.getRadius() * Window.WINDOW.trueRatio);
 		shader.setUniformf1("lightFade", light.getLightFade());
 		gelem.draw();
 		shader.stop();
-	}
-
-	private Vector2f getTranformLightPosition()
-	{
-		var pos = new Vector2f(light.getPosition());//new Vector2f(light.getPosition()).sub(((Camera2D)camera).getPosition());
-		/*pos.y = Window.WINDOW.getAspectRatioSize().y - pos.y;
-		pos.add(Window.WINDOW.getAspectRationPosition());*/
-
-		/*pos.x += Window.WINDOW.getAspectRationPosition().x;
-		pos.y += Window.WINDOW.getAspectRationPosition().y;*/
-		//Logs.print(pos);
-		return pos;
 	}
 
 	public Shader getShader()

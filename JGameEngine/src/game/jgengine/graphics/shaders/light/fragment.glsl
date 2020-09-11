@@ -14,6 +14,7 @@ uniform vec4 basicPower;
 uniform float lightFade;
 
 in vec2 olightPosition;
+in float olightRadius;
 
 
 void lighting()
@@ -28,10 +29,6 @@ void lighting()
         else if(fact[i] > 1) fact[i] = 1;
     }
     color = color * fact * lightColor;
-    if(color.x > 1) color.x = 1;
-    if(color.y > 1) color.y = 1;
-    if(color.z > 1) color.z = 1;
-    if(color.w > 1) color.w = 1;
 }
 
 
