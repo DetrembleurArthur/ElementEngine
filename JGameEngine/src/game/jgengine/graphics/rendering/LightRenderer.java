@@ -64,7 +64,7 @@ public class LightRenderer extends Renderer
 		shader.setUniformf2("lightPosition", light.getPosition());
 		shader.setUniformf4("lightColor", light.getColor());
 		shader.setUniformf4("basicPower", light.getBasicPower());
-		shader.setUniformf1("lightRadius", light.getRadius() * Window.WINDOW.trueRatio);
+		shader.setUniformf1("lightRadius", light.getRadius() * Window.WINDOW.trueRatio * ((Camera2D)camera).getZoom().x);
 		shader.setUniformf1("lightFade", light.getLightFade());
 		gelem.draw();
 		shader.stop();

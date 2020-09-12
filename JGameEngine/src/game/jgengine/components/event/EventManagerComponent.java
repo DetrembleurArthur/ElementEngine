@@ -64,7 +64,7 @@ public class EventManagerComponent extends Component implements Runnable
 		{
 			for (Event event : callLaterEvents)
 			{
-				Logs.print("EVENT => " + event.getClass().getSimpleName() + " FROM " + this.getClass().getSimpleName());
+				Logs.print("EVENT => " + event.getClass().getSimpleName());
 				event.run(this);
 			}
 			callLaterEvents.clear();

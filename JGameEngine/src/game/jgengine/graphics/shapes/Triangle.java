@@ -16,7 +16,7 @@ public class Triangle extends GameObject
 
 	public void setPoint(int index, Vector2f point)
 	{
-		if(point.x < 1f && point.y < 1f)
+		if(point.x <= 1f && point.y <= 1f)
 		{
 			getMesh().setPosition(index, point);
 			getMesh().setUV(index, point);

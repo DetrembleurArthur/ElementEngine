@@ -14,6 +14,7 @@ public class Camera2D extends Camera
 	private Vector2f position;
 	private OrthoProjectionSettings orthoProjSettings;
 	private Vector2f speed;
+	private Vector3f zoom;
 
 	public static final KeySet SPECTATOR_KEY_SET = new KeySet()
 			.set("right", GLFW_KEY_RIGHT)
@@ -34,6 +35,7 @@ public class Camera2D extends Camera
 		this.speed = new Vector2f(15, 15);
 		this.position = position;
 		orthoProjSettings = new OrthoProjectionSettings();
+		zoom = new Vector3f(1);
 		updateProjectionMatrix();
 	}
 
@@ -48,6 +50,7 @@ public class Camera2D extends Camera
 		this.speed = new Vector2f(15, 15);
 		this.position = position;
 		this.orthoProjSettings = settings;
+		zoom = new Vector3f(1);
 		updateProjectionMatrix();
 	}
 
@@ -69,7 +72,8 @@ public class Camera2D extends Camera
 		return (viewMatrix = viewMatrix.identity().lookAt(
 				new Vector3f(position.x, position.y, 20f),
 				new Vector3f(0f, 0f, -1f).add(position.x, position.y, 0f),
-				new Vector3f(0f, 1f, 0f)));
+				new Vector3f(0f, 1f, 0f)))
+				.scaleAround(zoom.x, zoom.y, zoom.z, position.x + orthoProjSettings.getRight()/2, position.y+orthoProjSettings.getBottom()/2, 0);
 	}
 
 	public Vector2f getPosition()
@@ -116,5 +120,36 @@ public class Camera2D extends Camera
 		{
 			move(0, speed.y);
 		}
+	}
+
+	public Vector2f getSpeed()
+	{
+		return speed;
+	}
+
+	public void setSpeed(Vector2f speed)
+	{
+		this.speed = speed;
+	}
+
+	public Vector3f getZoom()
+	{
+		return zoom;
+	}
+
+	public void setZoom(Vector3f zoom)
+	{
+		this.zoom = zoom;
+	}
+
+	public void setZoom(float zoom)
+	{
+		this.zoom = new Vector3f(zoom, zoom, 0);
+	}
+
+
+	public void focus(Vector2f position)
+	{
+		this.position = new Vector2f(position).sub(orthoProjSettings.getRight()/2, orthoProjSettings.getBottom()/2);
 	}
 }
