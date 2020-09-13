@@ -24,7 +24,7 @@ public class MyTestGame extends Game
         Registry.set("impact", new Font("assets/fonts/impact.fnt"));
 
         TextureLoader.load("bricks", "assets/bricks.png");
-        TextureLoader.load("ampoule", "assets/ampoule.png");
+        TextureLoader.load("background", "assets/background.jpg");
 
         addScene("MAIN", new MainScene());
         setCurrentScene("MAIN");

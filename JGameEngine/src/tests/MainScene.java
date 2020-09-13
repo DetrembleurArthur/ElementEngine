@@ -1,38 +1,37 @@
 package tests;
 
-import game.jgengine.debug.Logs;
-import game.jgengine.entity.GraphicElement;
-import game.jgengine.event.Input;
+import game.jgengine.entity.Dynamic;
 import game.jgengine.event.Mouse;
+import game.jgengine.graphics.camera.Camera2D;
 import game.jgengine.graphics.rendering.Light;
 import game.jgengine.graphics.rendering.LightRenderer;
 import game.jgengine.graphics.shapes.Rectangle;
-import game.jgengine.entity.Dynamic;
-import game.jgengine.graphics.camera.Camera2D;
+import game.jgengine.graphics.shapes.Triangle;
+import game.jgengine.particles.Emitter;
+import game.jgengine.particles.Particle;
 import game.jgengine.registry.Registry;
 import game.jgengine.sys.Scene2D;
 import game.jgengine.sys.Window;
+import game.jgengine.tweening.TFunc;
+import game.jgengine.tweening.TimedTweenAction;
 import game.jgengine.utils.Colors;
 import game.jgengine.utils.LaterList;
 import game.jgengine.utils.MathUtil;
-import org.joml.Math;
 import org.joml.Vector2f;
-import org.joml.Vector3f;
-import org.joml.Vector4f;
 import org.lwjgl.glfw.GLFW;
 
 import java.sql.Date;
 import java.time.Instant;
-import java.util.ArrayList;
 
 
 public class MainScene extends Scene2D
 {
 
 	LaterList<Dynamic> list = new LaterList<>();
+
+	Emitter emitter;
 	LightRenderer renderer;
 
-	Rectangle rect;
 
 	@Override
 	public void load()
@@ -45,59 +44,39 @@ public class MainScene extends Scene2D
 	@Override
 	public void loadResources()
 	{
-		renderer = new LightRenderer(getCamera2d(), new Light(Window.WINDOW.getCenter(), new Vector4f(2), 500));
-		renderer.getLight().setBasicPower(new Vector4f(0.05f, 0.05f, 0.05f, 1f));
+		renderer = new LightRenderer(getCamera2d(), new Light(Window.WINDOW.getCenter(), Colors.WHITE, 500));
+		emitter = new Emitter()
+		{
+			@Override
+			public void emit()
+			{
+				Triangle triangle = new Triangle(null);
+				triangle.setSize(20, 20);
+				triangle.setFillColor(Colors.random());
+				triangle.setCenterOrigin();
+				triangle.events().enableMouseDragging();
+				triangle.animations().create("test")
+						.toSize(triangle.getSize2D(), new Vector2f(30, 30), TFunc.EASE_IN_OUT_QUAD, 300, TimedTweenAction.INFINITE_CYCLE, true);
+				triangle.animations().startAnimation("test");
+				triangle.moves().setRotationSpeed(MathUtil.rand(360, -360));
+				triangle.moves().setSpeed(new Vector2f(MathUtil.rand(-500, 500), MathUtil.rand(-500, 500)));
+				triangle.setPosition(emitter.getPosition());
+				Particle particle = new Particle(triangle, 3000);
+				addParticle(particle);
+			}
+		};
+		emitter.setPosition(Window.WINDOW.getCenter());
 
 
-
-
-
-
-		rect = new Rectangle(Registry.getTexture("bricks"));
-		rect.setSize(300, 300);
-		rect.setCenterOrigin();
-		rect.setPosition(Window.WINDOW.getCenter());
-		rect.events().enableMouseDragging();
-		rect.events().onMouseLeftButtonClicked(sender -> {
-				var fragments = rect.getFragments(4, 4);
-				for(var t : fragments)
-				{
-					t.events().enableMouseDragging();
-					t.moves().setSpeedZeroCondition(true);
-					t.moves().setRotationSpeedZeroCondition(true );
-					t.moves().setRotationSpeed(MathUtil.rand(6000, -600));
-					var dec = -MathUtil.rand(0.006f, 0.001f);
-					t.moves().setRotationAcceleration(t.moves().getRotationSpeed() * dec);
-					t.moves().setSpeed(new Vector2f(MathUtil.rand(5000, -5000), MathUtil.rand(5000, -5000)));
-					t.moves().setAcceleration(new Vector2f(t.moves().getSpeed()).mul(dec));
-				}
-				rect.destroy();
-				list.addLater(fragments);
-				list.removeLater(rect);
-		}, false);
-
-		list.add(rect);
+		list.addLater(emitter);
 	}
 
 	@Override
 	public void update(double dt)
 	{
 		getCamera2d().activateKeys(Window.WINDOW, Camera2D.SPECTATOR_KEY_SET);
-		if(Input.isKeyPressed(Window.WINDOW, GLFW.GLFW_KEY_RIGHT_SHIFT))
-		{
-			getCamera2d().getZoom().mul(1.1f);
-		}
-		else if(Input.isKeyPressed(Window.WINDOW, GLFW.GLFW_KEY_LEFT_SHIFT))
-		{
-			getCamera2d().getZoom().mul(0.9f);
-		}
 
-
-		renderer.getLight().setPosition(Mouse.getPosition(getCamera2d()));
-
-
-		for(var o : list) o.run();
-		list.sync();
+		list.run();
 
 	}
 
@@ -105,10 +84,7 @@ public class MainScene extends Scene2D
 	public void render(double dt)
 	{
 
-		for(var g : list)
-		{
-			g.draw(renderer);
-		}
+		list.draw(renderer);
 	}
 
 	@Override
@@ -120,10 +96,7 @@ public class MainScene extends Scene2D
 	@Override
 	public void closeResources()
 	{
-		for(var g : list)
-		{
-			g.destroy();
-		}
+		list.destroy();
 	}
 
 
@@ -133,12 +106,7 @@ public class MainScene extends Scene2D
 	{
 		if(key == GLFW.GLFW_KEY_LEFT_CONTROL)
 		{
-			Window.WINDOW
-					.takeScreenShot(
-					("demo_screenshots/" +
-							Date.from(Instant.now()) + ".png")
-					.replace(" ", "_")
-					.replace(":", "-"));
+			Window.WINDOW.takeScreenShot();
 		}
 		else
 		{

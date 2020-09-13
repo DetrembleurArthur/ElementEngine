@@ -17,6 +17,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.sql.Date;
+import java.time.Instant;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
@@ -527,6 +529,14 @@ public class Window
 		}
 
 		memFree(buffer);
+	}
+
+	public void takeScreenShot()
+	{
+		takeScreenShot(("demo_screenshots/" +
+				Date.from(Instant.now()) + ".png")
+				.replace(" ", "_")
+				.replace(":", "-"));
 	}
 }
 
