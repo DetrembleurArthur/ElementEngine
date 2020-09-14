@@ -1,4 +1,4 @@
-package game.jgengine.components.forces;
+package game.jgengine.components.moves;
 
 import game.jgengine.components.Component;
 import game.jgengine.entity.GameObject;

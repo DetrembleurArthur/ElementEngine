@@ -1,36 +1,28 @@
 package tests;
 
-import game.jgengine.entity.Dynamic;
+import game.jgengine.event.Input;
 import game.jgengine.event.Mouse;
-import game.jgengine.graphics.camera.Camera2D;
-import game.jgengine.graphics.rendering.Light;
-import game.jgengine.graphics.rendering.LightRenderer;
+import game.jgengine.graphics.shapes.Circle;
 import game.jgengine.graphics.shapes.Rectangle;
-import game.jgengine.graphics.shapes.Triangle;
-import game.jgengine.particles.Emitter;
-import game.jgengine.particles.Particle;
-import game.jgengine.registry.Registry;
+import game.jgengine.scripting.Script;
 import game.jgengine.sys.Scene2D;
 import game.jgengine.sys.Window;
+import game.jgengine.time.SyncTimer;
 import game.jgengine.tweening.TFunc;
-import game.jgengine.tweening.TimedTweenAction;
 import game.jgengine.utils.Colors;
-import game.jgengine.utils.LaterList;
+import game.jgengine.utils.DynamicLaterList;
 import game.jgengine.utils.MathUtil;
 import org.joml.Vector2f;
 import org.lwjgl.glfw.GLFW;
-
-import java.sql.Date;
-import java.time.Instant;
 
 
 public class MainScene extends Scene2D
 {
 
-	LaterList<Dynamic> list = new LaterList<>();
+	DynamicLaterList list = new DynamicLaterList();
 
-	Emitter emitter;
-	LightRenderer renderer;
+	Rectangle player;
+
 
 
 	@Override
@@ -44,37 +36,75 @@ public class MainScene extends Scene2D
 	@Override
 	public void loadResources()
 	{
-		renderer = new LightRenderer(getCamera2d(), new Light(Window.WINDOW.getCenter(), Colors.WHITE, 500));
-		emitter = new Emitter()
-		{
-			@Override
-			public void emit()
+
+		player = new Rectangle();
+		player.setPosition(Window.WINDOW.getCenter());
+		player.setCenterOrigin();
+		player.setSize(50, 100);
+		player.moves_c();
+		player.scripts_c().add(new Script().addAction(() -> {
+			player.moves_c().setSpeed(new Vector2f());
+			if(Input.isKeyPressed(Window.WINDOW, GLFW.GLFW_KEY_UP))
 			{
-				Triangle triangle = new Triangle(null);
-				triangle.setSize(20, 20);
-				triangle.setFillColor(Colors.random());
-				triangle.setCenterOrigin();
-				triangle.events().enableMouseDragging();
-				triangle.animations().create("test")
-						.toSize(triangle.getSize2D(), new Vector2f(30, 30), TFunc.EASE_IN_OUT_QUAD, 300, TimedTweenAction.INFINITE_CYCLE, true);
-				triangle.animations().startAnimation("test");
-				triangle.moves().setRotationSpeed(MathUtil.rand(360, -360));
-				triangle.moves().setSpeed(new Vector2f(MathUtil.rand(-500, 500), MathUtil.rand(-500, 500)));
-				triangle.setPosition(emitter.getPosition());
-				Particle particle = new Particle(triangle, 3000);
-				addParticle(particle);
+				player.moves_c().getSpeed().y = -400;
 			}
-		};
-		emitter.setPosition(Window.WINDOW.getCenter());
+			if(Input.isKeyPressed(Window.WINDOW, GLFW.GLFW_KEY_DOWN))
+			{
+				player.moves_c().getSpeed().y = 400;
+			}
+			if(Input.isKeyPressed(Window.WINDOW, GLFW.GLFW_KEY_RIGHT))
+			{
+				player.moves_c().getSpeed().x = 400;
+			}
+			if(Input.isKeyPressed(Window.WINDOW, GLFW.GLFW_KEY_LEFT))
+			{
+				player.moves_c().getSpeed().x = -400;
+			}
+			if(Input.isLeftButtonPressed(Window.WINDOW))
+			{
+				Rectangle rectangle = new Rectangle();
+				rectangle.setSize(50, 50);
+				rectangle.setFillColor(Colors.random());
+				rectangle.setCenterOrigin();
+				rectangle.setPosition(player.getPosition2D());
+				rectangle.moves_c().speedToward(Mouse.getPosition(getCamera2d()), new Vector2f(1000, 1000));
+				rectangle.moves_c().accelerationToward(Mouse.getPosition(getCamera2d()), new Vector2f(100, 100));
+				rectangle.timers_c().add(new SyncTimer(500, 1, () -> {
+					rectangle.timers_c().add(new SyncTimer(505, 1, () -> {
+						var frags = rectangle.getFragments(2, 2);
+						for(var f : frags)
+						{
+							f.animations_c();
+							f.setFillColor(rectangle.getFillColor());
+							f.moves_c().setRotationSpeed(MathUtil.rand(360, -360));
+							f.moves_c().setSpeed(new Vector2f(MathUtil.rand(1000, -1000),MathUtil.rand(1000, -1000)));
 
+							var an = f.animations_c().create("test");
+							an.toOpacity(1, 0, TFunc.EASE_IN_OUT_QUAD, 1500, 1, false);
+							f.animations_c().startAnimation("test");
+							f.timers_c().add(new SyncTimer(1500, 1, () -> {
+								f.destroy();
+								list.removeLater(f);
+							}));
 
-		list.addLater(emitter);
+						}
+						rectangle.destroy();
+						list.addLater(frags);
+						list.removeLater(rectangle);
+					}));
+				}));
+				list.addLater(rectangle);
+			}
+		}));
+
+		list.add(player);
+
 	}
 
 	@Override
 	public void update(double dt)
 	{
-		getCamera2d().activateKeys(Window.WINDOW, Camera2D.SPECTATOR_KEY_SET);
+		//getCamera2d().activateKeys(Window.WINDOW, Camera2D.SPECTATOR_KEY_SET);
 
 		list.run();
 
@@ -84,7 +114,7 @@ public class MainScene extends Scene2D
 	public void render(double dt)
 	{
 
-		list.draw(renderer);
+		list.draw(defaultRenderer);
 	}
 
 	@Override

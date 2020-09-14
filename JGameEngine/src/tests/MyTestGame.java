@@ -20,12 +20,9 @@ public class MyTestGame extends Game
         Window.WINDOW.setResizeable(true);
         Window.WINDOW.center();
         setFramerateLimit(60);
-
         Registry.set("impact", new Font("assets/fonts/impact.fnt"));
-
         TextureLoader.load("bricks", "assets/bricks.png");
         TextureLoader.load("background", "assets/background.jpg");
-
         addScene("MAIN", new MainScene());
         setCurrentScene("MAIN");
     }

@@ -1,7 +1,7 @@
 package game.jgengine.entity;
 
 import game.jgengine.components.Component;
-import game.jgengine.components.forces.MoveManagerComponent;
+import game.jgengine.components.moves.MoveManagerComponent;
 import game.jgengine.components.scripts.ScriptsComponent;
 import game.jgengine.components.animations.AnimationsComponent;
 import game.jgengine.components.event.EventManagerComponent;
@@ -9,11 +9,11 @@ import game.jgengine.components.properties.CommonPropertiesComponent;
 import game.jgengine.components.properties.TextPropertyComponent;
 import game.jgengine.components.properties.ValuePropertyComponent;
 import game.jgengine.components.sprites.SpritesComponent;
-import game.jgengine.debug.Logs;
-import game.jgengine.event.Mouse;
+import game.jgengine.components.timers.TimersComponent;
 import game.jgengine.graphics.vertex.Mesh;
 import game.jgengine.graphics.rendering.Texture;
 import game.jgengine.sys.Game;
+import game.jgengine.utils.LaterList;
 import game.jgengine.utils.MathUtil;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector2f;
@@ -48,7 +48,7 @@ public class GameObject extends GraphicElement
 	{
 		if(components == null)
 		{
-			components = new ArrayList<>();
+			components = new LaterList<>();
 			return null;
 		}
 		for(Component c : components)
@@ -80,44 +80,49 @@ public class GameObject extends GraphicElement
 		return component;
 	}
 
-	public EventManagerComponent events()
+	public EventManagerComponent events_c()
 	{
 		return accessComponent(EventManagerComponent.class);
 	}
 
-	public CommonPropertiesComponent properties()
+	public CommonPropertiesComponent properties_c()
 	{
 		return accessComponent(CommonPropertiesComponent.class);
 	}
 
-	public TextPropertyComponent textProperty()
+	public TextPropertyComponent textProperty_c()
 	{
 		return accessComponent(TextPropertyComponent.class);
 	}
 
-	public ValuePropertyComponent valueProperty()
+	public ValuePropertyComponent valueProperty_c()
 	{
 		return accessComponent(ValuePropertyComponent.class);
 	}
 
-	public AnimationsComponent animations()
+	public AnimationsComponent animations_c()
 	{
 		return accessComponent(AnimationsComponent.class);
 	}
 
-	public ScriptsComponent scripts()
+	public ScriptsComponent scripts_c()
 	{
 		return accessComponent(ScriptsComponent.class);
 	}
 
-	public MoveManagerComponent moves()
+	public MoveManagerComponent moves_c()
 	{
 		return accessComponent(MoveManagerComponent.class);
 	}
 
-	public SpritesComponent sprites()
+	public SpritesComponent sprites_c()
 	{
 		return accessComponent(SpritesComponent.class);
+	}
+
+	public TimersComponent timers_c()
+	{
+		return accessComponent(TimersComponent.class);
 	}
 
 	@Override

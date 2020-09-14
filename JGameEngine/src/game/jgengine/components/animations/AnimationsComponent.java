@@ -1,6 +1,8 @@
 package game.jgengine.components.animations;
 
+import com.mysql.cj.log.Log;
 import game.jgengine.components.Component;
+import game.jgengine.debug.Logs;
 import game.jgengine.entity.GameObject;
 
 import java.util.ArrayList;

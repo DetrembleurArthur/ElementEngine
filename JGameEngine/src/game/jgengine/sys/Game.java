@@ -9,6 +9,7 @@ import game.jgengine.entity.GraphicElement;
 import game.jgengine.graphics.shapes.Rectangle;
 import game.jgengine.registry.Registry;
 import game.jgengine.time.Time;
+import game.mysql.Mysql;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
@@ -24,13 +25,9 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 public abstract class Game implements ResourcesManageable
 {
 	protected Window primaryWindow;
-
 	private double framerateLimit = 30;
-
 	private HashMap<String, Scene> scenes;
 	private Scene currentScene;
-
-
 
 	public static double DT = 0;
 	public static Game GAME;
@@ -51,6 +48,24 @@ public abstract class Game implements ResourcesManageable
 		}
 	}
 
+	public void startMysql(String ip, int port, String database, String timezone, String username, String password)
+	{
+		Mysql.connect(ip, port, database, timezone, username, password);
+	}
+
+	public void startMysql(String database, String password)
+	{
+		Mysql.connect(database, password);
+	}
+
+	private void stopMysql()
+	{
+		if(Mysql.connected())
+		{
+			Mysql.disconnect();
+		}
+	}
+
 
 	public void switchTo3D()
 	{
@@ -67,16 +82,10 @@ public abstract class Game implements ResourcesManageable
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_MULTISAMPLE);
-		//enableAntialiasing(4);
-
-
-
-		//glEnable(GL_DEPTH_TEST);
 	}
 
 	protected void enableAntialiasing(int sample)
 	{
-
 		glfwWindowHint(GLFW_SAMPLES, sample);
 	}
 
@@ -86,7 +95,6 @@ public abstract class Game implements ResourcesManageable
 	{
 		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 		enableAntialiasing(4);
-
 
 		String osName = System.getProperty("os.name");
 		System.out.println("OS: " + osName);
@@ -108,9 +116,7 @@ public abstract class Game implements ResourcesManageable
 		Registry.set("DEFAULT", Shader.DEFAULT);
 		Registry.set("LIGHT", Shader.LIGHT);
 		primaryWindow.simpleUpdateViewport();
-
 		System.out.println("OpenGL version: " + glGetString(GL_VERSION));
-
 		scenes = new HashMap<>();
 		GAME = this;
 	}
@@ -156,12 +162,12 @@ public abstract class Game implements ResourcesManageable
 		}
 		primaryWindow.destroy();
 
-
 		Registry.close();
 		Rectangle.MODEL.destroy();
 		SoundManager.closeAL();
 		glfwTerminate();
 		glfwSetErrorCallback(null).free();
+		stopMysql();
 	}
 
 	final protected void run() throws SysException, InterruptedException
