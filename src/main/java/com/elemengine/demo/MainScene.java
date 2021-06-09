@@ -1,38 +1,43 @@
 package com.elemengine.demo;
 
 
-import com.elemengine.debug.Log;
 import com.elemengine.event.Mouse;
 import com.elemengine.event.handler.annotations.OnEvent;
 import com.elemengine.graphics.camera.Camera2D;
+import com.elemengine.graphics.camera.OrthoProjectionSettings;
 import com.elemengine.graphics.loaders.TextureLoader;
 import com.elemengine.graphics.rendering.SpriteSheet;
+import com.elemengine.graphics.rendering.TargetRenderer;
+import com.elemengine.graphics.rendering.TargetTexture;
+import com.elemengine.graphics.shaders.Shader;
+import com.elemengine.graphics.shapes.Circle;
 import com.elemengine.graphics.shapes.Rectangle;
 import com.elemengine.registry.Registry;
-import com.elemengine.scripting.CScript;
-import com.elemengine.scripting.Script;
 import com.elemengine.sys.Scene2D;
 import com.elemengine.sys.Window;
-import com.elemengine.time.AsyncTimer;
 import com.elemengine.time.DynamicTimer;
 import com.elemengine.time.SyncTimer;
 import com.elemengine.utils.Colors;
 import com.elemengine.utils.DynamicLaterList;
-import com.elemengine.utils.LaterList;
 import com.elemengine.utils.MathUtil;
 import org.joml.Vector2f;
-import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
 public class MainScene extends Scene2D
 {
 
 
-
     private DynamicLaterList slimes = new DynamicLaterList();
     private DynamicLaterList frags = new DynamicLaterList();
     private SpriteSheet spriteSheet;
     private Rectangle focusElement;
+
+    private Circle light;
+    private Rectangle screen;
+    private Rectangle filter;
+
+    private TargetTexture targetTexture;
+    private TargetRenderer targetRenderer;
 
     public Rectangle createSlime()
     {
@@ -69,9 +74,22 @@ public class MainScene extends Scene2D
     {
 
 
+        light = new Circle(50, 30, null);
+        light.getFillColorKeep().w = 1.5f;
+        targetRenderer = new TargetRenderer(
+                Shader.DEFAULT,
+                new Camera2D(new OrthoProjectionSettings(0, Window.getScreenSize().x, 0, Window.getScreenSize().y)),
+                new TargetTexture(new Vector2f(Window.getScreenSize().x, Window.getScreenSize().y)));
+
+        screen = new Rectangle(targetRenderer.getTargetTexture().getTexture());
+
+        filter = new Rectangle();
+        filter.setSize(screen.getSize2D());
+        filter.setFillColor(Colors.rgba(0, 0, 0, 255));
+
 
         Window.WINDOW.setClearColor(Colors.ORANGE);
-        for(int i = 0; i < 15; i++)
+        for (int i = 0; i < 15; i++)
             slimes.addLater(createSlime());
     }
 
@@ -91,10 +109,10 @@ public class MainScene extends Scene2D
         getCamera2d().activateKeys(Window.WINDOW, Camera2D.SPECTATOR_KEY_SET);
         slimes.run();
         frags.run();
-
-        if(focusElement != null)
+        if (focusElement != null)
             getCamera2d().focus(focusElement.getCenterPosition());
-
+        light.setCenterPosition(Mouse.getPosition(getCamera2d()));
+        light.getFillColorKeep().w -= 0.002f;
     }
 
     @Override
@@ -102,6 +120,9 @@ public class MainScene extends Scene2D
     {
         slimes.draw(getDefaultRenderer());
         frags.draw(getDefaultRenderer());
+        targetRenderer.render(filter);
+        targetRenderer.render(light);
+        draw(screen);
     }
 
     @Override
@@ -131,7 +152,7 @@ public class MainScene extends Scene2D
             Window.WINDOW.takeScreenShot();
         } else if (key == GLFW.GLFW_KEY_SPACE)
         {
-            if(slimes.size() == 0) return;
+            if (slimes.size() == 0) return;
             Rectangle slime = (Rectangle) slimes.get(0);
             slime.setTexture(null);
             var list = slime.getFragments(6, 6);

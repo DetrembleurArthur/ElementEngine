@@ -27,4 +27,9 @@ public class TargetRenderer extends Renderer
 		for(var o : gelem)
 			super.render(o);
 	}
+
+	public TargetTexture getTargetTexture()
+	{
+		return target;
+	}
 }

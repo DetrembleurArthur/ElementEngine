@@ -238,6 +238,11 @@ public class GraphicElement extends Transformable implements Dynamic
 		return new Vector4f(fillColor);
 	}
 
+	public Vector4f getFillColorKeep()
+	{
+		return fillColor;
+	}
+
 	public void setOpacity(float value)
 	{
 		if(fillColor != null)

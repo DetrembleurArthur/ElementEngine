@@ -1,5 +1,6 @@
 package com.elemengine.graphics.shaders;
 
+import com.elemengine.debug.Log;
 import com.elemengine.graphics.camera.Camera3D;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
@@ -18,14 +19,14 @@ import static org.lwjgl.system.MemoryUtil.memFree;
 public class Shader
 {
 	public static final Shader DEFAULT = new Shader(
-			"src/main/resources/shaders/vertex.glsl",
-			"src/main/resources/shaders/fragment.glsl",
+			"/shaders/vertex.glsl",
+			"/shaders/fragment.glsl",
 			true
 	);
 
 	public static final Shader LIGHT = new Shader(
-			"src/main/resources/shaders/light/vertex.glsl",
-			"src/main/resources/shaders/light/fragment.glsl",
+			"/shaders/light/vertex.glsl",
+			"/shaders/light/fragment.glsl",
 			true
 	);
 
@@ -97,7 +98,7 @@ public class Shader
 	{
 		String masterBuf = "";
 		String buf;
-		BufferedReader br = new BufferedReader(new FileReader(new File(filename)));
+		BufferedReader br = new BufferedReader(new FileReader(new File(getClass().getResource(filename).getFile())));
 		while((buf = br.readLine()) != null)
 		{
 			var tokens = buf.split(" ");
