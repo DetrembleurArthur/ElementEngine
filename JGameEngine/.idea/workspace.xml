@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="JGameEngine:jar" />
-    </artifacts-to-build>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="BranchesTreeState">
     <expand>
@@ -24,223 +22,889 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87f81c72-0eb5-4af9-a808-3199e251c34d" name="Default Changelist" comment="" />
+    <list default="true" id="f525b0c7-cea5-4418-9857-28944f4144b4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/JGameEngine_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/mb624.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/joml_graal_1_9_24.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_21.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/windows.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JGameEngine.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/3Dmodels/cube.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/3Dmodels/elite_static.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/3Dmodels/energySword.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/3Dmodels/h4_carbine.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/3Dmodels/icosphere.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/3Dmodels/rectangle.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/ampoule.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/apple.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/audio/boom.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/audio/house_lo.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/audio/test.ogg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/bricks.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/carbine.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/folder.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/arial.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/arial.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/chromia.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/chromia.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/gotic.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/gotic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/impact-b.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/impact-b.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/impact-bi.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/impact-bi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/impact-i.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/impact-i.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/impact-nnn.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/impact-nnn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/impact-outline.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/impact-outline.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/impact.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/impact.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/myanmar.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/myanmar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/segoe.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/segoe.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/segoe2.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/segoe2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/test.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/screen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/space.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/stone.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_screenshots/Fri_Sep_04_10-36-00_CEST_2020.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_screenshots/Mon_Aug_10_09-31-25_CEST_2020.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_screenshots/Mon_Aug_10_09-31-26_CEST_2020.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_screenshots/Mon_Aug_10_09-31-27_CEST_2020.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_screenshots/Sat_Sep_05_14-51-17_CEST_2020.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_screenshots/Sat_Sep_12_14-51-37_CEST_2020.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_screenshots/Sun_Aug_09_09-38-52_CEST_2020.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo_screenshots/Sun_Sep_13_11-19-05_CEST_2020.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid3796.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/joml/joml-graal-1.9.24.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-assimp-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-assimp-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-assimp-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-assimp.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-bgfx-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-bgfx-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-bgfx-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-bgfx.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-cuda-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-cuda-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-cuda.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-egl-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-egl-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-egl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-glfw-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-glfw-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-glfw-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-glfw.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-jawt-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-jawt-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-jawt.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-jemalloc-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-jemalloc-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-jemalloc-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-jemalloc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-libdivide-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-libdivide-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-libdivide-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-libdivide.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-llvm-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-llvm-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-llvm-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-llvm.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-lmdb-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-lmdb-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-lmdb-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-lmdb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-lz4-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-lz4-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-lz4-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-lz4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-meow-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-meow-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-meow-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-meow.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-nanovg-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-nanovg-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-nanovg-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-nanovg.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-nfd-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-nfd-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-nfd-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-nfd.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-nuklear-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-nuklear-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-nuklear-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-nuklear.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-odbc-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-odbc-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-odbc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-openal-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-openal-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-openal-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-openal.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-opencl-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-opencl-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-opencl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-opengl-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-opengl-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-opengl-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-opengl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-opengles-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-opengles-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-opengles-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-opengles.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-openvr-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-openvr-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-openvr-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-openvr.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-opus-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-opus-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-opus-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-opus.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-par-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-par-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-par-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-par.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-remotery-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-remotery-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-remotery-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-remotery.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-rpmalloc-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-rpmalloc-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-rpmalloc-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-rpmalloc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-shaderc-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-shaderc-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-shaderc-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-shaderc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-sse-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-sse-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-sse-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-sse.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-stb-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-stb-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-stb-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-stb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-tinyexr-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-tinyexr-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-tinyexr-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-tinyexr.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-tinyfd-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-tinyfd-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-tinyfd-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-tinyfd.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-tootle-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-tootle-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-tootle-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-tootle.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-vma-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-vma-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-vma-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-vma.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-vulkan-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-vulkan-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-vulkan-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-vulkan.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-xxhash-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-xxhash-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-xxhash-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-xxhash.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-yoga-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-yoga-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-yoga-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-yoga.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-zstd-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-zstd-natives-macos.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-zstd-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl-zstd.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/macos/lwjgl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/mysql/mysql-connector-java-8.0.21.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-assimp-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-assimp-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-assimp-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-assimp.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-bgfx-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-bgfx-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-bgfx-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-bgfx.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-cuda-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-cuda-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-cuda.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-egl-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-egl-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-egl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-glfw-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-glfw-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-glfw-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-glfw.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-jawt-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-jawt-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-jawt.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-jemalloc-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-jemalloc-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-jemalloc-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-jemalloc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-libdivide-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-libdivide-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-libdivide-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-libdivide.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-llvm-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-llvm-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-llvm-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-llvm.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-lmdb-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-lmdb-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-lmdb-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-lmdb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-lz4-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-lz4-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-lz4-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-lz4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-meow-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-meow-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-meow-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-meow.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-nanovg-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-nanovg-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-nanovg-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-nanovg.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-nfd-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-nfd-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-nfd-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-nfd.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-nuklear-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-nuklear-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-nuklear-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-nuklear.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-odbc-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-odbc-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-odbc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-openal-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-openal-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-openal-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-openal.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-opencl-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-opencl-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-opencl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-opengl-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-opengl-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-opengl-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-opengl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-opengles-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-opengles-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-opengles-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-opengles.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-openvr-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-openvr-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-openvr-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-openvr.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-opus-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-opus-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-opus-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-opus.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-ovr-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-ovr-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-ovr-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-ovr.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-par-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-par-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-par-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-par.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-remotery-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-remotery-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-remotery-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-remotery.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-rpmalloc-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-rpmalloc-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-rpmalloc-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-rpmalloc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-shaderc-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-shaderc-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-shaderc-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-shaderc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-sse-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-sse-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-sse-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-sse.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-stb-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-stb-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-stb-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-stb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-tinyexr-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-tinyexr-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-tinyexr-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-tinyexr.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-tinyfd-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-tinyfd-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-tinyfd-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-tinyfd.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-tootle-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-tootle-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-tootle-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-tootle.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-vma-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-vma-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-vma-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-vma.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-vulkan-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-vulkan-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-vulkan.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-xxhash-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-xxhash-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-xxhash-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-xxhash.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-yoga-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-yoga-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-yoga-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-yoga.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-zstd-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-zstd-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-zstd-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl-zstd.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/windows/lwjgl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/META-INF/JGameEngine.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/audio/SoundBuffer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/audio/SoundListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/audio/SoundManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/audio/SoundSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/binding/Converter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/binding/FloatProperty.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/binding/IntegerProperty.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/binding/Listener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/binding/NumberProperty.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/binding/Process.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/binding/Property$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/binding/Property$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/binding/Property.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/Component.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/animations/Animation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/animations/AnimationsComponent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/ActionEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/DataChangedEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/Event.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/EventManagerComponent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/FillColorChangedEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseButtonClickEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseButtonDoubleClickEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseButtonDragEvent$Orientation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseButtonDragEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseButtonEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseButtonReleasedEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseEnteredEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseExitedEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseHoveringEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseLeftButtonClickEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseLeftButtonRealeasedEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseMiddleButtonClickEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseMiddleButtonRealeasedEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseMoveEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseRightButtonClickEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/MouseRightButtonRealeasedEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/PositionChangedEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/RelativeEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/Valuable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/event/ValueChangedEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/moves/MoveManagerComponent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/CommonPropertiesComponent$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/CommonPropertiesComponent$10.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/CommonPropertiesComponent$11.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/CommonPropertiesComponent$12.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/CommonPropertiesComponent$13.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/CommonPropertiesComponent$14.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/CommonPropertiesComponent$15.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/CommonPropertiesComponent$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/CommonPropertiesComponent$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/CommonPropertiesComponent$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/CommonPropertiesComponent$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/CommonPropertiesComponent$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/CommonPropertiesComponent$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/CommonPropertiesComponent$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/CommonPropertiesComponent$9.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/CommonPropertiesComponent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/TextPropertyComponent$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/TextPropertyComponent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/ValuePropertyComponent$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/properties/ValuePropertyComponent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/scripts/ScriptsComponent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/sprites/SpritesComponent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/components/timers/TimersComponent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/debug/Logs.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/entity/Destroyable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/entity/Drawable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/entity/Dynamic.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/entity/GameObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/entity/GraphicElement.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/entity/Transformable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/Input.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/Mouse$Button.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/Mouse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/ButtonCallback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/ButtonEventHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/CursorEnterCallback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/CursorEnterEventHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/CursorPosCallback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/CursorPosEventHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/DropCallback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/DropEventHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/EventHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/KeyCallback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/KeyEventHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/ScrollCallback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/ScrollEventHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/TextInputCallback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/TextInputEventHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/WindowCloseCallback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/WindowCloseEventHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/WindowFocusCallback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/WindowFocusEventHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/WindowIconifyCallback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/WindowIconifyEventHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/WindowMaximizeCallback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/WindowMaximizeEventHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/WindowPosCallback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/WindowPosEventHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/WindowResizeCallback.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/event/handler/WindowResizeEventHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/exceptions/SysException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/Texts/Font.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/Texts/FontSet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/Texts/Glyph.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/Texts/Text.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/camera/Camera.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/camera/Camera2D.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/camera/Camera3D.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/camera/KeySet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/camera/OrthoProjectionSettings.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/camera/PerspProjectionSettings.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/loaders/ObjData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/loaders/ObjLoader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/loaders/TextureLoader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/loaders/TriangularFace.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/rendering/Image.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/rendering/Light.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/rendering/LightRenderer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/rendering/Renderer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/rendering/Sprite.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/rendering/SpriteSheet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/rendering/TargetRenderer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/rendering/TargetTexture.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/rendering/Texture.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/shaders/Shader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/shaders/fragment.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/shaders/light/fragment.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/shaders/light/vertex.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/shaders/vertex.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/shapes/BoundingBox.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/shapes/Circle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/shapes/Line.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/shapes/ProgressBar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/shapes/Rectangle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/shapes/Slider.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/shapes/Triangle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/texts/Entry.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/texts/Font$TextInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/vertex/IndexBuffer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/vertex/Mesh.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/vertex/VertexArray.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/graphics/vertex/VertexBuffer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/particles/Emitter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/particles/Particle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/registry/Registry.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/scripting/AndCondition.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/scripting/CScript.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/scripting/ComposedCondition.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/scripting/Condition.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/scripting/OrCondition.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/scripting/Script.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/sys/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/sys/Manageable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/sys/ResourcesManageable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/sys/Scene.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/sys/Scene2D.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/sys/Scene3D.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/sys/Window.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/sys/default-cursor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/time/AsyncTimer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/time/DynamicTimer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/time/StaticTimer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/time/SyncTimer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/time/Time.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/tweening/TFunc.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/tweening/TimedTweenAction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/tweening/TweenAction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/tweening/TweenFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/tweening/TweenGetter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/tweening/TweenSetter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/utils/Clipboard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/utils/Colors.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/utils/Cursor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/utils/DynamicLaterList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/utils/FreeReflectable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/utils/LaterList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/utils/MathUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/utils/To.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/jgengine/utils/VariableLoader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/game/mysql/Mysql.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/tests/ConsoleTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/tests/MainScene.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JGameEngine/tests/MyTestGame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/audio/SoundBuffer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/audio/SoundListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/audio/SoundManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/audio/SoundSource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/binding/Converter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/binding/FloatProperty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/binding/IntegerProperty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/binding/Listener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/binding/NumberProperty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/binding/Process.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/binding/Property.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/Component.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/animations/Animation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/animations/AnimationsComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/ActionEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/DataChangedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/Event.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/EventManagerComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/FillColorChangedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/MouseButtonClickEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/MouseButtonDoubleClickEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/MouseButtonDragEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/MouseButtonEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/MouseButtonReleasedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/MouseEnteredEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/MouseEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/MouseExitedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/MouseHoveringEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/MouseLeftButtonClickEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/MouseLeftButtonRealeasedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/MouseMiddleButtonClickEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/MouseMiddleButtonRealeasedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/MouseMoveEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/MouseRightButtonClickEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/MouseRightButtonRealeasedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/PositionChangedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/RelativeEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/Valuable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/event/ValueChangedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/moves/MoveManagerComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/properties/CommonPropertiesComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/properties/TextPropertyComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/properties/ValuePropertyComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/scripts/ScriptsComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/sprites/SpritesComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/components/timers/TimersComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/debug/Logs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/entity/Destroyable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/entity/Drawable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/entity/Dynamic.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/entity/GameObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/entity/GraphicElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/entity/Transformable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/Input.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/Mouse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/ButtonCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/ButtonEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/CursorEnterCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/CursorEnterEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/CursorPosCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/CursorPosEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/DropCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/DropEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/EventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/KeyCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/KeyEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/ScrollCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/ScrollEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/TextInputCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/TextInputEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/WindowCloseCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/WindowCloseEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/WindowFocusCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/WindowFocusEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/WindowIconifyCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/WindowIconifyEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/WindowMaximizeCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/WindowMaximizeEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/WindowPosCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/WindowPosEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/WindowResizeCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/event/handler/WindowResizeEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/exceptions/SysException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/Texts/Font.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/Texts/FontSet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/Texts/Glyph.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/Texts/Text.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/camera/Camera.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/camera/Camera2D.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/camera/Camera3D.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/camera/KeySet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/camera/OrthoProjectionSettings.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/camera/PerspProjectionSettings.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/loaders/ObjData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/loaders/ObjLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/loaders/TextureLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/loaders/TriangularFace.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/rendering/Image.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/rendering/Light.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/rendering/LightRenderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/rendering/Renderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/rendering/Sprite.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/rendering/SpriteSheet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/rendering/TargetRenderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/rendering/TargetTexture.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/rendering/Texture.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/shaders/Shader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/shaders/fragment.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/shaders/light/fragment.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/shaders/light/vertex.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/shaders/vertex.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/shapes/BoundingBox.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/shapes/Circle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/shapes/Line.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/shapes/ProgressBar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/shapes/Rectangle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/shapes/Slider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/shapes/Triangle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/texts/Entry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/vertex/IndexBuffer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/vertex/Mesh.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/vertex/VertexArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/graphics/vertex/VertexBuffer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/particles/Emitter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/particles/Particle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/registry/Registry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/scripting/AndCondition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/scripting/CScript.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/scripting/ComposedCondition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/scripting/Condition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/scripting/OrCondition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/scripting/Script.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/sys/Game.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/sys/Manageable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/sys/ResourcesManageable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/sys/Scene.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/sys/Scene2D.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/sys/Scene3D.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/sys/Window.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/sys/default-cursor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/time/AsyncTimer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/time/DynamicTimer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/time/StaticTimer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/time/SyncTimer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/time/Time.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/tweening/TFunc.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/tweening/TimedTweenAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/tweening/TweenAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/tweening/TweenFunction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/tweening/TweenGetter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/tweening/TweenSetter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/utils/Clipboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/utils/Colors.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/utils/Cursor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/utils/DynamicLaterList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/utils/FreeReflectable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/utils/LaterList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/utils/MathUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/utils/To.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/jgengine/utils/VariableLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/mysql/Mysql.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/ConsoleTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/MainScene.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/MyTestGame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Rotating3DItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/rectFragments.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExportToHTMLSettings">
-    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../JGameEngine\exportToHTML" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
-        <option value="GLSL Shader" />
-        <option value="UML Class" />
         <option value="AnnotationType" />
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
-  <component name="ProjectId" id="1aQp1OMAVBBp3UFm8Nv54o7xkAY" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.2\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1thkuxQIV5t1AqcXFxSnelYl04E" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DefaultPlantUmlFileTemplate" value="UML Class" />
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/mysql/mysql-connector-java-8.0.21.jar!/" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.15" />
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="ExtractSuperBase.RECENT_KEYS">
-      <recent name="game.jgengine.graphics" />
-      <recent name="game.jgengine.event" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="game.jgengine.graphics.rendering" />
-      <recent name="game.jgengine.graphics.gui.event" />
-      <recent name="game.jgengine.event" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets" />
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets\fonts" />
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\src\tests" />
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\examples" />
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets\audio" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="game.jgengine.utils" />
-      <recent name="game.jgengine.graphics.rendering" />
-      <recent name="game.jgengine.scripting" />
-      <recent name="" />
-      <recent name="game.jgengine.graphics.gui.event" />
+      <recent name="D:\Users\mb624\Documents\GitHub\ElementEngine\src\main\resources\sprites" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\libs\mysql" />
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\tests" />
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\src\game\jgengine\graphics\shaders\effects\test" />
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\assets\audio" />
-      <recent name="C:\Users\mb624\Documents\IntelliJProjects\JGameEngine\src\game\jgengine\graphics" />
+      <recent name="D:\Users\mb624\Documents\GitHub\ElementEngine\src\main\resources\sprites" />
+      <recent name="D:\Users\mb624\Documents\GitHub\ElementEngine\src\main\resources\shaders" />
+      <recent name="D:\Users\mb624\Documents\GitHub\ElementEngine\src\main\java" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MyTestGame">
-    <configuration name="ConsoleTest" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="tests.ConsoleTest" />
+  <component name="RunManager">
+    <configuration name="DemoApp" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.elemengine.demo.DemoApp" />
       <module name="JGameEngine" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyTestGame" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="tests.MyTestGame" />
-      <module name="JGameEngine" />
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.elemengine.demo.DemoApp" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.MyTestGame" />
-      <item itemvalue="Application.ConsoleTest" />
-    </list>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="87f81c72-0eb5-4af9-a808-3199e251c34d" name="Default Changelist" comment="" />
-      <created>1586677455496</created>
+      <changelist id="f525b0c7-cea5-4418-9857-28944f4144b4" name="Default Changelist" comment="" />
+      <created>1623228935833</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1586677455496</updated>
+      <updated>1623228935833</updated>
+      <workItem from="1623228937248" duration="1155000" />
+      <workItem from="1623230117194" duration="18225000" />
+      <workItem from="1623253310714" duration="61000" />
     </task>
     <servers />
   </component>
-  <component name="UnknownFeatures">
-    <option featureType="com.intellij.fileTypeFactory" implementationName="*.fnt" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2334" y="174" width="1092" height="804" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599721909156">
+    <state x="2632" y="329" key="#Images" timestamp="1623244604167">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2334" y="174" width="1092" height="804" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599721909156" />
-    <state x="2592" y="305" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1597137111749">
+    <state x="2632" y="329" key="#Images/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623244604167" />
+    <state x="2334" y="174" width="1092" height="787" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1623253371561">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2592" y="305" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597137111749" />
-    <state x="2641" y="160" key="#com.intellij.ide.util.MemberChooser" timestamp="1600075841253">
+    <state x="2334" y="174" width="1092" height="787" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623253371561" />
+    <state x="2685" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1623242791668">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2641" y="160" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1600075841253" />
-    <state x="577" y="108" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1592126795262" />
-    <state x="2547" y="268" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1599721908094">
+    <state x="2685" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623242791668" />
+    <state x="2609" y="345" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1623253370188">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2547" y="268" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599721908094" />
-    <state x="2646" y="384" width="491" height="284" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1599294444505">
+    <state x="2609" y="345" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623253370188" />
+    <state x="2425" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1623238124008">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2646" y="384" width="491" height="284" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599294444505" />
-    <state x="2093" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1599382740600">
+    <state x="2425" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623238124008" />
+    <state x="2660" y="274" key="FileChooserDialogImpl" timestamp="1623231133755">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2093" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599382740600" />
-    <state x="2547" y="205" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1596784217865">
+    <state x="2660" y="274" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623231133755" />
+    <state width="1877" height="226" key="GridCell.Tab.0.bottom" timestamp="1623252712129">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2547" y="205" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596784217865" />
-    <state x="2547" y="207" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1599297852953">
+    <state width="1877" height="226" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623252712129" />
+    <state width="1877" height="226" key="GridCell.Tab.0.center" timestamp="1623252712128">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2547" y="207" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599297852953" />
-    <state x="2464" y="146" key="FileChooserDialogImpl" timestamp="1600070502729">
+    <state width="1877" height="226" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623252712128" />
+    <state width="1877" height="226" key="GridCell.Tab.0.left" timestamp="1623252712128">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2464" y="146" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1600070502729" />
-    <state width="1865" height="301" key="GridCell.Tab.0.bottom" timestamp="1600084132335">
+    <state width="1877" height="226" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623252712128" />
+    <state width="1877" height="226" key="GridCell.Tab.0.right" timestamp="1623252712128">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1481" height="144" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597044853568" />
-    <state width="1865" height="301" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1600084132335" />
-    <state width="1481" height="90" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1592126899872" />
-    <state width="1865" height="301" key="GridCell.Tab.0.center" timestamp="1600084132334">
+    <state width="1877" height="226" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623252712128" />
+    <state x="2360" y="94" key="SettingsEditor" timestamp="1623229079563">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1481" height="144" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597044853568" />
-    <state width="1865" height="301" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1600084132334" />
-    <state width="1481" height="90" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1592126899872" />
-    <state width="1865" height="301" key="GridCell.Tab.0.left" timestamp="1600084132334">
+    <state x="2360" y="94" key="SettingsEditor/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623229079563" />
+    <state x="2697" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1623230122750">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1481" height="144" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597044853568" />
-    <state width="1865" height="301" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1600084132334" />
-    <state width="1481" height="90" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1592126899872" />
-    <state width="1865" height="301" key="GridCell.Tab.0.right" timestamp="1600084132334">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1481" height="144" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597044853568" />
-    <state width="1865" height="301" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1600084132334" />
-    <state width="1481" height="90" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1592126899872" />
-    <state width="1865" height="673" key="GridCell.Tab.1.bottom" timestamp="1599645016090">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1865" height="673" key="GridCell.Tab.1.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599645016090" />
-    <state width="1865" height="673" key="GridCell.Tab.1.center" timestamp="1599645016090">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1865" height="673" key="GridCell.Tab.1.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599645016090" />
-    <state width="1865" height="673" key="GridCell.Tab.1.left" timestamp="1599645016090">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1865" height="673" key="GridCell.Tab.1.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599645016090" />
-    <state width="1865" height="673" key="GridCell.Tab.1.right" timestamp="1599645016090">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1865" height="673" key="GridCell.Tab.1.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599645016090" />
-    <state x="2024" y="128" width="1458" height="824" key="SettingsEditor" timestamp="1600070506719">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2024" y="128" width="1458" height="912" key="SettingsEditor/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1600070506719" />
-    <state x="2534" y="198" width="675" height="655" key="StructurePopup" timestamp="1592911565676">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2534" y="198" width="675" height="655" key="StructurePopup/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592911565676" />
-    <state width="623" height="498" key="SwitcherDM" timestamp="1599913192830">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="623" height="498" key="SwitcherDM/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599913192830" />
-    <state x="0" y="0" width="1550" height="788" maximized="true" key="dock-window-1" timestamp="1592556175578">
+    <state x="2697" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623230122750" />
+    <state x="282" y="0" width="1268" height="797" maximized="true" key="dock-window-1" timestamp="1623242391265">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="0" y="0" width="1550" height="788" maximized="true" key="dock-window-1/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1592556175578" />
-    <state x="2150" y="52" key="new project wizard" timestamp="1599649944221">
+    <state x="282" y="0" width="1268" height="797" maximized="true" key="dock-window-1/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623242391265" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1623241793127">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2150" y="52" key="new project wizard/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599649944221" />
-    <state x="2562" y="74" key="refactoring.ChangeSignatureDialog" timestamp="1599297801840">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2562" y="74" key="refactoring.ChangeSignatureDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599297801840" />
-    <state x="2452" y="237" key="run.anything.popup" timestamp="1598346180613">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2452" y="237" key="run.anything.popup/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1598346180613" />
-    <state x="2459" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1598346710690">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2459" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1598346710690" />
+    <state x="2543" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1623241793127" />
   </component>
 </project>
