@@ -1,6 +1,6 @@
 package com.elemengine.event.handler;
 
-public interface EventHandler extends ButtonEventHandler, CursorEnterEventHandler, CursorPosEventHandler, DropEventHandler, KeyEventHandler, ScrollEventHandler, TextInputEventHandler, WindowCloseEventHandler, WindowFocusEventHandler, WindowIconifyEventHandler, WindowMaximizeEventHandler, WindowPosEventHandler, WindowResizeEventHandler
+public interface EventHandler extends ButtonEventHandler, CursorEnterEventHandler, CursorPosEventHandler, DropEventHandler, KeyEventHandler, ScrollEventHandler, TextInputEventHandler, WindowCloseEventHandler, WindowFocusEventHandler, WindowIconifyEventHandler, WindowMaximizeEventHandler, WindowPosEventHandler, WindowResizeEventHandler, JoystickEventHandler
 {
     @Override
     default void buttonPressedEventHandler(int button)
@@ -105,5 +105,17 @@ public interface EventHandler extends ButtonEventHandler, CursorEnterEventHandle
     @Override
     default void windowResizedEventHandler(int width, int height)
     {
+    }
+
+    @Override
+    default void joystickConnectedEventHandler(int jid, int event)
+    {
+
+    }
+
+    @Override
+    default void joystickDisconnectedEventHandler(int jid, int event)
+    {
+
     }
 }

@@ -412,6 +412,11 @@ public class Window
 		glfwSetDropCallback(windowId, dropCallback);
 	}
 
+	public void setJoystickCallback(JoystickCallback joystickCallback)
+	{
+		glfwSetJoystickCallback(joystickCallback);
+	}
+
 	public void setEventHandler(EventHandler handler)
 	{
 		setKeyCallback(new KeyCallback(handler));
@@ -427,6 +432,7 @@ public class Window
 		setWindowMaximizeCallback(new WindowMaximizeCallback(handler));
 		setTextInputCallback(new TextInputCallback(handler));
 		setDropCallback(new DropCallback(handler));
+		setJoystickCallback(new JoystickCallback(handler));
 	}
 
 	public void simpleUpdateViewport()

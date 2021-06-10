@@ -31,7 +31,9 @@ public @interface OnEvent
         WINDOW_MAXIMIZE,
         WINDOW_UNMAXIMIZE,
         WINDOW_POS,
-        WINDOW_RESIZED
+        WINDOW_RESIZED,
+        JOYSTICK_CONNECTED,
+        JOYSTICK_DISCONNECTED
     }
 
     Types value();

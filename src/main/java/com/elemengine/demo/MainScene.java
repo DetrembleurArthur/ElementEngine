@@ -97,7 +97,7 @@ public class MainScene extends Scene2D
     @Override
     public void loadResources()
     {
-        TextureLoader.loadDir("src/main/resources/sprites");
+
         spriteSheet = new SpriteSheet(Registry.getTexture("blob.png"), 2, 2, 3);
 
 
@@ -120,9 +120,10 @@ public class MainScene extends Scene2D
     {
         slimes.draw(getDefaultRenderer());
         frags.draw(getDefaultRenderer());
-        targetRenderer.render(filter);
+        /*targetRenderer.render(filter);
         targetRenderer.render(light);
-        draw(screen);
+        draw(screen);*/
+
     }
 
     @Override

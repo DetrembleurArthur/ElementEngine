@@ -147,6 +147,11 @@ public class Camera2D extends Camera
 		this.zoom = new Vector3f(zoom, zoom, 1);
 	}
 
+	public void zoom(float value)
+	{
+		zoom.mul(value);
+	}
+
 
 	public void focus(Vector2f position)
 	{

@@ -178,4 +178,16 @@ public class EventCollector implements EventHandler
     {
         trigger(OnEvent.Types.WINDOW_RESIZED, width, height);
     }
+
+    @Override
+    public void joystickConnectedEventHandler(int jid, int event)
+    {
+        trigger(OnEvent.Types.JOYSTICK_CONNECTED, jid, event);
+    }
+
+    @Override
+    public void joystickDisconnectedEventHandler(int jid, int event)
+    {
+        trigger(OnEvent.Types.JOYSTICK_DISCONNECTED, jid, event);
+    }
 }

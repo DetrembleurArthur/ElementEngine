@@ -1,6 +1,7 @@
 package com.elemengine.demo;
 
 import com.elemengine.exceptions.SysException;
+import com.elemengine.graphics.loaders.TextureLoader;
 import com.elemengine.sys.Application;
 import com.elemengine.sys.Window;
 import org.joml.Vector4f;
@@ -15,9 +16,11 @@ public class DemoApp extends Application
         Window.WINDOW.maintainSizeRatio(false);
         Window.WINDOW.setResizeable(true);
         Window.WINDOW.center();
+        TextureLoader.loadDir("src/main/resources/sprites");
         setFramerateLimit(60);
         addScene("MAIN", new MainScene());
-        setCurrentScene("MAIN");
+        addScene("CONTROLLER", new ControllerScene());
+        setCurrentScene("CONTROLLER");
     }
 
     public static void main(String[] args) throws SysException, InterruptedException
