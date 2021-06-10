@@ -3,6 +3,8 @@ package com.elemengine.utils;
 import com.elemengine.graphics.rendering.Renderer;
 import com.elemengine.entity.Dynamic;
 
+import java.util.Collection;
+
 public class DynamicLaterList extends LaterList<Dynamic> implements Dynamic
 {
 	public DynamicLaterList()
@@ -25,8 +27,10 @@ public class DynamicLaterList extends LaterList<Dynamic> implements Dynamic
 	{
 		for(var dynamic : this)
 		{
-			dynamic.destroy();
+			if(dynamic != null)
+				dynamic.destroy();
 		}
+		clear();
 	}
 
 	@Override
@@ -45,5 +49,12 @@ public class DynamicLaterList extends LaterList<Dynamic> implements Dynamic
 		{
 			dynamic.draw(renderer);
 		}
+	}
+
+	@Override
+	public boolean removeAll(Collection<?> c)
+	{
+		c.forEach(o -> ((Dynamic)o).destroy());
+		return super.removeAll(c);
 	}
 }

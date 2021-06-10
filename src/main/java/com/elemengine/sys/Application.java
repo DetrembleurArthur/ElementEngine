@@ -9,6 +9,7 @@ import com.elemengine.time.Time;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -22,6 +23,7 @@ public abstract class Application implements ResourcesManageable
     private double framerateLimit = 30;
     private HashMap<String, Scene> scenes;
     private Scene currentScene;
+    private final Signal signal = new Signal();
 
     public static double DT = 0;
     public static Application APPLICATION;
@@ -42,11 +44,34 @@ public abstract class Application implements ResourcesManageable
         }
     }
 
+    public static class Signal
+    {
+        public boolean next = false;
+        public boolean previous = false;
+        public String scene = null;
+
+        void reset()
+        {
+            next = false;
+            previous = false;
+            scene = null;
+        }
+
+        boolean available()
+        {
+            return next || previous || scene != null;
+        }
+    }
+
     public static Application get()
     {
         return APPLICATION;
     }
 
+    public Signal getSignal()
+    {
+        return signal;
+    }
 
     public void switchTo3D()
     {
@@ -130,6 +155,18 @@ public abstract class Application implements ResourcesManageable
             primaryWindow.flip();
 
             if (framerateLimit != 0) while (Time.getElapsedTime() < beginTime + 1.0 / framerateLimit) ;
+
+            if(signal.available())
+            {
+                if(signal.next)
+                    nextScene();
+                else if(signal.previous)
+                    previousScene();
+                else if(signal.scene != null)
+                    setCurrentScene(signal.scene);
+                signal.reset();
+            }
+
         }
     }
 
@@ -177,6 +214,7 @@ public abstract class Application implements ResourcesManageable
     public void addScene(String id, Scene scene)
     {
         scenes.put(id, scene);
+        scene.setSignal(signal);
         scene.loadResources();
     }
 
@@ -206,5 +244,19 @@ public abstract class Application implements ResourcesManageable
     public void setCurrentScene(String id)
     {
         setCurrentScene(scenes.get(id));
+    }
+
+    public void nextScene()
+    {
+        ArrayList<Scene> list = new ArrayList<>(scenes.values());
+        int i = list.indexOf(currentScene);
+        setCurrentScene(list.get((i + 1) % list.size()));
+    }
+
+    public void previousScene()
+    {
+        ArrayList<Scene> list = new ArrayList<>(scenes.values());
+        int i = list.indexOf(currentScene);
+        setCurrentScene(list.get(i == 0 ? list.size() - 1 : 0));
     }
 }

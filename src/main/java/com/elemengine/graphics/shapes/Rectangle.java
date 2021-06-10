@@ -1,5 +1,6 @@
 package com.elemengine.graphics.shapes;
 
+import com.elemengine.entity.Dynamic;
 import com.elemengine.graphics.rendering.Sprite;
 import com.elemengine.graphics.rendering.Texture;
 import com.elemengine.graphics.vertex.Mesh;
@@ -66,9 +67,9 @@ public class Rectangle extends GameObject
 		mesh.setUV(3, textCoords[3]);
 	}
 
-	public ArrayList<Triangle> getFragments(int nwidth, int nheight)
+	public ArrayList<Dynamic> getFragments(int nwidth, int nheight)
 	{
-		ArrayList<Triangle> fragments = new ArrayList<>();
+		ArrayList<Dynamic> fragments = new ArrayList<>();
 		var size = getSize2D().div(new Vector2f(nwidth, nheight));
 		for(int i = 0; i < nwidth; i++)
 		{

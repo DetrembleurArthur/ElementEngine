@@ -2,6 +2,7 @@ package com.elemengine.demo;
 
 import com.elemengine.debug.Log;
 import com.elemengine.event.Input;
+import com.elemengine.event.Mouse;
 import com.elemengine.event.handler.annotations.OnEvent;
 import com.elemengine.graphics.camera.Camera2D;
 import com.elemengine.graphics.rendering.SpriteSheet;
@@ -17,6 +18,7 @@ public class ControllerScene extends Scene2D
 {
     Rectangle slime;
     SpriteSheet spriteSheet;
+
 
     @Override
     public void load()
@@ -34,38 +36,51 @@ public class ControllerScene extends Scene2D
         slime.sprites_c().setCurrent("blob-idle");
         slime.sprites_c().setCurrentId(0);
         slime.sprites_c().setSpeedAnimation(300);
+        slime.events_c().onMouseEntered(sender -> slime.setFillColor(Colors.CYAN));
+        slime.events_c().onMouseExited(sender -> slime.setFillColor(Colors.LIME));
+
+
+        getLayoutMap().create("player", 0).put("player", slime);
+
+
+        activeArrow();
     }
 
     @Override
     public void update(double dt)
     {
-
         getCamera2d().activateKeys(Window.WINDOW, Camera2D.SPECTATOR_KEY_SET);
-        slime.run();
+
         var axes = Input.getJoystickAxes(GLFW.GLFW_JOYSTICK_1, Input.Joystick.LEFT);
+        var maxes = Input.getJoystickAxes(GLFW.GLFW_JOYSTICK_1, Input.Joystick.RIGHT);
 
         slime.move(axes.x * 15, axes.y * 15);
 
-        if(Input.isControllerTriggerPressed(GLFW.GLFW_JOYSTICK_1, Input.Joystick.LEFT_TRIGGER))
+        Mouse.setPosition(Mouse.getPosition().add(maxes.mul(10)));
+
+        getLayoutMap().run();
+
+
+        if (Input.isControllerTriggerPressed(GLFW.GLFW_JOYSTICK_1, Input.Joystick.LEFT_TRIGGER))
         {
-            getCamera2d().zoom(1.01f);
-        }
-        else if(Input.isControllerTriggerPressed(GLFW.GLFW_JOYSTICK_1, Input.Joystick.RIGHT_TRIGGER))
+            getCamera2d().zoom(1.05f);
+        } else if (Input.isControllerTriggerPressed(GLFW.GLFW_JOYSTICK_1, Input.Joystick.RIGHT_TRIGGER))
         {
-            getCamera2d().zoom(0.99f);
+            getCamera2d().zoom(0.95f);
         }
+
     }
 
     @Override
     public void render(double dt)
     {
-        slime.draw(getDefaultRenderer());
+        getLayoutMap().draw(getDefaultRenderer());
     }
 
     @Override
     public void close()
     {
-        slime.destroy();
+        getLayoutMap().destroy();
     }
 
     @Override
@@ -83,9 +98,9 @@ public class ControllerScene extends Scene2D
     @OnEvent(OnEvent.Types.KEY_RELEASED)
     public void space(int btn)
     {
-        if(btn == GLFW.GLFW_KEY_SPACE)
+        if (btn == GLFW.GLFW_KEY_SPACE)
         {
-            Log.print(Input.isJoystickPresent(GLFW.GLFW_JOYSTICK_1));
+            getLayoutMap().swap("player", "gui");
         }
     }
 

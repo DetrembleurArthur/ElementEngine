@@ -1,6 +1,7 @@
 package com.elemengine.demo;
 
 
+import com.elemengine.entity.Dynamic;
 import com.elemengine.event.Mouse;
 import com.elemengine.event.handler.annotations.OnEvent;
 import com.elemengine.graphics.camera.Camera2D;
@@ -12,6 +13,7 @@ import com.elemengine.graphics.rendering.TargetTexture;
 import com.elemengine.graphics.shaders.Shader;
 import com.elemengine.graphics.shapes.Circle;
 import com.elemengine.graphics.shapes.Rectangle;
+import com.elemengine.graphics.shapes.Triangle;
 import com.elemengine.registry.Registry;
 import com.elemengine.sys.Scene2D;
 import com.elemengine.sys.Window;
@@ -22,6 +24,8 @@ import com.elemengine.utils.DynamicLaterList;
 import com.elemengine.utils.MathUtil;
 import org.joml.Vector2f;
 import org.lwjgl.glfw.GLFW;
+
+import java.util.ArrayList;
 
 public class MainScene extends Scene2D
 {
@@ -72,7 +76,8 @@ public class MainScene extends Scene2D
     @Override
     public void load()
     {
-
+        getLayoutMap().create("slimes", 0);
+        getLayoutMap().create("frags", 0);
 
         light = new Circle(50, 30, null);
         light.getFillColorKeep().w = 1.5f;
@@ -90,7 +95,9 @@ public class MainScene extends Scene2D
 
         Window.WINDOW.setClearColor(Colors.ORANGE);
         for (int i = 0; i < 15; i++)
-            slimes.addLater(createSlime());
+            getLayoutMap().put("slimes", createSlime());
+
+        activeArrow();
     }
 
 
@@ -107,8 +114,7 @@ public class MainScene extends Scene2D
     public void update(double dt)
     {
         getCamera2d().activateKeys(Window.WINDOW, Camera2D.SPECTATOR_KEY_SET);
-        slimes.run();
-        frags.run();
+        getLayoutMap().run();
         if (focusElement != null)
             getCamera2d().focus(focusElement.getCenterPosition());
         light.setCenterPosition(Mouse.getPosition(getCamera2d()));
@@ -118,8 +124,7 @@ public class MainScene extends Scene2D
     @Override
     public void render(double dt)
     {
-        slimes.draw(getDefaultRenderer());
-        frags.draw(getDefaultRenderer());
+        getLayoutMap().draw(getDefaultRenderer());
         /*targetRenderer.render(filter);
         targetRenderer.render(light);
         draw(screen);*/
@@ -129,8 +134,7 @@ public class MainScene extends Scene2D
     @Override
     public void close()
     {
-        slimes.destroy();
-        frags.destroy();
+        getLayoutMap().destroy();
     }
 
     @Override
@@ -153,19 +157,19 @@ public class MainScene extends Scene2D
             Window.WINDOW.takeScreenShot();
         } else if (key == GLFW.GLFW_KEY_SPACE)
         {
-            if (slimes.size() == 0) return;
-            Rectangle slime = (Rectangle) slimes.get(0);
+            if (getLayoutMap().getLayout("slimes").size() == 0) return;
+            Rectangle slime = (Rectangle) getLayoutMap().getLayout("slimes").get(0);
             slime.setTexture(null);
-            var list = slime.getFragments(6, 6);
+            ArrayList<Dynamic> list = slime.getFragments(6, 6);
             var color = slime.getFillColor();
             list.forEach(triangle -> {
-                triangle.moves_c().setSpeed(new Vector2f(MathUtil.rand(150, -150), MathUtil.rand(150, -150)));
-                triangle.moves_c().setRotationSpeed(100);
-                triangle.setFillColor(color);
-                triangle.timers_c().add(new SyncTimer(3000, 1, () -> frags.removeLater(triangle)));
+                ((Triangle)triangle).moves_c().setSpeed(new Vector2f(MathUtil.rand(150, -150), MathUtil.rand(150, -150)));
+                ((Triangle)triangle).moves_c().setRotationSpeed(100);
+                ((Triangle)triangle).setFillColor(color);
+                ((Triangle)triangle).timers_c().add(new SyncTimer(3000, 1, () -> getLayoutMap().removeDynamic(triangle, "frags")));
             });
-            frags.addLater(list);
-            slimes.removeLater(slime);
+            getLayoutMap().put("frags", list);
+            getLayoutMap().removeDynamic(slime, "slimes");
         }
     }
 
@@ -175,6 +179,6 @@ public class MainScene extends Scene2D
         if (button == Mouse.Button.RIGHT)
             getCamera2d().focus(Mouse.getPosition(getCamera2d()));
         else if (button == Mouse.Button.LEFT)
-            slimes.addLater(createSlime());
+            getLayoutMap().put("slimes", createSlime());
     }
 }
