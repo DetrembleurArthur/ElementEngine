@@ -148,9 +148,11 @@ public abstract class Application implements ResourcesManageable
 
             primaryWindow.pollEvents();
 
+            currentScene.innerUpdate();
             currentScene.update(deltaTime);
 
             primaryWindow.clear();
+            currentScene.innerRender();
             currentScene.render(deltaTime);
             primaryWindow.flip();
 
@@ -176,7 +178,7 @@ public abstract class Application implements ResourcesManageable
         for (var key : scenes.keySet())
         {
             scenes.get(key).close();
-            scenes.get(key).closeResources();
+            scenes.get(key).innerClose();
         }
         primaryWindow.destroy();
 
@@ -215,7 +217,6 @@ public abstract class Application implements ResourcesManageable
     {
         scenes.put(id, scene);
         scene.setSignal(signal);
-        scene.loadResources();
     }
 
     public Scene getScene(String id)
@@ -231,13 +232,17 @@ public abstract class Application implements ResourcesManageable
     public void setCurrentScene(Scene scene)
     {
         if (currentScene != null)
+        {
             currentScene.close();
+            currentScene.innerClose();
+        }
         currentScene = scene;
         if (scene instanceof Scene3D)
             switchTo3D();
         else
             switchTo2d();
         primaryWindow.setEventHandler(currentScene.getEventCollector());
+        currentScene.innerLoad();
         currentScene.load();
     }
 

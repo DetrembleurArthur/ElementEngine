@@ -7,12 +7,14 @@ public class Layout extends DynamicLaterList implements Comparable<Layout>
     private int priority;
     private boolean visible;
     private final String id;
+    private final Renderer renderer;
 
-    public Layout(int priority, String id)
+    public Layout(int priority, String id, Renderer renderer)
     {
         this.priority = priority;
         visible = true;
         this.id = id;
+        this.renderer = renderer;
     }
 
     public int getPriority()
@@ -43,6 +45,11 @@ public class Layout extends DynamicLaterList implements Comparable<Layout>
     public boolean equals(String id)
     {
         return id.equals(this.id);
+    }
+
+    public Renderer getRenderer()
+    {
+        return renderer;
     }
 
     @Override

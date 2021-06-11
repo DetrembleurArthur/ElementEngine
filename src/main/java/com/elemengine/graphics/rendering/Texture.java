@@ -1,6 +1,7 @@
 package com.elemengine.graphics.rendering;
 
 
+import com.elemengine.debug.Log;
 import org.joml.Vector2f;
 import org.joml.Vector2i;
 import org.lwjgl.BufferUtils;
@@ -67,6 +68,7 @@ public class Texture
 		IntBuffer width = BufferUtils.createIntBuffer(1);
 		IntBuffer height = BufferUtils.createIntBuffer(1);
 		IntBuffer channels = BufferUtils.createIntBuffer(1);
+		Log.print(path + " ===");
 		ByteBuffer image = stbi_load(path, width, height, channels, 0);
 		if(image != null)
 		{

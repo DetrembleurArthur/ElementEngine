@@ -27,23 +27,7 @@ public abstract class Scene2D extends Scene
 		return (Camera2D)camera;
 	}
 
-	public void activeArrow()
-	{
-		Rectangle arrowLeft = new Rectangle(Registry.getTexture("arrow.png"));
-		arrowLeft.setCenterOrigin();
-		arrowLeft.setRotation(180);
-		arrowLeft.getSize().mul(0.1f, 0.1f, 1f);
-		arrowLeft.setCenterOrigin();
-		arrowLeft.setTopLeftPosition(new Vector2f(10, 10));
-		arrowLeft.events_c().onMouseLeftButtonReleased(sender -> getSignal().previous = true);
 
-		Rectangle arrowRight = new Rectangle(Registry.getTexture("arrow.png"));
-		arrowRight.getSize().mul(0.1f, 0.1f, 1f);
-		arrowRight.setTopRightPosition(new Vector2f(Window.WINDOW.getSize().x - 10, 10));
-		arrowRight.events_c().onMouseLeftButtonReleased(sender -> getSignal().next = true);
-
-		getLayoutMap().create("gui", 1).put("gui", arrowLeft, arrowRight);
-	}
 
 	public Vector2f getMousePosition()
 	{

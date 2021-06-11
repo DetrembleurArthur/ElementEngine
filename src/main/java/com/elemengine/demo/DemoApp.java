@@ -6,6 +6,8 @@ import com.elemengine.sys.Application;
 import com.elemengine.sys.Window;
 import org.joml.Vector4f;
 
+import java.io.File;
+
 public class DemoApp extends Application
 {
     @Override
@@ -16,7 +18,8 @@ public class DemoApp extends Application
         Window.WINDOW.maintainSizeRatio(false);
         Window.WINDOW.setResizeable(true);
         Window.WINDOW.center();
-        TextureLoader.loadDir("src/main/resources/sprites");
+
+        TextureLoader.loadDir(new File(getClass().getResource("/sprites").getPath()).getAbsolutePath());
         setFramerateLimit(60);
         addScene("MAIN", new MainScene());
         addScene("CONTROLLER", new ControllerScene());

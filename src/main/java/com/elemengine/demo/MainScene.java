@@ -56,7 +56,7 @@ public class MainScene extends Scene2D
         rectangle.moves_c();
         rectangle.setFillColor(Colors.random());
         rectangle.setCenterOrigin();
-        rectangle.setCenterPosition(Window.WINDOW.getCenter());
+        rectangle.setCenterPosition(Window.WINDOW.get2DWorldCenter(getCamera2d()));
         rectangle.events_c().onMouseButtonClicked(sender -> {
             focusElement = rectangle;
         }, false);
@@ -76,8 +76,9 @@ public class MainScene extends Scene2D
     @Override
     public void load()
     {
-        getLayoutMap().create("slimes", 0);
-        getLayoutMap().create("frags", 0);
+        spriteSheet = new SpriteSheet(Registry.getTexture("blob.png"), 2, 2, 3);
+        getLayoutMap().create("slimes", 0, defaultRenderer);
+        getLayoutMap().create("frags", 0, defaultRenderer);
 
         light = new Circle(50, 30, null);
         light.getFillColorKeep().w = 1.5f;
@@ -93,7 +94,6 @@ public class MainScene extends Scene2D
         filter.setFillColor(Colors.rgba(0, 0, 0, 255));
 
 
-        Window.WINDOW.setClearColor(Colors.ORANGE);
         for (int i = 0; i < 15; i++)
             getLayoutMap().put("slimes", createSlime());
 
@@ -102,19 +102,9 @@ public class MainScene extends Scene2D
 
 
     @Override
-    public void loadResources()
-    {
-
-        spriteSheet = new SpriteSheet(Registry.getTexture("blob.png"), 2, 2, 3);
-
-
-    }
-
-    @Override
     public void update(double dt)
     {
         getCamera2d().activateKeys(Window.WINDOW, Camera2D.SPECTATOR_KEY_SET);
-        getLayoutMap().run();
         if (focusElement != null)
             getCamera2d().focus(focusElement.getCenterPosition());
         light.setCenterPosition(Mouse.getPosition(getCamera2d()));
@@ -124,7 +114,6 @@ public class MainScene extends Scene2D
     @Override
     public void render(double dt)
     {
-        getLayoutMap().draw(getDefaultRenderer());
         /*targetRenderer.render(filter);
         targetRenderer.render(light);
         draw(screen);*/
@@ -133,12 +122,6 @@ public class MainScene extends Scene2D
 
     @Override
     public void close()
-    {
-        getLayoutMap().destroy();
-    }
-
-    @Override
-    public void closeResources()
     {
 
     }

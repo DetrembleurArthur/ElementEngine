@@ -2,7 +2,6 @@ package com.elemengine.demo;
 
 import com.elemengine.debug.Log;
 import com.elemengine.event.Input;
-import com.elemengine.event.Mouse;
 import com.elemengine.event.handler.annotations.OnEvent;
 import com.elemengine.graphics.camera.Camera2D;
 import com.elemengine.graphics.rendering.SpriteSheet;
@@ -10,7 +9,10 @@ import com.elemengine.graphics.shapes.Rectangle;
 import com.elemengine.registry.Registry;
 import com.elemengine.sys.Scene2D;
 import com.elemengine.sys.Window;
+import com.elemengine.time.DynamicTimer;
+import com.elemengine.time.SyncTimer;
 import com.elemengine.utils.Colors;
+import com.elemengine.utils.MathUtil;
 import org.joml.Vector2f;
 import org.lwjgl.glfw.GLFW;
 
@@ -18,11 +20,17 @@ public class ControllerScene extends Scene2D
 {
     Rectangle slime;
     SpriteSheet spriteSheet;
+    int i = 0;
+
+    DynamicTimer timer;
 
 
     @Override
     public void load()
     {
+        timer = new SyncTimer(30, 1, () -> Log.print("end"));
+        timer.setPeriodCounter(1);
+
         getCamera2d().setSpeed(new Vector2f(50, 50));
 
         spriteSheet = new SpriteSheet(Registry.getTexture("blob.png"), 2, 2, 3);
@@ -30,8 +38,8 @@ public class ControllerScene extends Scene2D
         slime = new Rectangle();
         slime.setFillColor(Colors.LIME);
         slime.setCenterOrigin();
-        slime.setPosition(Window.WINDOW.getCenter());
-        slime.setSize(80, 80);
+        slime.setPosition(Window.WINDOW.get2DWorldCenter(getCamera2d()));
+        slime.setSize(120, 120);
         slime.sprites_c().addSpriteSheet("blob-idle", spriteSheet);
         slime.sprites_c().setCurrent("blob-idle");
         slime.sprites_c().setCurrentId(0);
@@ -40,7 +48,8 @@ public class ControllerScene extends Scene2D
         slime.events_c().onMouseExited(sender -> slime.setFillColor(Colors.LIME));
 
 
-        getLayoutMap().create("player", 0).put("player", slime);
+        getLayoutMap().create("player", 0, defaultRenderer).put("player", slime);
+        getLayoutMap().create("tears", 1, defaultRenderer);
 
 
         activeArrow();
@@ -52,45 +61,49 @@ public class ControllerScene extends Scene2D
         getCamera2d().activateKeys(Window.WINDOW, Camera2D.SPECTATOR_KEY_SET);
 
         var axes = Input.getJoystickAxes(GLFW.GLFW_JOYSTICK_1, Input.Joystick.LEFT);
-        var maxes = Input.getJoystickAxes(GLFW.GLFW_JOYSTICK_1, Input.Joystick.RIGHT);
-
-        slime.move(axes.x * 15, axes.y * 15);
-
-        Mouse.setPosition(Mouse.getPosition().add(maxes.mul(10)));
-
-        getLayoutMap().run();
+        var tearAxes = Input.getJoystickAxes(GLFW.GLFW_JOYSTICK_1, Input.Joystick.RIGHT);
 
 
-        if (Input.isControllerTriggerPressed(GLFW.GLFW_JOYSTICK_1, Input.Joystick.LEFT_TRIGGER))
+        slime.movedt(axes.x * 600, axes.y * 600);
+
+
+        timer.run();
+
+        if (tearAxes.x + tearAxes.y != 0)
         {
-            getCamera2d().zoom(1.05f);
-        } else if (Input.isControllerTriggerPressed(GLFW.GLFW_JOYSTICK_1, Input.Joystick.RIGHT_TRIGGER))
-        {
-            getCamera2d().zoom(0.95f);
+            if(timer.isFinished())
+            {
+                Rectangle tear = new Rectangle(Registry.getTexture("tear.png"));
+                tear.setFillColor(Colors.RED);
+                tear.setSize(60, 60);
+                tear.setCenterOrigin();
+                var c= slime.getAngleVectorComponent(MathUtil.radianVectorToDegreeAngle(tearAxes));
+                tear.placeAround(slime.getCenterPosition(), slime.getWidth(), c);
+                tear.moves_c().setSpeed(
+                        new Vector2f(800)
+                                .mul(c)
+                                .add(axes.x * 150, axes.y * 150)
+                                .add(MathUtil.randV2f(150, -150)));
+                tear.timers_c().add(new SyncTimer(2000, 1, () -> getLayoutMap().removeDynamic(tear, "tears")));
+                getLayoutMap().put("tears", tear);
+                timer.resetTime();
+            }
+
         }
+
+
+
 
     }
 
     @Override
     public void render(double dt)
     {
-        getLayoutMap().draw(getDefaultRenderer());
+
     }
 
     @Override
     public void close()
-    {
-        getLayoutMap().destroy();
-    }
-
-    @Override
-    public void loadResources()
-    {
-
-    }
-
-    @Override
-    public void closeResources()
     {
 
     }
@@ -100,7 +113,7 @@ public class ControllerScene extends Scene2D
     {
         if (btn == GLFW.GLFW_KEY_SPACE)
         {
-            getLayoutMap().swap("player", "gui");
+            getLayoutMap().swap("player", "GUI");
         }
     }
 

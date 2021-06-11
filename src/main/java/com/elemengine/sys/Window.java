@@ -1,8 +1,10 @@
 package com.elemengine.sys;
 
 import com.elemengine.event.handler.*;
+import com.elemengine.graphics.camera.Camera2D;
 import com.elemengine.utils.Cursor;
 import com.elemengine.exceptions.SysException;
+import com.elemengine.utils.MathUtil;
 import org.joml.Vector2f;
 import org.joml.Vector2i;
 import org.joml.Vector4f;
@@ -280,6 +282,12 @@ public class Window
 		return new Vector2f(size.x / 2f, size.y / 2f);
 	}
 
+	public Vector2f get2DWorldCenter(Camera2D camera)
+	{
+		var size = getSize();
+		return MathUtil.screenToWorld(new Vector2f(size.x / 2f, size.y / 2f), camera);
+	}
+
 	public Vector2i getPosition()
 	{
 		int[] x = new int[1], y = new int[1];
@@ -325,6 +333,13 @@ public class Window
 		int[] width = new int[1], height = new int[1];
 		glfwGetWindowSize(windowId, width, height);
 		return new Vector2i(width[0], height[0]);
+	}
+
+	public Vector2f get2DWorldSize(Camera2D camera)
+	{
+		int[] width = new int[1], height = new int[1];
+		glfwGetWindowSize(windowId, width, height);
+		return MathUtil.screenToWorld(new Vector2f(width[0], height[0]), camera);
 	}
 
 	public void iconify()

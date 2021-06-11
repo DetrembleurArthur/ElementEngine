@@ -3,6 +3,7 @@ package com.elemengine.utils;
 import com.elemengine.graphics.camera.Camera2D;
 import com.elemengine.sys.Window;
 import org.joml.Vector2f;
+import org.joml.Vector2i;
 import org.joml.Vector4f;
 
 public class MathUtil
@@ -71,6 +72,11 @@ public class MathUtil
 		return (float) (Math.random() * ((max - min) + 1) + min);
 	}
 
+	public static Vector2f randV2f(float max, float min)
+	{
+		return new Vector2f(rand(max, min), rand(max, min));
+	}
+
 	public static Vector2f screenToWorld(Vector2f screen, Camera2D camera)
 	{
 		var pos = screen.sub(
@@ -84,5 +90,16 @@ public class MathUtil
 		pos.y = tmp.y;
 
 		return pos;
+	}
+
+	public static float radianVectorToDegreeAngle(Vector2f axes)
+	{
+		return (float) Math.toDegrees(Math.atan2(axes.y, axes.x));
+	}
+
+	public static Vector2f degreeAgnleToRadianVector(float angle)
+	{
+		angle = (float) Math.toRadians(angle);
+		return new Vector2f((float)Math.cos(angle), (float)Math.sin(angle));
 	}
 }

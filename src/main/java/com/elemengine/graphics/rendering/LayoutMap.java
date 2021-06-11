@@ -23,9 +23,9 @@ public class LayoutMap implements Dynamic
         Collections.sort(layouts);
     }
 
-    public LayoutMap create(String layoutId, int priority)
+    public LayoutMap create(String layoutId, int priority, Renderer renderer)
     {
-        layouts.addLater(new Layout(priority, layoutId));
+        layouts.addLater(new Layout(priority, layoutId, renderer));
         layouts.sync();
         sort();
         return this;
@@ -108,7 +108,7 @@ public class LayoutMap implements Dynamic
     @Override
     public void draw()
     {
-        layouts.forEach(Layout::draw);
+        layouts.forEach(dynamics -> dynamics.draw(dynamics.getRenderer()));
     }
 
     @Override

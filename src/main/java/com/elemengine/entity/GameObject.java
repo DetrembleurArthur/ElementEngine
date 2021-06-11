@@ -340,6 +340,16 @@ public class GameObject extends GraphicElement
 		return getTowardRotationComponent(target) * speed;
 	}
 
+	public void placeAround(Vector2f position, float distance, Vector2f radComponent)
+	{
+		setPosition(new Vector2f(position).add(new Vector2f(distance).mul(radComponent)));
+	}
+
+	public void placeAround(Vector2f position, float distance, float angleDegree)
+	{
+		setPosition(new Vector2f(position).add(new Vector2f(distance).mul(MathUtil.degreeAgnleToRadianVector(angleDegree))));
+	}
+
 	public void rotateToward(Vector2f target)
 	{
 		rotate(getTowardRotationComponent(target));
