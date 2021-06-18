@@ -3,6 +3,7 @@ package com.elemengine.components.event;
 import com.elemengine.components.Component;
 import com.elemengine.debug.Log;
 import com.elemengine.entity.GameObject;
+import com.elemengine.graphics.camera.Camera2D;
 
 import java.util.ArrayList;
 
@@ -97,111 +98,111 @@ public class EventManagerComponent extends Component implements Runnable
 	}
 
 
-	public void onMouseHovering(ActionEvent action)
+	public void onMouseHovering(ActionEvent action, Camera2D camera2D)
 	{
 		if(!onEvent(MouseHoveringEvent.class, action))
 		{
-			addEvent(new MouseHoveringEvent(getRelativeObject()).addActionEvent(action));
+			addEvent(new MouseHoveringEvent(getRelativeObject(), camera2D).addActionEvent(action));
 		}
 	}
 
-	public void onMouseEntered(ActionEvent action)
+	public void onMouseEntered(ActionEvent action, Camera2D camera2D)
 	{
 		if(!onEvent(MouseEnteredEvent.class, action))
 		{
-			addEvent(new MouseEnteredEvent(getRelativeObject()).addActionEvent(action));
+			addEvent(new MouseEnteredEvent(getRelativeObject(), camera2D).addActionEvent(action));
 		}
 	}
 
-	public void onMouseExited(ActionEvent action)
+	public void onMouseExited(ActionEvent action, Camera2D camera2D)
 	{
 		if(!onEvent(MouseExitedEvent.class, action))
 		{
-			addEvent(new MouseExitedEvent(getRelativeObject()).addActionEvent(action));
+			addEvent(new MouseExitedEvent(getRelativeObject(), camera2D).addActionEvent(action));
 		}
 	}
 
-	public void onMouseMoved(ActionEvent action)
+	public void onMouseMoved(ActionEvent action, Camera2D camera2D)
 	{
 		if(!onEvent(MouseMoveEvent.class, action))
 		{
-			addEvent(new MouseMoveEvent(getRelativeObject()).addActionEvent(action));
+			addEvent(new MouseMoveEvent(getRelativeObject(), camera2D).addActionEvent(action));
 		}
 	}
 
-	public void onMouseButtonClicked(ActionEvent action, boolean repeated)
+	public void onMouseButtonClicked(ActionEvent action, boolean repeated, Camera2D camera2D)
 	{
 		if(!onEvent(MouseButtonClickEvent.class, action))
 		{
-			addEvent(new MouseButtonClickEvent(getRelativeObject(), repeated).addActionEvent(action));
+			addEvent(new MouseButtonClickEvent(getRelativeObject(), repeated, camera2D).addActionEvent(action));
 		}
 	}
 
-	public void onMouseLeftButtonClicked(ActionEvent action, boolean repeated)
+	public void onMouseLeftButtonClicked(ActionEvent action, boolean repeated, Camera2D camera2D)
 	{
 		if(!onEvent(MouseLeftButtonClickEvent.class, action))
 		{
-			addEvent(new MouseLeftButtonClickEvent(getRelativeObject(), repeated).addActionEvent(action));
+			addEvent(new MouseLeftButtonClickEvent(getRelativeObject(), repeated, camera2D).addActionEvent(action));
 		}
 	}
 
-	public void onMouseRightButtonClicked(ActionEvent action, boolean repeated)
+	public void onMouseRightButtonClicked(ActionEvent action, boolean repeated, Camera2D camera2D)
 	{
 		if(!onEvent(MouseRightButtonClickEvent.class, action))
 		{
-			addEvent(new MouseRightButtonClickEvent(getRelativeObject(), repeated).addActionEvent(action));
+			addEvent(new MouseRightButtonClickEvent(getRelativeObject(), repeated, camera2D).addActionEvent(action));
 		}
 	}
 
-	public void onMouseMiddleButtonClicked(ActionEvent action, boolean repeated)
+	public void onMouseMiddleButtonClicked(ActionEvent action, boolean repeated, Camera2D camera2D)
 	{
 		if(!onEvent(MouseMiddleButtonClickEvent.class, action))
 		{
-			addEvent(new MouseMiddleButtonClickEvent(getRelativeObject(), repeated).addActionEvent(action));
+			addEvent(new MouseMiddleButtonClickEvent(getRelativeObject(), repeated, camera2D).addActionEvent(action));
 		}
 	}
 
-	public void onMouseButtonReleased(ActionEvent action)
+	public void onMouseButtonReleased(ActionEvent action, Camera2D camera2D)
 	{
 		if(!onEvent(MouseButtonReleasedEvent.class, action))
 		{
-			addEvent(new MouseButtonReleasedEvent(getRelativeObject()).addActionEvent(action));
+			addEvent(new MouseButtonReleasedEvent(getRelativeObject(), camera2D).addActionEvent(action));
 		}
 	}
 
-	public void onMouseLeftButtonReleased(ActionEvent action)
+	public void onMouseLeftButtonReleased(ActionEvent action, Camera2D camera2D)
 	{
 		if(!onEvent(MouseLeftButtonRealeasedEvent.class, action))
 		{
-			addEvent(new MouseLeftButtonRealeasedEvent(getRelativeObject()).addActionEvent(action));
+			addEvent(new MouseLeftButtonRealeasedEvent(getRelativeObject(), camera2D).addActionEvent(action));
 		}
 	}
 
-	public void onMouseRightButtonReleased(ActionEvent action)
+	public void onMouseRightButtonReleased(ActionEvent action, Camera2D camera2D)
 	{
 		if(!onEvent(MouseRightButtonRealeasedEvent.class, action))
 		{
-			addEvent(new MouseRightButtonRealeasedEvent(getRelativeObject()).addActionEvent(action));
+			addEvent(new MouseRightButtonRealeasedEvent(getRelativeObject(), camera2D).addActionEvent(action));
 		}
 	}
 
-	public void onMouseMiddleButtonReleased(ActionEvent action)
+	public void onMouseMiddleButtonReleased(ActionEvent action, Camera2D camera2D)
 	{
 		if(!onEvent(MouseMiddleButtonRealeasedEvent.class, action))
 		{
-			addEvent(new MouseMiddleButtonRealeasedEvent(getRelativeObject()).addActionEvent(action));
+			addEvent(new MouseMiddleButtonRealeasedEvent(getRelativeObject(), camera2D).addActionEvent(action));
 		}
 	}
 
-	public void onMouseButtonDraged(ActionEvent action)
+	public void onMouseButtonDraged(ActionEvent action, Camera2D camera2D)
 	{
 		if(!onEvent(MouseButtonDragEvent.class, action))
 		{
-			addEvent(new MouseButtonDragEvent(getRelativeObject()).addActionEvent(action));
+			addEvent(new MouseButtonDragEvent(getRelativeObject(), camera2D).addActionEvent(action));
 		}
 	}
 
-	private void enableMouseDragging(int orientation)
+	private void enableMouseDragging(int orientation, Camera2D camera2D)
 	{
 		MouseButtonDragEvent event = getEvent(MouseButtonDragEvent.class);
 		if(event != null)
@@ -210,31 +211,31 @@ public class EventManagerComponent extends Component implements Runnable
 		}
 		else
 		{
-			event = new MouseButtonDragEvent(getRelativeObject());
+			event = new MouseButtonDragEvent(getRelativeObject(), camera2D);
 			event.setDragActionEvent(orientation);
 			addEvent(event);
 		}
 	}
 
-	public void enableMouseDragging()
+	public void enableMouseDragging(Camera2D camera2D)
 	{
-		enableMouseDragging(MouseButtonDragEvent.Orientation.BOTH);
+		enableMouseDragging(MouseButtonDragEvent.Orientation.BOTH, camera2D);
 	}
 
-	public void enableHorizontalMouseDragging()
+	public void enableHorizontalMouseDragging(Camera2D camera2D)
 	{
-		enableMouseDragging(MouseButtonDragEvent.Orientation.HORIZONTAL);
+		enableMouseDragging(MouseButtonDragEvent.Orientation.HORIZONTAL, camera2D);
 	}
 
-	public void enableVerticalMouseDragging()
+	public void enableVerticalMouseDragging(Camera2D camera2D)
 	{
-		enableMouseDragging(MouseButtonDragEvent.Orientation.VERTICAL);
+		enableMouseDragging(MouseButtonDragEvent.Orientation.VERTICAL, camera2D);
 	}
 
-	public void changeDraggingOrientation(int orientation)
+	public void changeDraggingOrientation(int orientation, Camera2D camera2D)
 	{
 		clearEvent(MouseButtonDragEvent.class);
-		enableMouseDragging(orientation);
+		enableMouseDragging(orientation, camera2D);
 	}
 
 	public void onPositionChanged(ActionEvent action)
@@ -245,11 +246,11 @@ public class EventManagerComponent extends Component implements Runnable
 		}
 	}
 
-	public void onMouseButtonDoubleClicked(ActionEvent action)
+	public void onMouseButtonDoubleClicked(ActionEvent action, Camera2D camera2D)
 	{
 		if(!onEvent(MouseButtonDoubleClickEvent.class, action))
 		{
-			addEvent(new MouseButtonDoubleClickEvent(getRelativeObject()).addActionEvent(action));
+			addEvent(new MouseButtonDoubleClickEvent(getRelativeObject(), camera2D).addActionEvent(action));
 		}
 	}
 

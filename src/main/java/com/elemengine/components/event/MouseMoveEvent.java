@@ -2,15 +2,16 @@ package com.elemengine.components.event;
 
 import com.elemengine.entity.GameObject;
 import com.elemengine.event.Mouse;
+import com.elemengine.graphics.camera.Camera2D;
 import org.joml.Vector2f;
 
 public class MouseMoveEvent extends MouseEvent
 {
 	private Vector2f lastMousePosition;
 
-	public MouseMoveEvent(GameObject relativeObject)
+	public MouseMoveEvent(GameObject relativeObject, Camera2D camera2D)
 	{
-		super(relativeObject);
+		super(relativeObject, camera2D);
 		lastMousePosition = new Vector2f();
 	}
 

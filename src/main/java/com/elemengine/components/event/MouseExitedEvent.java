@@ -2,13 +2,14 @@ package com.elemengine.components.event;
 
 import com.elemengine.entity.GameObject;
 import com.elemengine.event.Mouse;
+import com.elemengine.graphics.camera.Camera2D;
 
 public class MouseExitedEvent extends MouseEvent
 {
 	protected boolean exited;
-	public MouseExitedEvent(GameObject relativeObject)
+	public MouseExitedEvent(GameObject relativeObject, Camera2D camera2D)
 	{
-		super(relativeObject);
+		super(relativeObject, camera2D);
 		exited = true;
 	}
 

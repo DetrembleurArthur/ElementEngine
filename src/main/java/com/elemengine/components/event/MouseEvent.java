@@ -9,10 +9,10 @@ public abstract class MouseEvent extends RelativeEvent
 {
 	protected final Camera2D camera;
 
-	public MouseEvent(GameObject relativeObject)
+	public MouseEvent(GameObject relativeObject, Camera2D camera)
 	{
 		super(relativeObject);
-		this.camera = ((Scene2D) Application.APPLICATION.getCurrentScene()).getCamera2d();
+		this.camera = camera;
 		this.object = relativeObject;
 	}
 

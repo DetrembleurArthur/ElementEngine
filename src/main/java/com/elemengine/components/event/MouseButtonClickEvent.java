@@ -3,6 +3,7 @@ package com.elemengine.components.event;
 import com.elemengine.entity.GameObject;
 import com.elemengine.event.Input;
 import com.elemengine.event.Mouse;
+import com.elemengine.graphics.camera.Camera2D;
 import org.joml.Vector2f;
 
 public class MouseButtonClickEvent extends MouseButtonEvent
@@ -11,14 +12,14 @@ public class MouseButtonClickEvent extends MouseButtonEvent
 	private boolean clicked;
 	private boolean repeated;
 
-	public MouseButtonClickEvent(GameObject relativeObject, boolean repeated)
+	public MouseButtonClickEvent(GameObject relativeObject, boolean repeated, Camera2D camera2D)
 	{
-		this(relativeObject, -1, repeated);
+		this(relativeObject, -1, repeated, camera2D);
 	}
 
-	public MouseButtonClickEvent(GameObject relativeObject, int buttonId, boolean repeated)
+	public MouseButtonClickEvent(GameObject relativeObject, int buttonId, boolean repeated, Camera2D camera2D)
 	{
-		super(relativeObject, buttonId);
+		super(relativeObject, buttonId, camera2D);
 		clickBloqued = false;
 		clicked = false;
 		this.repeated = repeated;

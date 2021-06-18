@@ -59,7 +59,7 @@ public class MainScene extends Scene2D
         rectangle.setCenterPosition(Window.WINDOW.get2DWorldCenter(getCamera2d()));
         rectangle.events_c().onMouseButtonClicked(sender -> {
             focusElement = rectangle;
-        }, false);
+        }, false, getCamera2d());
         rectangle.timers_c().add(
                 new SyncTimer(1500, DynamicTimer.INFINITE, () -> {
                     var campos = Window.WINDOW.getCenter();

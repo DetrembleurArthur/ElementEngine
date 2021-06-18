@@ -3,20 +3,21 @@ package com.elemengine.components.event;
 import com.elemengine.entity.GameObject;
 import com.elemengine.event.Input;
 import com.elemengine.event.Mouse;
+import com.elemengine.graphics.camera.Camera2D;
 
 public class MouseButtonReleasedEvent extends MouseButtonEvent
 {
 	private boolean buttonPressed;
 	private boolean falseRelease;
 
-	public MouseButtonReleasedEvent(GameObject relativeObject)
+	public MouseButtonReleasedEvent(GameObject relativeObject, Camera2D camera2D)
 	{
-		this(relativeObject, -1);
+		this(relativeObject, -1, camera2D);
 	}
 
-	public MouseButtonReleasedEvent(GameObject relativeObject, int buttonId)
+	public MouseButtonReleasedEvent(GameObject relativeObject, int buttonId, Camera2D camera2D)
 	{
-		super(relativeObject, buttonId);
+		super(relativeObject, buttonId, camera2D);
 		buttonPressed = false;
 		falseRelease = false;
 	}

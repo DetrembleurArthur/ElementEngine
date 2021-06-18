@@ -6,6 +6,7 @@ import com.elemengine.debug.Log;
 import com.elemengine.event.Input;
 import com.elemengine.event.Mouse;
 import com.elemengine.components.event.MouseButtonReleasedEvent;
+import com.elemengine.graphics.camera.Camera2D;
 import com.elemengine.time.StaticTimer;
 import org.lwjgl.glfw.GLFW;
 
@@ -15,13 +16,13 @@ public class Entry extends Text
 	private float speedKey;
 	private StaticTimer timer;
 
-	public Entry(Font font, float height)
+	public Entry(Font font, float height, Camera2D camera2D)
 	{
 		super(font, "your text here");
 		setTextHeight(height);
 		focused = false;
 		addComponent(new EventManagerComponent(this));
-		getComponent(EventManagerComponent.class).onMouseButtonReleased(sender -> focused = true);
+		getComponent(EventManagerComponent.class).onMouseButtonReleased(sender -> focused = true, camera2D);
 		speedKey = 0;
 		timer = new StaticTimer(speedKey);
 		timer.activate();

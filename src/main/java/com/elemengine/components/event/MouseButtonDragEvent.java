@@ -3,6 +3,7 @@ package com.elemengine.components.event;
 import com.elemengine.components.properties.CommonPropertiesComponent;
 import com.elemengine.entity.GameObject;
 import com.elemengine.event.Mouse;
+import com.elemengine.graphics.camera.Camera2D;
 import org.joml.Vector2f;
 
 public class MouseButtonDragEvent extends MouseLeftButtonClickEvent
@@ -18,9 +19,9 @@ public class MouseButtonDragEvent extends MouseLeftButtonClickEvent
 
 	private Vector2f relativeVector;
 
-	public MouseButtonDragEvent(GameObject relativeObject)
+	public MouseButtonDragEvent(GameObject relativeObject, Camera2D camera2D)
 	{
-		super(relativeObject, true);
+		super(relativeObject, true, camera2D);
 		relativeVector = new Vector2f();
 	}
 

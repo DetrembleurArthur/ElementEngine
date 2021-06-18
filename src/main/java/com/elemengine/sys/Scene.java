@@ -134,12 +134,12 @@ public abstract class Scene implements Manageable
         arrowLeft.getSize().mul(0.1f, 0.1f, 1f);
         arrowLeft.setCenterOrigin();
         arrowLeft.setTopLeftPosition(new Vector2f(10, 10));
-        arrowLeft.events_c().onMouseLeftButtonReleased(sender -> getSignal().previous = true);
+        arrowLeft.events_c().onMouseLeftButtonReleased(sender -> getSignal().previous = true, getGuiCamera());
 
         Rectangle arrowRight = new Rectangle(Registry.getTexture("arrow.png"));
         arrowRight.getSize().mul(0.1f, 0.1f, 1f);
         arrowRight.setTopRightPosition(new Vector2f(getGuiCamera().getOrthoProjSettings().getRight() - 10, 10));
-        arrowRight.events_c().onMouseLeftButtonReleased(sender -> getSignal().next = true);
+        arrowRight.events_c().onMouseLeftButtonReleased(sender -> getSignal().next = true, getGuiCamera());
 
         getLayoutMap().put("GUI", arrowLeft, arrowRight);
     }

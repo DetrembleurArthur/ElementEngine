@@ -44,8 +44,8 @@ public class ControllerScene extends Scene2D
         slime.sprites_c().setCurrent("blob-idle");
         slime.sprites_c().setCurrentId(0);
         slime.sprites_c().setSpeedAnimation(300);
-        slime.events_c().onMouseEntered(sender -> slime.setFillColor(Colors.CYAN));
-        slime.events_c().onMouseExited(sender -> slime.setFillColor(Colors.LIME));
+        slime.events_c().onMouseEntered(sender -> slime.setFillColor(Colors.CYAN), getCamera2d());
+        slime.events_c().onMouseExited(sender -> slime.setFillColor(Colors.LIME), getCamera2d());
 
 
         getLayoutMap().create("player", 0, defaultRenderer).put("player", slime);

@@ -1,15 +1,16 @@
 package com.elemengine.components.event;
 
 import com.elemengine.entity.GameObject;
+import com.elemengine.graphics.camera.Camera2D;
 import com.elemengine.time.StaticTimer;
 
 public class MouseButtonDoubleClickEvent extends MouseLeftButtonClickEvent
 {
 	private StaticTimer timer;
 
-	public MouseButtonDoubleClickEvent(GameObject relativeObject)
+	public MouseButtonDoubleClickEvent(GameObject relativeObject, Camera2D camera2D)
 	{
-		super(relativeObject, false);
+		super(relativeObject, false, camera2D);
 		timer = new StaticTimer(200f);
 	}
 
