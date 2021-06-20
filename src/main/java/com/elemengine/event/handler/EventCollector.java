@@ -6,6 +6,7 @@ import com.elemengine.event.handler.annotations.OnEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class EventCollector implements EventHandler
@@ -48,6 +49,7 @@ public class EventCollector implements EventHandler
                 } catch (IllegalAccessException | InvocationTargetException e)
                 {
                     e.printStackTrace();
+                    Log.print("Args must be: " + Arrays.toString(args));
                 }
             }
         }

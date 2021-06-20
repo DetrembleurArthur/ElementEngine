@@ -118,7 +118,7 @@ public class ControllerScene extends Scene2D
     }
 
     @OnEvent(OnEvent.Types.JOYSTICK_CONNECTED)
-    public void connected(int i, int e)
+    public void connected(int i)
     {
         Log.print("CONNECTED");
     }

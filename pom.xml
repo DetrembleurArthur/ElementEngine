@@ -7,6 +7,23 @@
     <groupId>com.elemengine</groupId>
     <artifactId>ElementEngine</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <resources.path>src/main/resources/</resources.path>
+            </properties>
+        </profile>
+        <profile>
+            <id>release</id>
+            <properties>
+                <resources.path>./</resources.path>
+            </properties>
+        </profile>
+    </profiles>
 
     <properties>
         <lwjgl.version>3.2.3</lwjgl.version>
@@ -104,9 +121,9 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
+                <excludes>
+                    <exclude>*/**</exclude>
+                </excludes>
             </resource>
         </resources>
         <plugins>
@@ -149,6 +166,45 @@
                         <goals>
                             <goal>single</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/main/resources</directory>
+                                    <includes>
+                                        <include>*/**</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>write-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <outputFile>${project.build.outputDirectory}/conf.properties</outputFile>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
