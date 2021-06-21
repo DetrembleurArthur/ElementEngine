@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="82a4e7c7-bc9b-456c-8f43-cd3f9137aa92" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Application1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/engine-assets/shaders/fragment.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/engine-assets/shaders/light/fragment.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/engine-assets/shaders/light/vertex.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/engine-assets/shaders/vertex.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/engine-assets/sprites/arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/engine-assets/sprites/blob.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/engine-assets/sprites/tear.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/MyScene.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/MyScene.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/dependency-maven-plugin-markers/com.elemengine-ElementEngine-jar-1.0-SNAPSHOT-1699126911" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/.idea/intellij-javadocs-4.0.1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/engine-assets/shaders/fragment.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/engine-assets/shaders/light/fragment.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/engine-assets/shaders/light/vertex.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/engine-assets/shaders/vertex.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/engine-assets/sprites/arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/engine-assets/sprites/blob.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/engine-assets/sprites/tear.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/audio/SoundBuffer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/audio/SoundListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/audio/SoundManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/audio/SoundSource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/binding/Converter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/binding/FloatProperty.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/binding/IntegerProperty.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/binding/Listener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/binding/NumberProperty.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/binding/Process.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/binding/Property.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/Component.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/animations/Animation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/animations/AnimationsComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/ActionEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/DataChangedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/Event.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/EventManagerComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/FillColorChangedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/MouseButtonClickEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/MouseButtonDoubleClickEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/MouseButtonDragEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/MouseButtonEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/MouseButtonReleasedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/MouseEnteredEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/MouseEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/MouseExitedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/MouseHoveringEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/MouseLeftButtonClickEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/MouseLeftButtonRealeasedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/MouseMiddleButtonClickEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/MouseMiddleButtonRealeasedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/MouseMoveEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/MouseRightButtonClickEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/MouseRightButtonRealeasedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/PositionChangedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/RelativeEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/Valuable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/event/ValueChangedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/moves/MoveManagerComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/properties/CommonPropertiesComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/properties/TextPropertyComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/properties/ValuePropertyComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/scripts/ScriptsComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/sprites/SpritesComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/components/timers/TimersComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/conf/Configuration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/debug/Log.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/demo/ControllerScene.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/demo/DemoApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/entity/Destroyable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/entity/Drawable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/entity/Dynamic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/entity/GameObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/entity/GraphicElement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/entity/Transformable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/Input.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/Mouse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/ButtonCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/ButtonEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/CursorEnterCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/CursorEnterEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/CursorPosCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/CursorPosEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/DropCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/DropEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/EventCollector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/EventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/JoystickCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/JoystickEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/KeyCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/KeyEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/ScrollCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/ScrollEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/TextInputCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/TextInputEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/WindowCloseCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/WindowCloseEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/WindowFocusCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/WindowFocusEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/WindowIconifyCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/WindowIconifyEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/WindowMaximizeCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/WindowMaximizeEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/WindowPosCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/WindowPosEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/WindowResizeCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/WindowResizeEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/event/handler/annotations/OnEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/exceptions/SysException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/camera/Camera.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/camera/Camera2D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/camera/Camera3D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/camera/KeySet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/camera/OrthoProjectionSettings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/camera/PerspProjectionSettings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/loaders/ObjData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/loaders/ObjLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/loaders/TextureLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/loaders/TriangularFace.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/rendering/Image.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/rendering/Layout.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/rendering/LayoutMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/rendering/Light.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/rendering/LightRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/rendering/Renderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/rendering/Sprite.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/rendering/SpriteSheet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/rendering/TargetRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/rendering/TargetTexture.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/rendering/Texture.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/shaders/Shader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/shaders/fragment.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/shaders/light/fragment.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/shaders/light/vertex.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/shaders/vertex.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/shapes/BoundingBox.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/shapes/Circle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/shapes/Line.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/shapes/ProgressBar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/shapes/Rectangle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/shapes/Slider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/shapes/Triangle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/texts/Entry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/texts/Font.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/texts/FontSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/texts/Glyph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/texts/Text.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/texts/TrueTypeFont.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/vertex/IndexBuffer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/vertex/Mesh.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/vertex/VertexArray.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/graphics/vertex/VertexBuffer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/particles/Emitter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/particles/Particle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/registry/Registry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/scripting/AndCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/scripting/CScript.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/scripting/ComposedCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/scripting/Condition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/scripting/OrCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/scripting/Script.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/sys/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/sys/Manageable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/sys/ResourcesManageable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/sys/Scene.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/sys/Scene2D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/sys/Scene3D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/sys/Window.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/sys/default-cursor.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/time/AsyncTimer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/time/DynamicTimer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/time/StaticTimer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/time/SyncTimer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/time/Time.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/tweening/TFunc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/tweening/TimedTweenAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/tweening/TweenAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/tweening/TweenFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/tweening/TweenGetter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/tweening/TweenSetter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/utils/Clipboard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/utils/Colors.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/utils/Cursor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/utils/DynamicLaterList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/utils/FileUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/utils/FreeReflectable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/utils/LaterList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/utils/MathUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/utils/To.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../engine/src/main/java/com/elemengine/utils/VariableLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/intellij-javadocs-4.0.1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../engine-assets/shaders/fragment.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../engine-assets/shaders/light/fragment.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../engine-assets/shaders/light/vertex.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../engine-assets/shaders/vertex.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../engine-assets/sprites/arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../engine-assets/sprites/blob.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../engine-assets/sprites/tear.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/audio/SoundBuffer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/audio/SoundListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/audio/SoundManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/audio/SoundSource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/binding/Converter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/binding/FloatProperty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/binding/IntegerProperty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/binding/Listener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/binding/NumberProperty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/binding/Process.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/binding/Property.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/Component.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/animations/Animation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/animations/AnimationsComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/ActionEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/DataChangedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/Event.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/EventManagerComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/FillColorChangedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/MouseButtonClickEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/MouseButtonDoubleClickEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/MouseButtonDragEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/MouseButtonEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/MouseButtonReleasedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/MouseEnteredEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/MouseEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/MouseExitedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/MouseHoveringEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/MouseLeftButtonClickEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/MouseLeftButtonRealeasedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/MouseMiddleButtonClickEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/MouseMiddleButtonRealeasedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/MouseMoveEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/MouseRightButtonClickEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/MouseRightButtonRealeasedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/PositionChangedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/RelativeEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/Valuable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/event/ValueChangedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/moves/MoveManagerComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/properties/CommonPropertiesComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/properties/TextPropertyComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/properties/ValuePropertyComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/scripts/ScriptsComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/sprites/SpritesComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/components/timers/TimersComponent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/conf/Configuration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/debug/Log.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/demo/ControllerScene.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/demo/DemoApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/entity/Destroyable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/entity/Drawable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/entity/Dynamic.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/entity/GameObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/entity/GraphicElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/entity/Transformable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/Input.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/Mouse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/ButtonCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/ButtonEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/CursorEnterCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/CursorEnterEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/CursorPosCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/CursorPosEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/DropCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/DropEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/EventCollector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/EventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/JoystickCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/JoystickEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/KeyCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/KeyEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/ScrollCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/ScrollEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/TextInputCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/TextInputEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/WindowCloseCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/WindowCloseEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/WindowFocusCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/WindowFocusEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/WindowIconifyCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/WindowIconifyEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/WindowMaximizeCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/WindowMaximizeEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/WindowPosCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/WindowPosEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/WindowResizeCallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/WindowResizeEventHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/event/handler/annotations/OnEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/exceptions/SysException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/camera/Camera.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/camera/Camera2D.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/camera/Camera3D.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/camera/KeySet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/camera/OrthoProjectionSettings.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/camera/PerspProjectionSettings.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/loaders/ObjData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/loaders/ObjLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/loaders/TextureLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/loaders/TriangularFace.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/rendering/Image.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/rendering/Layout.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/rendering/LayoutMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/rendering/Light.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/rendering/LightRenderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/rendering/Renderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/rendering/Sprite.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/rendering/SpriteSheet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/rendering/TargetRenderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/rendering/TargetTexture.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/rendering/Texture.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/shaders/Shader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/shaders/fragment.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/shaders/light/fragment.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/shaders/light/vertex.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/shaders/vertex.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/shapes/BoundingBox.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/shapes/Circle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/shapes/Line.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/shapes/ProgressBar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/shapes/Rectangle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/shapes/Slider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/shapes/Triangle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/texts/Entry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/texts/Font.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/texts/FontSet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/texts/Glyph.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/texts/Text.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/texts/TrueTypeFont.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/vertex/IndexBuffer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/vertex/Mesh.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/vertex/VertexArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/graphics/vertex/VertexBuffer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/particles/Emitter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/particles/Particle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/registry/Registry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/scripting/AndCondition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/scripting/CScript.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/scripting/ComposedCondition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/scripting/Condition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/scripting/OrCondition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/scripting/Script.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/sys/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/sys/Manageable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/sys/ResourcesManageable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/sys/Scene.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/sys/Scene2D.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/sys/Scene3D.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/sys/Window.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/sys/default-cursor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/time/AsyncTimer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/time/DynamicTimer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/time/StaticTimer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/time/SyncTimer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/time/Time.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/tweening/TFunc.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/tweening/TimedTweenAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/tweening/TweenAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/tweening/TweenFunction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/tweening/TweenGetter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/tweening/TweenSetter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/utils/Clipboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/utils/Colors.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/utils/Cursor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/utils/DynamicLaterList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/utils/FileUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/utils/FreeReflectable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/utils/LaterList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/utils/MathUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/utils/To.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/main/java/com/elemengine/utils/VariableLoader.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.2\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1uG85W51iUAJaZ4Y4z6rZpx8IE8" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Users\mb624\Documents\GitHub\ElementEngine\demos\app1\src\main\java" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Maven.Release application">
+    <configuration name="Launch application" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Application1" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Build application" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="compile" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="Release application" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="package" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Launch application" />
+      <item itemvalue="Maven.Build application" />
+      <item itemvalue="Maven.Release application" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="82a4e7c7-bc9b-456c-8f43-cd3f9137aa92" name="Default Changelist" comment="" />
+      <created>1624280384139</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1624280384139</updated>
+      <workItem from="1624280385352" duration="186000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2334" y="174" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1624280570936">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2334" y="174" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624280570936" />
+    <state x="2609" y="321" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1624280530958">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2609" y="321" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624280530958" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1624280559017">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624280559017" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1624280559017">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624280559017" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1624280559017">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624280559017" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1624280559017">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1624280559017" />
+  </component>
+</project>
