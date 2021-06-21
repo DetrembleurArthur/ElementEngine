@@ -17,7 +17,7 @@ public class DemoApp extends Application
         Window.WINDOW.setResizeable(true);
         Window.WINDOW.center();
 
-        TextureLoader.loadDir(FileUtil.getFile("sprites/").getPath());
+        TextureLoader.loadDir(FileUtil.getEngineFile("sprites/").getPath());
         setFramerateLimit(60);
         addScene("CONTROLLER", new ControllerScene());
         setCurrentScene("CONTROLLER");

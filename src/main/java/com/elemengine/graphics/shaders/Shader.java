@@ -1,6 +1,5 @@
 package com.elemengine.graphics.shaders;
 
-import com.elemengine.conf.Configuration;
 import com.elemengine.graphics.camera.Camera3D;
 import com.elemengine.utils.FileUtil;
 import org.joml.Matrix4f;
@@ -9,7 +8,6 @@ import org.joml.Vector4f;
 import org.lwjgl.system.MemoryUtil;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.FloatBuffer;
@@ -100,7 +98,7 @@ public class Shader
     {
         String masterBuf = "";
         String buf;
-        BufferedReader br = new BufferedReader(new FileReader(FileUtil.getFile(filename)));
+        BufferedReader br = new BufferedReader(new FileReader(FileUtil.getEngineFile(filename)));
         while ((buf = br.readLine()) != null)
         {
             var tokens = buf.split(" ");

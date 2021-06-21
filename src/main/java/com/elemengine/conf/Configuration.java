@@ -8,7 +8,9 @@ import java.util.Properties;
 
 public class Configuration
 {
-    private static String RESOURCES_PATH;
+    private static String ENGINE_ASSETS_PATH;
+    private static String ASSETS_PATH;
+    private static boolean ENABLE_LOGS;
     private static Properties properties;
 
     static
@@ -18,16 +20,28 @@ public class Configuration
         try
         {
             properties.load(inputStream);
-            RESOURCES_PATH = properties.getProperty("resources.path");
+            ENGINE_ASSETS_PATH = properties.getProperty("engine.assets.path");
+            ASSETS_PATH = properties.getProperty("assets.path");
+            ENABLE_LOGS = properties.getProperty("enable.logs").equals("true");
         } catch (IOException e)
         {
             e.printStackTrace();
         }
     }
 
-    public static String getResourcesPath()
+    public static String getEngineAssetsPath()
     {
-        return RESOURCES_PATH;
+        return ENGINE_ASSETS_PATH;
+    }
+
+    public static String getAssetsPath()
+    {
+        return ASSETS_PATH;
+    }
+
+    public static boolean isEnableLogs()
+    {
+        return ENABLE_LOGS;
     }
 
     public static Properties getProperties()

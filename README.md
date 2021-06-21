@@ -20,27 +20,13 @@ To use this engine:
     <artifactId>Test2</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <profiles>
-        <profile>
-            <id>dev</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <resources.path>src/main/resources/</resources.path>
-            </properties>
-        </profile>
-        <profile>
-            <id>release</id>
-            <properties>
-                <resources.path>./</resources.path>
-            </properties>
-        </profile>
-    </profiles>
-
     <properties>
         <java.version>1.13</java.version>
         <main.class>Main</main.class>
+        <assets.path>assets/</assets.path>
+        <engine.assets.path>${assets.path}/engine-assets/</engine.assets.path>
+        <application.name>DemoApp</application.name>
+        <enable.logs>true</enable.logs>
     </properties>
 
     <dependencies>
@@ -55,7 +41,7 @@ To use this engine:
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>${assets.path}</directory>
                 <excludes>
                     <exclude>*/**</exclude>
                 </excludes>
@@ -89,6 +75,9 @@ To use this engine:
                         <goals>
                             <goal>single</goal>
                         </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/${application.name}</outputDirectory>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -97,15 +86,15 @@ To use this engine:
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <phase>validate</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <outputDirectory>${project.build.directory}/${application.name}/${assets.path}</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.basedir}/src/main/resources</directory>
+                                    <directory>${project.basedir}/${assets.path}</directory>
                                     <includes>
                                         <include>*/**</include>
                                     </includes>
@@ -149,16 +138,8 @@ To use this engine:
                                     <artifactId>ElementEngine</artifactId>
                                     <version>1.0-SNAPSHOT</version>
                                     <type>jar</type>
-                                    <outputDirectory>${project.build.outputDirectory}</outputDirectory>
-                                    <includes>shaders/**,sprites/**</includes>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>com.elemengine</groupId>
-                                    <artifactId>ElementEngine</artifactId>
-                                    <version>1.0-SNAPSHOT</version>
-                                    <type>jar</type>
-                                    <outputDirectory>src/main/resources/</outputDirectory>
-                                    <includes>shaders/**,sprites/**</includes>
+                                    <outputDirectory>${assets.path}</outputDirectory>
+                                    <includes>engine-assets/**</includes>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -167,7 +148,6 @@ To use this engine:
             </plugin>
         </plugins>
     </build>
-
 </project>
 
 ```
