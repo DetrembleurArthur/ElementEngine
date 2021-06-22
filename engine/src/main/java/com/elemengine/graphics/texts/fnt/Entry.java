@@ -1,4 +1,4 @@
-package com.elemengine.graphics.texts;
+package com.elemengine.graphics.texts.fnt;
 
 import com.elemengine.components.event.EventManagerComponent;
 import com.elemengine.components.properties.TextPropertyComponent;

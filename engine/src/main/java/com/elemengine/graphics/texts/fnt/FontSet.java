@@ -1,4 +1,4 @@
-package com.elemengine.graphics.texts;
+package com.elemengine.graphics.texts.fnt;
 
 public class FontSet
 {

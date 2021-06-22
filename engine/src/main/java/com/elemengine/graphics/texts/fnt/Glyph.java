@@ -1,4 +1,4 @@
-package com.elemengine.graphics.texts;
+package com.elemengine.graphics.texts.fnt;
 
 import com.elemengine.graphics.rendering.Texture;
 import com.elemengine.utils.VariableLoader;

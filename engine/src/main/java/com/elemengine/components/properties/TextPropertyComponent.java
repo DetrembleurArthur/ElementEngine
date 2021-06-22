@@ -2,7 +2,7 @@ package com.elemengine.components.properties;
 
 import com.elemengine.binding.Property;
 import com.elemengine.entity.GameObject;
-import com.elemengine.graphics.texts.Text;
+import com.elemengine.graphics.texts.fnt.Text;
 import com.elemengine.components.Component;
 
 public class TextPropertyComponent extends Component

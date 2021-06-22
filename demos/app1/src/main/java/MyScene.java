@@ -1,5 +1,11 @@
+import com.elemengine.conf.Configuration;
+import com.elemengine.debug.Log;
 import com.elemengine.graphics.rendering.SpriteSheet;
 import com.elemengine.graphics.shapes.Rectangle;
+import com.elemengine.graphics.texts.fnt.Font;
+import com.elemengine.graphics.texts.fnt.Text;
+import com.elemengine.graphics.texts.ttf.TTFText;
+import com.elemengine.graphics.texts.ttf.TTFont;
 import com.elemengine.registry.Registry;
 import com.elemengine.sys.Scene2D;
 import com.elemengine.sys.Window;

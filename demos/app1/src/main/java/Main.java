@@ -1,5 +1,7 @@
 import com.elemengine.exceptions.SysException;
 import com.elemengine.graphics.loaders.TextureLoader;
+import com.elemengine.graphics.texts.fnt.Font;
+import com.elemengine.registry.Registry;
 import com.elemengine.sys.Application;
 import com.elemengine.sys.Window;
 import com.elemengine.utils.FileUtil;
@@ -20,10 +22,11 @@ public class Main extends Application
         Window.WINDOW.maintainSizeRatio(false);
         Window.WINDOW.setResizeable(true);
         Window.WINDOW.center();
-
-        TextureLoader.loadDir(FileUtil.getEngineFile("sprites/").getPath());
+        TextureLoader.loadDir(FileUtil.getFile("sprites/").getPath());
         setFramerateLimit(60);
         addScene("DEMO", new MyScene());
         setCurrentScene("DEMO");
+
+
     }
 }

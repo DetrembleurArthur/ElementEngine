@@ -7,7 +7,7 @@ import com.elemengine.utils.LaterList;
 
 public class TimersComponent extends Component implements Runnable
 {
-    private LaterList<DynamicTimer> timers;
+    private final LaterList<DynamicTimer> timers;
 
     public TimersComponent(GameObject gameObject)
     {

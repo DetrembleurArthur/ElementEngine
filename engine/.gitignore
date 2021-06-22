@@ -190,3 +190,4 @@ GitHub.sublime-settings
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/java,maven,intellij,visualstudiocode,sublimetext
+/engine-assets/fonts/josefin-sans/

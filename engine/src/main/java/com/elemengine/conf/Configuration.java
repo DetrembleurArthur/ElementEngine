@@ -1,6 +1,5 @@
 package com.elemengine.conf;
 
-import com.elemengine.demo.DemoApp;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +15,7 @@ public class Configuration
 
     static
     {
-        InputStream inputStream = DemoApp.class.getClassLoader().getResourceAsStream("conf.properties");
+        InputStream inputStream = Configuration.class.getClassLoader().getResourceAsStream("conf.properties");
         properties = new Properties();
         try
         {

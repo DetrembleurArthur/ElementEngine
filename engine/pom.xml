@@ -7,14 +7,6 @@
     <groupId>com.elemengine</groupId>
     <artifactId>ElementEngine</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <profiles>
-        <profile>
-            <id>dev</id>
-        </profile>
-        <profile>
-            <id>release</id>
-        </profile>
-    </profiles>
 
     <properties>
         <lwjgl.version>3.2.3</lwjgl.version>
@@ -77,11 +69,6 @@
         <dependency>
             <groupId>org.lwjgl</groupId>
             <artifactId>lwjgl-glfw</artifactId>
-            <classifier>${lwjgl.natives}</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.lwjgl</groupId>
-            <artifactId>lwjgl-nuklear</artifactId>
             <classifier>${lwjgl.natives}</classifier>
         </dependency>
         <dependency>

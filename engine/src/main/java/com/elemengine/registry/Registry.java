@@ -3,8 +3,8 @@ package com.elemengine.registry;
 import com.elemengine.graphics.rendering.Texture;
 import com.elemengine.debug.Log;
 import com.elemengine.graphics.shaders.Shader;
-import com.elemengine.graphics.texts.Font;
-import com.elemengine.graphics.texts.FontSet;
+import com.elemengine.graphics.texts.fnt.Font;
+import com.elemengine.graphics.texts.fnt.FontSet;
 
 import java.util.HashMap;
 

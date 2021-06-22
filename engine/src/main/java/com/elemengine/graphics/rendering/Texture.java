@@ -61,6 +61,14 @@ public class Texture
 		unbind();
 	}
 
+	public Texture(Vector2i size, boolean rgba, ByteBuffer image)
+	{
+		this.id = glGenTextures();
+		bind();
+		init(size, rgba, image);
+		unbind();
+	}
+
 
 
 	public void init(String path, boolean rgba)

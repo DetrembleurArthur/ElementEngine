@@ -28,6 +28,12 @@ public class Image
 		loadFromPath(imagePath);
 	}
 
+	public Image(BufferedImage imageBuffer, Vector2i size)
+	{
+		this.imageBuffer = imageBuffer;
+		this.size = size;
+	}
+
 	private void loadFromPath(String imagePath)
 	{
 		File file = new File(imagePath);
